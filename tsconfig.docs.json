@@ -13,6 +13,11 @@
         "inlineSources": false
     },
     "files": [
-        "src/davinci-units.ts"
+        "src/davinci-units/math/Dimensions.ts",
+        "src/davinci-units/math/G1.ts",
+        "src/davinci-units/math/G2.ts",
+        "src/davinci-units/math/G3.ts",
+        "src/davinci-units/math/QQ.ts",
+        "src/davinci-units/math/Unit.ts"
     ]
 }

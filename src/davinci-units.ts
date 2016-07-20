@@ -3,7 +3,6 @@ import VectorE1 from './davinci-units/math/VectorE1';
 import VectorE2 from './davinci-units/math/VectorE2';
 import VectorE3 from './davinci-units/math/VectorE3';
 import VectorE4 from './davinci-units/math/VectorE4';
-import CC from './davinci-units/math/CC';
 import {Dimensions} from './davinci-units/math/Dimensions';
 import G1 from './davinci-units/math/G1';
 import GeometricE1 from './davinci-units/math/GeometricE1';
@@ -16,7 +15,6 @@ import mathcore from './davinci-units/math/mathcore';
 import Measure from './davinci-units/math/Measure';
 import Mutable from './davinci-units/math/Mutable';
 import {QQ} from './davinci-units/math/QQ';
-import R3 from './davinci-units/math/R3';
 import SpinorE1 from './davinci-units/math/SpinorE1';
 import SpinorE2 from './davinci-units/math/SpinorE2';
 import SpinorE3 from './davinci-units/math/SpinorE3';
@@ -43,7 +41,6 @@ const units = {
     get G2() { return G2 },
     get G3() { return G3 },
     get QQ() { return QQ },
-    get R3() { return R3 },
 
     // universal math functions
     get cos() { return mathcore.cos },

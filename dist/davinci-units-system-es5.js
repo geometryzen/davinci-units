@@ -1851,6 +1851,150 @@ System.register("davinci-units/math/squaredNormG3.js", [], function(exports_1, c
   };
 });
 
+System.register("davinci-units/checks/isDefined.js", [], function(exports_1, context_1) {
+  "use strict";
+  var __moduleName = context_1 && context_1.id;
+  function isDefined(arg) {
+    return (typeof arg !== 'undefined');
+  }
+  exports_1("default", isDefined);
+  return {
+    setters: [],
+    execute: function() {}
+  };
+});
+
+System.register("davinci-units/checks/isArray.js", [], function(exports_1, context_1) {
+  "use strict";
+  var __moduleName = context_1 && context_1.id;
+  function isArray(x) {
+    return Object.prototype.toString.call(x) === '[object Array]';
+  }
+  exports_1("default", isArray);
+  return {
+    setters: [],
+    execute: function() {}
+  };
+});
+
+System.register("davinci-units/checks/mustBeArray.js", ["../checks/mustSatisfy", "../checks/isArray"], function(exports_1, context_1) {
+  "use strict";
+  var __moduleName = context_1 && context_1.id;
+  var mustSatisfy_1,
+      isArray_1;
+  function beAnArray() {
+    return "be an array";
+  }
+  function default_1(name, value, contextBuilder) {
+    mustSatisfy_1.default(name, isArray_1.default(value), beAnArray, contextBuilder);
+    return value;
+  }
+  exports_1("default", default_1);
+  return {
+    setters: [function(mustSatisfy_1_1) {
+      mustSatisfy_1 = mustSatisfy_1_1;
+    }, function(isArray_1_1) {
+      isArray_1 = isArray_1_1;
+    }],
+    execute: function() {}
+  };
+});
+
+System.register("davinci-units/math/stringFromCoordinates.js", ["../checks/isDefined", "../checks/mustBeArray"], function(exports_1, context_1) {
+  "use strict";
+  var __moduleName = context_1 && context_1.id;
+  var isDefined_1,
+      mustBeArray_1;
+  function isLabelOne(label) {
+    if (typeof label === 'string') {
+      return label === "1";
+    } else {
+      var labels = mustBeArray_1.default('label', label);
+      if (labels.length === 2) {
+        return isLabelOne(labels[0]) && isLabelOne(labels[1]);
+      } else if (labels.length === 1) {
+        return isLabelOne(labels[0]);
+      } else {
+        return false;
+      }
+    }
+  }
+  function appendLabel(coord, label, sb) {
+    if (typeof label === 'string') {
+      sb.push(label);
+    } else {
+      var labels = mustBeArray_1.default('label', label);
+      if (labels.length === 2) {
+        sb.push(coord > 0 ? labels[1] : labels[0]);
+      } else if (labels.length === 1) {
+        sb.push(labels[0]);
+      } else if (labels.length === 0) {} else {
+        throw new Error("Unexpected basis label array length: " + labels.length);
+      }
+    }
+  }
+  function appendCoord(coord, numberToString, label, sb) {
+    if (coord !== 0) {
+      if (coord >= 0) {
+        if (sb.length > 0) {
+          sb.push("+");
+        }
+      } else {
+        if (typeof label === 'string') {
+          sb.push("-");
+        } else {
+          var labels = mustBeArray_1.default('label', label);
+          if (labels.length === 2) {
+            if (labels[0] !== labels[1]) {
+              if (sb.length > 0) {
+                sb.push("+");
+              }
+            } else {
+              sb.push("-");
+            }
+          } else if (labels.length === 1) {
+            sb.push("-");
+          } else {
+            sb.push("-");
+          }
+        }
+      }
+      var n = Math.abs(coord);
+      if (n === 1) {
+        appendLabel(coord, label, sb);
+      } else {
+        sb.push(numberToString(n));
+        if (!isLabelOne(label)) {
+          sb.push("*");
+          appendLabel(coord, label, sb);
+        } else {}
+      }
+    } else {}
+  }
+  function stringFromCoordinates(coordinates, numberToString, labels) {
+    var sb = [];
+    for (var i = 0,
+        iLength = coordinates.length; i < iLength; i++) {
+      var coord = coordinates[i];
+      if (isDefined_1.default(coord)) {
+        appendCoord(coord, numberToString, labels[i], sb);
+      } else {
+        return void 0;
+      }
+    }
+    return sb.length > 0 ? sb.join("") : "0";
+  }
+  exports_1("default", stringFromCoordinates);
+  return {
+    setters: [function(isDefined_1_1) {
+      isDefined_1 = isDefined_1_1;
+    }, function(mustBeArray_1_1) {
+      mustBeArray_1 = mustBeArray_1_1;
+    }],
+    execute: function() {}
+  };
+});
+
 System.register("davinci-units/math/BASIS_LABELS_G3_GEOMETRIC.js", [], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
@@ -2822,482 +2966,6 @@ System.register("davinci-units/math/mathcore.js", [], function(exports_1, contex
         }
       };
       exports_1("default", mathcore);
-    }
-  };
-});
-
-System.register("davinci-units/checks/isNull.js", [], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  function default_1(x) {
-    return x === null;
-  }
-  exports_1("default", default_1);
-  return {
-    setters: [],
-    execute: function() {}
-  };
-});
-
-System.register("davinci-units/checks/mustBeNumber.js", ["../checks/mustSatisfy", "../checks/isNumber"], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  var mustSatisfy_1,
-      isNumber_1;
-  function beANumber() {
-    return "be a `number`";
-  }
-  function default_1(name, value, contextBuilder) {
-    mustSatisfy_1.default(name, isNumber_1.default(value), beANumber, contextBuilder);
-    return value;
-  }
-  exports_1("default", default_1);
-  return {
-    setters: [function(mustSatisfy_1_1) {
-      mustSatisfy_1 = mustSatisfy_1_1;
-    }, function(isNumber_1_1) {
-      isNumber_1 = isNumber_1_1;
-    }],
-    execute: function() {}
-  };
-});
-
-System.register("davinci-units/checks/isObject.js", [], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  function isObject(x) {
-    return (typeof x === 'object');
-  }
-  exports_1("default", isObject);
-  return {
-    setters: [],
-    execute: function() {}
-  };
-});
-
-System.register("davinci-units/checks/mustBeObject.js", ["../checks/mustSatisfy", "../checks/isObject"], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  var mustSatisfy_1,
-      isObject_1;
-  function beObject() {
-    return "be an `object`";
-  }
-  function mustBeObject(name, value, contextBuilder) {
-    mustSatisfy_1.default(name, isObject_1.default(value), beObject, contextBuilder);
-    return value;
-  }
-  exports_1("default", mustBeObject);
-  return {
-    setters: [function(mustSatisfy_1_1) {
-      mustSatisfy_1 = mustSatisfy_1_1;
-    }, function(isObject_1_1) {
-      isObject_1 = isObject_1_1;
-    }],
-    execute: function() {}
-  };
-});
-
-System.register("davinci-units/math/randomRange.js", [], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  function default_1(a, b) {
-    return (b - a) * Math.random() + a;
-  }
-  exports_1("default", default_1);
-  return {
-    setters: [],
-    execute: function() {}
-  };
-});
-
-System.register("davinci-units/checks/isDefined.js", [], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  function isDefined(arg) {
-    return (typeof arg !== 'undefined');
-  }
-  exports_1("default", isDefined);
-  return {
-    setters: [],
-    execute: function() {}
-  };
-});
-
-System.register("davinci-units/checks/isArray.js", [], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  function isArray(x) {
-    return Object.prototype.toString.call(x) === '[object Array]';
-  }
-  exports_1("default", isArray);
-  return {
-    setters: [],
-    execute: function() {}
-  };
-});
-
-System.register("davinci-units/checks/mustBeArray.js", ["../checks/mustSatisfy", "../checks/isArray"], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  var mustSatisfy_1,
-      isArray_1;
-  function beAnArray() {
-    return "be an array";
-  }
-  function default_1(name, value, contextBuilder) {
-    mustSatisfy_1.default(name, isArray_1.default(value), beAnArray, contextBuilder);
-    return value;
-  }
-  exports_1("default", default_1);
-  return {
-    setters: [function(mustSatisfy_1_1) {
-      mustSatisfy_1 = mustSatisfy_1_1;
-    }, function(isArray_1_1) {
-      isArray_1 = isArray_1_1;
-    }],
-    execute: function() {}
-  };
-});
-
-System.register("davinci-units/math/stringFromCoordinates.js", ["../checks/isDefined", "../checks/mustBeArray"], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  var isDefined_1,
-      mustBeArray_1;
-  function isLabelOne(label) {
-    if (typeof label === 'string') {
-      return label === "1";
-    } else {
-      var labels = mustBeArray_1.default('label', label);
-      if (labels.length === 2) {
-        return isLabelOne(labels[0]) && isLabelOne(labels[1]);
-      } else if (labels.length === 1) {
-        return isLabelOne(labels[0]);
-      } else {
-        return false;
-      }
-    }
-  }
-  function appendLabel(coord, label, sb) {
-    if (typeof label === 'string') {
-      sb.push(label);
-    } else {
-      var labels = mustBeArray_1.default('label', label);
-      if (labels.length === 2) {
-        sb.push(coord > 0 ? labels[1] : labels[0]);
-      } else if (labels.length === 1) {
-        sb.push(labels[0]);
-      } else if (labels.length === 0) {} else {
-        throw new Error("Unexpected basis label array length: " + labels.length);
-      }
-    }
-  }
-  function appendCoord(coord, numberToString, label, sb) {
-    if (coord !== 0) {
-      if (coord >= 0) {
-        if (sb.length > 0) {
-          sb.push("+");
-        }
-      } else {
-        if (typeof label === 'string') {
-          sb.push("-");
-        } else {
-          var labels = mustBeArray_1.default('label', label);
-          if (labels.length === 2) {
-            if (labels[0] !== labels[1]) {
-              if (sb.length > 0) {
-                sb.push("+");
-              }
-            } else {
-              sb.push("-");
-            }
-          } else if (labels.length === 1) {
-            sb.push("-");
-          } else {
-            sb.push("-");
-          }
-        }
-      }
-      var n = Math.abs(coord);
-      if (n === 1) {
-        appendLabel(coord, label, sb);
-      } else {
-        sb.push(numberToString(n));
-        if (!isLabelOne(label)) {
-          sb.push("*");
-          appendLabel(coord, label, sb);
-        } else {}
-      }
-    } else {}
-  }
-  function stringFromCoordinates(coordinates, numberToString, labels) {
-    var sb = [];
-    for (var i = 0,
-        iLength = coordinates.length; i < iLength; i++) {
-      var coord = coordinates[i];
-      if (isDefined_1.default(coord)) {
-        appendCoord(coord, numberToString, labels[i], sb);
-      } else {
-        return void 0;
-      }
-    }
-    return sb.length > 0 ? sb.join("") : "0";
-  }
-  exports_1("default", stringFromCoordinates);
-  return {
-    setters: [function(isDefined_1_1) {
-      isDefined_1 = isDefined_1_1;
-    }, function(mustBeArray_1_1) {
-      mustBeArray_1 = mustBeArray_1_1;
-    }],
-    execute: function() {}
-  };
-});
-
-System.register("davinci-units/math/R3.js", ["../checks/isDefined", "../checks/isObject", "../checks/isNull", "../checks/isNumber", "../i18n/notImplemented", "../checks/mustBeNumber", "../checks/mustBeObject", "./randomRange", "../i18n/readOnly", "./stringFromCoordinates", "./Unit"], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  var isDefined_1,
-      isObject_1,
-      isNull_1,
-      isNumber_1,
-      notImplemented_1,
-      mustBeNumber_1,
-      mustBeObject_1,
-      randomRange_1,
-      readOnly_1,
-      stringFromCoordinates_1,
-      Unit_1;
-  var BASIS_LABELS,
-      R3;
-  return {
-    setters: [function(isDefined_1_1) {
-      isDefined_1 = isDefined_1_1;
-    }, function(isObject_1_1) {
-      isObject_1 = isObject_1_1;
-    }, function(isNull_1_1) {
-      isNull_1 = isNull_1_1;
-    }, function(isNumber_1_1) {
-      isNumber_1 = isNumber_1_1;
-    }, function(notImplemented_1_1) {
-      notImplemented_1 = notImplemented_1_1;
-    }, function(mustBeNumber_1_1) {
-      mustBeNumber_1 = mustBeNumber_1_1;
-    }, function(mustBeObject_1_1) {
-      mustBeObject_1 = mustBeObject_1_1;
-    }, function(randomRange_1_1) {
-      randomRange_1 = randomRange_1_1;
-    }, function(readOnly_1_1) {
-      readOnly_1 = readOnly_1_1;
-    }, function(stringFromCoordinates_1_1) {
-      stringFromCoordinates_1 = stringFromCoordinates_1_1;
-    }, function(Unit_1_1) {
-      Unit_1 = Unit_1_1;
-    }],
-    execute: function() {
-      BASIS_LABELS = ['e1', 'e2', 'e3'];
-      R3 = (function() {
-        function R3(x, y, z, uom) {
-          mustBeNumber_1.default('x', x);
-          mustBeNumber_1.default('y', y);
-          mustBeNumber_1.default('z', z);
-          mustBeObject_1.default('uom', uom);
-          var m = uom.multiplier;
-          if (m !== 1) {
-            this._coords = [m * x, m * y, m * z];
-            this._uom = new Unit_1.Unit(1, uom.dimensions, uom.labels);
-          } else {
-            this._coords = [x, y, z];
-            this._uom = uom;
-          }
-        }
-        Object.defineProperty(R3.prototype, "x", {
-          get: function() {
-            return this._coords[0];
-          },
-          set: function(unused) {
-            throw new Error(readOnly_1.default('x').message);
-          },
-          enumerable: true,
-          configurable: true
-        });
-        Object.defineProperty(R3.prototype, "y", {
-          get: function() {
-            return this._coords[1];
-          },
-          set: function(unused) {
-            throw new Error(readOnly_1.default('y').message);
-          },
-          enumerable: true,
-          configurable: true
-        });
-        Object.defineProperty(R3.prototype, "z", {
-          get: function() {
-            return this._coords[2];
-          },
-          set: function(unused) {
-            throw new Error(readOnly_1.default('z').message);
-          },
-          enumerable: true,
-          configurable: true
-        });
-        Object.defineProperty(R3.prototype, "uom", {
-          get: function() {
-            return this._uom;
-          },
-          set: function(unused) {
-            throw new Error(readOnly_1.default('uom').message);
-          },
-          enumerable: true,
-          configurable: true
-        });
-        R3.prototype.add = function(rhs, α) {
-          if (α === void 0) {
-            α = 1;
-          }
-          throw new Error(notImplemented_1.default('add').message);
-        };
-        R3.prototype.cross = function(rhs) {
-          var uom = this.uom.mul(rhs.uom);
-          var x = this.y * rhs.z - this.z * rhs.y;
-          var y = this.z * rhs.x - this.x * rhs.z;
-          var z = this.x * rhs.y - this.y * rhs.x;
-          return new R3(x, y, z, uom);
-        };
-        R3.prototype.divByScalar = function(α) {
-          return new R3(this.x, this.y, this.z, this.uom.div(α));
-        };
-        R3.prototype.dot = function(rhs) {
-          var uom = this.uom.mul(rhs.uom);
-          return uom.scale(this.x * rhs.x + this.y * rhs.y + this.z * rhs.z);
-        };
-        R3.prototype.lerp = function(target, α) {
-          throw new Error(notImplemented_1.default('lerp').message);
-        };
-        R3.prototype.magnitude = function() {
-          return this.squaredNorm().sqrt();
-        };
-        R3.prototype.neg = function() {
-          return new R3(-this.x, -this.y, -this.z, this.uom);
-        };
-        R3.prototype.reflect = function(n) {
-          throw new Error(notImplemented_1.default('reflect').message);
-        };
-        R3.prototype.rotate = function(R) {
-          var x = this.x;
-          var y = this.y;
-          var z = this.z;
-          var a = R.xy;
-          var b = R.yz;
-          var c = R.zx;
-          var w = R.a;
-          var ix = w * x - c * z + a * y;
-          var iy = w * y - a * x + b * z;
-          var iz = w * z - b * y + c * x;
-          var iw = b * x + c * y + a * z;
-          var ox = ix * w + iw * b + iy * a - iz * c;
-          var oy = iy * w + iw * c + iz * b - ix * a;
-          var oz = iz * w + iw * a + ix * c - iy * b;
-          return new R3(ox, oy, oz, this.uom);
-        };
-        R3.prototype.scale = function(α) {
-          return new R3(this.x, this.y, this.z, this.uom.mul(α));
-        };
-        R3.prototype.slerp = function(target, α) {
-          throw new Error(notImplemented_1.default('slerp').message);
-        };
-        R3.prototype.squaredNorm = function() {
-          var x = this.x;
-          var y = this.y;
-          var z = this.z;
-          return this.uom.quad().scale(x * x + y * y + z * z);
-        };
-        R3.prototype.stress = function(σ) {
-          return R3.vector(this.x * σ.x, this.y * σ.y, this.z * σ.z, this.uom);
-        };
-        R3.prototype.sub = function(rhs, α) {
-          if (α === void 0) {
-            α = 1;
-          }
-          throw new Error(notImplemented_1.default('sub').message);
-        };
-        R3.prototype.toStringCustom = function(coordToString, labels) {
-          var quantityString = stringFromCoordinates_1.default(this._coords, coordToString, labels);
-          if (this.uom) {
-            var unitString = this.uom.toString().trim();
-            if (unitString) {
-              return quantityString + ' ' + unitString;
-            } else {
-              return quantityString;
-            }
-          } else {
-            return quantityString;
-          }
-        };
-        R3.prototype.toExponential = function(fractionDigits) {
-          var coordToString = function(coord) {
-            return coord.toExponential(fractionDigits);
-          };
-          return this.toStringCustom(coordToString, BASIS_LABELS);
-        };
-        R3.prototype.toFixed = function(fractionDigits) {
-          var coordToString = function(coord) {
-            return coord.toFixed(fractionDigits);
-          };
-          return this.toStringCustom(coordToString, BASIS_LABELS);
-        };
-        R3.prototype.toPrecision = function(precision) {
-          var coordToString = function(coord) {
-            return coord.toPrecision(precision);
-          };
-          return this.toStringCustom(coordToString, BASIS_LABELS);
-        };
-        R3.prototype.toString = function(radix) {
-          var coordToString = function(coord) {
-            return coord.toString(radix);
-          };
-          return this.toStringCustom(coordToString, BASIS_LABELS);
-        };
-        R3.prototype.__add__ = function(rhs) {
-          if (isObject_1.default(rhs) && !isNull_1.default(rhs))
-            if (isNumber_1.default(rhs.x) && isNumber_1.default(rhs.y) && isNumber_1.default(rhs.z)) {
-              return R3.vector(this.x + rhs.x, this.y + rhs.y, this.z + rhs.z, this.uom);
-            } else {
-              return void 0;
-            }
-        };
-        R3.fromVector = function(vector, uom) {
-          return new R3(vector.x, vector.y, vector.z, uom);
-        };
-        R3.direction = function(vector) {
-          if (isDefined_1.default(vector)) {
-            var x = vector.x;
-            var y = vector.y;
-            var z = vector.z;
-            var m = Math.sqrt(x * x + y * y + z * z);
-            return new R3(x / m, y / m, z / m, Unit_1.Unit.ONE);
-          } else {
-            return void 0;
-          }
-        };
-        R3.random = function() {
-          var x = randomRange_1.default(-1, 1);
-          var y = randomRange_1.default(-1, 1);
-          var z = randomRange_1.default(-1, 1);
-          var m = Math.sqrt(x * x + y * y + z * z);
-          return new R3(x / m, y / m, z / m, Unit_1.Unit.ONE);
-        };
-        R3.vector = function(x, y, z, uom) {
-          return new R3(x, y, z, uom);
-        };
-        R3.zero = new R3(0, 0, 0, Unit_1.Unit.ONE);
-        R3.e1 = new R3(1, 0, 0, Unit_1.Unit.ONE);
-        R3.e2 = new R3(0, 1, 0, Unit_1.Unit.ONE);
-        R3.e3 = new R3(0, 0, 1, Unit_1.Unit.ONE);
-        return R3;
-      }());
-      exports_1("default", R3);
     }
   };
 });
@@ -4301,9 +3969,9 @@ System.register("davinci-units/config.js", [], function(exports_1, context_1) {
       Units = (function() {
         function Units() {
           this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-          this.LAST_MODIFIED = '2016-07-19';
+          this.LAST_MODIFIED = '2016-07-20';
           this.NAMESPACE = 'UNITS';
-          this.VERSION = '2.272.0';
+          this.VERSION = '1.0.0';
         }
         Units.prototype.log = function(message) {
           var optionalParams = [];
@@ -4341,7 +4009,7 @@ System.register("davinci-units/config.js", [], function(exports_1, context_1) {
   };
 });
 
-System.register("davinci-units.js", ["./davinci-units/math/Dimensions", "./davinci-units/math/G2", "./davinci-units/math/G3", "./davinci-units/math/mathcore", "./davinci-units/math/QQ", "./davinci-units/math/R3", "./davinci-units/math/Unit", "./davinci-units/config"], function(exports_1, context_1) {
+System.register("davinci-units.js", ["./davinci-units/math/Dimensions", "./davinci-units/math/G2", "./davinci-units/math/G3", "./davinci-units/math/mathcore", "./davinci-units/math/QQ", "./davinci-units/math/Unit", "./davinci-units/config"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var Dimensions_1,
@@ -4349,7 +4017,6 @@ System.register("davinci-units.js", ["./davinci-units/math/Dimensions", "./davin
       G3_1,
       mathcore_1,
       QQ_1,
-      R3_1,
       Unit_1,
       config_1;
   var units;
@@ -4364,8 +4031,6 @@ System.register("davinci-units.js", ["./davinci-units/math/Dimensions", "./davin
       mathcore_1 = mathcore_1_1;
     }, function(QQ_1_1) {
       QQ_1 = QQ_1_1;
-    }, function(R3_1_1) {
-      R3_1 = R3_1_1;
     }, function(Unit_1_1) {
       Unit_1 = Unit_1_1;
     }, function(config_1_1) {
@@ -4393,9 +4058,6 @@ System.register("davinci-units.js", ["./davinci-units/math/Dimensions", "./davin
         },
         get QQ() {
           return QQ_1.QQ;
-        },
-        get R3() {
-          return R3_1.default;
         },
         get cos() {
           return mathcore_1.default.cos;
