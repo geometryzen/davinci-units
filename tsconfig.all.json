@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "module": "system",
+        "target": "ES5",
+        "outDir": "test/system",
+        "noImplicitAny": false,
+        "noLib": false,
+        "removeComments": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "moduleResolution": "classic",
+        "sourceMap": false,
+        "inlineSourceMap": false,
+        "inlineSources": false
+    },
+    "files": [
+        "src/davinci-units/checks/isNull.spec.ts",
+        "src/davinci-units/math/CC.spec.ts",
+        "src/davinci-units/math/Dimensions.spec.ts",
+        "src/davinci-units/math/G2.spec.ts",
+        "src/davinci-units/math/G3.spec.ts",
+        "src/davinci-units/math/QQ.spec.ts",
+        "src/davinci-units/math/R3.spec.ts",
+        "src/davinci-units/math/Unit.spec.ts",
+        "src/davinci-units/math/VectorN.spec.ts",
+        "src/davinci-units/math/arraysEQ.spec.ts",
+        "src/davinci-units/math/gauss.spec.ts",
+        "typings/jasmine/jasmine.d.ts"
+    ]
+}
