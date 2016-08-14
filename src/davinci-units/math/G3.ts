@@ -891,6 +891,9 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
         return that
     }
 
+    /**
+     * Creates a new G3 from the coordinates of m and the optional unit of measure, uom.
+     */
     static copy(m: GeometricE3, uom?: Unit): G3 {
         return new G3(m.a, m.x, m.y, m.z, m.xy, m.yz, m.zx, m.b, uom)
     }
