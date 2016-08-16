@@ -72,6 +72,11 @@ interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNu
     /**
      *
      */
+    isScalar(): boolean;
+
+    /**
+     *
+     */
     isZero(): boolean;
 
     /**

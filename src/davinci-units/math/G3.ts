@@ -5,6 +5,7 @@ import gauss from './gauss';
 import GeometricE3 from './GeometricE3';
 import GeometricNumber from './GeometricNumber';
 import GeometricOperators from './GeometricOperators';
+// import GradeError from './GradeError';
 import ImmutableMeasure from './ImmutableMeasure';
 import lcoG3 from './lcoG3';
 import mulG3 from './mulG3';
@@ -25,14 +26,14 @@ import BASIS_LABELS_G3_HAMILTON from './BASIS_LABELS_G3_HAMILTON';
 import BASIS_LABELS_G3_STANDARD from './BASIS_LABELS_G3_STANDARD';
 import BASIS_LABELS_G3_STANDARD_HTML from './BASIS_LABELS_G3_STANDARD_HTML';
 
-const COORD_SCALAR = 0
-const COORD_X = 1
-const COORD_Y = 2
-const COORD_Z = 3
-const COORD_XY = 4
-const COORD_YZ = 5
-const COORD_ZX = 6
-const COORD_PSEUDO = 7
+const COORD_SCALAR = 0;
+const COORD_X = 1;
+const COORD_Y = 2;
+const COORD_Z = 3;
+const COORD_XY = 4;
+const COORD_YZ = 5;
+const COORD_ZX = 6;
+const COORD_PSEUDO = 7;
 
 /**
  * <p>
@@ -594,6 +595,10 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
         return (this.a === 1) && (this.x === 0) && (this.y === 0) && (this.z === 0) && (this.yz === 0) && (this.zx === 0) && (this.xy === 0) && (this.b === 0);
     }
 
+    isScalar(): boolean {
+        return (this.x === 0) && (this.y === 0) && (this.z === 0) && (this.yz === 0) && (this.zx === 0) && (this.xy === 0) && (this.b === 0);
+    }
+
     isZero(): boolean {
         return (this.a === 0) && (this.x === 0) && (this.y === 0) && (this.z === 0) && (this.yz === 0) && (this.zx === 0) && (this.xy === 0) && (this.b === 0);
     }
@@ -856,6 +861,134 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
     toString(radix?: number): string {
         const coordToString = function(coord: number): string { return coord.toString(radix) };
         return this.toStringCustom(coordToString, G3.BASIS_LABELS);
+    }
+
+    __eq__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in equality expression: ${this.uom.dimensions} === ${rhs.uom.dimensions}`);
+            }
+            return this.a === rhs.a &&
+                this.x === rhs.x &&
+                this.y === rhs.y &&
+                this.z === rhs.z &&
+                this.xy === rhs.xy &&
+                this.yz === rhs.yz &&
+                this.zx === rhs.zx &&
+                this.b === rhs.b;
+        }
+        else {
+            return void 0;
+        }
+    }
+
+    __ne__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in inequality expression: ${this.uom.dimensions} !== ${rhs.uom.dimensions}`);
+            }
+            return this.a !== rhs.a ||
+                this.x !== rhs.x ||
+                this.y !== rhs.y ||
+                this.z !== rhs.z ||
+                this.xy !== rhs.xy ||
+                this.yz !== rhs.yz ||
+                this.zx !== rhs.zx ||
+                this.b !== this.b;
+        }
+        else {
+            return void 0;
+        }
+    }
+
+    __ge__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} >= ${rhs.uom.dimensions}`);
+            }
+            if (!this.isScalar()) {
+                throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
+            }
+            if (!rhs.isScalar()) {
+                throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
+            }
+            return this.a >= rhs.a;
+        }
+        else {
+            return void 0;
+        }
+    }
+
+    __gt__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} > ${rhs.uom.dimensions}`);
+            }
+            if (!this.isScalar()) {
+                throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
+            }
+            if (!rhs.isScalar()) {
+                throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
+            }
+            return this.a > rhs.a;
+        }
+        else {
+            return void 0;
+        }
+    }
+
+    __le__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} <= ${rhs.uom.dimensions}`);
+            }
+            if (!this.isScalar()) {
+                throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
+            }
+            if (!rhs.isScalar()) {
+                throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
+            }
+            return this.a <= rhs.a;
+        }
+        else {
+            return void 0;
+        }
+    }
+
+    __lt__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} < ${rhs.uom.dimensions}`);
+            }
+            if (!this.isScalar()) {
+                throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
+            }
+            if (!rhs.isScalar()) {
+                throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
+            }
+            return this.a < rhs.a;
+        }
+        else {
+            return void 0;
+        }
     }
 
     /**

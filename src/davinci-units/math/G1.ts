@@ -139,6 +139,10 @@ export default class G1 implements ImmutableMeasure<G1>, GeometricE1, GeometricN
         return this.a === 1 && this.x === 0
     }
 
+    isScalar(): boolean {
+        return this.x === 0
+    }
+
     isZero(): boolean {
         return this.a === 0 && this.x === 0
     }

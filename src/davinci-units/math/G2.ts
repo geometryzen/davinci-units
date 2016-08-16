@@ -1114,6 +1114,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      */
     isOne(): boolean { return this.a === 1 && this.x === 0 && this.y === 0 && this.b === 0 }
     isNaN(): boolean { return isNaN(this.a) || isNaN(this.x) || isNaN(this.y) || isNaN(this.b) }
+    isScalar(): boolean { return this.x === 0 && this.y === 0 && this.b === 0 }
     /**
      * @method isZero
      * @return {boolean}
@@ -1181,6 +1182,122 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
     toStringIJK(): string {
         var coordToString = function(coord: number): string { return coord.toString() };
         return this.toStringCustom(coordToString, ["1", "i", "j", "I"]);
+    }
+
+    __eq__(rhs: G2): boolean {
+        if (rhs instanceof G2) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in equality expression: ${this.uom.dimensions} === ${rhs.uom.dimensions}`);
+            }
+            return this.a === rhs.a && this.x === rhs.x && this.y === rhs.y && this.b === rhs.b;
+        }
+        else {
+            return void 0;
+        }
+    }
+    __ne__(rhs: G2): boolean {
+        if (rhs instanceof G2) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in inequality expression: ${this.uom.dimensions} !== ${rhs.uom.dimensions}`);
+            }
+            return this.a !== rhs.a ||
+                this.x !== rhs.x ||
+                this.y !== rhs.y ||
+                this.b !== this.b;
+        }
+        else {
+            return void 0;
+        }
+    }
+
+    __ge__(rhs: G2): boolean {
+        if (rhs instanceof G2) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} >= ${rhs.uom.dimensions}`);
+            }
+            if (!this.isScalar()) {
+                throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
+            }
+            if (!rhs.isScalar()) {
+                throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
+            }
+            return this.a >= rhs.a;
+        }
+        else {
+            return void 0;
+        }
+    }
+
+    __gt__(rhs: G2): boolean {
+        if (rhs instanceof G2) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} > ${rhs.uom.dimensions}`);
+            }
+            if (!this.isScalar()) {
+                throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
+            }
+            if (!rhs.isScalar()) {
+                throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
+            }
+            return this.a > rhs.a;
+        }
+        else {
+            return void 0;
+        }
+    }
+
+    __le__(rhs: G2): boolean {
+        if (rhs instanceof G2) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} <= ${rhs.uom.dimensions}`);
+            }
+            if (!this.isScalar()) {
+                throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
+            }
+            if (!rhs.isScalar()) {
+                throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
+            }
+            return this.a <= rhs.a;
+        }
+        else {
+            return void 0;
+        }
+    }
+
+    __lt__(rhs: G2): boolean {
+        if (rhs instanceof G2) {
+            try {
+                Unit.compatible(this.uom, rhs.uom);
+            }
+            catch (e) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} < ${rhs.uom.dimensions}`);
+            }
+            if (!this.isScalar()) {
+                throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
+            }
+            if (!rhs.isScalar()) {
+                throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
+            }
+            return this.a < rhs.a;
+        }
+        else {
+            return void 0;
+        }
     }
 
     /*

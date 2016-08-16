@@ -2,7 +2,7 @@ import G3 from './G3';
 
 describe("G3", function() {
 
-    var random = function() {
+    const random = function() {
         var a = Math.random();
         var x = Math.random();
         var y = Math.random();
@@ -10,16 +10,18 @@ describe("G3", function() {
         return new G3(a, x, y, z, Math.random(), Math.random(), Math.random(), Math.random());
     }
 
-    var zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
-    var one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
-    var i = new G3(0, 1, 0, 0, 0, 0, 0, 0);
-    var j = new G3(0, 0, 1, 0, 0, 0, 0, 0);
-    var k = new G3(0, 0, 0, 1, 0, 0, 0, 0);
-    var ij = new G3(0, 0, 0, 0, 1, 0, 0, 0);
-    var jk = new G3(0, 0, 0, 0, 0, 1, 0, 0);
-    var ki = new G3(0, 0, 0, 0, 0, 0, 1, 0);
-    var I = new G3(0, 0, 0, 0, 0, 0, 0, 1);
-    var mone = new G3(-1, 0, 0, 0, 0, 0, 0, 0);
+    const zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
+    const one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
+    const i = new G3(0, 1, 0, 0, 0, 0, 0, 0);
+    const j = new G3(0, 0, 1, 0, 0, 0, 0, 0);
+    const k = new G3(0, 0, 0, 1, 0, 0, 0, 0);
+    const ij = new G3(0, 0, 0, 0, 1, 0, 0, 0);
+    const jk = new G3(0, 0, 0, 0, 0, 1, 0, 0);
+    const ki = new G3(0, 0, 0, 0, 0, 0, 1, 0);
+    const I = new G3(0, 0, 0, 0, 0, 0, 0, 1);
+    const mone = new G3(-1, 0, 0, 0, 0, 0, 0, 0);
+    const meter = G3.meter;
+    const second = G3.second;
 
     beforeEach(function() {
         jasmine.addMatchers({
@@ -589,8 +591,8 @@ describe("G3", function() {
         });
     });
     describe("Operator Overloading", function() {
-        var x = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
-        var y = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
+        const x = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
+        const y = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
         it("+", function() {
             var e = x.add(y);
             var a = x.__add__(y);
@@ -763,6 +765,126 @@ describe("G3", function() {
             expect(e.yz).toBe(a.yz);
             expect(e.zx).toBe(a.zx);
             expect(e.b).toBe(a.b);
+        });
+        describe("eq", function() {
+            const zero = G3.zero;
+            const one = G3.one;
+            it("(one, one) => true", function() {
+                expect(one.__eq__(one)).toBeTruthy();
+            })
+            it("(zero, one) => false", function() {
+                expect(zero.__eq__(one)).toBeFalsy();
+            })
+            it("(x, x) => true", function() {
+                expect(x.__eq__(x)).toBeTruthy();
+            })
+            it("(meter, second) => false", function() {
+                expect(function() { meter.__eq__(second) }).toThrowError("Dimensions mismatch in equality expression: length === time");
+            })
+        });
+        describe("ne", function() {
+            const zero = G3.zero;
+            const one = G3.one;
+            it("(one, one) => false", function() {
+                expect(one.__ne__(one)).toBeFalsy();
+            })
+            it("(zero, one) => true", function() {
+                expect(zero.__ne__(one)).toBeTruthy();
+            })
+            it("(x, x) => false", function() {
+                expect(x.__ne__(x)).toBeFalsy();
+            })
+            it("(meter, second) => false", function() {
+                expect(function() { meter.__ne__(second) }).toThrowError("Dimensions mismatch in inequality expression: length !== time");
+            })
+        });
+        describe("ge", function() {
+            const zero = G3.zero;
+            const one = G3.one;
+            it("(one, one) => true", function() {
+                expect(one.__ge__(one)).toBeTruthy();
+            })
+            it("(zero, one) => false", function() {
+                expect(zero.__ge__(one)).toBeFalsy();
+            })
+            it("(one, zero) => true", function() {
+                expect(one.__ge__(zero)).toBeTruthy();
+            })
+            it("(meter, second) => false", function() {
+                expect(function() { meter.__ge__(second) }).toThrowError("Dimensions mismatch in comparison expression: length >= time");
+            })
+            it("(i, one) => Error", function() {
+                expect(function() { i.__ge__(one) }).toThrowError("left operand (i) in comparison expression must be a scalar.");
+            })
+            it("(one, i) => Error", function() {
+                expect(function() { one.__ge__(i) }).toThrowError("right operand (i) in comparison expression must be a scalar.");
+            })
+        });
+        describe("gt", function() {
+            const zero = G3.zero;
+            const one = G3.one;
+            it("(one, one) => false", function() {
+                expect(one.__gt__(one)).toBeFalsy();
+            })
+            it("(zero, one) => false", function() {
+                expect(zero.__gt__(one)).toBeFalsy();
+            })
+            it("(one, zero) => true", function() {
+                expect(one.__gt__(zero)).toBeTruthy();
+            })
+            it("(meter, second) => false", function() {
+                expect(function() { meter.__gt__(second) }).toThrowError("Dimensions mismatch in comparison expression: length > time");
+            })
+            it("(i, one) => Error", function() {
+                expect(function() { i.__gt__(one) }).toThrowError("left operand (i) in comparison expression must be a scalar.");
+            })
+            it("(one, i) => Error", function() {
+                expect(function() { one.__gt__(i) }).toThrowError("right operand (i) in comparison expression must be a scalar.");
+            })
+        });
+        describe("le", function() {
+            const zero = G3.zero;
+            const one = G3.one;
+            it("(one, one) => true", function() {
+                expect(one.__le__(one)).toBeTruthy();
+            })
+            it("(zero, one) => true", function() {
+                expect(zero.__le__(one)).toBeTruthy();
+            })
+            it("(one, zero) => false", function() {
+                expect(one.__le__(zero)).toBeFalsy();
+            })
+            it("(meter, second) => false", function() {
+                expect(function() { meter.__le__(second) }).toThrowError("Dimensions mismatch in comparison expression: length <= time");
+            })
+            it("(i, one) => Error", function() {
+                expect(function() { i.__le__(one) }).toThrowError("left operand (i) in comparison expression must be a scalar.");
+            })
+            it("(one, i) => Error", function() {
+                expect(function() { one.__le__(i) }).toThrowError("right operand (i) in comparison expression must be a scalar.");
+            })
+        });
+        describe("lt", function() {
+            const zero = G3.zero;
+            const one = G3.one;
+            it("(one, one) => false", function() {
+                expect(one.__lt__(one)).toBeFalsy();
+            })
+            it("(zero, one) => true", function() {
+                expect(zero.__lt__(one)).toBeTruthy();
+            })
+            it("(one, zero) => false", function() {
+                expect(one.__lt__(zero)).toBeFalsy();
+            })
+            it("(meter, second) => false", function() {
+                expect(function() { meter.__lt__(second) }).toThrowError("Dimensions mismatch in comparison expression: length < time");
+            })
+            it("(i, one) => Error", function() {
+                expect(function() { i.__lt__(one) }).toThrowError("left operand (i) in comparison expression must be a scalar.");
+            })
+            it("(one, i) => Error", function() {
+                expect(function() { one.__lt__(i) }).toThrowError("right operand (i) in comparison expression must be a scalar.");
+            })
         });
     });
     describe("norm", function() {

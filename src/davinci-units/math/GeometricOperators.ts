@@ -29,6 +29,13 @@ interface GeometricOperators<T, UNIT> extends LinearOperators<T, UNIT>, RingOper
      * Inverse (may not exist).
      */
     inv(): T;
+
+    __eq__(rhs: T): boolean;
+    __ne__(rhs: T): boolean;
+    __ge__(rhs: T): boolean;
+    __gt__(rhs: T): boolean;
+    __le__(rhs: T): boolean;
+    __lt__(rhs: T): boolean;
 }
 
 export default GeometricOperators
