@@ -16,7 +16,7 @@ System.config({
   map: {
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "core-js": "npm:core-js@0.9.18",
+    "core-js": "npm:core-js@1.2.7",
     "ts": "github:frankwallis/plugin-typescript@2.6.0",
     "typescript": "npm:typescript@1.8.10",
     "github:frankwallis/plugin-typescript@2.6.0": {
@@ -30,6 +30,9 @@ System.config({
     },
     "github:jspm/nodelibs-os@0.1.0": {
       "os-browserify": "npm:os-browserify@0.1.2"
+    },
+    "github:jspm/nodelibs-path@0.1.0": {
+      "path-browserify": "npm:path-browserify@0.0.0"
     },
     "github:jspm/nodelibs-process@0.1.2": {
       "process": "npm:process@0.11.8"
@@ -57,8 +60,9 @@ System.config({
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:core-js@0.9.18": {
+    "npm:core-js@1.2.7": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
@@ -67,6 +71,9 @@ System.config({
     },
     "npm:os-browserify@0.1.2": {
       "os": "github:jspm/nodelibs-os@0.1.0"
+    },
+    "npm:path-browserify@0.0.0": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:process@0.11.8": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",

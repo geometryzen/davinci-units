@@ -846,7 +846,16 @@ System.register('davinci-units/math/G2.js', ['./bezier2', './bezier3', './extE2'
                     return this.x === 0 && this.y === 0;
                 };
                 G2.prototype.log = function () {
-                    throw new Error(notImplemented_1.default('log').message);
+                    Unit_1.Unit.assertDimensionless(this.uom);
+                    if (this.isSpinor()) {
+                        var α = this.a;
+                        var β = this.b;
+                        var a = Math.log(Math.sqrt(α * α + β * β));
+                        var b = Math.atan2(β, α);
+                        return new G2(a, 0, 0, b, void 0);
+                    } else {
+                        throw new Error(notImplemented_1.default("log(" + this.toString() + ")").message);
+                    }
                 };
                 G2.prototype.magnitude = function () {
                     return this.norm();
@@ -4038,9 +4047,9 @@ System.register('davinci-units/config.js', [], function (exports_1, context_1) {
             Units = function () {
                 function Units() {
                     this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-                    this.LAST_MODIFIED = '2016-08-15';
+                    this.LAST_MODIFIED = '2016-08-18';
                     this.NAMESPACE = 'UNITS';
-                    this.VERSION = '1.1.0';
+                    this.VERSION = '1.2.0';
                 }
                 Units.prototype.log = function (message) {
                     var optionalParams = [];

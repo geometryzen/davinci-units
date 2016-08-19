@@ -925,30 +925,31 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
     }
 
     /**
-     * Determines whether this multivector has grade(1) components.
-     *
-     * @method isSpinor
-     * @return {boolean}
+     * Determines whether this multivector has only grade 0 and grade 2 components.
      */
     isSpinor(): boolean {
         return this.x === 0 && this.y === 0
     }
 
     /**
-     * @method log
-     * @return {G2}
-     * @chainable
+     *
      */
     log(): G2 {
-        throw new Error(notImplemented('log').message)
+        Unit.assertDimensionless(this.uom);
+        if (this.isSpinor()) {
+            const α = this.a;
+            const β = this.b;
+            const a = Math.log(Math.sqrt(α * α + β * β));
+            const b = Math.atan2(β, α);
+            return new G2(a, 0, 0, b, void 0);
+        }
+        else {
+            throw new Error(notImplemented(`log(${this.toString()})`).message);
+        }
     }
 
     /**
      * Computes the <em>square root</em> of the <em>squared norm</em>.
-     *
-     * @method magnitude
-     * @return {G2}
-     * @chainable
      */
     magnitude(): G2 {
         return this.norm()
