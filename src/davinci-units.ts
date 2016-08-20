@@ -1,4 +1,6 @@
 // math
+import bigInt from './davinci-units/math/BigInteger';
+import bigRat from './davinci-units/math/BigRational';
 import VectorE1 from './davinci-units/math/VectorE1';
 import VectorE2 from './davinci-units/math/VectorE2';
 import VectorE3 from './davinci-units/math/VectorE3';
@@ -41,6 +43,8 @@ const units = {
     get G2() { return G2 },
     get G3() { return G3 },
     get QQ() { return QQ },
+    get bigInt() { return bigInt },
+    get bigRat() { return bigRat },
 
     // universal math functions
     get cos() { return mathcore.cos },

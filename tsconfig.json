@@ -14,6 +14,8 @@
     },
     "files": [
         "src/davinci-units/checks/isNull.spec.ts",
+        "src/davinci-units/math/BigInteger.spec.ts",
+        "src/davinci-units/math/BigRational.spec.ts",
         "src/davinci-units/math/Dimensions.spec.ts",
         "src/davinci-units/math/G2.spec.ts",
         "src/davinci-units/math/G3.spec.ts",

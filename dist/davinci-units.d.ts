@@ -522,6 +522,15 @@ declare module UNITS {
      */
     function sqrt<T>(x: T): T;
     ///////////////////////////////////////////////////////////////////////////////
+    interface BigInteger {
+        valueOf(): number;
+    }
+    function bigInt(v?: number | string | BigInteger, radix?: number | string | BigInteger): BigInteger;
+    ///////////////////////////////////////////////////////////////////////////////
+    interface BigRational {
+        valueOf(): number;
+    }
+    function bigRat(a: number | string | BigInteger | BigRational, b?: number | string | BigInteger): BigRational;
 }
 
 declare module 'units' {
