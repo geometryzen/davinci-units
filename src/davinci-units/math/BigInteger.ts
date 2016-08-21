@@ -1,3 +1,5 @@
+import RingOperators from './RingOperators';
+
 const BASE = 1e7;
 const LOG_BASE = 7;
 const MAX_INT = 9007199254740992;
@@ -333,7 +335,7 @@ export class Integer {
     }
 }
 
-class BigInteger extends Integer {
+class BigInteger extends Integer implements RingOperators<Integer, number | string> {
     value: number[]
     constructor(value: number[], sign: boolean) {
         super(void 0, void 0);
@@ -359,6 +361,13 @@ class BigInteger extends Integer {
     plus(v: number | string | Integer) {
         return this.add(v);
     }
+    __add__(rhs: number | string | Integer): Integer {
+        return this.add(rhs);
+    }
+    __radd__(lhs: number | string | Integer): Integer {
+        const n = parseValue(lhs);
+        return n.add(this);
+    }
     subtract(v: number | string | Integer): Integer {
         const n = parseValue(v);
         if (this.sign !== n.sign) {
@@ -377,11 +386,30 @@ class BigInteger extends Integer {
     minus(v: number | string | Integer) {
         return this.subtract(v);
     }
+    __sub__(rhs: number | string | Integer): Integer {
+        return this.subtract(rhs);
+    }
+    __rsub__(lhs: number | string | Integer): Integer {
+        const n = parseValue(lhs);
+        return n.subtract(this);
+    }
     negate() {
         return new BigInteger(this.value, !this.sign);
     }
+    neg() {
+        return new BigInteger(this.value, !this.sign);
+    }
+    __neg__() {
+        return this.negate();
+    }
+    __pos__() {
+        return this;
+    }
     abs() {
         return new BigInteger(this.value, false);
+    }
+    inv(): Integer {
+        throw new Error("inv() is not supported for BigInteger");
     }
     multiply(v: number | string | Integer): BigInteger {
         const n = parseValue(v);
@@ -408,6 +436,13 @@ class BigInteger extends Integer {
     }
     times(v: number | string | Integer): BigInteger {
         return this.multiply(v);
+    }
+    __mul__(rhs: number | string | Integer): Integer {
+        return this.multiply(rhs);
+    }
+    __rmul__(lhs: number | string | Integer): Integer {
+        const n = parseValue(lhs);
+        return n.multiply(this);
     }
     _multiplyBySmall(a: SmallInteger): Integer {
         if (a.value === 0) return Integer[0];
@@ -470,6 +505,10 @@ class BigInteger extends Integer {
         return this.sign;
     }
 
+    isOne() {
+        return false;
+    }
+
     isUnit() {
         return false;
     }
@@ -477,6 +516,7 @@ class BigInteger extends Integer {
     isZero() {
         return false;
     }
+
     next(): Integer {
         var value = this.value;
         if (this.sign) {
@@ -510,7 +550,7 @@ class BigInteger extends Integer {
     }
 }
 
-class SmallInteger extends Integer {
+class SmallInteger extends Integer implements RingOperators<Integer, number | string> {
     value: number;
     constructor(value: number) {
         super(void 0, void 0);
@@ -538,6 +578,13 @@ class SmallInteger extends Integer {
     plus(v: number | string | Integer) {
         return this.add(v);
     }
+    __add__(rhs: number | string | Integer): Integer {
+        return this.add(rhs);
+    }
+    __radd__(lhs: number | string | Integer): Integer {
+        const n = parseValue(lhs);
+        return n.add(this);
+    }
     subtract(v: number | string | Integer): Integer {
         const n = parseValue(v);
         const a = this.value;
@@ -556,14 +603,33 @@ class SmallInteger extends Integer {
     minus(v: number | string | Integer) {
         return this.subtract(v);
     }
+    __sub__(rhs: number | string | Integer): Integer {
+        return this.subtract(rhs);
+    }
+    __rsub__(lhs: number | string | Integer): Integer {
+        const n = parseValue(lhs);
+        return n.subtract(this);
+    }
     negate() {
         var sign = this.sign;
         var small = new SmallInteger(-this.value);
         small.sign = !sign;
         return small;
     }
+    neg() {
+        return this.negate();
+    }
+    __neg__() {
+        return this.negate();
+    }
+    __pos__() {
+        return this;
+    }
     abs() {
         return new SmallInteger(Math.abs(this.value));
+    }
+    inv(): Integer {
+        throw new Error("inv() is not supported");
     }
     _multiplyBySmall(a: SmallInteger): Integer {
         if (isPrecise(a.value * this.value)) {
@@ -576,6 +642,13 @@ class SmallInteger extends Integer {
     }
     times(v: number | string | Integer) {
         return this.multiply(v);
+    }
+    __mul__(rhs: number | string | Integer): Integer {
+        return this.multiply(rhs);
+    }
+    __rmul__(lhs: number | string | Integer): Integer {
+        const n = parseValue(lhs);
+        return n.multiply(this);
     }
     square(): Integer {
         var value = this.value * this.value;
@@ -614,22 +687,25 @@ class SmallInteger extends Integer {
     compareTo(v: number | string | Integer) {
         return this.compare(v);
     }
-    isEven() {
+    isEven(): boolean {
         return (this.value & 1) === 0;
     }
-    isOdd() {
+    isOdd(): boolean {
         return (this.value & 1) === 1;
     }
-    isPositive() {
+    isPositive(): boolean {
         return this.value > 0;
     }
-    isNegative() {
+    isNegative(): boolean {
         return this.value < 0;
     }
-    isUnit() {
+    isOne(): boolean {
+        return this.isUnit();
+    }
+    isUnit(): boolean {
         return Math.abs(this.value) === 1;
     }
-    isZero() {
+    isZero(): boolean {
         return this.value === 0;
     }
     next(): Integer {
