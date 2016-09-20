@@ -156,11 +156,13 @@ declare module UNITS {
         labels: string[];
         constructor(multiplier: number, dimensions: Dimensions, labels: string[]);
         add(rhs: Unit): Unit;
+        div(rhs: Unit): Unit;
         inv(): Unit;
         isOne(): boolean;
         isZero(): boolean;
         mul(rhs: Unit): Unit;
         scale(multiplier: number): Unit;
+        sqrt(): Unit;
         sub(rhs: Unit): Unit;
         neg(): Unit;
 
