@@ -1,6 +1,4 @@
-import DivisionRingOperators from '../math/DivisionRingOperators';
 import {Dimensions} from '../math/Dimensions';
-import LinearNumber from '../math/LinearNumber';
 import notImplemented from '../i18n/notImplemented';
 import notSupported from '../i18n/notSupported';
 import {QQ} from '../math/QQ';
@@ -78,8 +76,8 @@ const decodes =
     ["Wb"]
   ];
 
-const dumbString = function(multiplier: number, formatted: string, dimensions: Dimensions, labels: string[]) {
-  const stringify = function(rational: QQ, label: string): string {
+const dumbString = function (multiplier: number, formatted: string, dimensions: Dimensions, labels: string[]) {
+  const stringify = function (rational: QQ, label: string): string {
     if (rational.numer === 0) {
       return null;
     } else if (rational.denom === 1) {
@@ -94,13 +92,13 @@ const dumbString = function(multiplier: number, formatted: string, dimensions: D
 
   const operatorStr = multiplier === 1 || dimensions.isOne() ? "" : " ";
   const scaleString = multiplier === 1 ? "" : formatted;
-  const unitsString = [stringify(dimensions.M, labels[0]), stringify(dimensions.L, labels[1]), stringify(dimensions.T, labels[2]), stringify(dimensions.Q, labels[3]), stringify(dimensions.temperature, labels[4]), stringify(dimensions.amount, labels[5]), stringify(dimensions.intensity, labels[6])].filter(function(x) {
+  const unitsString = [stringify(dimensions.M, labels[0]), stringify(dimensions.L, labels[1]), stringify(dimensions.T, labels[2]), stringify(dimensions.Q, labels[3]), stringify(dimensions.temperature, labels[4]), stringify(dimensions.amount, labels[5]), stringify(dimensions.intensity, labels[6])].filter(function (x) {
     return typeof x === 'string';
   }).join(" ");
   return "" + scaleString + operatorStr + unitsString;
 };
 
-const unitString = function(multiplier: number, formatted: string, dimensions: Dimensions, labels: string[]): string {
+const unitString = function (multiplier: number, formatted: string, dimensions: Dimensions, labels: string[], compact: boolean): string {
   const M = dimensions.M;
   const L = dimensions.L;
   const T = dimensions.T;
@@ -117,11 +115,16 @@ const unitString = function(multiplier: number, formatted: string, dimensions: D
       temperature.numer === pattern[8] && temperature.denom === pattern[9] &&
       amount.numer === pattern[10] && amount.denom === pattern[11] &&
       intensity.numer === pattern[12] && intensity.denom === pattern[13]) {
-      if (multiplier !== 1) {
+      if (!compact) {
         return multiplier + " * " + decodes[i][0];
       }
       else {
-        return decodes[i][0];
+        if (multiplier !== 1) {
+          return multiplier + " * " + decodes[i][0];
+        }
+        else {
+          return decodes[i][0];
+        }
       }
     }
   }
@@ -153,7 +156,12 @@ function div(lhs: Unit, rhs: Unit): Unit {
  * The Unit class represents the units for a measure.
  * </p>
  */
-export class Unit implements DivisionRingOperators<Unit, Unit>, LinearNumber<Unit, Unit, Unit, Unit, number, number> {
+export class Unit {
+
+  /**
+   *
+   */
+  public static ZERO = new Unit(0.0, Dimensions.ONE, SYMBOLS_SI);
 
   /**
    *
@@ -433,14 +441,11 @@ export class Unit implements DivisionRingOperators<Unit, Unit>, LinearNumber<Uni
    * @returns
    */
   isZero(): boolean {
-    return this.dimensions.isZero() || (this.multiplier === 0)
+    return this.multiplier === 0;
   }
 
   /**
-   * @method lerp
-   * @param target
-   * @param α
-   * @returns
+   *
    */
   lerp(target: Unit, α: number): Unit {
     throw new Error(notImplemented('lerp').message)
@@ -511,31 +516,31 @@ export class Unit implements DivisionRingOperators<Unit, Unit>, LinearNumber<Uni
   /**
    * @returns
    */
-  toExponential(fractionDigits?: number): string {
-    return unitString(this.multiplier, this.multiplier.toExponential(fractionDigits), this.dimensions, this.labels);
+  toExponential(fractionDigits?: number, compact?: boolean): string {
+    return unitString(this.multiplier, this.multiplier.toExponential(fractionDigits), this.dimensions, this.labels, compact);
   }
 
   /**
    * @param fractionDigits
    */
-  toFixed(fractionDigits?: number): string {
-    return unitString(this.multiplier, this.multiplier.toFixed(fractionDigits), this.dimensions, this.labels);
+  toFixed(fractionDigits?: number, compact?: boolean): string {
+    return unitString(this.multiplier, this.multiplier.toFixed(fractionDigits), this.dimensions, this.labels, compact);
   }
 
   /**
    * @param precision
    * @returns
    */
-  toPrecision(precision?: number): string {
-    return unitString(this.multiplier, this.multiplier.toPrecision(precision), this.dimensions, this.labels);
+  toPrecision(precision?: number, compact?: boolean): string {
+    return unitString(this.multiplier, this.multiplier.toPrecision(precision), this.dimensions, this.labels, compact);
   }
 
   /**
    * @param radix
    * @returns
    */
-  toString(radix?: number): string {
-    return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, this.labels);
+  toString(radix?: number, compact?: boolean): string {
+    return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, this.labels, compact);
   }
 
   /**

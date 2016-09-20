@@ -1,4 +1,3 @@
-import DivisionRingOperators from '../math/DivisionRingOperators';
 import {QQ} from '../math/QQ';
 import notSupported from '../i18n/notSupported';
 
@@ -20,7 +19,7 @@ function assertArgRational(name: string, arg: QQ): QQ {
  * Keeps track of the dimensions of a physical quantity using seven rational exponents.
  * Each of the exponents corresponds to a dimension in the S.I. system of units.
  */
-export class Dimensions implements DivisionRingOperators<Dimensions, Dimensions> {
+export class Dimensions {
 
     /**
      * All exponents are zero, a dimensionless quantity.
@@ -171,13 +170,6 @@ export class Dimensions implements DivisionRingOperators<Dimensions, Dimensions>
     }
 
     /**
-     * Intentionally undocumented.
-     */
-    isZero(): boolean {
-        throw new Error(notSupported('isZero').message)
-    }
-
-    /**
      * Computes the multiplicative inverse of this dimensions number.
      * This is achived by changing the signs of all the exponent quantities.
      *
@@ -200,7 +192,7 @@ export class Dimensions implements DivisionRingOperators<Dimensions, Dimensions>
      * @returns
      */
     toString(): string {
-        var stringify = function(rational: QQ, label: string): string {
+        var stringify = function (rational: QQ, label: string): string {
             if (rational.numer === 0) {
                 return null;
             } else if (rational.denom === 1) {
@@ -213,7 +205,7 @@ export class Dimensions implements DivisionRingOperators<Dimensions, Dimensions>
             return "" + label + " ** " + rational;
         };
 
-        return [stringify(this.M, 'mass'), stringify(this.L, 'length'), stringify(this.T, 'time'), stringify(this.Q, 'charge'), stringify(this.temperature, 'thermodynamic temperature'), stringify(this.amount, 'amount of substance'), stringify(this.intensity, 'luminous intensity')].filter(function(x) {
+        return [stringify(this.M, 'mass'), stringify(this.L, 'length'), stringify(this.T, 'time'), stringify(this.Q, 'charge'), stringify(this.temperature, 'thermodynamic temperature'), stringify(this.amount, 'amount of substance'), stringify(this.intensity, 'luminous intensity')].filter(function (x) {
             return typeof x === 'string';
         }).join(" * ");
     }

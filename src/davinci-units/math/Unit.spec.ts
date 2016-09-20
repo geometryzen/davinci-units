@@ -29,28 +29,28 @@ const FARAD = COULOMB.div(VOLT)
 const HENRY = KILOGRAM.mul(METER).mul(METER).div(COULOMB).div(COULOMB)
 const PASCAL = NEWTON.div(METER).div(METER)
 
-describe("Unit", function() {
+describe("Unit", function () {
     const symbols = ["kg", "m", "s", "C", "K", "mol", "cd"];
 
-    it("Construction", function() {
+    it("Construction", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         expect(meter.multiplier).toBe(1);
     });
 
-    it("toString", function() {
+    it("toString", function () {
         const dimensionless = new Unit(1234, new Dimensions(Rat0, Rat0, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         expect(ONE.toString()).toBe("");
         expect(METER.toString()).toBe("m");
         expect(KILOGRAM.toString()).toBe("kg");
         expect(SECOND.toString()).toBe("s");
-        expect(AMPERE.toString()).toBe("A");
+        expect(AMPERE.toString(10, true)).toBe("A");
         expect(COULOMB.toString()).toBe("C");
         expect(KELVIN.toString()).toBe("K");
         expect(MOLE.toString()).toBe("mol");
         expect(CANDELA.toString()).toBe("cd");
         expect(dimensionless.toString()).toBe("1234");
     });
-    it("mul", function() {
+    it("mul", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         const centimeter = meter.__mul__(0.01);
         const inch = centimeter.__mul__(2.54);
@@ -76,12 +76,12 @@ describe("Unit", function() {
         expect(micron.multiplier * 1e6).toBe(1);
         expect(nanometer.multiplier * 1e9).toBe(1);
     });
-    it("mul by number", function() {
+    it("mul by number", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         const yard = meter.__mul__(2.54 * 36 / 100);
         expect(yard.toString()).toBe("0.9144 m");
     });
-    it("mul by Unit", function() {
+    it("mul by Unit", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         const second = new Unit(1, new Dimensions(Rat0, Rat0, Rat1, Rat0, Rat0, Rat0, Rat0), symbols);
         const areaUnit = meter.mul(second);
@@ -89,127 +89,127 @@ describe("Unit", function() {
         expect(second.toString()).toBe("s");
         expect(areaUnit.toString()).toBe("m s");
     });
-    it("div by Unit", function() {
+    it("div by Unit", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         const second = new Unit(1, new Dimensions(Rat0, Rat0, Rat1, Rat0, Rat0, Rat0, Rat0), symbols);
         const speedUnit = meter.div(second);
         expect(meter.toString()).toBe("m");
         expect(second.toString()).toBe("s");
-        expect(speedUnit.toString()).toBe("m/s");
+        expect(speedUnit.toString(10, true)).toBe("m/s");
     });
-    it("pow by number", function() {
+    it("pow by number", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         const square = meter.pow(Rat2);
         // const radian = new Unit(1, new Dimensions(Rat0, Rat0, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         expect(meter.toString()).toBe("m");
         expect(square.toString()).toBe("m ** 2");
     });
-    it("inverse", function() {
+    it("inverse", function () {
         // const dimensionless = new Unit(1234, new Dimensions(Rat0, Rat0, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         expect(ONE.inv().toString()).toBe("");
         expect(METER.inv().toString()).toBe("m ** -1");
         expect(KILOGRAM.inv().toString()).toBe("kg ** -1");
-        expect(SECOND.inv().toString()).toBe("Hz");
+        expect(SECOND.inv().toString(10, true)).toBe("Hz");
         expect(AMPERE.inv().toString()).toBe("s C ** -1");
         expect(KELVIN.inv().toString()).toBe("K ** -1");
         expect(MOLE.inv().toString()).toBe("mol ** -1");
         expect(CANDELA.inv().toString()).toBe("cd ** -1");
     });
-    it("electric current", function() {
-        expect(AMPERE.toString()).toBe("A");
+    it("electric current", function () {
+        expect(AMPERE.toString(10, true)).toBe("A");
     });
-    it("electric charge", function() {
-        expect(COULOMB.toString()).toBe("C");
+    it("electric charge", function () {
+        expect(COULOMB.toString(10, true)).toBe("C");
     });
-    it("force", function() {
-        expect(NEWTON.toString()).toBe("N");
+    it("force", function () {
+        expect(NEWTON.toString(10, true)).toBe("N");
     });
-    it("energy", function() {
-        expect(JOULE.toString()).toBe("J");
+    it("energy", function () {
+        expect(JOULE.toString(10, true)).toBe("J");
     });
-    it("frequency", function() {
-        expect(HERTZ.toString()).toBe("Hz");
+    it("frequency", function () {
+        expect(HERTZ.toString(10, true)).toBe("Hz");
     });
-    it("power", function() {
-        expect(WATT.toString()).toBe("W");
+    it("power", function () {
+        expect(WATT.toString(10, true)).toBe("W");
     });
-    it("electric potential", function() {
-        expect(VOLT.toString()).toBe("V");
+    it("electric potential", function () {
+        expect(VOLT.toString(10, true)).toBe("V");
     });
-    it("electric field strength", function() {
-        expect(VOLT.div(METER).toString()).toBe("V/m");
+    it("electric field strength", function () {
+        expect(VOLT.div(METER).toString(10, true)).toBe("V/m");
     });
-    it("magnetic flux", function() {
-        expect(WEBER.toString()).toBe("Wb");
+    it("magnetic flux", function () {
+        expect(WEBER.toString(10, true)).toBe("Wb");
     });
-    it("magnetic flux density", function() {
-        expect(TESLA.toString()).toBe("T");
+    it("magnetic flux density", function () {
+        expect(TESLA.toString(10, true)).toBe("T");
     });
-    it("electrical resistance", function() {
-        expect(OHM.toString()).toBe("Ω");
+    it("electrical resistance", function () {
+        expect(OHM.toString(10, true)).toBe("Ω");
     });
-    it("electrical conductance", function() {
-        expect(SIEMEN.toString()).toBe("S");
+    it("electrical conductance", function () {
+        expect(SIEMEN.toString(10, true)).toBe("S");
     });
-    it("electrical capacitance", function() {
-        expect(FARAD.toString()).toBe("F");
+    it("electrical capacitance", function () {
+        expect(FARAD.toString(10, true)).toBe("F");
     });
-    it("electrical inductance", function() {
-        expect(WEBER.div(AMPERE).toString()).toBe("H");
-        expect(HENRY.toString()).toBe("H");
+    it("electrical inductance", function () {
+        expect(WEBER.div(AMPERE).toString(10, true)).toBe("H");
+        expect(HENRY.toString(10, true)).toBe("H");
     });
-    it("electric permittivity", function() {
-        expect(FARAD.div(METER).toString()).toBe("F/m");
+    it("electric permittivity", function () {
+        expect(FARAD.div(METER).toString(10, true)).toBe("F/m");
     });
-    it("electric permeability", function() {
-        expect(HENRY.div(METER).toString()).toBe("H/m");
+    it("electric permeability", function () {
+        expect(HENRY.div(METER).toString(10, true)).toBe("H/m");
     });
-    it("pressure, stress", function() {
-        expect(PASCAL.toString()).toBe("Pa");
+    it("pressure, stress", function () {
+        expect(PASCAL.toString(10, true)).toBe("Pa");
     });
-    it("angular momentum", function() {
-        expect(JOULE.mul(SECOND).toString()).toBe("J·s");
+    it("angular momentum", function () {
+        expect(JOULE.mul(SECOND).toString(10, true)).toBe("J·s");
     });
-    it("dynamic viscosity", function() {
-        expect(PASCAL.mul(SECOND).toString()).toBe("Pa·s");
+    it("dynamic viscosity", function () {
+        expect(PASCAL.mul(SECOND).toString(10, true)).toBe("Pa·s");
     });
-    it("moment of force", function() {
+    it("moment of force", function () {
         //    expect(NEWTON.mul(METER).toString()).toBe("N·m");
-        expect(NEWTON.mul(METER).toString()).toBe("J");
+        expect(NEWTON.mul(METER).toString(10, true)).toBe("J");
     });
-    it("surface tension", function() {
-        expect(NEWTON.div(METER).toString()).toBe("N/m");
+    it("surface tension", function () {
+        expect(NEWTON.div(METER).toString(10, true)).toBe("N/m");
     });
-    it("heat flux density", function() {
-        expect(WATT.div(METER).div(METER).toString()).toBe("W/m ** 2");
+    it("heat flux density", function () {
+        expect(WATT.div(METER).div(METER).toString(10, true)).toBe("W/m ** 2");
     });
-    it("heat capacity, entropy", function() {
-        expect(JOULE.div(KELVIN).toString()).toBe("J/K");
+    it("heat capacity, entropy", function () {
+        expect(JOULE.div(KELVIN).toString(10, true)).toBe("J/K");
     });
-    it("energy density", function() {
+    it("energy density", function () {
         // This could be a J/m ** 3 but that's a pressure too.
-        expect(JOULE.div(METER).div(METER).div(METER).toString()).toBe("Pa");
+        expect(JOULE.div(METER).div(METER).div(METER).toString(10, true)).toBe("Pa");
     });
-    it("specific energy", function() {
-        expect(JOULE.div(KILOGRAM).toString()).toBe("J/kg");
+    it("specific energy", function () {
+        expect(JOULE.div(KILOGRAM).toString(10, true)).toBe("J/kg");
     });
-    it("molar energy", function() {
-        expect(JOULE.div(MOLE).toString()).toBe("J/mol");
+    it("molar energy", function () {
+        expect(JOULE.div(MOLE).toString(10, true)).toBe("J/mol");
     });
-    it("electric charge density", function() {
-        expect(COULOMB.div(METER).div(METER).div(METER).toString()).toBe("C/m ** 3");
+    it("electric charge density", function () {
+        expect(COULOMB.div(METER).div(METER).div(METER).toString(10, true)).toBe("C/m ** 3");
     });
-    it("exposure (x-rays and γ-rays)", function() {
-        expect(COULOMB.div(KILOGRAM).toString()).toBe("C/kg");
+    it("exposure (x-rays and γ-rays)", function () {
+        expect(COULOMB.div(KILOGRAM).toString(10, true)).toBe("C/kg");
     });
 
-    describe("Operator Overloading", function() {
+    describe("Operator Overloading", function () {
 
         var m = METER;
 
-        describe("Binary +", function() {
+        describe("Binary +", function () {
 
-            it("m.__add__(m)", function() {
+            it("m.__add__(m)", function () {
                 var actual = m.__add__(m);
                 expect(actual.multiplier).toBe(2);
                 expect(actual.dimensions.M.numer).toBe(0);
@@ -219,7 +219,7 @@ describe("Unit", function() {
                 expect(actual.dimensions.T.numer).toBe(0);
                 expect(actual.dimensions.T.denom).toBe(1);
             });
-            it("m.__radd__(m)", function() {
+            it("m.__radd__(m)", function () {
                 var actual = m.__radd__(m);
                 expect(actual.multiplier).toBe(2);
                 expect(actual.dimensions.M.numer).toBe(0);
@@ -232,9 +232,9 @@ describe("Unit", function() {
 
         });
 
-        describe("Binary -", function() {
+        describe("Binary -", function () {
 
-            it("m.__sub__(m)", function() {
+            it("m.__sub__(m)", function () {
                 var actual = m.__sub__(m);
                 expect(actual.multiplier).toBe(0);
                 expect(actual.dimensions.M.numer).toBe(0);
@@ -245,7 +245,7 @@ describe("Unit", function() {
                 expect(actual.dimensions.T.denom).toBe(1);
             });
 
-            it("m.__rsub__(m)", function() {
+            it("m.__rsub__(m)", function () {
                 var actual = m.__rsub__(m);
                 expect(actual.multiplier).toBe(0);
                 expect(actual.dimensions.M.numer).toBe(0);
@@ -258,9 +258,9 @@ describe("Unit", function() {
 
         });
 
-        describe("Binary *", function() {
+        describe("Binary *", function () {
 
-            it("m.__mul__(m)", function() {
+            it("m.__mul__(m)", function () {
                 var actual = m.__mul__(m);
                 expect(actual.toString()).toBe("m ** 2");
                 expect(actual.multiplier).toBe(1);
@@ -272,7 +272,7 @@ describe("Unit", function() {
                 expect(actual.dimensions.T.denom).toBe(1);
             });
 
-            it("m * 5", function() {
+            it("m * 5", function () {
                 var actual = m.__mul__(5);
                 expect(actual.toString()).toBe("5 m");
                 expect(actual.multiplier).toBe(5);
@@ -284,7 +284,7 @@ describe("Unit", function() {
                 expect(actual.dimensions.T.denom).toBe(1);
             });
 
-            it("m.__rmul__(m)", function() {
+            it("m.__rmul__(m)", function () {
                 var actual = m.__rmul__(m);
                 expect(actual.multiplier).toBe(1);
                 expect(actual.dimensions.M.numer).toBe(0);
@@ -295,7 +295,7 @@ describe("Unit", function() {
                 expect(actual.dimensions.T.denom).toBe(1);
             });
 
-            it("5 * m", function() {
+            it("5 * m", function () {
                 var actual = m.__rmul__(5);
                 expect(actual.multiplier).toBe(5);
                 expect(actual.dimensions.M.numer).toBe(0);
@@ -308,9 +308,9 @@ describe("Unit", function() {
 
         });
 
-        describe("Binary /", function() {
+        describe("Binary /", function () {
 
-            it("m.__div__(m)", function() {
+            it("m.__div__(m)", function () {
                 var actual = m.__div__(m);
                 expect(actual.toString()).toBe("");
                 expect(actual.multiplier).toBe(1);
@@ -322,7 +322,7 @@ describe("Unit", function() {
                 expect(actual.dimensions.T.denom).toBe(1);
             });
 
-            it("m / 5", function() {
+            it("m / 5", function () {
                 var actual = m.__div__(5);
                 expect(actual.toString()).toBe("0.2 m");
                 expect(actual.multiplier).toBe(1 / 5);
@@ -334,7 +334,7 @@ describe("Unit", function() {
                 expect(actual.dimensions.T.denom).toBe(1);
             });
 
-            it("m.__rdiv__(m)", function() {
+            it("m.__rdiv__(m)", function () {
                 var actual = m.__rdiv__(m);
                 expect(actual.multiplier).toBe(1);
                 expect(actual.dimensions.M.numer).toBe(0);
@@ -345,7 +345,7 @@ describe("Unit", function() {
                 expect(actual.dimensions.T.denom).toBe(1);
             });
 
-            it("5 / m", function() {
+            it("5 / m", function () {
                 var actual = m.__rdiv__(5);
                 expect(actual instanceof Unit).toBe(true);
                 expect(actual.multiplier).toBe(5);

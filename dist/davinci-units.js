@@ -1,7 +1,7 @@
 (function(global, define) {
   var globalDefine = global.define;
 /**
- * @license almond 0.3.2 Copyright jQuery Foundation and other contributors.
+ * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
  * Released under MIT license, http://github.com/requirejs/almond/LICENSE
  */
 //Going sloppy to avoid 'use strict' string cost, but strict practices should
@@ -197,32 +197,39 @@ var requirejs, require, define;
         return [prefix, name];
     }
 
+    //Creates a parts array for a relName where first part is plugin ID,
+    //second part is resource ID. Assumes relName has already been normalized.
+    function makeRelParts(relName) {
+        return relName ? splitPrefix(relName) : [];
+    }
+
     /**
      * Makes a name map, normalizing the name, and using a plugin
      * for normalization if necessary. Grabs a ref to plugin
      * too, as an optimization.
      */
-    makeMap = function (name, relName) {
+    makeMap = function (name, relParts) {
         var plugin,
             parts = splitPrefix(name),
-            prefix = parts[0];
+            prefix = parts[0],
+            relResourceName = relParts[1];
 
         name = parts[1];
 
         if (prefix) {
-            prefix = normalize(prefix, relName);
+            prefix = normalize(prefix, relResourceName);
             plugin = callDep(prefix);
         }
 
         //Normalize according
         if (prefix) {
             if (plugin && plugin.normalize) {
-                name = plugin.normalize(name, makeNormalize(relName));
+                name = plugin.normalize(name, makeNormalize(relResourceName));
             } else {
-                name = normalize(name, relName);
+                name = normalize(name, relResourceName);
             }
         } else {
-            name = normalize(name, relName);
+            name = normalize(name, relResourceName);
             parts = splitPrefix(name);
             prefix = parts[0];
             name = parts[1];
@@ -269,13 +276,14 @@ var requirejs, require, define;
     };
 
     main = function (name, deps, callback, relName) {
-        var cjsModule, depName, ret, map, i,
+        var cjsModule, depName, ret, map, i, relParts,
             args = [],
             callbackType = typeof callback,
             usingExports;
 
         //Use name if no relName
         relName = relName || name;
+        relParts = makeRelParts(relName);
 
         //Call the callback to define the module, if necessary.
         if (callbackType === 'undefined' || callbackType === 'function') {
@@ -284,7 +292,7 @@ var requirejs, require, define;
             //Default to [require, exports, module] if no deps
             deps = !deps.length && callback.length ? ['require', 'exports', 'module'] : deps;
             for (i = 0; i < deps.length; i += 1) {
-                map = makeMap(deps[i], relName);
+                map = makeMap(deps[i], relParts);
                 depName = map.f;
 
                 //Fast path CommonJS standard dependencies.
@@ -340,7 +348,7 @@ var requirejs, require, define;
             //deps arg is the module name, and second arg (if passed)
             //is just the relName.
             //Normalize module name, if it contains . or ..
-            return callDep(makeMap(deps, callback).f);
+            return callDep(makeMap(deps, makeRelParts(callback)).f);
         } else if (!deps.splice) {
             //deps is a config object, not an array.
             config = deps;
@@ -2719,9 +2727,6 @@ define('davinci-units/math/Dimensions',["require", "exports", '../math/QQ', '../
         Dimensions.prototype.isOne = function () {
             return this.M.isZero() && this.L.isZero() && this.T.isZero() && this.Q.isZero() && this.temperature.isZero() && this.amount.isZero() && this.intensity.isZero();
         };
-        Dimensions.prototype.isZero = function () {
-            throw new Error(notSupported_1.default('isZero').message);
-        };
         Dimensions.prototype.inv = function () {
             return new Dimensions(this.M.neg(), this.L.neg(), this.T.neg(), this.Q.neg(), this.temperature.neg(), this.amount.neg(), this.intensity.neg());
         };
@@ -3379,7 +3384,7 @@ define('davinci-units/math/Unit',["require", "exports", '../math/Dimensions', '.
         }).join(" ");
         return "" + scaleString + operatorStr + unitsString;
     };
-    var unitString = function (multiplier, formatted, dimensions, labels) {
+    var unitString = function (multiplier, formatted, dimensions, labels, compact) {
         var M = dimensions.M;
         var L = dimensions.L;
         var T = dimensions.T;
@@ -3396,11 +3401,16 @@ define('davinci-units/math/Unit',["require", "exports", '../math/Dimensions', '.
                 temperature.numer === pattern[8] && temperature.denom === pattern[9] &&
                 amount.numer === pattern[10] && amount.denom === pattern[11] &&
                 intensity.numer === pattern[12] && intensity.denom === pattern[13]) {
-                if (multiplier !== 1) {
+                if (!compact) {
                     return multiplier + " * " + decodes[i][0];
                 }
                 else {
-                    return decodes[i][0];
+                    if (multiplier !== 1) {
+                        return multiplier + " * " + decodes[i][0];
+                    }
+                    else {
+                        return decodes[i][0];
+                    }
                 }
             }
         }
@@ -3564,7 +3574,7 @@ define('davinci-units/math/Unit',["require", "exports", '../math/Dimensions', '.
             return this.dimensions.isOne() && (this.multiplier === 1);
         };
         Unit.prototype.isZero = function () {
-            return this.dimensions.isZero() || (this.multiplier === 0);
+            return this.multiplier === 0;
         };
         Unit.prototype.lerp = function (target, α) {
             throw new Error(notImplemented_1.default('lerp').message);
@@ -3593,17 +3603,17 @@ define('davinci-units/math/Unit',["require", "exports", '../math/Dimensions', '.
         Unit.prototype.stress = function (σ) {
             throw new Error(notSupported_1.default('stress').message);
         };
-        Unit.prototype.toExponential = function (fractionDigits) {
-            return unitString(this.multiplier, this.multiplier.toExponential(fractionDigits), this.dimensions, this.labels);
+        Unit.prototype.toExponential = function (fractionDigits, compact) {
+            return unitString(this.multiplier, this.multiplier.toExponential(fractionDigits), this.dimensions, this.labels, compact);
         };
-        Unit.prototype.toFixed = function (fractionDigits) {
-            return unitString(this.multiplier, this.multiplier.toFixed(fractionDigits), this.dimensions, this.labels);
+        Unit.prototype.toFixed = function (fractionDigits, compact) {
+            return unitString(this.multiplier, this.multiplier.toFixed(fractionDigits), this.dimensions, this.labels, compact);
         };
-        Unit.prototype.toPrecision = function (precision) {
-            return unitString(this.multiplier, this.multiplier.toPrecision(precision), this.dimensions, this.labels);
+        Unit.prototype.toPrecision = function (precision, compact) {
+            return unitString(this.multiplier, this.multiplier.toPrecision(precision), this.dimensions, this.labels, compact);
         };
-        Unit.prototype.toString = function (radix) {
-            return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, this.labels);
+        Unit.prototype.toString = function (radix, compact) {
+            return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, this.labels, compact);
         };
         Unit.prototype.__pos__ = function () {
             return this;
@@ -3705,6 +3715,7 @@ define('davinci-units/math/Unit',["require", "exports", '../math/Dimensions', '.
                 return void 0;
             }
         };
+        Unit.ZERO = new Unit(0.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
         Unit.ONE = new Unit(1.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
         Unit.KILOGRAM = new Unit(1.0, Dimensions_1.Dimensions.MASS, SYMBOLS_SI);
         Unit.METER = new Unit(1.0, Dimensions_1.Dimensions.LENGTH, SYMBOLS_SI);
@@ -6188,9 +6199,9 @@ define('davinci-units/config',["require", "exports"], function (require, exports
     var Units = (function () {
         function Units() {
             this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-            this.LAST_MODIFIED = '2016-08-20';
+            this.LAST_MODIFIED = '2016-09-19';
             this.NAMESPACE = 'UNITS';
-            this.VERSION = '1.3.0';
+            this.VERSION = '1.4.0';
         }
         Units.prototype.log = function (message) {
             var optionalParams = [];

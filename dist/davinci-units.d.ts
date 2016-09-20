@@ -155,13 +155,22 @@ declare module UNITS {
         dimensions: Dimensions;
         labels: string[];
         constructor(multiplier: number, dimensions: Dimensions, labels: string[]);
+        add(rhs: Unit): Unit;
         inv(): Unit;
         isOne(): boolean;
         isZero(): boolean;
+        mul(rhs: Unit): Unit;
+        scale(multiplier: number): Unit;
+        sub(rhs: Unit): Unit;
         neg(): Unit;
 
         /**
-         * Tme multiplicative identity (1).
+         * The additive identity (0).
+         */
+        static ZERO: Unit;
+
+        /**
+         * The multiplicative identity (1).
          */
         static ONE: Unit;
 

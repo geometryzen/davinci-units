@@ -5219,9 +5219,6 @@ System.register('davinci-units/math/Dimensions.js', ['../math/QQ', '../i18n/notS
                 Dimensions.prototype.isOne = function () {
                     return this.M.isZero() && this.L.isZero() && this.T.isZero() && this.Q.isZero() && this.temperature.isZero() && this.amount.isZero() && this.intensity.isZero();
                 };
-                Dimensions.prototype.isZero = function () {
-                    throw new Error(notSupported_1.default('isZero').message);
-                };
                 Dimensions.prototype.inv = function () {
                     return new Dimensions(this.M.neg(), this.L.neg(), this.T.neg(), this.Q.neg(), this.temperature.neg(), this.amount.neg(), this.intensity.neg());
                 };
@@ -5471,7 +5468,7 @@ System.register('davinci-units/math/Unit.js', ['../math/Dimensions', '../i18n/no
                 }).join(" ");
                 return "" + scaleString + operatorStr + unitsString;
             };
-            unitString = function (multiplier, formatted, dimensions, labels) {
+            unitString = function (multiplier, formatted, dimensions, labels, compact) {
                 var M = dimensions.M;
                 var L = dimensions.L;
                 var T = dimensions.T;
@@ -5482,10 +5479,14 @@ System.register('davinci-units/math/Unit.js', ['../math/Dimensions', '../i18n/no
                 for (var i = 0, len = patterns.length; i < len; i++) {
                     var pattern = patterns[i];
                     if (M.numer === pattern[0] && M.denom === pattern[1] && L.numer === pattern[2] && L.denom === pattern[3] && T.numer === pattern[4] && T.denom === pattern[5] && Q.numer === pattern[6] && Q.denom === pattern[7] && temperature.numer === pattern[8] && temperature.denom === pattern[9] && amount.numer === pattern[10] && amount.denom === pattern[11] && intensity.numer === pattern[12] && intensity.denom === pattern[13]) {
-                        if (multiplier !== 1) {
+                        if (!compact) {
                             return multiplier + " * " + decodes[i][0];
                         } else {
-                            return decodes[i][0];
+                            if (multiplier !== 1) {
+                                return multiplier + " * " + decodes[i][0];
+                            } else {
+                                return decodes[i][0];
+                            }
                         }
                     }
                 }
@@ -5621,7 +5622,7 @@ System.register('davinci-units/math/Unit.js', ['../math/Dimensions', '../i18n/no
                     return this.dimensions.isOne() && this.multiplier === 1;
                 };
                 Unit.prototype.isZero = function () {
-                    return this.dimensions.isZero() || this.multiplier === 0;
+                    return this.multiplier === 0;
                 };
                 Unit.prototype.lerp = function (target, α) {
                     throw new Error(notImplemented_1.default('lerp').message);
@@ -5650,17 +5651,17 @@ System.register('davinci-units/math/Unit.js', ['../math/Dimensions', '../i18n/no
                 Unit.prototype.stress = function (σ) {
                     throw new Error(notSupported_1.default('stress').message);
                 };
-                Unit.prototype.toExponential = function (fractionDigits) {
-                    return unitString(this.multiplier, this.multiplier.toExponential(fractionDigits), this.dimensions, this.labels);
+                Unit.prototype.toExponential = function (fractionDigits, compact) {
+                    return unitString(this.multiplier, this.multiplier.toExponential(fractionDigits), this.dimensions, this.labels, compact);
                 };
-                Unit.prototype.toFixed = function (fractionDigits) {
-                    return unitString(this.multiplier, this.multiplier.toFixed(fractionDigits), this.dimensions, this.labels);
+                Unit.prototype.toFixed = function (fractionDigits, compact) {
+                    return unitString(this.multiplier, this.multiplier.toFixed(fractionDigits), this.dimensions, this.labels, compact);
                 };
-                Unit.prototype.toPrecision = function (precision) {
-                    return unitString(this.multiplier, this.multiplier.toPrecision(precision), this.dimensions, this.labels);
+                Unit.prototype.toPrecision = function (precision, compact) {
+                    return unitString(this.multiplier, this.multiplier.toPrecision(precision), this.dimensions, this.labels, compact);
                 };
-                Unit.prototype.toString = function (radix) {
-                    return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, this.labels);
+                Unit.prototype.toString = function (radix, compact) {
+                    return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, this.labels, compact);
                 };
                 Unit.prototype.__pos__ = function () {
                     return this;
@@ -5746,6 +5747,7 @@ System.register('davinci-units/math/Unit.js', ['../math/Dimensions', '../i18n/no
                         return void 0;
                     }
                 };
+                Unit.ZERO = new Unit(0.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
                 Unit.ONE = new Unit(1.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
                 Unit.KILOGRAM = new Unit(1.0, Dimensions_1.Dimensions.MASS, SYMBOLS_SI);
                 Unit.METER = new Unit(1.0, Dimensions_1.Dimensions.LENGTH, SYMBOLS_SI);
@@ -5772,9 +5774,9 @@ System.register('davinci-units/config.js', [], function (exports_1, context_1) {
             Units = function () {
                 function Units() {
                     this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-                    this.LAST_MODIFIED = '2016-08-20';
+                    this.LAST_MODIFIED = '2016-09-19';
                     this.NAMESPACE = 'UNITS';
-                    this.VERSION = '1.3.0';
+                    this.VERSION = '1.4.0';
                 }
                 Units.prototype.log = function (message) {
                     var optionalParams = [];
