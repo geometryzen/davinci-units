@@ -138,8 +138,8 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
         return this._coords[COORD_X]
     }
     set x(value: number) {
-        this._coords[COORD_X] = value;
-        // throw new Error(readOnly('x').message)
+        // this._coords[COORD_X] = value;
+        throw new Error(readOnly('x').message)
     }
 
     /**
@@ -149,8 +149,8 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
         return this._coords[COORD_Y]
     }
     set y(value: number) {
-        this._coords[COORD_Y] = value;
-        // throw new Error(readOnly('y').message)
+        // this._coords[COORD_Y] = value;
+        throw new Error(readOnly('y').message)
     }
 
     /**
@@ -160,8 +160,8 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
         return this._coords[COORD_Z]
     }
     set z(value: number) {
-        this._coords[COORD_Z] = value;
-        // throw new Error(readOnly('z').message)
+        // this._coords[COORD_Z] = value;
+        throw new Error(readOnly('z').message)
     }
 
     /**

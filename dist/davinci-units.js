@@ -5369,7 +5369,7 @@ define('davinci-units/math/G3',["require", "exports", './bezier2', './bezier3', 
                 return this._coords[COORD_X];
             },
             set: function (value) {
-                this._coords[COORD_X] = value;
+                throw new Error(readOnly_1.default('x').message);
             },
             enumerable: true,
             configurable: true
@@ -5379,7 +5379,7 @@ define('davinci-units/math/G3',["require", "exports", './bezier2', './bezier3', 
                 return this._coords[COORD_Y];
             },
             set: function (value) {
-                this._coords[COORD_Y] = value;
+                throw new Error(readOnly_1.default('y').message);
             },
             enumerable: true,
             configurable: true
@@ -5389,7 +5389,7 @@ define('davinci-units/math/G3',["require", "exports", './bezier2', './bezier3', 
                 return this._coords[COORD_Z];
             },
             set: function (value) {
-                this._coords[COORD_Z] = value;
+                throw new Error(readOnly_1.default('z').message);
             },
             enumerable: true,
             configurable: true
@@ -6206,7 +6206,7 @@ define('davinci-units/config',["require", "exports"], function (require, exports
             this.GITHUB = 'https://github.com/geometryzen/davinci-units';
             this.LAST_MODIFIED = '2016-10-25';
             this.NAMESPACE = 'UNITS';
-            this.VERSION = '1.5.2';
+            this.VERSION = '1.5.3';
         }
         Units.prototype.log = function (message) {
             var optionalParams = [];
