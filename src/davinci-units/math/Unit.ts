@@ -76,22 +76,29 @@ const decodes =
     ["Wb"]
   ];
 
-const dumbString = function (multiplier: number, formatted: string, dimensions: Dimensions, labels: string[]) {
+const dumbString = function (multiplier: number, formatted: string, dimensions: Dimensions, labels: string[], compact: boolean) {
   const stringify = function (rational: QQ, label: string): string {
     if (rational.numer === 0) {
       return null;
-    } else if (rational.denom === 1) {
+    }
+    else if (rational.denom === 1) {
       if (rational.numer === 1) {
-        return "" + label;
-      } else {
+        if (compact) {
+          return "" + label;
+        }
+        else {
+          return "" + label;
+        }
+      }
+      else {
         return "" + label + " ** " + rational.numer;
       }
     }
     return "" + label + " ** " + rational;
   };
 
-  const operatorStr = multiplier === 1 || dimensions.isOne() ? "" : " ";
-  const scaleString = multiplier === 1 ? "" : formatted;
+  const operatorStr = multiplier === 1 || dimensions.isOne() ? (compact ? "" : " ") : " ";
+  const scaleString = multiplier === 1 ? (compact ? "" : formatted) : formatted;
   const unitsString = [stringify(dimensions.M, labels[0]), stringify(dimensions.L, labels[1]), stringify(dimensions.T, labels[2]), stringify(dimensions.Q, labels[3]), stringify(dimensions.temperature, labels[4]), stringify(dimensions.amount, labels[5]), stringify(dimensions.intensity, labels[6])].filter(function (x) {
     return typeof x === 'string';
   }).join(" ");
@@ -128,7 +135,7 @@ const unitString = function (multiplier: number, formatted: string, dimensions: 
       }
     }
   }
-  return dumbString(multiplier, formatted, dimensions, labels);
+  return dumbString(multiplier, formatted, dimensions, labels, compact);
 };
 
 function add(lhs: Unit, rhs: Unit): Unit {
@@ -514,6 +521,8 @@ export class Unit {
   }
 
   /**
+   * @param fractionDigits
+   * @param compact
    * @returns
    */
   toExponential(fractionDigits?: number, compact?: boolean): string {
@@ -522,6 +531,8 @@ export class Unit {
 
   /**
    * @param fractionDigits
+   * @param compact
+   * @returns
    */
   toFixed(fractionDigits?: number, compact?: boolean): string {
     return unitString(this.multiplier, this.multiplier.toFixed(fractionDigits), this.dimensions, this.labels, compact);
@@ -529,6 +540,7 @@ export class Unit {
 
   /**
    * @param precision
+   * @param compact
    * @returns
    */
   toPrecision(precision?: number, compact?: boolean): string {
@@ -537,6 +549,7 @@ export class Unit {
 
   /**
    * @param radix
+   * @param compact
    * @returns
    */
   toString(radix?: number, compact?: boolean): string {

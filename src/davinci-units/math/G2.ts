@@ -1125,9 +1125,11 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
     private toStringCustom(
         coordToString: (x: number) => string,
         labels: string[]): string {
-        var quantityString: string = stringFromCoordinates(this.coords, coordToString, labels);
+        const quantityString: string = stringFromCoordinates(this.coords, coordToString, labels);
         if (this.uom) {
-            var unitString = this.uom.toString().trim();
+            // Use the compact representation of the Unit because the units follow the multivector
+            // quantity and we want to suppress the multiplier which is always 1.
+            const unitString = this.uom.toString(10, true).trim();
             if (unitString) {
                 return quantityString + ' ' + unitString;
             }
@@ -1146,7 +1148,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {string}
      */
     public toExponential(fractionDigits?: number): string {
-        const coordToString = function(coord: number): string { return coord.toExponential(fractionDigits) };
+        const coordToString = function (coord: number): string { return coord.toExponential(fractionDigits) };
         return this.toStringCustom(coordToString, ["1", "e1", "e2", "e12"]);
     }
 
@@ -1156,7 +1158,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {string}
      */
     public toFixed(fractionDigits?: number): string {
-        const coordToString = function(coord: number): string { return coord.toFixed(fractionDigits) };
+        const coordToString = function (coord: number): string { return coord.toFixed(fractionDigits) };
         return this.toStringCustom(coordToString, ["1", "e1", "e2", "e12"]);
     }
 
@@ -1166,7 +1168,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {string}
      */
     public toPrecision(precision?: number): string {
-        const coordToString = function(coord: number): string { return coord.toPrecision(precision) };
+        const coordToString = function (coord: number): string { return coord.toPrecision(precision) };
         return this.toStringCustom(coordToString, ["1", "e1", "e2", "e12"]);
     }
 
@@ -1176,12 +1178,12 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {string}
      */
     public toString(radix?: number): string {
-        const coordToString = function(coord: number): string { return coord.toString(radix) };
+        const coordToString = function (coord: number): string { return coord.toString(radix) };
         return this.toStringCustom(coordToString, ["1", "e1", "e2", "e12"]);
     }
 
     toStringIJK(): string {
-        var coordToString = function(coord: number): string { return coord.toString() };
+        var coordToString = function (coord: number): string { return coord.toString() };
         return this.toStringCustom(coordToString, ["1", "i", "j", "I"]);
     }
 

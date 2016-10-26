@@ -39,16 +39,16 @@ describe("Unit", function () {
 
     it("toString", function () {
         const dimensionless = new Unit(1234, new Dimensions(Rat0, Rat0, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
-        expect(ONE.toString()).toBe("");
-        expect(METER.toString()).toBe("m");
-        expect(KILOGRAM.toString()).toBe("kg");
-        expect(SECOND.toString()).toBe("s");
+        expect(ONE.toString(void 0, true)).toBe("");
+        expect(METER.toString(void 0, true)).toBe("m");
+        expect(KILOGRAM.toString(void 0, true)).toBe("kg");
+        expect(SECOND.toString(void 0, true)).toBe("s");
         expect(AMPERE.toString(10, true)).toBe("A");
-        expect(COULOMB.toString()).toBe("C");
-        expect(KELVIN.toString()).toBe("K");
-        expect(MOLE.toString()).toBe("mol");
-        expect(CANDELA.toString()).toBe("cd");
-        expect(dimensionless.toString()).toBe("1234");
+        expect(COULOMB.toString(10, true)).toBe("C");
+        expect(KELVIN.toString(10, true)).toBe("K");
+        expect(MOLE.toString(10, true)).toBe("mol");
+        expect(CANDELA.toString(10, true)).toBe("cd");
+        expect(dimensionless.toString(10, true)).toBe("1234");
     });
     it("mul", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
@@ -60,7 +60,7 @@ describe("Unit", function () {
         const micron = meter.__mul__(1e-6);
         const nanometer = meter.__mul__(1e-9);
 
-        expect(meter.toFixed(4)).toBe("m");
+        expect(meter.toFixed(4, true)).toBe("m");
         expect(centimeter.toString()).toBe("0.01 m");
         expect(inch.toFixed(4).toString()).toBe("0.0254 m");
         expect(foot.toFixed(4).toString()).toBe("0.3048 m");
@@ -85,35 +85,35 @@ describe("Unit", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         const second = new Unit(1, new Dimensions(Rat0, Rat0, Rat1, Rat0, Rat0, Rat0, Rat0), symbols);
         const areaUnit = meter.mul(second);
-        expect(meter.toString()).toBe("m");
-        expect(second.toString()).toBe("s");
-        expect(areaUnit.toString()).toBe("m s");
+        expect(meter.toString(void 0, true)).toBe("m");
+        expect(second.toString(void 0, true)).toBe("s");
+        expect(areaUnit.toString(void 0, true)).toBe("m s");
     });
     it("div by Unit", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         const second = new Unit(1, new Dimensions(Rat0, Rat0, Rat1, Rat0, Rat0, Rat0, Rat0), symbols);
         const speedUnit = meter.div(second);
-        expect(meter.toString()).toBe("m");
-        expect(second.toString()).toBe("s");
+        expect(meter.toString(void 0, true)).toBe("m");
+        expect(second.toString(void 0, true)).toBe("s");
         expect(speedUnit.toString(10, true)).toBe("m/s");
     });
     it("pow by number", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
         const square = meter.pow(Rat2);
         // const radian = new Unit(1, new Dimensions(Rat0, Rat0, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
-        expect(meter.toString()).toBe("m");
-        expect(square.toString()).toBe("m ** 2");
+        expect(meter.toString(void 0, true)).toBe("m");
+        expect(square.toString(void 0, true)).toBe("m ** 2");
     });
     it("inverse", function () {
         // const dimensionless = new Unit(1234, new Dimensions(Rat0, Rat0, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
-        expect(ONE.inv().toString()).toBe("");
-        expect(METER.inv().toString()).toBe("m ** -1");
-        expect(KILOGRAM.inv().toString()).toBe("kg ** -1");
+        expect(ONE.inv().toString(void 0, true)).toBe("");
+        expect(METER.inv().toString(void 0, true)).toBe("m ** -1");
+        expect(KILOGRAM.inv().toString(void 0, true)).toBe("kg ** -1");
         expect(SECOND.inv().toString(10, true)).toBe("Hz");
-        expect(AMPERE.inv().toString()).toBe("s C ** -1");
-        expect(KELVIN.inv().toString()).toBe("K ** -1");
-        expect(MOLE.inv().toString()).toBe("mol ** -1");
-        expect(CANDELA.inv().toString()).toBe("cd ** -1");
+        expect(AMPERE.inv().toString(void 0, true)).toBe("s C ** -1");
+        expect(KELVIN.inv().toString(void 0, true)).toBe("K ** -1");
+        expect(MOLE.inv().toString(void 0, true)).toBe("mol ** -1");
+        expect(CANDELA.inv().toString(void 0, true)).toBe("cd ** -1");
     });
     it("electric current", function () {
         expect(AMPERE.toString(10, true)).toBe("A");
@@ -262,7 +262,7 @@ describe("Unit", function () {
 
             it("m.__mul__(m)", function () {
                 var actual = m.__mul__(m);
-                expect(actual.toString()).toBe("m ** 2");
+                expect(actual.toString(void 0, true)).toBe("m ** 2");
                 expect(actual.multiplier).toBe(1);
                 expect(actual.dimensions.M.numer).toBe(0);
                 expect(actual.dimensions.M.denom).toBe(1);
@@ -312,7 +312,7 @@ describe("Unit", function () {
 
             it("m.__div__(m)", function () {
                 var actual = m.__div__(m);
-                expect(actual.toString()).toBe("");
+                expect(actual.toString(void 0, true)).toBe("");
                 expect(actual.multiplier).toBe(1);
                 expect(actual.dimensions.M.numer).toBe(0);
                 expect(actual.dimensions.M.denom).toBe(1);

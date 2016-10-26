@@ -137,8 +137,9 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
     get x(): number {
         return this._coords[COORD_X]
     }
-    set x(unused: number) {
-        throw new Error(readOnly('x').message)
+    set x(value: number) {
+        this._coords[COORD_X] = value;
+        // throw new Error(readOnly('x').message)
     }
 
     /**
@@ -147,8 +148,9 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
     get y(): number {
         return this._coords[COORD_Y]
     }
-    set y(unused: number) {
-        throw new Error(readOnly('y').message)
+    set y(value: number) {
+        this._coords[COORD_Y] = value;
+        // throw new Error(readOnly('y').message)
     }
 
     /**
@@ -157,8 +159,9 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
     get z(): number {
         return this._coords[COORD_Z]
     }
-    set z(unused: number) {
-        throw new Error(readOnly('z').message)
+    set z(value: number) {
+        this._coords[COORD_Z] = value;
+        // throw new Error(readOnly('z').message)
     }
 
     /**
@@ -828,9 +831,11 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
      * Intentionally undocumented.
      */
     toStringCustom(coordToString: (x: number) => string, labels: (string | string[])[]): string {
-        var quantityString: string = stringFromCoordinates(this.coords, coordToString, labels);
+        const quantityString: string = stringFromCoordinates(this.coords, coordToString, labels);
         if (this.uom) {
-            var unitString = this.uom.toString().trim();
+            // Use the compact representation of the Unit because the units follow the multivector
+            // quantity and we want to suppress the multiplier which is always 1.
+            const unitString = this.uom.toString(10, true).trim();
             if (unitString) {
                 return quantityString + ' ' + unitString;
             }
@@ -844,22 +849,22 @@ export default class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricN
     }
 
     toExponential(fractionDigits?: number): string {
-        const coordToString = function(coord: number): string { return coord.toExponential(fractionDigits) };
+        const coordToString = function (coord: number): string { return coord.toExponential(fractionDigits) };
         return this.toStringCustom(coordToString, G3.BASIS_LABELS);
     }
 
     toFixed(fractionDigits?: number): string {
-        const coordToString = function(coord: number): string { return coord.toFixed(fractionDigits) };
+        const coordToString = function (coord: number): string { return coord.toFixed(fractionDigits) };
         return this.toStringCustom(coordToString, G3.BASIS_LABELS);
     }
 
     toPrecision(precision?: number): string {
-        const coordToString = function(coord: number): string { return coord.toPrecision(precision) };
+        const coordToString = function (coord: number): string { return coord.toPrecision(precision) };
         return this.toStringCustom(coordToString, G3.BASIS_LABELS);
     }
 
     toString(radix?: number): string {
-        const coordToString = function(coord: number): string { return coord.toString(radix) };
+        const coordToString = function (coord: number): string { return coord.toString(radix) };
         return this.toStringCustom(coordToString, G3.BASIS_LABELS);
     }
 
