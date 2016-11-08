@@ -5778,9 +5778,9 @@ System.register('davinci-units/config.js', [], function (exports_1, context_1) {
             Units = function () {
                 function Units() {
                     this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-                    this.LAST_MODIFIED = '2016-10-25';
+                    this.LAST_MODIFIED = '2016-11-08';
                     this.NAMESPACE = 'UNITS';
-                    this.VERSION = '1.5.3';
+                    this.VERSION = '1.5.4';
                 }
                 Units.prototype.log = function (message) {
                     var optionalParams = [];

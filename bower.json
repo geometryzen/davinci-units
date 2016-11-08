@@ -1,6 +1,6 @@
 {
     "name": "davinci-units",
-    "version": "1.5.3",
+    "version": "1.5.4",
     "description": "WebGL library for mathematical physics using Geometric Algebra",
     "author": {
         "name": "David Holmes",
