@@ -1,1 +1,0 @@
-"/home/david/dev/geometryzen/davinci-units/src/davinci-units.ts" "/home/david/dev/geometryzen/davinci-units/src/.baseDir.ts" --removeComments --noImplicitAny --suppressImplicitAnyIndexErrors --moduleResolution classic --target ES5 --module amd --outDir amd

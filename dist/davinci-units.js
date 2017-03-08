@@ -437,13 +437,19 @@ var requirejs, require, define;
 
 define("../bower_components/almond/almond", function(){});
 
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 define('davinci-units/math/BigInteger',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var BASE = 1e7;
     var LOG_BASE = 7;
     var MAX_INT = 9007199254740992;
@@ -492,8 +498,9 @@ define('davinci-units/math/BigInteger',["require", "exports"], function (require
     var highestPower2 = powersOfTwo[powers2Length - 1];
     var Integer = (function () {
         function Integer(v, radix) {
-            if (typeof v === "undefined")
-                return Integer[0];
+            if (typeof v === "undefined") {
+                return;
+            }
             if (typeof radix !== "undefined")
                 return +radix === 10 ? parseValue(v) : parseBase(v, radix);
             return parseValue(v);
@@ -778,10 +785,11 @@ define('davinci-units/math/BigInteger',["require", "exports"], function (require
     var BigInteger = (function (_super) {
         __extends(BigInteger, _super);
         function BigInteger(value, sign) {
-            _super.call(this, void 0, void 0);
-            this.value = value;
-            this.sign = sign;
-            this.isSmall = false;
+            var _this = _super.call(this, void 0, void 0) || this;
+            _this.value = value;
+            _this.sign = sign;
+            _this.isSmall = false;
+            return _this;
         }
         BigInteger.prototype.add = function (v) {
             var n = parseValue(v);
@@ -989,13 +997,15 @@ define('davinci-units/math/BigInteger',["require", "exports"], function (require
         };
         return BigInteger;
     }(Integer));
+    exports.BigInteger = BigInteger;
     var SmallInteger = (function (_super) {
         __extends(SmallInteger, _super);
         function SmallInteger(value) {
-            _super.call(this, void 0, void 0);
-            this.value = value;
-            this.sign = value < 0;
-            this.isSmall = true;
+            var _this = _super.call(this, void 0, void 0) || this;
+            _this.value = value;
+            _this.sign = value < 0;
+            _this.isSmall = true;
+            return _this;
         }
         SmallInteger.prototype.add = function (v) {
             var n = parseValue(v);
@@ -1172,6 +1182,7 @@ define('davinci-units/math/BigInteger',["require", "exports"], function (require
         };
         return SmallInteger;
     }(Integer));
+    exports.SmallInteger = SmallInteger;
     function isPrecise(n) {
         return -MAX_INT < n && n < MAX_INT;
     }
@@ -1851,10 +1862,10 @@ define('davinci-units/math/BigInteger',["require", "exports"], function (require
         }
         throw new Error("v must be a number or a string or Integer: Found " + typeof v);
     }
-    for (var i = 0; i < 1000; i++) {
+    Integer[0] = new SmallInteger(0);
+    for (var i = 1; i < 1000; i++) {
         Integer[i] = new SmallInteger(i);
-        if (i > 0)
-            Integer[-i] = new SmallInteger(-i);
+        Integer[-i] = new SmallInteger(-i);
     }
     exports.one = Integer[1];
     exports.zero = Integer[0];
@@ -1863,20 +1874,26 @@ define('davinci-units/math/BigInteger',["require", "exports"], function (require
     exports.isInstance = isInstance;
     ;
     function bigInt(v, radix) {
-        return new Integer(v, radix);
+        if (typeof v !== 'undefined') {
+            return new Integer(v, radix);
+        }
+        else {
+            return Integer[0];
+        }
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = bigInt;
 });
 
-define('davinci-units/math/BigRational',["require", "exports", './BigInteger', './BigInteger'], function (require, exports, BigInteger_1, BigInteger_2) {
+define('davinci-units/math/BigRational',["require", "exports", "./BigInteger", "./BigInteger"], function (require, exports, BigInteger_1, BigInteger_2) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var BigRational = (function () {
         function BigRational(numer, denom) {
             this.numer = numer;
             this.denom = denom;
-            if (denom.isZero())
+            if (denom.isZero()) {
                 throw "Denominator cannot be 0.";
+            }
         }
         BigRational.prototype.add = function (n, d) {
             var v = interpret(n, d);
@@ -2245,15 +2262,15 @@ define('davinci-units/math/BigRational',["require", "exports", './BigInteger', '
         }
         return parseDecimal(text);
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = bigRat;
-    exports.zero = bigRat(0);
-    exports.one = bigRat(1);
-    exports.minusOne = bigRat(-1);
+    exports.zero = bigRat(0, 1);
+    exports.one = bigRat(1, 1);
+    exports.minusOne = bigRat(-1, 1);
 });
 
 define('davinci-units/checks/mustSatisfy',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function mustSatisfy(name, condition, messageBuilder, contextBuilder) {
         if (!condition) {
             var message = messageBuilder ? messageBuilder() : "satisfy some condition";
@@ -2261,30 +2278,30 @@ define('davinci-units/checks/mustSatisfy',["require", "exports"], function (requ
             throw new Error(name + " must " + message + context + ".");
         }
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = mustSatisfy;
 });
 
 define('davinci-units/checks/isNumber',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function isNumber(x) {
         return (typeof x === 'number');
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = isNumber;
 });
 
-define('davinci-units/checks/isInteger',["require", "exports", '../checks/isNumber'], function (require, exports, isNumber_1) {
+define('davinci-units/checks/isInteger',["require", "exports", "../checks/isNumber"], function (require, exports, isNumber_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function isInteger(x) {
         return isNumber_1.default(x) && x % 1 === 0;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = isInteger;
 });
 
-define('davinci-units/checks/mustBeInteger',["require", "exports", '../checks/mustSatisfy', '../checks/isInteger'], function (require, exports, mustSatisfy_1, isInteger_1) {
+define('davinci-units/checks/mustBeInteger',["require", "exports", "../checks/mustSatisfy", "../checks/isInteger"], function (require, exports, mustSatisfy_1, isInteger_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function beAnInteger() {
         return "be an integer";
     }
@@ -2292,21 +2309,21 @@ define('davinci-units/checks/mustBeInteger',["require", "exports", '../checks/mu
         mustSatisfy_1.default(name, isInteger_1.default(value), beAnInteger, contextBuilder);
         return value;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = mustBeInteger;
 });
 
 define('davinci-units/checks/isString',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function isString(s) {
         return (typeof s === 'string');
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = isString;
 });
 
-define('davinci-units/checks/mustBeString',["require", "exports", '../checks/mustSatisfy', '../checks/isString'], function (require, exports, mustSatisfy_1, isString_1) {
+define('davinci-units/checks/mustBeString',["require", "exports", "../checks/mustSatisfy", "../checks/isString"], function (require, exports, mustSatisfy_1, isString_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function beAString() {
         return "be a string";
     }
@@ -2314,12 +2331,12 @@ define('davinci-units/checks/mustBeString',["require", "exports", '../checks/mus
         mustSatisfy_1.default(name, isString_1.default(value), beAString, contextBuilder);
         return value;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = default_1;
 });
 
-define('davinci-units/i18n/readOnly',["require", "exports", '../checks/mustBeString'], function (require, exports, mustBeString_1) {
+define('davinci-units/i18n/readOnly',["require", "exports", "../checks/mustBeString"], function (require, exports, mustBeString_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function readOnly(name) {
         mustBeString_1.default('name', name);
         var message = {
@@ -2329,12 +2346,12 @@ define('davinci-units/i18n/readOnly',["require", "exports", '../checks/mustBeStr
         };
         return message;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = readOnly;
 });
 
-define('davinci-units/math/QQ',["require", "exports", '../checks/mustBeInteger', '../i18n/readOnly'], function (require, exports, mustBeInteger_1, readOnly_1) {
+define('davinci-units/math/QQ',["require", "exports", "../checks/mustBeInteger", "../i18n/readOnly"], function (require, exports, mustBeInteger_1, readOnly_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var magicCode = Math.random();
     var QQ = (function () {
         function QQ(n, d, code) {
@@ -2617,31 +2634,32 @@ define('davinci-units/math/QQ',["require", "exports", '../checks/mustBeInteger',
             }
             return new QQ(n, d, magicCode);
         };
-        QQ.POS_08_01 = new QQ(8, 1, magicCode);
-        QQ.POS_07_01 = new QQ(7, 1, magicCode);
-        QQ.POS_06_01 = new QQ(6, 1, magicCode);
-        QQ.POS_05_01 = new QQ(5, 1, magicCode);
-        QQ.POS_04_01 = new QQ(4, 1, magicCode);
-        QQ.POS_03_01 = new QQ(3, 1, magicCode);
-        QQ.POS_02_01 = new QQ(2, 1, magicCode);
-        QQ.ONE = new QQ(1, 1, magicCode);
-        QQ.POS_01_02 = new QQ(1, 2, magicCode);
-        QQ.POS_01_03 = new QQ(1, 3, magicCode);
-        QQ.POS_01_04 = new QQ(1, 4, magicCode);
-        QQ.POS_01_05 = new QQ(1, 5, magicCode);
-        QQ.ZERO = new QQ(0, 1, magicCode);
-        QQ.NEG_01_03 = new QQ(-1, 3, magicCode);
-        QQ.NEG_01_01 = new QQ(-1, 1, magicCode);
-        QQ.NEG_02_01 = new QQ(-2, 1, magicCode);
-        QQ.NEG_03_01 = new QQ(-3, 1, magicCode);
-        QQ.POS_02_03 = new QQ(2, 3, magicCode);
         return QQ;
     }());
+    QQ.POS_08_01 = new QQ(8, 1, magicCode);
+    QQ.POS_07_01 = new QQ(7, 1, magicCode);
+    QQ.POS_06_01 = new QQ(6, 1, magicCode);
+    QQ.POS_05_01 = new QQ(5, 1, magicCode);
+    QQ.POS_04_01 = new QQ(4, 1, magicCode);
+    QQ.POS_03_01 = new QQ(3, 1, magicCode);
+    QQ.POS_02_01 = new QQ(2, 1, magicCode);
+    QQ.ONE = new QQ(1, 1, magicCode);
+    QQ.POS_01_02 = new QQ(1, 2, magicCode);
+    QQ.POS_01_03 = new QQ(1, 3, magicCode);
+    QQ.POS_01_04 = new QQ(1, 4, magicCode);
+    QQ.POS_01_05 = new QQ(1, 5, magicCode);
+    QQ.ZERO = new QQ(0, 1, magicCode);
+    QQ.NEG_01_03 = new QQ(-1, 3, magicCode);
+    QQ.NEG_01_01 = new QQ(-1, 1, magicCode);
+    QQ.NEG_02_01 = new QQ(-2, 1, magicCode);
+    QQ.NEG_03_01 = new QQ(-3, 1, magicCode);
+    QQ.POS_02_03 = new QQ(2, 3, magicCode);
     exports.QQ = QQ;
 });
 
-define('davinci-units/i18n/notSupported',["require", "exports", '../checks/mustBeString'], function (require, exports, mustBeString_1) {
+define('davinci-units/i18n/notSupported',["require", "exports", "../checks/mustBeString"], function (require, exports, mustBeString_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function default_1(name) {
         mustBeString_1.default('name', name);
         var message = {
@@ -2651,12 +2669,12 @@ define('davinci-units/i18n/notSupported',["require", "exports", '../checks/mustB
         };
         return message;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = default_1;
 });
 
-define('davinci-units/math/Dimensions',["require", "exports", '../math/QQ', '../i18n/notSupported'], function (require, exports, QQ_1, notSupported_1) {
+define('davinci-units/math/Dimensions',["require", "exports", "../math/QQ", "../i18n/notSupported"], function (require, exports, QQ_1, notSupported_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var R0 = QQ_1.QQ.valueOf(0, 1);
     var R1 = QQ_1.QQ.valueOf(1, 1);
     var R2 = QQ_1.QQ.valueOf(2, 1);
@@ -2822,22 +2840,23 @@ define('davinci-units/math/Dimensions',["require", "exports", '../math/QQ', '../
         Dimensions.prototype.__neg__ = function () {
             return this;
         };
-        Dimensions.ONE = new Dimensions(R0, R0, R0, R0, R0, R0, R0);
-        Dimensions.MASS = new Dimensions(R1, R0, R0, R0, R0, R0, R0);
-        Dimensions.LENGTH = new Dimensions(R0, R1, R0, R0, R0, R0, R0);
-        Dimensions.TIME = new Dimensions(R0, R0, R1, R0, R0, R0, R0);
-        Dimensions.CHARGE = new Dimensions(R0, R0, R0, R1, R0, R0, R0);
-        Dimensions.CURRENT = new Dimensions(R0, R0, M1, R1, R0, R0, R0);
-        Dimensions.TEMPERATURE = new Dimensions(R0, R0, R0, R0, R1, R0, R0);
-        Dimensions.AMOUNT = new Dimensions(R0, R0, R0, R0, R0, R1, R0);
-        Dimensions.INTENSITY = new Dimensions(R0, R0, R0, R0, R0, R0, R1);
         return Dimensions;
     }());
+    Dimensions.ONE = new Dimensions(R0, R0, R0, R0, R0, R0, R0);
+    Dimensions.MASS = new Dimensions(R1, R0, R0, R0, R0, R0, R0);
+    Dimensions.LENGTH = new Dimensions(R0, R1, R0, R0, R0, R0, R0);
+    Dimensions.TIME = new Dimensions(R0, R0, R1, R0, R0, R0, R0);
+    Dimensions.CHARGE = new Dimensions(R0, R0, R0, R1, R0, R0, R0);
+    Dimensions.CURRENT = new Dimensions(R0, R0, M1, R1, R0, R0, R0);
+    Dimensions.TEMPERATURE = new Dimensions(R0, R0, R0, R0, R1, R0, R0);
+    Dimensions.AMOUNT = new Dimensions(R0, R0, R0, R0, R0, R1, R0);
+    Dimensions.INTENSITY = new Dimensions(R0, R0, R0, R0, R0, R0, R1);
     exports.Dimensions = Dimensions;
 });
 
 define('davinci-units/math/bezier2',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function b2p0(t, p) {
         var k = 1 - t;
         return k * k * p;
@@ -2851,12 +2870,12 @@ define('davinci-units/math/bezier2',["require", "exports"], function (require, e
     function b2(t, begin, control, end) {
         return b2p0(t, begin) + b2p1(t, control) + b2p2(t, end);
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = b2;
 });
 
 define('davinci-units/math/bezier3',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function b3p0(t, p) {
         var k = 1 - t;
         return k * k * k * p;
@@ -2875,12 +2894,12 @@ define('davinci-units/math/bezier3',["require", "exports"], function (require, e
     function default_1(t, p0, p1, p2, p3) {
         return b3p0(t, p0) + b3p1(t, p1) + b3p2(t, p2) + b3p3(t, p3);
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = default_1;
 });
 
 define('davinci-units/math/extE2',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function extE2(a0, a1, a2, a3, b0, b1, b2, b3, index) {
         a0 = +a0;
         a1 = +a1;
@@ -2919,12 +2938,12 @@ define('davinci-units/math/extE2',["require", "exports"], function (require, exp
         }
         return +x;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = extE2;
 });
 
 define('davinci-units/math/gauss',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var abs = Math.abs;
     function makeColumnVector(n, v) {
         var a = [];
@@ -2988,12 +3007,12 @@ define('davinci-units/math/gauss',["require", "exports"], function (require, exp
         }
         return solve(A, N);
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = gauss;
 });
 
 define('davinci-units/math/lcoE2',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function lcoE2(a0, a1, a2, a3, b0, b1, b2, b3, index) {
         a0 = +a0;
         a1 = +a1;
@@ -3032,12 +3051,12 @@ define('davinci-units/math/lcoE2',["require", "exports"], function (require, exp
         }
         return +x;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = lcoE2;
 });
 
 define('davinci-units/math/mulE2',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function mulE2(a0, a1, a2, a3, b0, b1, b2, b3, index) {
         a0 = +a0;
         a1 = +a1;
@@ -3076,12 +3095,12 @@ define('davinci-units/math/mulE2',["require", "exports"], function (require, exp
         }
         return +x;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = mulE2;
 });
 
-define('davinci-units/i18n/notImplemented',["require", "exports", '../checks/mustBeString'], function (require, exports, mustBeString_1) {
+define('davinci-units/i18n/notImplemented',["require", "exports", "../checks/mustBeString"], function (require, exports, mustBeString_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function default_1(name) {
         mustBeString_1.default('name', name);
         var message = {
@@ -3091,12 +3110,12 @@ define('davinci-units/i18n/notImplemented',["require", "exports", '../checks/mus
         };
         return message;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = default_1;
 });
 
 define('davinci-units/math/rcoE2',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function rcoE2(a0, a1, a2, a3, b0, b1, b2, b3, index) {
         a0 = +a0;
         a1 = +a1;
@@ -3135,12 +3154,12 @@ define('davinci-units/math/rcoE2',["require", "exports"], function (require, exp
         }
         return +x;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = rcoE2;
 });
 
 define('davinci-units/math/scpE2',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function scpE2(a0, a1, a2, a3, b0, b1, b2, b3, index) {
         switch (index) {
             case 0:
@@ -3155,30 +3174,30 @@ define('davinci-units/math/scpE2',["require", "exports"], function (require, exp
                 throw new Error("index must be in the range [0..3]");
         }
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = scpE2;
 });
 
 define('davinci-units/checks/isDefined',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function isDefined(arg) {
         return (typeof arg !== 'undefined');
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = isDefined;
 });
 
 define('davinci-units/checks/isArray',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function isArray(x) {
         return Object.prototype.toString.call(x) === '[object Array]';
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = isArray;
 });
 
-define('davinci-units/checks/mustBeArray',["require", "exports", '../checks/mustSatisfy', '../checks/isArray'], function (require, exports, mustSatisfy_1, isArray_1) {
+define('davinci-units/checks/mustBeArray',["require", "exports", "../checks/mustSatisfy", "../checks/isArray"], function (require, exports, mustSatisfy_1, isArray_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function beAnArray() {
         return "be an array";
     }
@@ -3186,12 +3205,12 @@ define('davinci-units/checks/mustBeArray',["require", "exports", '../checks/must
         mustSatisfy_1.default(name, isArray_1.default(value), beAnArray, contextBuilder);
         return value;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = default_1;
 });
 
-define('davinci-units/math/stringFromCoordinates',["require", "exports", '../checks/isDefined', '../checks/mustBeArray'], function (require, exports, isDefined_1, mustBeArray_1) {
+define('davinci-units/math/stringFromCoordinates',["require", "exports", "../checks/isDefined", "../checks/mustBeArray"], function (require, exports, isDefined_1, mustBeArray_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function isLabelOne(label) {
         if (typeof label === 'string') {
             return label === "1";
@@ -3289,12 +3308,12 @@ define('davinci-units/math/stringFromCoordinates',["require", "exports", '../che
         }
         return sb.length > 0 ? sb.join("") : "0";
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = stringFromCoordinates;
 });
 
-define('davinci-units/math/Unit',["require", "exports", '../math/Dimensions', '../i18n/notImplemented', '../i18n/notSupported'], function (require, exports, Dimensions_1, notImplemented_1, notSupported_1) {
+define('davinci-units/math/Unit',["require", "exports", "../math/Dimensions", "../i18n/notImplemented", "../i18n/notSupported"], function (require, exports, Dimensions_1, notImplemented_1, notSupported_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var SYMBOLS_SI = ['kg', 'm', 's', 'C', 'K', 'mol', 'cd'];
     var patterns = [
         [-1, 1, -3, 1, 2, 1, 2, 1, 0, 1, 0, 1, 0, 1],
@@ -3720,23 +3739,24 @@ define('davinci-units/math/Unit',["require", "exports", '../math/Dimensions', '.
                 return void 0;
             }
         };
-        Unit.ZERO = new Unit(0.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
-        Unit.ONE = new Unit(1.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
-        Unit.KILOGRAM = new Unit(1.0, Dimensions_1.Dimensions.MASS, SYMBOLS_SI);
-        Unit.METER = new Unit(1.0, Dimensions_1.Dimensions.LENGTH, SYMBOLS_SI);
-        Unit.SECOND = new Unit(1.0, Dimensions_1.Dimensions.TIME, SYMBOLS_SI);
-        Unit.COULOMB = new Unit(1.0, Dimensions_1.Dimensions.CHARGE, SYMBOLS_SI);
-        Unit.AMPERE = new Unit(1.0, Dimensions_1.Dimensions.CURRENT, SYMBOLS_SI);
-        Unit.KELVIN = new Unit(1.0, Dimensions_1.Dimensions.TEMPERATURE, SYMBOLS_SI);
-        Unit.MOLE = new Unit(1.0, Dimensions_1.Dimensions.AMOUNT, SYMBOLS_SI);
-        Unit.CANDELA = new Unit(1.0, Dimensions_1.Dimensions.INTENSITY, SYMBOLS_SI);
         return Unit;
     }());
+    Unit.ZERO = new Unit(0.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
+    Unit.ONE = new Unit(1.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
+    Unit.KILOGRAM = new Unit(1.0, Dimensions_1.Dimensions.MASS, SYMBOLS_SI);
+    Unit.METER = new Unit(1.0, Dimensions_1.Dimensions.LENGTH, SYMBOLS_SI);
+    Unit.SECOND = new Unit(1.0, Dimensions_1.Dimensions.TIME, SYMBOLS_SI);
+    Unit.COULOMB = new Unit(1.0, Dimensions_1.Dimensions.CHARGE, SYMBOLS_SI);
+    Unit.AMPERE = new Unit(1.0, Dimensions_1.Dimensions.CURRENT, SYMBOLS_SI);
+    Unit.KELVIN = new Unit(1.0, Dimensions_1.Dimensions.TEMPERATURE, SYMBOLS_SI);
+    Unit.MOLE = new Unit(1.0, Dimensions_1.Dimensions.AMOUNT, SYMBOLS_SI);
+    Unit.CANDELA = new Unit(1.0, Dimensions_1.Dimensions.INTENSITY, SYMBOLS_SI);
     exports.Unit = Unit;
 });
 
-define('davinci-units/math/G2',["require", "exports", './bezier2', './bezier3', './extE2', './gauss', './lcoE2', './mulE2', '../i18n/notImplemented', '../i18n/notSupported', '../i18n/readOnly', './rcoE2', './scpE2', './stringFromCoordinates', './Unit'], function (require, exports, bezier2_1, bezier3_1, extE2_1, gauss_1, lcoE2_1, mulE2_1, notImplemented_1, notSupported_1, readOnly_1, rcoE2_1, scpE2_1, stringFromCoordinates_1, Unit_1) {
+define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", "./extE2", "./gauss", "./lcoE2", "./mulE2", "../i18n/notImplemented", "../i18n/notSupported", "../i18n/readOnly", "./rcoE2", "./scpE2", "./stringFromCoordinates", "./Unit"], function (require, exports, bezier2_1, bezier3_1, extE2_1, gauss_1, lcoE2_1, mulE2_1, notImplemented_1, notSupported_1, readOnly_1, rcoE2_1, scpE2_1, stringFromCoordinates_1, Unit_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var COORD_SCALAR = 0;
     var COORD_X = 1;
     var COORD_Y = 2;
@@ -4596,26 +4616,27 @@ define('davinci-units/math/G2',["require", "exports", './bezier2', './bezier3', 
         G2.vector = function (x, y, uom) {
             return new G2(0, x, y, 0, uom);
         };
-        G2._zero = new G2(0, 0, 0, 0);
-        G2._one = new G2(1, 0, 0, 0);
-        G2._e1 = new G2(0, 1, 0, 0);
-        G2._e2 = new G2(0, 0, 1, 0);
-        G2._I = new G2(0, 0, 0, 1);
-        G2.kilogram = new G2(1, 0, 0, 0, Unit_1.Unit.KILOGRAM);
-        G2.meter = new G2(1, 0, 0, 0, Unit_1.Unit.METER);
-        G2.second = new G2(1, 0, 0, 0, Unit_1.Unit.SECOND);
-        G2.coulomb = new G2(1, 0, 0, 0, Unit_1.Unit.COULOMB);
-        G2.ampere = new G2(1, 0, 0, 0, Unit_1.Unit.AMPERE);
-        G2.kelvin = new G2(1, 0, 0, 0, Unit_1.Unit.KELVIN);
-        G2.mole = new G2(1, 0, 0, 0, Unit_1.Unit.MOLE);
-        G2.candela = new G2(1, 0, 0, 0, Unit_1.Unit.CANDELA);
         return G2;
     }());
+    G2._zero = new G2(0, 0, 0, 0);
+    G2._one = new G2(1, 0, 0, 0);
+    G2._e1 = new G2(0, 1, 0, 0);
+    G2._e2 = new G2(0, 0, 1, 0);
+    G2._I = new G2(0, 0, 0, 1);
+    G2.kilogram = new G2(1, 0, 0, 0, Unit_1.Unit.KILOGRAM);
+    G2.meter = new G2(1, 0, 0, 0, Unit_1.Unit.METER);
+    G2.second = new G2(1, 0, 0, 0, Unit_1.Unit.SECOND);
+    G2.coulomb = new G2(1, 0, 0, 0, Unit_1.Unit.COULOMB);
+    G2.ampere = new G2(1, 0, 0, 0, Unit_1.Unit.AMPERE);
+    G2.kelvin = new G2(1, 0, 0, 0, Unit_1.Unit.KELVIN);
+    G2.mole = new G2(1, 0, 0, 0, Unit_1.Unit.MOLE);
+    G2.candela = new G2(1, 0, 0, 0, Unit_1.Unit.CANDELA);
     exports.G2 = G2;
 });
 
 define('davinci-units/math/compG3Get',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var COORD_W = 0;
     var COORD_X = 1;
     var COORD_Y = 2;
@@ -4655,12 +4676,12 @@ define('davinci-units/math/compG3Get',["require", "exports"], function (require,
             }
         }
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = gcompE3;
 });
 
 define('davinci-units/math/extE3',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, index) {
         a0 = +a0;
         a1 = +a1;
@@ -4727,12 +4748,12 @@ define('davinci-units/math/extE3',["require", "exports"], function (require, exp
         }
         return +x;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = extE3;
 });
 
 define('davinci-units/math/compG3Set',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var COORD_W = 0;
     var COORD_X = 1;
     var COORD_Y = 2;
@@ -4787,12 +4808,12 @@ define('davinci-units/math/compG3Set',["require", "exports"], function (require,
                 throw new Error("index => " + index);
         }
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = compG3Set;
 });
 
-define('davinci-units/math/extG3',["require", "exports", '../math/compG3Get', '../math/extE3', '../math/compG3Set'], function (require, exports, compG3Get_1, extE3_1, compG3Set_1) {
+define('davinci-units/math/extG3',["require", "exports", "../math/compG3Get", "../math/extE3", "../math/compG3Set"], function (require, exports, compG3Get_1, extE3_1, compG3Set_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function extG3(a, b, out) {
         var a0 = compG3Get_1.default(a, 0);
         var a1 = compG3Get_1.default(a, 1);
@@ -4815,12 +4836,12 @@ define('davinci-units/math/extG3',["require", "exports", '../math/compG3Get', '.
         }
         return out;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = extG3;
 });
 
 define('davinci-units/math/lcoE3',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, index) {
         a0 = +a0;
         a1 = +a1;
@@ -4887,12 +4908,12 @@ define('davinci-units/math/lcoE3',["require", "exports"], function (require, exp
         }
         return +x;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = lcoE3;
 });
 
-define('davinci-units/math/lcoG3',["require", "exports", '../math/compG3Get', '../math/lcoE3', '../math/compG3Set'], function (require, exports, compG3Get_1, lcoE3_1, compG3Set_1) {
+define('davinci-units/math/lcoG3',["require", "exports", "../math/compG3Get", "../math/lcoE3", "../math/compG3Set"], function (require, exports, compG3Get_1, lcoE3_1, compG3Set_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function lcoG3(a, b, out) {
         var a0 = compG3Get_1.default(a, 0);
         var a1 = compG3Get_1.default(a, 1);
@@ -4915,12 +4936,12 @@ define('davinci-units/math/lcoG3',["require", "exports", '../math/compG3Get', '.
         }
         return out;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = lcoG3;
 });
 
 define('davinci-units/math/mulE3',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, index) {
         a0 = +a0;
         a1 = +a1;
@@ -4987,12 +5008,12 @@ define('davinci-units/math/mulE3',["require", "exports"], function (require, exp
         }
         return +x;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = mulE3;
 });
 
-define('davinci-units/math/mulG3',["require", "exports", '../math/compG3Get', '../math/mulE3'], function (require, exports, compG3Get_1, mulE3_1) {
+define('davinci-units/math/mulG3',["require", "exports", "../math/compG3Get", "../math/mulE3"], function (require, exports, compG3Get_1, mulE3_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function default_1(a, b, out) {
         var a0 = a.a;
         var a1 = a.x;
@@ -5015,12 +5036,12 @@ define('davinci-units/math/mulG3',["require", "exports", '../math/compG3Get', '.
             out[i] = mulE3_1.default(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, i);
         }
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = default_1;
 });
 
-define('davinci-units/math/quadSpinorE3',["require", "exports", '../checks/isDefined', '../checks/isNumber'], function (require, exports, isDefined_1, isNumber_1) {
+define('davinci-units/math/quadSpinorE3',["require", "exports", "../checks/isDefined", "../checks/isNumber"], function (require, exports, isDefined_1, isNumber_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function quadSpinorE3(s) {
         if (isDefined_1.default(s)) {
             var α = s.a;
@@ -5038,12 +5059,12 @@ define('davinci-units/math/quadSpinorE3',["require", "exports", '../checks/isDef
             return void 0;
         }
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = quadSpinorE3;
 });
 
 define('davinci-units/math/rcoE3',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, index) {
         a0 = +a0;
         a1 = +a1;
@@ -5110,12 +5131,12 @@ define('davinci-units/math/rcoE3',["require", "exports"], function (require, exp
         }
         return +x;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = rcoE3;
 });
 
-define('davinci-units/math/rcoG3',["require", "exports", '../math/compG3Get', '../math/rcoE3', '../math/compG3Set'], function (require, exports, compG3Get_1, rcoE3_1, compG3Set_1) {
+define('davinci-units/math/rcoG3',["require", "exports", "../math/compG3Get", "../math/rcoE3", "../math/compG3Set"], function (require, exports, compG3Get_1, rcoE3_1, compG3Set_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function rcoG3(a, b, out) {
         var a0 = compG3Get_1.default(a, 0);
         var a1 = compG3Get_1.default(a, 1);
@@ -5138,12 +5159,12 @@ define('davinci-units/math/rcoG3',["require", "exports", '../math/compG3Get', '.
         }
         return out;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = rcoG3;
 });
 
-define('davinci-units/math/scpG3',["require", "exports", '../math/compG3Get', '../math/mulE3', '../math/compG3Set'], function (require, exports, compG3Get_1, mulE3_1, compG3Set_1) {
+define('davinci-units/math/scpG3',["require", "exports", "../math/compG3Get", "../math/mulE3", "../math/compG3Set"], function (require, exports, compG3Get_1, mulE3_1, compG3Set_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function scpG3(a, b, out) {
         var a0 = compG3Get_1.default(a, 0);
         var a1 = compG3Get_1.default(a, 1);
@@ -5171,12 +5192,12 @@ define('davinci-units/math/scpG3',["require", "exports", '../math/compG3Get', '.
         compG3Set_1.default(out, 7, 0);
         return out;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = scpG3;
 });
 
 define('davinci-units/math/squaredNormG3',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     function squaredNormG3(m) {
         var a = m.a;
         var x = m.x;
@@ -5188,12 +5209,12 @@ define('davinci-units/math/squaredNormG3',["require", "exports"], function (requ
         var b = m.b;
         return a * a + x * x + y * y + z * z + yz * yz + zx * zx + xy * xy + b * b;
     }
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = squaredNormG3;
 });
 
 define('davinci-units/math/BASIS_LABELS_G3_GEOMETRIC',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var SCALAR_POS_SYMBOL = "1";
     var E1_NEG_SYMBOL = "←";
     var E1_POS_SYMBOL = "→";
@@ -5219,12 +5240,12 @@ define('davinci-units/math/BASIS_LABELS_G3_GEOMETRIC',["require", "exports"], fu
         [E31_NEG_SYMBOL, E31_POS_SYMBOL],
         [PSEUDO_NEG_SYMBOL, PSEUDO_POS_SYMBOL]
     ];
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = BASIS_LABELS_G3_GEOMETRIC;
 });
 
 define('davinci-units/math/BASIS_LABELS_G3_HAMILTON',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var SCALAR_SYMBOL = "1";
     var E1_SYMBOL = "i";
     var E2_SYMBOL = "j";
@@ -5243,12 +5264,12 @@ define('davinci-units/math/BASIS_LABELS_G3_HAMILTON',["require", "exports"], fun
         [E31_SYMBOL],
         [PSEUDO_SYMBOL]
     ];
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = BASIS_LABELS_G3_HAMILTON;
 });
 
 define('davinci-units/math/BASIS_LABELS_G3_STANDARD',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var SCALAR_SYMBOL = "1";
     var E1_SYMBOL = "e1";
     var E2_SYMBOL = "e2";
@@ -5267,12 +5288,12 @@ define('davinci-units/math/BASIS_LABELS_G3_STANDARD',["require", "exports"], fun
         [E31_SYMBOL],
         [PSEUDO_SYMBOL]
     ];
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = BASIS_LABELS_G3_STANDARD;
 });
 
 define('davinci-units/math/BASIS_LABELS_G3_STANDARD_HTML',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var SCALAR_SYMBOL = "1";
     var E1_SYMBOL = "<b>e</b><sub>1</sub>";
     var E2_SYMBOL = "<b>e</b><sub>2</sub>";
@@ -5291,12 +5312,12 @@ define('davinci-units/math/BASIS_LABELS_G3_STANDARD_HTML',["require", "exports"]
         [E31_SYMBOL],
         [PSEUDO_SYMBOL]
     ];
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = BASIS_LABELS_G3_STANDARD_HTML;
 });
 
-define('davinci-units/math/G3',["require", "exports", './bezier2', './bezier3', './extG3', './gauss', './lcoG3', './mulG3', '../i18n/notImplemented', '../i18n/notSupported', './quadSpinorE3', '../i18n/readOnly', './rcoG3', './scpG3', './squaredNormG3', './stringFromCoordinates', './Unit', './BASIS_LABELS_G3_GEOMETRIC', './BASIS_LABELS_G3_HAMILTON', './BASIS_LABELS_G3_STANDARD', './BASIS_LABELS_G3_STANDARD_HTML'], function (require, exports, bezier2_1, bezier3_1, extG3_1, gauss_1, lcoG3_1, mulG3_1, notImplemented_1, notSupported_1, quadSpinorE3_1, readOnly_1, rcoG3_1, scpG3_1, squaredNormG3_1, stringFromCoordinates_1, Unit_1, BASIS_LABELS_G3_GEOMETRIC_1, BASIS_LABELS_G3_HAMILTON_1, BASIS_LABELS_G3_STANDARD_1, BASIS_LABELS_G3_STANDARD_HTML_1) {
+define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", "./extG3", "./gauss", "./lcoG3", "./mulG3", "../i18n/notImplemented", "../i18n/notSupported", "./quadSpinorE3", "../i18n/readOnly", "./rcoG3", "./scpG3", "./squaredNormG3", "./stringFromCoordinates", "./Unit", "./BASIS_LABELS_G3_GEOMETRIC", "./BASIS_LABELS_G3_HAMILTON", "./BASIS_LABELS_G3_STANDARD", "./BASIS_LABELS_G3_STANDARD_HTML"], function (require, exports, bezier2_1, bezier3_1, extG3_1, gauss_1, lcoG3_1, mulG3_1, notImplemented_1, notSupported_1, quadSpinorE3_1, readOnly_1, rcoG3_1, scpG3_1, squaredNormG3_1, stringFromCoordinates_1, Unit_1, BASIS_LABELS_G3_GEOMETRIC_1, BASIS_LABELS_G3_HAMILTON_1, BASIS_LABELS_G3_STANDARD_1, BASIS_LABELS_G3_STANDARD_HTML_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var COORD_SCALAR = 0;
     var COORD_X = 1;
     var COORD_Y = 2;
@@ -6112,28 +6133,28 @@ define('davinci-units/math/G3',["require", "exports", './bezier2', './bezier3', 
         G3.vector = function (x, y, z, uom) {
             return new G3(0, x, y, z, 0, 0, 0, 0, uom);
         };
-        G3.BASIS_LABELS = BASIS_LABELS_G3_STANDARD_1.default;
-        G3.zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
-        G3.one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
-        G3.e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0);
-        G3.e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0);
-        G3.e3 = new G3(0, 0, 0, 1, 0, 0, 0, 0);
-        G3.kilogram = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KILOGRAM);
-        G3.meter = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.METER);
-        G3.second = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.SECOND);
-        G3.coulomb = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.COULOMB);
-        G3.ampere = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.AMPERE);
-        G3.kelvin = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KELVIN);
-        G3.mole = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.MOLE);
-        G3.candela = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.CANDELA);
         return G3;
     }());
-    Object.defineProperty(exports, "__esModule", { value: true });
+    G3.BASIS_LABELS = BASIS_LABELS_G3_STANDARD_1.default;
+    G3.zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
+    G3.one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
+    G3.e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0);
+    G3.e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0);
+    G3.e3 = new G3(0, 0, 0, 1, 0, 0, 0, 0);
+    G3.kilogram = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KILOGRAM);
+    G3.meter = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.METER);
+    G3.second = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.SECOND);
+    G3.coulomb = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.COULOMB);
+    G3.ampere = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.AMPERE);
+    G3.kelvin = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KELVIN);
+    G3.mole = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.MOLE);
+    G3.candela = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.CANDELA);
     exports.default = G3;
 });
 
 define('davinci-units/math/mathcore',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var abs = Math.abs;
     var acos = Math.acos;
     var asin = Math.asin;
@@ -6195,18 +6216,18 @@ define('davinci-units/math/mathcore',["require", "exports"], function (require, 
             sinh: sinh
         }
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = mathcore;
 });
 
 define('davinci-units/config',["require", "exports"], function (require, exports) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var Units = (function () {
         function Units() {
             this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-            this.LAST_MODIFIED = '2016-11-08';
+            this.LAST_MODIFIED = '2017-03-08';
             this.NAMESPACE = 'UNITS';
-            this.VERSION = '1.5.4';
+            this.VERSION = '1.5.5';
         }
         Units.prototype.log = function (message) {
             var optionalParams = [];
@@ -6214,13 +6235,6 @@ define('davinci-units/config',["require", "exports"], function (require, exports
                 optionalParams[_i - 1] = arguments[_i];
             }
             console.log(message);
-        };
-        Units.prototype.info = function (message) {
-            var optionalParams = [];
-            for (var _i = 1; _i < arguments.length; _i++) {
-                optionalParams[_i - 1] = arguments[_i];
-            }
-            console.info(message);
         };
         Units.prototype.warn = function (message) {
             var optionalParams = [];
@@ -6239,12 +6253,12 @@ define('davinci-units/config',["require", "exports"], function (require, exports
         return Units;
     }());
     var config = new Units();
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = config;
 });
 
-define('davinci-units',["require", "exports", './davinci-units/math/BigInteger', './davinci-units/math/BigRational', './davinci-units/math/Dimensions', './davinci-units/math/G2', './davinci-units/math/G3', './davinci-units/math/mathcore', './davinci-units/math/QQ', './davinci-units/math/Unit', './davinci-units/config'], function (require, exports, BigInteger_1, BigRational_1, Dimensions_1, G2_1, G3_1, mathcore_1, QQ_1, Unit_1, config_1) {
+define('davinci-units',["require", "exports", "./davinci-units/math/BigInteger", "./davinci-units/math/BigRational", "./davinci-units/math/Dimensions", "./davinci-units/math/G2", "./davinci-units/math/G3", "./davinci-units/math/mathcore", "./davinci-units/math/QQ", "./davinci-units/math/Unit", "./davinci-units/config"], function (require, exports, BigInteger_1, BigRational_1, Dimensions_1, G2_1, G3_1, mathcore_1, QQ_1, Unit_1, config_1) {
     "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
     var units = {
         get LAST_MODIFIED() { return config_1.default.LAST_MODIFIED; },
         get VERSION() { return config_1.default.VERSION; },
@@ -6265,7 +6279,6 @@ define('davinci-units',["require", "exports", './davinci-units/math/BigInteger',
         get sinh() { return mathcore_1.default.sinh; },
         get sqrt() { return mathcore_1.default.sqrt; },
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = units;
 });
 

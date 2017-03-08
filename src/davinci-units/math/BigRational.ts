@@ -1,12 +1,14 @@
 import bigInt from './BigInteger';
-import {Integer} from './BigInteger';
-import {gcd, lcm, isInstance, one as BigIntegerOne} from './BigInteger';
+import { Integer } from './BigInteger';
+import { gcd, lcm, isInstance, one as BigIntegerOne } from './BigInteger';
 import GeometricOperators from './GeometricOperators';
 
 class BigRational implements GeometricOperators<BigRational, number | string | Integer> {
     constructor(public numer: Integer, public denom: Integer) {
         // Alias properties kept for backwards compatability
-        if (denom.isZero()) throw "Denominator cannot be 0.";
+        if (denom.isZero()) {
+            throw "Denominator cannot be 0.";
+        }
     }
     add(n: number | string | Integer | BigRational, d?: number | string | Integer) {
         const v = interpret(n, d);
@@ -383,6 +385,6 @@ export default function bigRat(a: number | string | Integer | BigRational, b?: n
     return parseDecimal(text);
 }
 
-export const zero = bigRat(0);
-export const one = bigRat(1);
-export const minusOne = bigRat(-1);
+export const zero = bigRat(0, 1);
+export const one = bigRat(1, 1);
+export const minusOne = bigRat(-1, 1);

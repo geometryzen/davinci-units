@@ -6,7 +6,7 @@ const MAX_INT = 9007199254740992;
 const MAX_INT_ARR = smallToArray(MAX_INT);
 const LOG_MAX_INT = Math.log(MAX_INT);
 
-const parseBase = function(text: string, base: number) {
+const parseBase = function (text: string, base: number) {
     let val = Integer[0];
     let pow = Integer[1];
     const length = text.length;
@@ -49,7 +49,9 @@ export class Integer {
     sign: boolean;
     isSmall: boolean;
     constructor(v?: number | string | Integer, radix?: number | string | Integer) {
-        if (typeof v === "undefined") return Integer[0];
+        if (typeof v === "undefined") {
+            return;
+        }
         if (typeof radix !== "undefined") return +radix === 10 ? parseValue(v) : parseBase(<string>v, <number>radix);
         return parseValue(v);
     }
@@ -309,15 +311,15 @@ export class Integer {
     }
 
     and(n: number | string | Integer) {
-        return bitwise(this, n, function(a, b) { return a & b; });
+        return bitwise(this, n, function (a, b) { return a & b; });
     }
 
     or(n: number | string | Integer) {
-        return bitwise(this, n, function(a, b) { return a | b; });
+        return bitwise(this, n, function (a, b) { return a | b; });
     }
 
     xor(n: number | string | Integer) {
-        return bitwise(this, n, function(a, b) { return a ^ b; });
+        return bitwise(this, n, function (a, b) { return a ^ b; });
     }
     valueOf(): number {
         // Must override.
@@ -335,7 +337,7 @@ export class Integer {
     }
 }
 
-class BigInteger extends Integer implements RingOperators<Integer, number | string> {
+export class BigInteger extends Integer implements RingOperators<Integer, number | string> {
     value: number[]
     constructor(value: number[], sign: boolean) {
         super(void 0, void 0);
@@ -550,7 +552,7 @@ class BigInteger extends Integer implements RingOperators<Integer, number | stri
     }
 }
 
-class SmallInteger extends Integer implements RingOperators<Integer, number | string> {
+export class SmallInteger extends Integer implements RingOperators<Integer, number | string> {
     value: number;
     constructor(value: number) {
         super(void 0, void 0);
@@ -728,6 +730,9 @@ class SmallInteger extends Integer implements RingOperators<Integer, number | st
     }
 }
 
+/**
+ * A number, n, is precise when -MAX_INT < n < MAX_INT
+ */
 function isPrecise(n: number) {
     return -MAX_INT < n && n < MAX_INT;
 }
@@ -769,6 +774,9 @@ function createArray(length: number): number[] { // function shamelessly stolen 
     return x;
 }
 
+/**
+ * Returns the closest integer to n on the side of zero.
+ */
 function truncate(n: number): number {
     if (n > 0) return Math.floor(n);
     return Math.ceil(n);
@@ -1411,14 +1419,17 @@ function parseValue(v: number | string | Integer): Integer {
     // return v;
 }
 // Pre-define numbers in range [-999,999]
-for (var i = 0; i < 1000; i++) {
+Integer[0] = new SmallInteger(0);
+for (var i = 1; i < 1000; i++) {
     Integer[i] = new SmallInteger(i);
-    if (i > 0) Integer[-i] = new SmallInteger(-i);
+    Integer[-i] = new SmallInteger(-i);
 }
+
 // Backwards compatibility
 export const one = Integer[1];
 export const zero = Integer[0];
 export const minusOne = Integer[-1];
+
 // Integer.max = max;
 // Integer.min = min;
 // Integer.gcd = gcd;
@@ -1428,5 +1439,10 @@ export function isInstance(x: any) { return x instanceof BigInteger || x instanc
 // return Integer;
 
 export default function bigInt(v?: number | string | Integer, radix?: number | string | Integer) {
-    return new Integer(v, radix);
+    if (typeof v !== 'undefined') {
+        return new Integer(v, radix);
+    }
+    else {
+        return Integer[0];
+    }
 }

@@ -6,9 +6,9 @@ class Units {
 
     constructor() {
         this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-        this.LAST_MODIFIED = '2016-11-08';
+        this.LAST_MODIFIED = '2017-03-08';
         this.NAMESPACE = 'UNITS';
-        this.VERSION = '1.5.4';
+        this.VERSION = '1.5.5';
     }
 
     log(message?: any, ...optionalParams: any[]): void {
@@ -16,10 +16,12 @@ class Units {
         console.log(message)
     }
 
+    /*
     info(message?: any, ...optionalParams: any[]): void {
         // This should allow us to unit test and run in environments without a console.
         console.info(message)
     }
+    */
 
     warn(message?: any, ...optionalParams: any[]): void {
         // This should allow us to unit test and run in environments without a console.

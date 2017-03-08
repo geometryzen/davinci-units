@@ -1,15 +1,21 @@
 System.register("davinci-units/math/BigInteger.js", [], function (exports_1, context_1) {
     "use strict";
 
+    var __extends = this && this.__extends || function () {
+        var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b;
+        } || function (d, b) {
+            for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() {
+                this.constructor = d;
+            }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    }();
     var __moduleName = context_1 && context_1.id;
-    var __extends = this && this.__extends || function (d, b) {
-        for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-    var BASE, LOG_BASE, MAX_INT, MAX_INT_ARR, LOG_MAX_INT, parseBase, powersOfTwo, powers2Length, highestPower2, Integer, BigInteger, SmallInteger, LOBMASK_I, LOBMASK_BI, i, one, zero, minusOne;
     function isPrecise(n) {
         return -MAX_INT < n && n < MAX_INT;
     }
@@ -640,9 +646,14 @@ System.register("davinci-units/math/BigInteger.js", [], function (exports_1, con
     }
     exports_1("isInstance", isInstance);
     function bigInt(v, radix) {
-        return new Integer(v, radix);
+        if (typeof v !== 'undefined') {
+            return new Integer(v, radix);
+        } else {
+            return Integer[0];
+        }
     }
     exports_1("default", bigInt);
+    var BASE, LOG_BASE, MAX_INT, MAX_INT_ARR, LOG_MAX_INT, parseBase, powersOfTwo, powers2Length, highestPower2, Integer, BigInteger, SmallInteger, LOBMASK_I, LOBMASK_BI, i, one, zero, minusOne;
     return {
         setters: [],
         execute: function () {
@@ -689,7 +700,9 @@ System.register("davinci-units/math/BigInteger.js", [], function (exports_1, con
             highestPower2 = powersOfTwo[powers2Length - 1];
             Integer = function () {
                 function Integer(v, radix) {
-                    if (typeof v === "undefined") return Integer[0];
+                    if (typeof v === "undefined") {
+                        return;
+                    }
                     if (typeof radix !== "undefined") return +radix === 10 ? parseValue(v) : parseBase(v, radix);
                     return parseValue(v);
                 }
@@ -957,10 +970,11 @@ System.register("davinci-units/math/BigInteger.js", [], function (exports_1, con
             BigInteger = function (_super) {
                 __extends(BigInteger, _super);
                 function BigInteger(value, sign) {
-                    _super.call(this, void 0, void 0);
-                    this.value = value;
-                    this.sign = sign;
-                    this.isSmall = false;
+                    var _this = _super.call(this, void 0, void 0) || this;
+                    _this.value = value;
+                    _this.sign = sign;
+                    _this.isSmall = false;
+                    return _this;
                 }
                 BigInteger.prototype.add = function (v) {
                     var n = parseValue(v);
@@ -1154,13 +1168,15 @@ System.register("davinci-units/math/BigInteger.js", [], function (exports_1, con
                 };
                 return BigInteger;
             }(Integer);
+            exports_1("BigInteger", BigInteger);
             SmallInteger = function (_super) {
                 __extends(SmallInteger, _super);
                 function SmallInteger(value) {
-                    _super.call(this, void 0, void 0);
-                    this.value = value;
-                    this.sign = value < 0;
-                    this.isSmall = true;
+                    var _this = _super.call(this, void 0, void 0) || this;
+                    _this.value = value;
+                    _this.sign = value < 0;
+                    _this.isSmall = true;
+                    return _this;
                 }
                 SmallInteger.prototype.add = function (v) {
                     var n = parseValue(v);
@@ -1329,10 +1345,12 @@ System.register("davinci-units/math/BigInteger.js", [], function (exports_1, con
                 };
                 return SmallInteger;
             }(Integer);
+            exports_1("SmallInteger", SmallInteger);
             LOBMASK_I = 1 << 30, LOBMASK_BI = (BASE & -BASE) * (BASE & -BASE) | LOBMASK_I;
-            for (i = 0; i < 1000; i++) {
+            Integer[0] = new SmallInteger(0);
+            for (i = 1; i < 1000; i++) {
                 Integer[i] = new SmallInteger(i);
-                if (i > 0) Integer[-i] = new SmallInteger(-i);
+                Integer[-i] = new SmallInteger(-i);
             }
             exports_1("one", one = Integer[1]);
             exports_1("zero", zero = Integer[0]);
@@ -1341,14 +1359,12 @@ System.register("davinci-units/math/BigInteger.js", [], function (exports_1, con
         }
     };
 });
-System.register("davinci-units/math/BigRational.js", ['./BigInteger'], function (exports_1, context_1) {
+System.register("davinci-units/math/BigRational.js", ["./BigInteger"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var BigInteger_1, BigInteger_2;
-    var BigRational, zero, one, minusOne;
     function reduce(n, d) {
-        var divisor = BigInteger_2.gcd(n, d);
+        var divisor = BigInteger_1.gcd(n, d);
         var numer = n.over(divisor);
         var denom = d.over(divisor);
         if (denom.isNegative()) {
@@ -1374,7 +1390,7 @@ System.register("davinci-units/math/BigRational.js", ['./BigInteger'], function 
                 parts[1] = parts[1].slice(1);
             }
             var significand = parseDecimal(parts[0]);
-            var exponent = new BigRational(BigInteger_1.default(10).pow(parts[1]), BigInteger_2.one);
+            var exponent = new BigRational(BigInteger_2.default(10).pow(parts[1]), BigInteger_1.one);
             if (isPositive) {
                 return significand.times(exponent);
             } else {
@@ -1388,28 +1404,28 @@ System.register("davinci-units/math/BigRational.js", ['./BigInteger'], function 
         if (parts.length > 1) {
             var isNegative = parts[0][0] === '-';
             if (isNegative) parts[0] = parts[0].slice(1);
-            var intPart = new BigRational(BigInteger_1.default(parts[0]), BigInteger_2.one);
+            var intPart = new BigRational(BigInteger_2.default(parts[0]), BigInteger_1.one);
             var length = parts[1].length;
             while (parts[1][0] === "0") {
                 parts[1] = parts[1].slice(1);
             }
             var exp = "1" + Array(length + 1).join("0");
-            var decPart = reduce(BigInteger_1.default(parts[1]), BigInteger_1.default(exp));
+            var decPart = reduce(BigInteger_2.default(parts[1]), BigInteger_2.default(exp));
             intPart = intPart.add(decPart);
             if (isNegative) intPart = intPart.negate();
             return intPart;
         }
-        return new BigRational(BigInteger_1.default(n), BigInteger_2.one);
+        return new BigRational(BigInteger_2.default(n), BigInteger_1.one);
     }
     function bigRat(a, b) {
         if (!a) {
-            return new BigRational(BigInteger_1.default(0), BigInteger_2.one);
+            return new BigRational(BigInteger_2.default(0), BigInteger_1.one);
         }
         if (b) {
-            return reduce(BigInteger_1.default(a), BigInteger_1.default(b));
+            return reduce(BigInteger_2.default(a), BigInteger_2.default(b));
         }
-        if (BigInteger_2.isInstance(a)) {
-            return new BigRational(a, BigInteger_2.one);
+        if (BigInteger_1.isInstance(a)) {
+            return new BigRational(a, BigInteger_1.one);
         }
         if (a instanceof BigRational) return a;
         var numer;
@@ -1426,35 +1442,38 @@ System.register("davinci-units/math/BigRational.js", ['./BigInteger'], function 
             }
             if (parts.length > 1) {
                 var isPositive = parts[0][0] !== "-";
-                numer = BigInteger_1.default(parts[0]).times(texts[1]);
+                numer = BigInteger_2.default(parts[0]).times(texts[1]);
                 if (isPositive) {
                     numer = numer.add(parts[1]);
                 } else {
                     numer = numer.subtract(parts[1]);
                 }
-                denom = BigInteger_1.default(texts[1]);
+                denom = BigInteger_2.default(texts[1]);
                 return reduce(numer, denom);
             }
-            return reduce(BigInteger_1.default(texts[0]), BigInteger_1.default(texts[1]));
+            return reduce(BigInteger_2.default(texts[0]), BigInteger_2.default(texts[1]));
         }
         return parseDecimal(text);
     }
     exports_1("default", bigRat);
+    var BigInteger_2, BigInteger_1, BigRational, zero, one, minusOne;
     return {
-        setters: [function (BigInteger_1_1) {
-            BigInteger_1 = BigInteger_1_1;
-            BigInteger_2 = BigInteger_1_1;
+        setters: [function (BigInteger_2_1) {
+            BigInteger_2 = BigInteger_2_1;
+            BigInteger_1 = BigInteger_2_1;
         }],
         execute: function () {
             BigRational = function () {
                 function BigRational(numer, denom) {
                     this.numer = numer;
                     this.denom = denom;
-                    if (denom.isZero()) throw "Denominator cannot be 0.";
+                    if (denom.isZero()) {
+                        throw "Denominator cannot be 0.";
+                    }
                 }
                 BigRational.prototype.add = function (n, d) {
                     var v = interpret(n, d);
-                    var multiple = BigInteger_2.lcm(this.denom, v.denom);
+                    var multiple = BigInteger_1.lcm(this.denom, v.denom);
                     var a = multiple.divide(this.denom);
                     var b = multiple.divide(v.denom);
                     a = this.numer.times(a);
@@ -1524,7 +1543,7 @@ System.register("davinci-units/math/BigRational.js", ['./BigInteger'], function 
                     return this.minus(v.times(this.over(v).floor()));
                 };
                 BigRational.prototype.pow = function (n) {
-                    var v = BigInteger_1.default(n);
+                    var v = BigInteger_2.default(n);
                     var num = this.numer.pow(v);
                     var denom = this.denom.pow(v);
                     return reduce(num, denom);
@@ -1536,7 +1555,7 @@ System.register("davinci-units/math/BigRational.js", ['./BigInteger'], function 
                         floor = divmod.quotient;
                     } else floor = divmod.quotient.prev();
                     if (toBigInt) return floor;
-                    return new BigRational(floor, BigInteger_2.one);
+                    return new BigRational(floor, BigInteger_1.one);
                 };
                 BigRational.prototype.ceil = function (toBigInt) {
                     var divmod = this.numer.divmod(this.denom);
@@ -1545,7 +1564,7 @@ System.register("davinci-units/math/BigRational.js", ['./BigInteger'], function 
                         ceil = divmod.quotient;
                     } else ceil = divmod.quotient.next();
                     if (toBigInt) return ceil;
-                    return new BigRational(ceil, BigInteger_2.one);
+                    return new BigRational(ceil, BigInteger_1.one);
                 };
                 BigRational.prototype.round = function (toBigInt) {
                     return this.add(1, 2).floor(toBigInt);
@@ -1691,7 +1710,7 @@ System.register("davinci-units/math/BigRational.js", ['./BigInteger'], function 
                     var n = this.numer.divmod(this.denom);
                     var intPart = n.quotient.abs().toString();
                     var remainder = bigRat(n.remainder.abs(), this.denom);
-                    var shiftedRemainder = remainder.times(BigInteger_1.default("1e" + digits));
+                    var shiftedRemainder = remainder.times(BigInteger_2.default("1e" + digits));
                     var decPart = shiftedRemainder.numer.over(shiftedRemainder.denom).toString();
                     if (decPart.length < digits) {
                         decPart = new Array(digits - decPart.length + 1).join("0") + decPart;
@@ -1717,9 +1736,9 @@ System.register("davinci-units/math/BigRational.js", ['./BigInteger'], function 
                 };
                 return BigRational;
             }();
-            exports_1("zero", zero = bigRat(0));
-            exports_1("one", one = bigRat(1));
-            exports_1("minusOne", minusOne = bigRat(-1));
+            exports_1("zero", zero = bigRat(0, 1));
+            exports_1("one", one = bigRat(1, 1));
+            exports_1("minusOne", minusOne = bigRat(-1, 1));
         }
     };
 });
@@ -1943,12 +1962,10 @@ System.register("davinci-units/math/scpE2.js", [], function (exports_1, context_
         execute: function () {}
     };
 });
-System.register('davinci-units/math/G2.js', ['./bezier2', './bezier3', './extE2', './gauss', './lcoE2', './mulE2', '../i18n/notImplemented', '../i18n/notSupported', '../i18n/readOnly', './rcoE2', './scpE2', './stringFromCoordinates', './Unit'], function (exports_1, context_1) {
+System.register("davinci-units/math/G2.js", ["./bezier2", "./bezier3", "./extE2", "./gauss", "./lcoE2", "./mulE2", "../i18n/notImplemented", "../i18n/notSupported", "../i18n/readOnly", "./rcoE2", "./scpE2", "./stringFromCoordinates", "./Unit"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var bezier2_1, bezier3_1, extE2_1, gauss_1, lcoE2_1, mulE2_1, notImplemented_1, notSupported_1, readOnly_1, rcoE2_1, scpE2_1, stringFromCoordinates_1, Unit_1;
-    var COORD_SCALAR, COORD_X, COORD_Y, COORD_PSEUDO, G2;
     function add00(a00, a01, a10, a11, b00, b01, b10, b11) {
         a00 = +a00;
         a01 = +a01;
@@ -2032,6 +2049,7 @@ System.register('davinci-units/math/G2.js', ['./bezier2', './bezier3', './extE2'
         }
         return +x;
     }
+    var bezier2_1, bezier3_1, extE2_1, gauss_1, lcoE2_1, mulE2_1, notImplemented_1, notSupported_1, readOnly_1, rcoE2_1, scpE2_1, stringFromCoordinates_1, Unit_1, COORD_SCALAR, COORD_X, COORD_Y, COORD_PSEUDO, G2;
     return {
         setters: [function (bezier2_1_1) {
             bezier2_1 = bezier2_1_1;
@@ -2817,21 +2835,21 @@ System.register('davinci-units/math/G2.js', ['./bezier2', './bezier3', './extE2'
                 G2.vector = function (x, y, uom) {
                     return new G2(0, x, y, 0, uom);
                 };
-                G2._zero = new G2(0, 0, 0, 0);
-                G2._one = new G2(1, 0, 0, 0);
-                G2._e1 = new G2(0, 1, 0, 0);
-                G2._e2 = new G2(0, 0, 1, 0);
-                G2._I = new G2(0, 0, 0, 1);
-                G2.kilogram = new G2(1, 0, 0, 0, Unit_1.Unit.KILOGRAM);
-                G2.meter = new G2(1, 0, 0, 0, Unit_1.Unit.METER);
-                G2.second = new G2(1, 0, 0, 0, Unit_1.Unit.SECOND);
-                G2.coulomb = new G2(1, 0, 0, 0, Unit_1.Unit.COULOMB);
-                G2.ampere = new G2(1, 0, 0, 0, Unit_1.Unit.AMPERE);
-                G2.kelvin = new G2(1, 0, 0, 0, Unit_1.Unit.KELVIN);
-                G2.mole = new G2(1, 0, 0, 0, Unit_1.Unit.MOLE);
-                G2.candela = new G2(1, 0, 0, 0, Unit_1.Unit.CANDELA);
                 return G2;
             }();
+            G2._zero = new G2(0, 0, 0, 0);
+            G2._one = new G2(1, 0, 0, 0);
+            G2._e1 = new G2(0, 1, 0, 0);
+            G2._e2 = new G2(0, 0, 1, 0);
+            G2._I = new G2(0, 0, 0, 1);
+            G2.kilogram = new G2(1, 0, 0, 0, Unit_1.Unit.KILOGRAM);
+            G2.meter = new G2(1, 0, 0, 0, Unit_1.Unit.METER);
+            G2.second = new G2(1, 0, 0, 0, Unit_1.Unit.SECOND);
+            G2.coulomb = new G2(1, 0, 0, 0, Unit_1.Unit.COULOMB);
+            G2.ampere = new G2(1, 0, 0, 0, Unit_1.Unit.AMPERE);
+            G2.kelvin = new G2(1, 0, 0, 0, Unit_1.Unit.KELVIN);
+            G2.mole = new G2(1, 0, 0, 0, Unit_1.Unit.MOLE);
+            G2.candela = new G2(1, 0, 0, 0, Unit_1.Unit.CANDELA);
             exports_1("G2", G2);
         }
     };
@@ -2964,11 +2982,10 @@ System.register("davinci-units/math/extE3.js", [], function (exports_1, context_
         execute: function () {}
     };
 });
-System.register('davinci-units/math/extG3.js', ['../math/compG3Get', '../math/extE3', '../math/compG3Set'], function (exports_1, context_1) {
+System.register("davinci-units/math/extG3.js", ["../math/compG3Get", "../math/extE3", "../math/compG3Set"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var compG3Get_1, extE3_1, compG3Set_1;
     function extG3(a, b, out) {
         var a0 = compG3Get_1.default(a, 0);
         var a1 = compG3Get_1.default(a, 1);
@@ -2992,6 +3009,7 @@ System.register('davinci-units/math/extG3.js', ['../math/compG3Get', '../math/ex
         return out;
     }
     exports_1("default", extG3);
+    var compG3Get_1, extE3_1, compG3Set_1;
     return {
         setters: [function (compG3Get_1_1) {
             compG3Get_1 = compG3Get_1_1;
@@ -3007,7 +3025,6 @@ System.register("davinci-units/math/gauss.js", [], function (exports_1, context_
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var abs;
     function makeColumnVector(n, v) {
         var a = [];
         for (var i = 0; i < n; i++) {
@@ -3070,6 +3087,7 @@ System.register("davinci-units/math/gauss.js", [], function (exports_1, context_
         return solve(A, N);
     }
     exports_1("default", gauss);
+    var abs;
     return {
         setters: [],
         execute: function () {
@@ -3154,11 +3172,10 @@ System.register("davinci-units/math/lcoE3.js", [], function (exports_1, context_
         execute: function () {}
     };
 });
-System.register('davinci-units/math/lcoG3.js', ['../math/compG3Get', '../math/lcoE3', '../math/compG3Set'], function (exports_1, context_1) {
+System.register("davinci-units/math/lcoG3.js", ["../math/compG3Get", "../math/lcoE3", "../math/compG3Set"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var compG3Get_1, lcoE3_1, compG3Set_1;
     function lcoG3(a, b, out) {
         var a0 = compG3Get_1.default(a, 0);
         var a1 = compG3Get_1.default(a, 1);
@@ -3182,6 +3199,7 @@ System.register('davinci-units/math/lcoG3.js', ['../math/compG3Get', '../math/lc
         return out;
     }
     exports_1("default", lcoG3);
+    var compG3Get_1, lcoE3_1, compG3Set_1;
     return {
         setters: [function (compG3Get_1_1) {
             compG3Get_1 = compG3Get_1_1;
@@ -3193,11 +3211,10 @@ System.register('davinci-units/math/lcoG3.js', ['../math/compG3Get', '../math/lc
         execute: function () {}
     };
 });
-System.register('davinci-units/math/mulG3.js', ['../math/compG3Get', '../math/mulE3'], function (exports_1, context_1) {
+System.register("davinci-units/math/mulG3.js", ["../math/compG3Get", "../math/mulE3"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var compG3Get_1, mulE3_1;
     function default_1(a, b, out) {
         var a0 = a.a;
         var a1 = a.x;
@@ -3221,6 +3238,7 @@ System.register('davinci-units/math/mulG3.js', ['../math/compG3Get', '../math/mu
         }
     }
     exports_1("default", default_1);
+    var compG3Get_1, mulE3_1;
     return {
         setters: [function (compG3Get_1_1) {
             compG3Get_1 = compG3Get_1_1;
@@ -3230,11 +3248,10 @@ System.register('davinci-units/math/mulG3.js', ['../math/compG3Get', '../math/mu
         execute: function () {}
     };
 });
-System.register('davinci-units/math/quadSpinorE3.js', ['../checks/isDefined', '../checks/isNumber'], function (exports_1, context_1) {
+System.register("davinci-units/math/quadSpinorE3.js", ["../checks/isDefined", "../checks/isNumber"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var isDefined_1, isNumber_1;
     function quadSpinorE3(s) {
         if (isDefined_1.default(s)) {
             var α = s.a;
@@ -3251,6 +3268,7 @@ System.register('davinci-units/math/quadSpinorE3.js', ['../checks/isDefined', '.
         }
     }
     exports_1("default", quadSpinorE3);
+    var isDefined_1, isNumber_1;
     return {
         setters: [function (isDefined_1_1) {
             isDefined_1 = isDefined_1_1;
@@ -3337,11 +3355,10 @@ System.register("davinci-units/math/rcoE3.js", [], function (exports_1, context_
         execute: function () {}
     };
 });
-System.register('davinci-units/math/rcoG3.js', ['../math/compG3Get', '../math/rcoE3', '../math/compG3Set'], function (exports_1, context_1) {
+System.register("davinci-units/math/rcoG3.js", ["../math/compG3Get", "../math/rcoE3", "../math/compG3Set"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var compG3Get_1, rcoE3_1, compG3Set_1;
     function rcoG3(a, b, out) {
         var a0 = compG3Get_1.default(a, 0);
         var a1 = compG3Get_1.default(a, 1);
@@ -3365,6 +3382,7 @@ System.register('davinci-units/math/rcoG3.js', ['../math/compG3Get', '../math/rc
         return out;
     }
     exports_1("default", rcoG3);
+    var compG3Get_1, rcoE3_1, compG3Set_1;
     return {
         setters: [function (compG3Get_1_1) {
             compG3Get_1 = compG3Get_1_1;
@@ -3380,7 +3398,6 @@ System.register("davinci-units/math/compG3Get.js", [], function (exports_1, cont
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var COORD_W, COORD_X, COORD_Y, COORD_Z, COORD_XY, COORD_YZ, COORD_ZX, COORD_XYZ;
     function gcompE3(m, index) {
         switch (index) {
             case COORD_W:
@@ -3422,6 +3439,7 @@ System.register("davinci-units/math/compG3Get.js", [], function (exports_1, cont
         }
     }
     exports_1("default", gcompE3);
+    var COORD_W, COORD_X, COORD_Y, COORD_Z, COORD_XY, COORD_YZ, COORD_ZX, COORD_XYZ;
     return {
         setters: [],
         execute: function () {
@@ -3517,7 +3535,6 @@ System.register("davinci-units/math/compG3Set.js", [], function (exports_1, cont
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var COORD_W, COORD_X, COORD_Y, COORD_Z, COORD_XY, COORD_YZ, COORD_ZX, COORD_XYZ;
     function compG3Set(m, index, value) {
         switch (index) {
             case COORD_W:
@@ -3565,6 +3582,7 @@ System.register("davinci-units/math/compG3Set.js", [], function (exports_1, cont
         }
     }
     exports_1("default", compG3Set);
+    var COORD_W, COORD_X, COORD_Y, COORD_Z, COORD_XY, COORD_YZ, COORD_ZX, COORD_XYZ;
     return {
         setters: [],
         execute: function () {
@@ -3579,11 +3597,10 @@ System.register("davinci-units/math/compG3Set.js", [], function (exports_1, cont
         }
     };
 });
-System.register('davinci-units/math/scpG3.js', ['../math/compG3Get', '../math/mulE3', '../math/compG3Set'], function (exports_1, context_1) {
+System.register("davinci-units/math/scpG3.js", ["../math/compG3Get", "../math/mulE3", "../math/compG3Set"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var compG3Get_1, mulE3_1, compG3Set_1;
     function scpG3(a, b, out) {
         var a0 = compG3Get_1.default(a, 0);
         var a1 = compG3Get_1.default(a, 1);
@@ -3612,6 +3629,7 @@ System.register('davinci-units/math/scpG3.js', ['../math/compG3Get', '../math/mu
         return out;
     }
     exports_1("default", scpG3);
+    var compG3Get_1, mulE3_1, compG3Set_1;
     return {
         setters: [function (compG3Get_1_1) {
             compG3Get_1 = compG3Get_1_1;
@@ -3670,11 +3688,10 @@ System.register("davinci-units/checks/isArray.js", [], function (exports_1, cont
         execute: function () {}
     };
 });
-System.register('davinci-units/checks/mustBeArray.js', ['../checks/mustSatisfy', '../checks/isArray'], function (exports_1, context_1) {
+System.register("davinci-units/checks/mustBeArray.js", ["../checks/mustSatisfy", "../checks/isArray"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var mustSatisfy_1, isArray_1;
     function beAnArray() {
         return "be an array";
     }
@@ -3683,6 +3700,7 @@ System.register('davinci-units/checks/mustBeArray.js', ['../checks/mustSatisfy',
         return value;
     }
     exports_1("default", default_1);
+    var mustSatisfy_1, isArray_1;
     return {
         setters: [function (mustSatisfy_1_1) {
             mustSatisfy_1 = mustSatisfy_1_1;
@@ -3692,11 +3710,10 @@ System.register('davinci-units/checks/mustBeArray.js', ['../checks/mustSatisfy',
         execute: function () {}
     };
 });
-System.register('davinci-units/math/stringFromCoordinates.js', ['../checks/isDefined', '../checks/mustBeArray'], function (exports_1, context_1) {
+System.register("davinci-units/math/stringFromCoordinates.js", ["../checks/isDefined", "../checks/mustBeArray"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var isDefined_1, mustBeArray_1;
     function isLabelOne(label) {
         if (typeof label === 'string') {
             return label === "1";
@@ -3776,6 +3793,7 @@ System.register('davinci-units/math/stringFromCoordinates.js', ['../checks/isDef
         return sb.length > 0 ? sb.join("") : "0";
     }
     exports_1("default", stringFromCoordinates);
+    var isDefined_1, mustBeArray_1;
     return {
         setters: [function (isDefined_1_1) {
             isDefined_1 = isDefined_1_1;
@@ -3876,12 +3894,11 @@ System.register("davinci-units/math/BASIS_LABELS_G3_STANDARD_HTML.js", [], funct
         }
     };
 });
-System.register('davinci-units/math/G3.js', ['./bezier2', './bezier3', './extG3', './gauss', './lcoG3', './mulG3', '../i18n/notImplemented', '../i18n/notSupported', './quadSpinorE3', '../i18n/readOnly', './rcoG3', './scpG3', './squaredNormG3', './stringFromCoordinates', './Unit', './BASIS_LABELS_G3_GEOMETRIC', './BASIS_LABELS_G3_HAMILTON', './BASIS_LABELS_G3_STANDARD', './BASIS_LABELS_G3_STANDARD_HTML'], function (exports_1, context_1) {
+System.register("davinci-units/math/G3.js", ["./bezier2", "./bezier3", "./extG3", "./gauss", "./lcoG3", "./mulG3", "../i18n/notImplemented", "../i18n/notSupported", "./quadSpinorE3", "../i18n/readOnly", "./rcoG3", "./scpG3", "./squaredNormG3", "./stringFromCoordinates", "./Unit", "./BASIS_LABELS_G3_GEOMETRIC", "./BASIS_LABELS_G3_HAMILTON", "./BASIS_LABELS_G3_STANDARD", "./BASIS_LABELS_G3_STANDARD_HTML"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var bezier2_1, bezier3_1, extG3_1, gauss_1, lcoG3_1, mulG3_1, notImplemented_1, notSupported_1, quadSpinorE3_1, readOnly_1, rcoG3_1, scpG3_1, squaredNormG3_1, stringFromCoordinates_1, Unit_1, BASIS_LABELS_G3_GEOMETRIC_1, BASIS_LABELS_G3_HAMILTON_1, BASIS_LABELS_G3_STANDARD_1, BASIS_LABELS_G3_STANDARD_HTML_1;
-    var COORD_SCALAR, COORD_X, COORD_Y, COORD_Z, COORD_XY, COORD_YZ, COORD_ZX, COORD_PSEUDO, G3;
+    var bezier2_1, bezier3_1, extG3_1, gauss_1, lcoG3_1, mulG3_1, notImplemented_1, notSupported_1, quadSpinorE3_1, readOnly_1, rcoG3_1, scpG3_1, squaredNormG3_1, stringFromCoordinates_1, Unit_1, BASIS_LABELS_G3_GEOMETRIC_1, BASIS_LABELS_G3_HAMILTON_1, BASIS_LABELS_G3_STANDARD_1, BASIS_LABELS_G3_STANDARD_HTML_1, COORD_SCALAR, COORD_X, COORD_Y, COORD_Z, COORD_XY, COORD_YZ, COORD_ZX, COORD_PSEUDO, G3;
     return {
         setters: [function (bezier2_1_1) {
             bezier2_1 = bezier2_1_1;
@@ -4693,22 +4710,22 @@ System.register('davinci-units/math/G3.js', ['./bezier2', './bezier3', './extG3'
                 G3.vector = function (x, y, z, uom) {
                     return new G3(0, x, y, z, 0, 0, 0, 0, uom);
                 };
-                G3.BASIS_LABELS = BASIS_LABELS_G3_STANDARD_1.default;
-                G3.zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
-                G3.one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
-                G3.e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0);
-                G3.e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0);
-                G3.e3 = new G3(0, 0, 0, 1, 0, 0, 0, 0);
-                G3.kilogram = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KILOGRAM);
-                G3.meter = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.METER);
-                G3.second = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.SECOND);
-                G3.coulomb = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.COULOMB);
-                G3.ampere = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.AMPERE);
-                G3.kelvin = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KELVIN);
-                G3.mole = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.MOLE);
-                G3.candela = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.CANDELA);
                 return G3;
             }();
+            G3.BASIS_LABELS = BASIS_LABELS_G3_STANDARD_1.default;
+            G3.zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
+            G3.one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
+            G3.e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0);
+            G3.e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0);
+            G3.e3 = new G3(0, 0, 0, 1, 0, 0, 0, 0);
+            G3.kilogram = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KILOGRAM);
+            G3.meter = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.METER);
+            G3.second = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.SECOND);
+            G3.coulomb = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.COULOMB);
+            G3.ampere = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.AMPERE);
+            G3.kelvin = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KELVIN);
+            G3.mole = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.MOLE);
+            G3.candela = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.CANDELA);
             exports_1("default", G3);
         }
     };
@@ -4717,7 +4734,6 @@ System.register('davinci-units/math/mathcore.js', [], function (exports_1, conte
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var abs, acos, asin, atan, cos, exp, log, sin, sqrt, tan, mathcore;
     function isCallableMethod(x, name) {
         return x !== null && typeof x === 'object' && typeof x[name] === 'function';
     }
@@ -4747,6 +4763,7 @@ System.register('davinci-units/math/mathcore.js', [], function (exports_1, conte
     function quad(x) {
         return x * x;
     }
+    var abs, acos, asin, atan, cos, exp, log, sin, sqrt, tan, mathcore;
     return {
         setters: [],
         execute: function () {
@@ -4797,15 +4814,15 @@ System.register("davinci-units/checks/isNumber.js", [], function (exports_1, con
         execute: function () {}
     };
 });
-System.register("davinci-units/checks/isInteger.js", ['../checks/isNumber'], function (exports_1, context_1) {
+System.register("davinci-units/checks/isInteger.js", ["../checks/isNumber"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var isNumber_1;
     function isInteger(x) {
         return isNumber_1.default(x) && x % 1 === 0;
     }
     exports_1("default", isInteger);
+    var isNumber_1;
     return {
         setters: [function (isNumber_1_1) {
             isNumber_1 = isNumber_1_1;
@@ -4813,11 +4830,10 @@ System.register("davinci-units/checks/isInteger.js", ['../checks/isNumber'], fun
         execute: function () {}
     };
 });
-System.register('davinci-units/checks/mustBeInteger.js', ['../checks/mustSatisfy', '../checks/isInteger'], function (exports_1, context_1) {
+System.register("davinci-units/checks/mustBeInteger.js", ["../checks/mustSatisfy", "../checks/isInteger"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var mustSatisfy_1, isInteger_1;
     function beAnInteger() {
         return "be an integer";
     }
@@ -4826,6 +4842,7 @@ System.register('davinci-units/checks/mustBeInteger.js', ['../checks/mustSatisfy
         return value;
     }
     exports_1("default", mustBeInteger);
+    var mustSatisfy_1, isInteger_1;
     return {
         setters: [function (mustSatisfy_1_1) {
             mustSatisfy_1 = mustSatisfy_1_1;
@@ -4835,11 +4852,10 @@ System.register('davinci-units/checks/mustBeInteger.js', ['../checks/mustSatisfy
         execute: function () {}
     };
 });
-System.register('davinci-units/i18n/readOnly.js', ['../checks/mustBeString'], function (exports_1, context_1) {
+System.register("davinci-units/i18n/readOnly.js", ["../checks/mustBeString"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var mustBeString_1;
     function readOnly(name) {
         mustBeString_1.default('name', name);
         var message = {
@@ -4850,6 +4866,7 @@ System.register('davinci-units/i18n/readOnly.js', ['../checks/mustBeString'], fu
         return message;
     }
     exports_1("default", readOnly);
+    var mustBeString_1;
     return {
         setters: [function (mustBeString_1_1) {
             mustBeString_1 = mustBeString_1_1;
@@ -4857,12 +4874,11 @@ System.register('davinci-units/i18n/readOnly.js', ['../checks/mustBeString'], fu
         execute: function () {}
     };
 });
-System.register('davinci-units/math/QQ.js', ['../checks/mustBeInteger', '../i18n/readOnly'], function (exports_1, context_1) {
+System.register("davinci-units/math/QQ.js", ["../checks/mustBeInteger", "../i18n/readOnly"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var mustBeInteger_1, readOnly_1;
-    var magicCode, QQ;
+    var mustBeInteger_1, readOnly_1, magicCode, QQ;
     return {
         setters: [function (mustBeInteger_1_1) {
             mustBeInteger_1 = mustBeInteger_1_1;
@@ -5117,36 +5133,34 @@ System.register('davinci-units/math/QQ.js', ['../checks/mustBeInteger', '../i18n
                     }
                     return new QQ(n, d, magicCode);
                 };
-                QQ.POS_08_01 = new QQ(8, 1, magicCode);
-                QQ.POS_07_01 = new QQ(7, 1, magicCode);
-                QQ.POS_06_01 = new QQ(6, 1, magicCode);
-                QQ.POS_05_01 = new QQ(5, 1, magicCode);
-                QQ.POS_04_01 = new QQ(4, 1, magicCode);
-                QQ.POS_03_01 = new QQ(3, 1, magicCode);
-                QQ.POS_02_01 = new QQ(2, 1, magicCode);
-                QQ.ONE = new QQ(1, 1, magicCode);
-                QQ.POS_01_02 = new QQ(1, 2, magicCode);
-                QQ.POS_01_03 = new QQ(1, 3, magicCode);
-                QQ.POS_01_04 = new QQ(1, 4, magicCode);
-                QQ.POS_01_05 = new QQ(1, 5, magicCode);
-                QQ.ZERO = new QQ(0, 1, magicCode);
-                QQ.NEG_01_03 = new QQ(-1, 3, magicCode);
-                QQ.NEG_01_01 = new QQ(-1, 1, magicCode);
-                QQ.NEG_02_01 = new QQ(-2, 1, magicCode);
-                QQ.NEG_03_01 = new QQ(-3, 1, magicCode);
-                QQ.POS_02_03 = new QQ(2, 3, magicCode);
                 return QQ;
             }();
+            QQ.POS_08_01 = new QQ(8, 1, magicCode);
+            QQ.POS_07_01 = new QQ(7, 1, magicCode);
+            QQ.POS_06_01 = new QQ(6, 1, magicCode);
+            QQ.POS_05_01 = new QQ(5, 1, magicCode);
+            QQ.POS_04_01 = new QQ(4, 1, magicCode);
+            QQ.POS_03_01 = new QQ(3, 1, magicCode);
+            QQ.POS_02_01 = new QQ(2, 1, magicCode);
+            QQ.ONE = new QQ(1, 1, magicCode);
+            QQ.POS_01_02 = new QQ(1, 2, magicCode);
+            QQ.POS_01_03 = new QQ(1, 3, magicCode);
+            QQ.POS_01_04 = new QQ(1, 4, magicCode);
+            QQ.POS_01_05 = new QQ(1, 5, magicCode);
+            QQ.ZERO = new QQ(0, 1, magicCode);
+            QQ.NEG_01_03 = new QQ(-1, 3, magicCode);
+            QQ.NEG_01_01 = new QQ(-1, 1, magicCode);
+            QQ.NEG_02_01 = new QQ(-2, 1, magicCode);
+            QQ.NEG_03_01 = new QQ(-3, 1, magicCode);
+            QQ.POS_02_03 = new QQ(2, 3, magicCode);
             exports_1("QQ", QQ);
         }
     };
 });
-System.register('davinci-units/math/Dimensions.js', ['../math/QQ', '../i18n/notSupported'], function (exports_1, context_1) {
+System.register("davinci-units/math/Dimensions.js", ["../math/QQ", "../i18n/notSupported"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var QQ_1, notSupported_1;
-    var R0, R1, R2, M1, Dimensions;
     function assertArgRational(name, arg) {
         if (arg instanceof QQ_1.QQ) {
             return arg;
@@ -5154,6 +5168,7 @@ System.register('davinci-units/math/Dimensions.js', ['../math/QQ', '../i18n/notS
             throw new Error("Argument '" + arg + "' must be a QQ");
         }
     }
+    var QQ_1, notSupported_1, R0, R1, R2, M1, Dimensions;
     return {
         setters: [function (QQ_1_1) {
             QQ_1 = QQ_1_1;
@@ -5304,26 +5319,25 @@ System.register('davinci-units/math/Dimensions.js', ['../math/QQ', '../i18n/notS
                 Dimensions.prototype.__neg__ = function () {
                     return this;
                 };
-                Dimensions.ONE = new Dimensions(R0, R0, R0, R0, R0, R0, R0);
-                Dimensions.MASS = new Dimensions(R1, R0, R0, R0, R0, R0, R0);
-                Dimensions.LENGTH = new Dimensions(R0, R1, R0, R0, R0, R0, R0);
-                Dimensions.TIME = new Dimensions(R0, R0, R1, R0, R0, R0, R0);
-                Dimensions.CHARGE = new Dimensions(R0, R0, R0, R1, R0, R0, R0);
-                Dimensions.CURRENT = new Dimensions(R0, R0, M1, R1, R0, R0, R0);
-                Dimensions.TEMPERATURE = new Dimensions(R0, R0, R0, R0, R1, R0, R0);
-                Dimensions.AMOUNT = new Dimensions(R0, R0, R0, R0, R0, R1, R0);
-                Dimensions.INTENSITY = new Dimensions(R0, R0, R0, R0, R0, R0, R1);
                 return Dimensions;
             }();
+            Dimensions.ONE = new Dimensions(R0, R0, R0, R0, R0, R0, R0);
+            Dimensions.MASS = new Dimensions(R1, R0, R0, R0, R0, R0, R0);
+            Dimensions.LENGTH = new Dimensions(R0, R1, R0, R0, R0, R0, R0);
+            Dimensions.TIME = new Dimensions(R0, R0, R1, R0, R0, R0, R0);
+            Dimensions.CHARGE = new Dimensions(R0, R0, R0, R1, R0, R0, R0);
+            Dimensions.CURRENT = new Dimensions(R0, R0, M1, R1, R0, R0, R0);
+            Dimensions.TEMPERATURE = new Dimensions(R0, R0, R0, R0, R1, R0, R0);
+            Dimensions.AMOUNT = new Dimensions(R0, R0, R0, R0, R0, R1, R0);
+            Dimensions.INTENSITY = new Dimensions(R0, R0, R0, R0, R0, R0, R1);
             exports_1("Dimensions", Dimensions);
         }
     };
 });
-System.register('davinci-units/i18n/notImplemented.js', ['../checks/mustBeString'], function (exports_1, context_1) {
+System.register("davinci-units/i18n/notImplemented.js", ["../checks/mustBeString"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var mustBeString_1;
     function default_1(name) {
         mustBeString_1.default('name', name);
         var message = {
@@ -5334,6 +5348,7 @@ System.register('davinci-units/i18n/notImplemented.js', ['../checks/mustBeString
         return message;
     }
     exports_1("default", default_1);
+    var mustBeString_1;
     return {
         setters: [function (mustBeString_1_1) {
             mustBeString_1 = mustBeString_1_1;
@@ -5371,11 +5386,10 @@ System.register("davinci-units/checks/isString.js", [], function (exports_1, con
         execute: function () {}
     };
 });
-System.register('davinci-units/checks/mustBeString.js', ['../checks/mustSatisfy', '../checks/isString'], function (exports_1, context_1) {
+System.register("davinci-units/checks/mustBeString.js", ["../checks/mustSatisfy", "../checks/isString"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var mustSatisfy_1, isString_1;
     function beAString() {
         return "be a string";
     }
@@ -5384,6 +5398,7 @@ System.register('davinci-units/checks/mustBeString.js', ['../checks/mustSatisfy'
         return value;
     }
     exports_1("default", default_1);
+    var mustSatisfy_1, isString_1;
     return {
         setters: [function (mustSatisfy_1_1) {
             mustSatisfy_1 = mustSatisfy_1_1;
@@ -5393,11 +5408,10 @@ System.register('davinci-units/checks/mustBeString.js', ['../checks/mustSatisfy'
         execute: function () {}
     };
 });
-System.register('davinci-units/i18n/notSupported.js', ['../checks/mustBeString'], function (exports_1, context_1) {
+System.register("davinci-units/i18n/notSupported.js", ["../checks/mustBeString"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var mustBeString_1;
     function default_1(name) {
         mustBeString_1.default('name', name);
         var message = {
@@ -5408,6 +5422,7 @@ System.register('davinci-units/i18n/notSupported.js', ['../checks/mustBeString']
         return message;
     }
     exports_1("default", default_1);
+    var mustBeString_1;
     return {
         setters: [function (mustBeString_1_1) {
             mustBeString_1 = mustBeString_1_1;
@@ -5415,12 +5430,10 @@ System.register('davinci-units/i18n/notSupported.js', ['../checks/mustBeString']
         execute: function () {}
     };
 });
-System.register('davinci-units/math/Unit.js', ['../math/Dimensions', '../i18n/notImplemented', '../i18n/notSupported'], function (exports_1, context_1) {
+System.register("davinci-units/math/Unit.js", ["../math/Dimensions", "../i18n/notImplemented", "../i18n/notSupported"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var Dimensions_1, notImplemented_1, notSupported_1;
-    var SYMBOLS_SI, patterns, decodes, dumbString, unitString, Unit;
     function add(lhs, rhs) {
         return new Unit(lhs.multiplier + rhs.multiplier, lhs.dimensions.compatible(rhs.dimensions), lhs.labels);
     }
@@ -5436,6 +5449,7 @@ System.register('davinci-units/math/Unit.js', ['../math/Dimensions', '../i18n/no
     function div(lhs, rhs) {
         return new Unit(lhs.multiplier / rhs.multiplier, lhs.dimensions.div(rhs.dimensions), lhs.labels);
     }
+    var Dimensions_1, notImplemented_1, notSupported_1, SYMBOLS_SI, patterns, decodes, dumbString, unitString, Unit;
     return {
         setters: [function (Dimensions_1_1) {
             Dimensions_1 = Dimensions_1_1;
@@ -5751,18 +5765,18 @@ System.register('davinci-units/math/Unit.js', ['../math/Dimensions', '../i18n/no
                         return void 0;
                     }
                 };
-                Unit.ZERO = new Unit(0.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
-                Unit.ONE = new Unit(1.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
-                Unit.KILOGRAM = new Unit(1.0, Dimensions_1.Dimensions.MASS, SYMBOLS_SI);
-                Unit.METER = new Unit(1.0, Dimensions_1.Dimensions.LENGTH, SYMBOLS_SI);
-                Unit.SECOND = new Unit(1.0, Dimensions_1.Dimensions.TIME, SYMBOLS_SI);
-                Unit.COULOMB = new Unit(1.0, Dimensions_1.Dimensions.CHARGE, SYMBOLS_SI);
-                Unit.AMPERE = new Unit(1.0, Dimensions_1.Dimensions.CURRENT, SYMBOLS_SI);
-                Unit.KELVIN = new Unit(1.0, Dimensions_1.Dimensions.TEMPERATURE, SYMBOLS_SI);
-                Unit.MOLE = new Unit(1.0, Dimensions_1.Dimensions.AMOUNT, SYMBOLS_SI);
-                Unit.CANDELA = new Unit(1.0, Dimensions_1.Dimensions.INTENSITY, SYMBOLS_SI);
                 return Unit;
             }();
+            Unit.ZERO = new Unit(0.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
+            Unit.ONE = new Unit(1.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
+            Unit.KILOGRAM = new Unit(1.0, Dimensions_1.Dimensions.MASS, SYMBOLS_SI);
+            Unit.METER = new Unit(1.0, Dimensions_1.Dimensions.LENGTH, SYMBOLS_SI);
+            Unit.SECOND = new Unit(1.0, Dimensions_1.Dimensions.TIME, SYMBOLS_SI);
+            Unit.COULOMB = new Unit(1.0, Dimensions_1.Dimensions.CHARGE, SYMBOLS_SI);
+            Unit.AMPERE = new Unit(1.0, Dimensions_1.Dimensions.CURRENT, SYMBOLS_SI);
+            Unit.KELVIN = new Unit(1.0, Dimensions_1.Dimensions.TEMPERATURE, SYMBOLS_SI);
+            Unit.MOLE = new Unit(1.0, Dimensions_1.Dimensions.AMOUNT, SYMBOLS_SI);
+            Unit.CANDELA = new Unit(1.0, Dimensions_1.Dimensions.INTENSITY, SYMBOLS_SI);
             exports_1("Unit", Unit);
         }
     };
@@ -5778,9 +5792,9 @@ System.register('davinci-units/config.js', [], function (exports_1, context_1) {
             Units = function () {
                 function Units() {
                     this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-                    this.LAST_MODIFIED = '2016-11-08';
+                    this.LAST_MODIFIED = '2017-03-08';
                     this.NAMESPACE = 'UNITS';
-                    this.VERSION = '1.5.4';
+                    this.VERSION = '1.5.5';
                 }
                 Units.prototype.log = function (message) {
                     var optionalParams = [];
@@ -5788,13 +5802,6 @@ System.register('davinci-units/config.js', [], function (exports_1, context_1) {
                         optionalParams[_i - 1] = arguments[_i];
                     }
                     console.log(message);
-                };
-                Units.prototype.info = function (message) {
-                    var optionalParams = [];
-                    for (var _i = 1; _i < arguments.length; _i++) {
-                        optionalParams[_i - 1] = arguments[_i];
-                    }
-                    console.info(message);
                 };
                 Units.prototype.warn = function (message) {
                     var optionalParams = [];
@@ -5817,12 +5824,11 @@ System.register('davinci-units/config.js', [], function (exports_1, context_1) {
         }
     };
 });
-System.register('davinci-units.js', ['./davinci-units/math/BigInteger', './davinci-units/math/BigRational', './davinci-units/math/Dimensions', './davinci-units/math/G2', './davinci-units/math/G3', './davinci-units/math/mathcore', './davinci-units/math/QQ', './davinci-units/math/Unit', './davinci-units/config'], function (exports_1, context_1) {
+System.register("davinci-units.js", ["./davinci-units/math/BigInteger", "./davinci-units/math/BigRational", "./davinci-units/math/Dimensions", "./davinci-units/math/G2", "./davinci-units/math/G3", "./davinci-units/math/mathcore", "./davinci-units/math/QQ", "./davinci-units/math/Unit", "./davinci-units/config"], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
-    var BigInteger_1, BigRational_1, Dimensions_1, G2_1, G3_1, mathcore_1, QQ_1, Unit_1, config_1;
-    var units;
+    var BigInteger_1, BigRational_1, Dimensions_1, G2_1, G3_1, mathcore_1, QQ_1, Unit_1, config_1, units;
     return {
         setters: [function (BigInteger_1_1) {
             BigInteger_1 = BigInteger_1_1;

@@ -1,4 +1,4 @@
-import {QQ} from '../math/QQ';
+import { QQ } from '../math/QQ';
 import notSupported from '../i18n/notSupported';
 
 const R0 = QQ.valueOf(0, 1)
@@ -161,7 +161,7 @@ export class Dimensions {
 
     /**
      * Determines whether all the exponents of this dimensions number are zero.
-     * This implies a dimensionless quantity. 
+     * This implies a dimensionless quantity.
      *
      * @returns <code>true</code> if all the exponents are zero, otherwise <code>false</code>.
      */

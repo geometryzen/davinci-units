@@ -1,14 +1,16 @@
 //
-// davinci-units.d.ts
-//
 // This file was created manually in order to support the davinci-units library.
 // These declarations are appropriate when using the library through the global
 // variable, 'UNITS'.
 //
+
+export = UNITS;
+export as namespace UNITS;
+
 /**
  * Mathematical Physics, Units, Dimensions, and Multivectors using Geometric Algebra.
  */
-declare module UNITS {
+declare namespace UNITS {
 
     /**
      * The QQ class represents a rational number.
@@ -563,8 +565,4 @@ declare module UNITS {
         valueOf(): number;
     }
     function bigRat(a: number | string | BigInteger | BigRational, b?: number | string | BigInteger): BigRational;
-}
-
-declare module 'units' {
-    export = UNITS;
 }
