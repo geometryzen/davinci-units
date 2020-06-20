@@ -20,12 +20,6 @@ npm install
 ```
 to install the tooling dependencies (For this you need to have [Node.js](http://nodejs.org) installed).
 
-Install Bower:
-```
-bower install
-```
-to install the software dependencies (For this you need to have [Bower](http://bower.io) installed).
-
 Install JSPM:
 ```
 jspm install
@@ -54,7 +48,6 @@ Make your changes to the TypeScript files in the _src_ directory. Do not edit th
 ```
 src/davinci-units/config.ts
 package.json
-bower.json
 ```
 
 ## Git
@@ -62,6 +55,7 @@ bower.json
 ```
 git add --all
 git commit -m '...'
-git tag -a 1.2.3 -m '...'
+git tag -a major.minor.patch -m '...'
 git push origin master --tags
+npm publish
 ```

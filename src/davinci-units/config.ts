@@ -6,9 +6,9 @@ class Units {
 
     constructor() {
         this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-        this.LAST_MODIFIED = '2017-03-08';
+        this.LAST_MODIFIED = '2020-06-20';
         this.NAMESPACE = 'UNITS';
-        this.VERSION = '1.5.5';
+        this.VERSION = '1.6.0';
     }
 
     log(message?: any, ...optionalParams: any[]): void {

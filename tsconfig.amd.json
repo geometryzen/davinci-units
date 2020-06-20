@@ -7,11 +7,12 @@
     "noLib": true,
     "removeComments": true,
     "suppressImplicitAnyIndexErrors": true,
-    "moduleResolution": "classic",
+    "moduleResolution": "node",
     "sourceMap": false,
     "inlineSourceMap": false,
     "inlineSources": false
   },
+  "types": [],
   "files": [
     "src/davinci-units.ts"
   ]

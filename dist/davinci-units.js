@@ -435,12 +435,15 @@ var requirejs, require, define;
     };
 }());
 
-define("../bower_components/almond/almond", function(){});
+define("../node_modules/almond/almond", function(){});
 
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -450,6 +453,7 @@ var __extends = (this && this.__extends) || (function () {
 define('davinci-units/math/BigInteger',["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isInstance = exports.minusOne = exports.zero = exports.one = exports.randBetween = exports.lcm = exports.gcd = exports.min = exports.max = exports.SmallInteger = exports.BigInteger = exports.Integer = void 0;
     var BASE = 1e7;
     var LOG_BASE = 7;
     var MAX_INT = 9007199254740992;
@@ -1887,6 +1891,7 @@ define('davinci-units/math/BigInteger',["require", "exports"], function (require
 define('davinci-units/math/BigRational',["require", "exports", "./BigInteger", "./BigInteger"], function (require, exports, BigInteger_1, BigInteger_2) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.minusOne = exports.one = exports.zero = void 0;
     var BigRational = (function () {
         function BigRational(numer, denom) {
             this.numer = numer;
@@ -2352,6 +2357,7 @@ define('davinci-units/i18n/readOnly',["require", "exports", "../checks/mustBeStr
 define('davinci-units/math/QQ',["require", "exports", "../checks/mustBeInteger", "../i18n/readOnly"], function (require, exports, mustBeInteger_1, readOnly_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.QQ = void 0;
     var magicCode = Math.random();
     var QQ = (function () {
         function QQ(n, d, code) {
@@ -2408,7 +2414,7 @@ define('davinci-units/math/QQ',["require", "exports", "../checks/mustBeInteger",
             set: function (unused) {
                 throw new Error(readOnly_1.default('numer').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(QQ.prototype, "denom", {
@@ -2418,7 +2424,7 @@ define('davinci-units/math/QQ',["require", "exports", "../checks/mustBeInteger",
             set: function (unused) {
                 throw new Error(readOnly_1.default('denom').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         QQ.prototype.add = function (rhs) {
@@ -2634,26 +2640,26 @@ define('davinci-units/math/QQ',["require", "exports", "../checks/mustBeInteger",
             }
             return new QQ(n, d, magicCode);
         };
+        QQ.POS_08_01 = new QQ(8, 1, magicCode);
+        QQ.POS_07_01 = new QQ(7, 1, magicCode);
+        QQ.POS_06_01 = new QQ(6, 1, magicCode);
+        QQ.POS_05_01 = new QQ(5, 1, magicCode);
+        QQ.POS_04_01 = new QQ(4, 1, magicCode);
+        QQ.POS_03_01 = new QQ(3, 1, magicCode);
+        QQ.POS_02_01 = new QQ(2, 1, magicCode);
+        QQ.ONE = new QQ(1, 1, magicCode);
+        QQ.POS_01_02 = new QQ(1, 2, magicCode);
+        QQ.POS_01_03 = new QQ(1, 3, magicCode);
+        QQ.POS_01_04 = new QQ(1, 4, magicCode);
+        QQ.POS_01_05 = new QQ(1, 5, magicCode);
+        QQ.ZERO = new QQ(0, 1, magicCode);
+        QQ.NEG_01_03 = new QQ(-1, 3, magicCode);
+        QQ.NEG_01_01 = new QQ(-1, 1, magicCode);
+        QQ.NEG_02_01 = new QQ(-2, 1, magicCode);
+        QQ.NEG_03_01 = new QQ(-3, 1, magicCode);
+        QQ.POS_02_03 = new QQ(2, 3, magicCode);
         return QQ;
     }());
-    QQ.POS_08_01 = new QQ(8, 1, magicCode);
-    QQ.POS_07_01 = new QQ(7, 1, magicCode);
-    QQ.POS_06_01 = new QQ(6, 1, magicCode);
-    QQ.POS_05_01 = new QQ(5, 1, magicCode);
-    QQ.POS_04_01 = new QQ(4, 1, magicCode);
-    QQ.POS_03_01 = new QQ(3, 1, magicCode);
-    QQ.POS_02_01 = new QQ(2, 1, magicCode);
-    QQ.ONE = new QQ(1, 1, magicCode);
-    QQ.POS_01_02 = new QQ(1, 2, magicCode);
-    QQ.POS_01_03 = new QQ(1, 3, magicCode);
-    QQ.POS_01_04 = new QQ(1, 4, magicCode);
-    QQ.POS_01_05 = new QQ(1, 5, magicCode);
-    QQ.ZERO = new QQ(0, 1, magicCode);
-    QQ.NEG_01_03 = new QQ(-1, 3, magicCode);
-    QQ.NEG_01_01 = new QQ(-1, 1, magicCode);
-    QQ.NEG_02_01 = new QQ(-2, 1, magicCode);
-    QQ.NEG_03_01 = new QQ(-3, 1, magicCode);
-    QQ.POS_02_03 = new QQ(2, 3, magicCode);
     exports.QQ = QQ;
 });
 
@@ -2675,6 +2681,7 @@ define('davinci-units/i18n/notSupported',["require", "exports", "../checks/mustB
 define('davinci-units/math/Dimensions',["require", "exports", "../math/QQ", "../i18n/notSupported"], function (require, exports, QQ_1, notSupported_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Dimensions = void 0;
     var R0 = QQ_1.QQ.valueOf(0, 1);
     var R1 = QQ_1.QQ.valueOf(1, 1);
     var R2 = QQ_1.QQ.valueOf(2, 1);
@@ -2840,17 +2847,17 @@ define('davinci-units/math/Dimensions',["require", "exports", "../math/QQ", "../
         Dimensions.prototype.__neg__ = function () {
             return this;
         };
+        Dimensions.ONE = new Dimensions(R0, R0, R0, R0, R0, R0, R0);
+        Dimensions.MASS = new Dimensions(R1, R0, R0, R0, R0, R0, R0);
+        Dimensions.LENGTH = new Dimensions(R0, R1, R0, R0, R0, R0, R0);
+        Dimensions.TIME = new Dimensions(R0, R0, R1, R0, R0, R0, R0);
+        Dimensions.CHARGE = new Dimensions(R0, R0, R0, R1, R0, R0, R0);
+        Dimensions.CURRENT = new Dimensions(R0, R0, M1, R1, R0, R0, R0);
+        Dimensions.TEMPERATURE = new Dimensions(R0, R0, R0, R0, R1, R0, R0);
+        Dimensions.AMOUNT = new Dimensions(R0, R0, R0, R0, R0, R1, R0);
+        Dimensions.INTENSITY = new Dimensions(R0, R0, R0, R0, R0, R0, R1);
         return Dimensions;
     }());
-    Dimensions.ONE = new Dimensions(R0, R0, R0, R0, R0, R0, R0);
-    Dimensions.MASS = new Dimensions(R1, R0, R0, R0, R0, R0, R0);
-    Dimensions.LENGTH = new Dimensions(R0, R1, R0, R0, R0, R0, R0);
-    Dimensions.TIME = new Dimensions(R0, R0, R1, R0, R0, R0, R0);
-    Dimensions.CHARGE = new Dimensions(R0, R0, R0, R1, R0, R0, R0);
-    Dimensions.CURRENT = new Dimensions(R0, R0, M1, R1, R0, R0, R0);
-    Dimensions.TEMPERATURE = new Dimensions(R0, R0, R0, R0, R1, R0, R0);
-    Dimensions.AMOUNT = new Dimensions(R0, R0, R0, R0, R0, R1, R0);
-    Dimensions.INTENSITY = new Dimensions(R0, R0, R0, R0, R0, R0, R1);
     exports.Dimensions = Dimensions;
 });
 
@@ -3314,6 +3321,7 @@ define('davinci-units/math/stringFromCoordinates',["require", "exports", "../che
 define('davinci-units/math/Unit',["require", "exports", "../math/Dimensions", "../i18n/notImplemented", "../i18n/notSupported"], function (require, exports, Dimensions_1, notImplemented_1, notSupported_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Unit = void 0;
     var SYMBOLS_SI = ['kg', 'm', 's', 'C', 'K', 'mol', 'cd'];
     var patterns = [
         [-1, 1, -3, 1, 2, 1, 2, 1, 0, 1, 0, 1, 0, 1],
@@ -3739,24 +3747,25 @@ define('davinci-units/math/Unit',["require", "exports", "../math/Dimensions", ".
                 return void 0;
             }
         };
+        Unit.ZERO = new Unit(0.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
+        Unit.ONE = new Unit(1.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
+        Unit.KILOGRAM = new Unit(1.0, Dimensions_1.Dimensions.MASS, SYMBOLS_SI);
+        Unit.METER = new Unit(1.0, Dimensions_1.Dimensions.LENGTH, SYMBOLS_SI);
+        Unit.SECOND = new Unit(1.0, Dimensions_1.Dimensions.TIME, SYMBOLS_SI);
+        Unit.COULOMB = new Unit(1.0, Dimensions_1.Dimensions.CHARGE, SYMBOLS_SI);
+        Unit.AMPERE = new Unit(1.0, Dimensions_1.Dimensions.CURRENT, SYMBOLS_SI);
+        Unit.KELVIN = new Unit(1.0, Dimensions_1.Dimensions.TEMPERATURE, SYMBOLS_SI);
+        Unit.MOLE = new Unit(1.0, Dimensions_1.Dimensions.AMOUNT, SYMBOLS_SI);
+        Unit.CANDELA = new Unit(1.0, Dimensions_1.Dimensions.INTENSITY, SYMBOLS_SI);
         return Unit;
     }());
-    Unit.ZERO = new Unit(0.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
-    Unit.ONE = new Unit(1.0, Dimensions_1.Dimensions.ONE, SYMBOLS_SI);
-    Unit.KILOGRAM = new Unit(1.0, Dimensions_1.Dimensions.MASS, SYMBOLS_SI);
-    Unit.METER = new Unit(1.0, Dimensions_1.Dimensions.LENGTH, SYMBOLS_SI);
-    Unit.SECOND = new Unit(1.0, Dimensions_1.Dimensions.TIME, SYMBOLS_SI);
-    Unit.COULOMB = new Unit(1.0, Dimensions_1.Dimensions.CHARGE, SYMBOLS_SI);
-    Unit.AMPERE = new Unit(1.0, Dimensions_1.Dimensions.CURRENT, SYMBOLS_SI);
-    Unit.KELVIN = new Unit(1.0, Dimensions_1.Dimensions.TEMPERATURE, SYMBOLS_SI);
-    Unit.MOLE = new Unit(1.0, Dimensions_1.Dimensions.AMOUNT, SYMBOLS_SI);
-    Unit.CANDELA = new Unit(1.0, Dimensions_1.Dimensions.INTENSITY, SYMBOLS_SI);
     exports.Unit = Unit;
 });
 
 define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", "./extE2", "./gauss", "./lcoE2", "./mulE2", "../i18n/notImplemented", "../i18n/notSupported", "../i18n/readOnly", "./rcoE2", "./scpE2", "./stringFromCoordinates", "./Unit"], function (require, exports, bezier2_1, bezier3_1, extE2_1, gauss_1, lcoE2_1, mulE2_1, notImplemented_1, notSupported_1, readOnly_1, rcoE2_1, scpE2_1, stringFromCoordinates_1, Unit_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.G2 = void 0;
     var COORD_SCALAR = 0;
     var COORD_X = 1;
     var COORD_Y = 2;
@@ -3871,7 +3880,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('zero').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G2, "one", {
@@ -3881,7 +3890,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('one').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G2, "e1", {
@@ -3891,7 +3900,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('e1').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G2, "e2", {
@@ -3901,7 +3910,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('e2').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G2, "I", {
@@ -3911,7 +3920,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('I').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G2.prototype, "a", {
@@ -3921,7 +3930,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('a').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G2.prototype, "x", {
@@ -3931,7 +3940,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('x').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G2.prototype, "y", {
@@ -3941,7 +3950,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('y').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G2.prototype, "b", {
@@ -3951,7 +3960,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('b').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         G2.fromCartesian = function (α, x, y, β, uom) {
@@ -3961,7 +3970,7 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
             get: function () {
                 return [this.a, this.x, this.y, this.b];
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         G2.prototype.coordinate = function (index) {
@@ -4616,21 +4625,21 @@ define('davinci-units/math/G2',["require", "exports", "./bezier2", "./bezier3", 
         G2.vector = function (x, y, uom) {
             return new G2(0, x, y, 0, uom);
         };
+        G2._zero = new G2(0, 0, 0, 0);
+        G2._one = new G2(1, 0, 0, 0);
+        G2._e1 = new G2(0, 1, 0, 0);
+        G2._e2 = new G2(0, 0, 1, 0);
+        G2._I = new G2(0, 0, 0, 1);
+        G2.kilogram = new G2(1, 0, 0, 0, Unit_1.Unit.KILOGRAM);
+        G2.meter = new G2(1, 0, 0, 0, Unit_1.Unit.METER);
+        G2.second = new G2(1, 0, 0, 0, Unit_1.Unit.SECOND);
+        G2.coulomb = new G2(1, 0, 0, 0, Unit_1.Unit.COULOMB);
+        G2.ampere = new G2(1, 0, 0, 0, Unit_1.Unit.AMPERE);
+        G2.kelvin = new G2(1, 0, 0, 0, Unit_1.Unit.KELVIN);
+        G2.mole = new G2(1, 0, 0, 0, Unit_1.Unit.MOLE);
+        G2.candela = new G2(1, 0, 0, 0, Unit_1.Unit.CANDELA);
         return G2;
     }());
-    G2._zero = new G2(0, 0, 0, 0);
-    G2._one = new G2(1, 0, 0, 0);
-    G2._e1 = new G2(0, 1, 0, 0);
-    G2._e2 = new G2(0, 0, 1, 0);
-    G2._I = new G2(0, 0, 0, 1);
-    G2.kilogram = new G2(1, 0, 0, 0, Unit_1.Unit.KILOGRAM);
-    G2.meter = new G2(1, 0, 0, 0, Unit_1.Unit.METER);
-    G2.second = new G2(1, 0, 0, 0, Unit_1.Unit.SECOND);
-    G2.coulomb = new G2(1, 0, 0, 0, Unit_1.Unit.COULOMB);
-    G2.ampere = new G2(1, 0, 0, 0, Unit_1.Unit.AMPERE);
-    G2.kelvin = new G2(1, 0, 0, 0, Unit_1.Unit.KELVIN);
-    G2.mole = new G2(1, 0, 0, 0, Unit_1.Unit.MOLE);
-    G2.candela = new G2(1, 0, 0, 0, Unit_1.Unit.CANDELA);
     exports.G2 = G2;
 });
 
@@ -5353,25 +5362,25 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
         }
         Object.defineProperty(G3, "BASIS_LABELS_GEOMETRIC", {
             get: function () { return BASIS_LABELS_G3_GEOMETRIC_1.default; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         ;
         Object.defineProperty(G3, "BASIS_LABELS_HAMILTON", {
             get: function () { return BASIS_LABELS_G3_HAMILTON_1.default; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         ;
         Object.defineProperty(G3, "BASIS_LABELS_STANDARD", {
             get: function () { return BASIS_LABELS_G3_STANDARD_1.default; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         ;
         Object.defineProperty(G3, "BASIS_LABELS_STANDARD_HTML", {
             get: function () { return BASIS_LABELS_G3_STANDARD_HTML_1.default; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         ;
@@ -5382,7 +5391,7 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('a').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G3.prototype, "x", {
@@ -5392,7 +5401,7 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
             set: function (value) {
                 throw new Error(readOnly_1.default('x').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G3.prototype, "y", {
@@ -5402,7 +5411,7 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
             set: function (value) {
                 throw new Error(readOnly_1.default('y').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G3.prototype, "z", {
@@ -5412,7 +5421,7 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
             set: function (value) {
                 throw new Error(readOnly_1.default('z').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G3.prototype, "xy", {
@@ -5422,7 +5431,7 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('xy').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G3.prototype, "yz", {
@@ -5432,7 +5441,7 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('yz').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G3.prototype, "zx", {
@@ -5442,7 +5451,7 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('zx').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(G3.prototype, "b", {
@@ -5452,7 +5461,7 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
             set: function (unused) {
                 throw new Error(readOnly_1.default('b').message);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         G3.fromCartesian = function (α, x, y, z, xy, yz, zx, β, uom) {
@@ -5462,7 +5471,7 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
             get: function () {
                 return [this.a, this.x, this.y, this.z, this.xy, this.yz, this.zx, this.b];
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         G3.prototype.coordinate = function (index) {
@@ -6133,22 +6142,22 @@ define('davinci-units/math/G3',["require", "exports", "./bezier2", "./bezier3", 
         G3.vector = function (x, y, z, uom) {
             return new G3(0, x, y, z, 0, 0, 0, 0, uom);
         };
+        G3.BASIS_LABELS = BASIS_LABELS_G3_STANDARD_1.default;
+        G3.zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
+        G3.one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
+        G3.e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0);
+        G3.e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0);
+        G3.e3 = new G3(0, 0, 0, 1, 0, 0, 0, 0);
+        G3.kilogram = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KILOGRAM);
+        G3.meter = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.METER);
+        G3.second = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.SECOND);
+        G3.coulomb = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.COULOMB);
+        G3.ampere = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.AMPERE);
+        G3.kelvin = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KELVIN);
+        G3.mole = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.MOLE);
+        G3.candela = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.CANDELA);
         return G3;
     }());
-    G3.BASIS_LABELS = BASIS_LABELS_G3_STANDARD_1.default;
-    G3.zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
-    G3.one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
-    G3.e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0);
-    G3.e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0);
-    G3.e3 = new G3(0, 0, 0, 1, 0, 0, 0, 0);
-    G3.kilogram = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KILOGRAM);
-    G3.meter = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.METER);
-    G3.second = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.SECOND);
-    G3.coulomb = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.COULOMB);
-    G3.ampere = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.AMPERE);
-    G3.kelvin = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.KELVIN);
-    G3.mole = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.MOLE);
-    G3.candela = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit_1.Unit.CANDELA);
     exports.default = G3;
 });
 
@@ -6225,9 +6234,9 @@ define('davinci-units/config',["require", "exports"], function (require, exports
     var Units = (function () {
         function Units() {
             this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-            this.LAST_MODIFIED = '2017-03-08';
+            this.LAST_MODIFIED = '2020-06-20';
             this.NAMESPACE = 'UNITS';
-            this.VERSION = '1.5.5';
+            this.VERSION = '1.6.0';
         }
         Units.prototype.log = function (message) {
             var optionalParams = [];

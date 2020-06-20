@@ -1,13 +1,14 @@
 {
   "name": "davinci-units",
-  "version": "1.5.5",
+  "version": "1.6.0",
   "description": "WebGL library for mathematical physics using Geometric Algebra",
   "author": {
     "name": "David Holmes",
     "email": "david.geo.holmes@gmail.com"
   },
-  "main": "./dist/davinci-units.min.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/davinci-units.js",
+  "unpkg": "dist/davinci-units.min.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git://github.com/geometryzen/davinci-units.git"
@@ -27,8 +28,9 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "almond": "~0.3.3",
     "es6-module-loader": "^0.17.11",
-    "grunt": "^1.0.1",
+    "grunt": "^1.1.0",
     "grunt-cli": "^1.2.0",
     "grunt-complexity": "^0.3.1",
     "grunt-contrib-clean": "^1.0.0",
@@ -62,9 +64,9 @@
     "servedir": "^1.0.0",
     "systemjs": "0.19.40",
     "systemjs-builder": "0.15.33",
-    "tslint": "^4.5.1",
-    "typedoc": "^0.5.7",
-    "typescript": "^2.2.1"
+    "tslint": "^6.1.2",
+    "typedoc": "^0.17.7",
+    "typescript": "^3.9.5"
   },
   "keywords": [],
   "jspm": {
