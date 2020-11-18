@@ -32,6 +32,8 @@ tsd install
 ```
 to install TypeScript definitions for Jasmine used in testing.
 
+## Building
+
 ```
 grunt
 ```
@@ -42,6 +44,10 @@ to compile the source using the TypeScript compiler (For this you need to have [
 Make your changes to the TypeScript files in the _src_ directory. Do not edit the files in the _dist_ directory, these files will be generated.
 
 ## Testing
+
+```
+grunt test
+```
 
 ## Versioning
 

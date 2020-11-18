@@ -90,19 +90,6 @@ declare namespace UNITS {
      * The dimensions of a physical quantity.
      */
     class Dimensions {
-        M: QQ;
-        L: QQ;
-        T: QQ;
-        Q: QQ;
-        temperature: QQ;
-        amount: QQ;
-        intensity: QQ;
-        constructor(M: QQ, L: QQ, T: QQ, Q: QQ, temperature: QQ, amount: QQ, intensity);
-        isOne(): boolean;
-        isZero(): boolean;
-        inv(): Dimensions;
-        neg(): Dimensions;
-
         /**
          *
          */
@@ -147,6 +134,37 @@ declare namespace UNITS {
          *
          */
         static INTENSITY: Dimensions;
+
+        M: QQ;
+        L: QQ;
+        T: QQ;
+        Q: QQ;
+        temperature: QQ;
+        amount: QQ;
+        intensity: QQ;
+
+        constructor(M: QQ, L: QQ, T: QQ, Q: QQ, temperature: QQ, amount: QQ, intensity);
+
+        div(rhs: Dimensions): Dimensions;
+        isOne(): boolean;
+        isZero(): boolean;
+        inv(): Dimensions;
+        mul(rhs: Dimensions): Dimensions;
+        neg(): Dimensions;
+        pow(exponent: QQ): Dimensions;
+        sqrt(): Dimensions;
+        toString(): string;
+
+        __add__(rhs: Dimensions): Dimensions;
+        __radd__(lhs: Dimensions): Dimensions;
+        __sub__(rhs: Dimensions): Dimensions;
+        __rsub__(lhs: Dimensions): Dimensions;
+        __mul__(rhs: Dimensions): Dimensions;
+        __rmul__(lhs: Dimensions): Dimensions;
+        __div__(rhs: Dimensions): Dimensions;
+        __rdiv__(lhs: Dimensions): Dimensions;
+        __pos__(): Dimensions;
+        __neg__(): Dimensions;
     }
 
     /**
