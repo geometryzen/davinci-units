@@ -1,6 +1,6 @@
 {
   "name": "davinci-units",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "WebGL library for mathematical physics using Geometric Algebra",
   "author": {
     "name": "David Holmes",
@@ -30,7 +30,7 @@
   "devDependencies": {
     "almond": "~0.3.3",
     "es6-module-loader": "^0.17.11",
-    "grunt": "^1.1.0",
+    "grunt": "^1.3.0",
     "grunt-cli": "^1.2.0",
     "grunt-complexity": "^0.3.1",
     "grunt-contrib-clean": "^1.0.0",
@@ -64,9 +64,9 @@
     "servedir": "^1.0.0",
     "systemjs": "0.19.40",
     "systemjs-builder": "0.15.33",
-    "tslint": "^6.1.2",
-    "typedoc": "^0.17.7",
-    "typescript": "^3.9.5"
+    "tslint": "^6.1.3",
+    "typedoc": "^0.17.8",
+    "typescript": "^3.9.7"
   },
   "keywords": [],
   "jspm": {

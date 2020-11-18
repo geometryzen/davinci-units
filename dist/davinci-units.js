@@ -6234,9 +6234,9 @@ define('davinci-units/config',["require", "exports"], function (require, exports
     var Units = (function () {
         function Units() {
             this.GITHUB = 'https://github.com/geometryzen/davinci-units';
-            this.LAST_MODIFIED = '2020-06-20';
+            this.LAST_MODIFIED = '2020-11-17';
             this.NAMESPACE = 'UNITS';
-            this.VERSION = '1.6.0';
+            this.VERSION = '1.6.1';
         }
         Units.prototype.log = function (message) {
             var optionalParams = [];
