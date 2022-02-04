@@ -24,6 +24,7 @@
     }
   ],
   "scripts": {
+    "build": "grunt",
     "test": "grunt; grunt test"
   },
   "dependencies": {},
