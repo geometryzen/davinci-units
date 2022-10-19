@@ -1,14 +1,3 @@
-amd/
-bower_components/
-documentation/
-jspm_packages/
-node_modules/
-system/
-test/amd/
-typings/
-.baseDir.ts
-.baseDir.js
-.grunt/
-_SpecRunner.html
-
-.DS_Store
+coverage/
+docs/
+dist/
