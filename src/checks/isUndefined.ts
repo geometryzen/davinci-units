@@ -1,3 +1,3 @@
 export function isUndefined(arg: unknown): boolean {
-  return (typeof arg === 'undefined');
+    return typeof arg === "undefined";
 }

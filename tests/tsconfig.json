@@ -8,14 +8,8 @@
         "isolatedModules": false,
         "strict": false,
         "noImplicitAny": false,
-        "typeRoots": [
-            "../node_modules/@types"
-        ]
+        "typeRoots": ["../node_modules/@types"]
     },
-    "exclude": [
-        "../node_modules"
-    ],
-    "include": [
-        "./**/*.ts"
-, "../src/math/G3.spec.ts"    ]
+    "exclude": ["../node_modules"],
+    "include": ["./**/*.ts", "../src/math/G3.spec.ts"]
 }

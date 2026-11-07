@@ -1,11 +1,10 @@
-import LinearNumber from './LinearNumber';
+import LinearNumber from "./LinearNumber";
 
 /**
  * This interface is provided to ensure consistency.
  * It is not part of the documented API.
  */
 interface MutableLinearElement<I, M, S, V, MAGNITUDE, SCALING> extends LinearNumber<I, M, S, V, MAGNITUDE, SCALING> {
-
     /**
      * Discards coordinates which are significantly smaller than the maximum coordinate.
      */

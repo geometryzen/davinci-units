@@ -1,16 +1,15 @@
-import { QQ } from './QQ';
-import notSupported from '../i18n/notSupported';
+import { QQ } from "./QQ";
+import notSupported from "../i18n/notSupported";
 
-const R0 = QQ.valueOf(0, 1)
-const R1 = QQ.valueOf(1, 1)
-const R2 = QQ.valueOf(2, 1)
-const M1 = QQ.valueOf(-1, 1)
+const R0 = QQ.valueOf(0, 1);
+const R1 = QQ.valueOf(1, 1);
+const R2 = QQ.valueOf(2, 1);
+const M1 = QQ.valueOf(-1, 1);
 
 function assertArgRational(name: string, arg: QQ): QQ {
     if (arg instanceof QQ) {
         return arg;
-    }
-    else {
+    } else {
         throw new Error("Argument '" + arg + "' must be a QQ");
     }
 }
@@ -20,7 +19,6 @@ function assertArgRational(name: string, arg: QQ): QQ {
  * Each of the exponents corresponds to a dimension in the S.I. system of units.
  */
 export class Dimensions {
-
     /**
      * All exponents are zero, a dimensionless quantity.
      */
@@ -77,16 +75,24 @@ export class Dimensions {
      * @param amount The amount component of the dimensions object.
      * @param intensity The intensity component of the dimensions object.
      */
-    constructor(public M: QQ, public L: QQ, public T: QQ, public Q: QQ, public temperature: QQ, public amount: QQ, public intensity: QQ) {
-        assertArgRational('M', M)
-        assertArgRational('L', L)
-        assertArgRational('T', T)
-        assertArgRational('Q', Q)
-        assertArgRational('temperature', temperature)
-        assertArgRational('amount', amount)
-        assertArgRational('intensity', intensity)
+    constructor(
+        public M: QQ,
+        public L: QQ,
+        public T: QQ,
+        public Q: QQ,
+        public temperature: QQ,
+        public amount: QQ,
+        public intensity: QQ
+    ) {
+        assertArgRational("M", M);
+        assertArgRational("L", L);
+        assertArgRational("T", T);
+        assertArgRational("Q", Q);
+        assertArgRational("temperature", temperature);
+        assertArgRational("amount", amount);
+        assertArgRational("intensity", intensity);
         if (arguments.length !== 7) {
-            throw new Error("Expecting 7 arguments")
+            throw new Error("Expecting 7 arguments");
         }
     }
 
@@ -98,23 +104,19 @@ export class Dimensions {
      */
     compatible(rhs: Dimensions): Dimensions {
         if (this.M.equals(rhs.M) && this.L.equals(rhs.L) && this.T.equals(rhs.T) && this.Q.equals(rhs.Q) && this.temperature.equals(rhs.temperature) && this.amount.equals(rhs.amount) && this.intensity.equals(rhs.intensity)) {
-            return this
-        }
-        else {
+            return this;
+        } else {
             if (this.isOne()) {
                 if (rhs.isOne()) {
-                    throw new Error()
+                    throw new Error();
+                } else {
+                    throw new Error("Dimensions must be equal (dimensionless, " + rhs + ")");
                 }
-                else {
-                    throw new Error("Dimensions must be equal (dimensionless, " + rhs + ")")
-                }
-            }
-            else {
+            } else {
                 if (rhs.isOne()) {
-                    throw new Error("Dimensions must be equal (" + this + ", dimensionless)")
-                }
-                else {
-                    throw new Error("Dimensions must be equal (" + this + ", " + rhs + ")")
+                    throw new Error("Dimensions must be equal (" + this + ", dimensionless)");
+                } else {
+                    throw new Error("Dimensions must be equal (" + this + ", " + rhs + ")");
                 }
             }
         }
@@ -143,7 +145,7 @@ export class Dimensions {
     /**
      * Computes the power function by multiplying rational exponents.
      *
-     * @param rhs
+     * @param exponent
      * @returns <code>pow(this, rhs)</code>
      */
     pow(exponent: QQ): Dimensions {
@@ -183,7 +185,7 @@ export class Dimensions {
      * Intentionally undocumented.
      */
     neg(): Dimensions {
-        throw new Error(notSupported('neg').message)
+        throw new Error(notSupported("neg").message);
     }
 
     /**
@@ -205,9 +207,19 @@ export class Dimensions {
             return "" + label + " ** " + rational;
         };
 
-        return [stringify(this.M, 'mass'), stringify(this.L, 'length'), stringify(this.T, 'time'), stringify(this.Q, 'charge'), stringify(this.temperature, 'thermodynamic temperature'), stringify(this.amount, 'amount of substance'), stringify(this.intensity, 'luminous intensity')].filter(function (x) {
-            return typeof x === 'string';
-        }).join(" * ");
+        return [
+            stringify(this.M, "mass"),
+            stringify(this.L, "length"),
+            stringify(this.T, "time"),
+            stringify(this.Q, "charge"),
+            stringify(this.temperature, "thermodynamic temperature"),
+            stringify(this.amount, "amount of substance"),
+            stringify(this.intensity, "luminous intensity")
+        ]
+            .filter(function (x) {
+                return typeof x === "string";
+            })
+            .join(" * ");
     }
 
     /**
@@ -216,10 +228,9 @@ export class Dimensions {
      */
     __add__(rhs: Dimensions): Dimensions {
         if (rhs instanceof Dimensions) {
-            return this.compatible(rhs)
-        }
-        else {
-            return void 0
+            return this.compatible(rhs);
+        } else {
+            return void 0;
         }
     }
 
@@ -229,10 +240,9 @@ export class Dimensions {
      */
     __radd__(lhs: Dimensions): Dimensions {
         if (lhs instanceof Dimensions) {
-            return lhs.compatible(this)
-        }
-        else {
-            return void 0
+            return lhs.compatible(this);
+        } else {
+            return void 0;
         }
     }
 
@@ -243,10 +253,9 @@ export class Dimensions {
      */
     __sub__(rhs: Dimensions): Dimensions {
         if (rhs instanceof Dimensions) {
-            return this.compatible(rhs)
-        }
-        else {
-            return void 0
+            return this.compatible(rhs);
+        } else {
+            return void 0;
         }
     }
 
@@ -257,10 +266,9 @@ export class Dimensions {
      */
     __rsub__(lhs: Dimensions): Dimensions {
         if (lhs instanceof Dimensions) {
-            return lhs.compatible(this)
-        }
-        else {
-            return void 0
+            return lhs.compatible(this);
+        } else {
+            return void 0;
         }
     }
 
@@ -271,10 +279,9 @@ export class Dimensions {
      */
     __mul__(rhs: Dimensions): Dimensions {
         if (rhs instanceof Dimensions) {
-            return this.mul(rhs)
-        }
-        else {
-            return void 0
+            return this.mul(rhs);
+        } else {
+            return void 0;
         }
     }
 
@@ -285,10 +292,9 @@ export class Dimensions {
      */
     __rmul__(lhs: Dimensions): Dimensions {
         if (lhs instanceof Dimensions) {
-            return lhs.mul(this)
-        }
-        else {
-            return void 0
+            return lhs.mul(this);
+        } else {
+            return void 0;
         }
     }
 
@@ -299,10 +305,9 @@ export class Dimensions {
      */
     __div__(rhs: Dimensions): Dimensions {
         if (rhs instanceof Dimensions) {
-            return this.div(rhs)
-        }
-        else {
-            return void 0
+            return this.div(rhs);
+        } else {
+            return void 0;
         }
     }
 
@@ -312,10 +317,9 @@ export class Dimensions {
      */
     __rdiv__(lhs: Dimensions): Dimensions {
         if (lhs instanceof Dimensions) {
-            return lhs.div(this)
-        }
-        else {
-            return void 0
+            return lhs.div(this);
+        } else {
+            return void 0;
         }
     }
 
@@ -323,7 +327,7 @@ export class Dimensions {
      * @returns
      */
     __pos__(): Dimensions {
-        return this
+        return this;
     }
 
     /**
@@ -331,6 +335,6 @@ export class Dimensions {
      * @returns
      */
     __neg__(): Dimensions {
-        return this
+        return this;
     }
 }

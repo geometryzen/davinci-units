@@ -93,13 +93,11 @@ declare class QQ implements DivisionRingOperators<QQ, number> {
     constructor(n: number, d: number, code: number);
     /**
      *
-     * @readOnly
      */
     get numer(): number;
     set numer(unused: number);
     /**
      *
-     * @readOnly
      */
     get denom(): number;
     set denom(unused: number);
@@ -191,7 +189,7 @@ declare class QQ implements DivisionRingOperators<QQ, number> {
      */
     __rmul__(lhs: QQ): QQ;
     /**
-     * @param div
+     * @param rhs
      * @returns
      */
     __div__(rhs: QQ): QQ;
@@ -227,8 +225,8 @@ declare class QQ implements DivisionRingOperators<QQ, number> {
     private static NEG_03_01;
     private static POS_02_03;
     /**
-     * @param numer
-     * @param denom
+     * @param n
+     * @param d
      * @returns
      */
     static valueOf(n: number, d: number): QQ;
@@ -318,7 +316,7 @@ declare class Dimensions {
     /**
      * Computes the power function by multiplying rational exponents.
      *
-     * @param rhs
+     * @param exponent
      * @returns <code>pow(this, rhs)</code>
      */
     pow(exponent: QQ): Dimensions;
@@ -490,7 +488,6 @@ interface LinearNumber<I, M, S, V, MAGNITUDE, SCALAR> {
 
 /**
  * This interface is provided to ensure consistency.
- * It is not part of the documented API.
  * Notice that the effect on the target depends upon whether the target class in mutable.
  * I: The lightweight interface form of the concreate class, usually just coordinates.
  * M: The concrete class
@@ -968,75 +965,60 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
     /**
      * @property _zero
      * @type G2
-     * @static
      * @private
      */
     private static _zero;
     /**
      * @property zero
      * @type G2
-     * @static
-     * @readOnly
      */
     static get zero(): G2;
     static set zero(unused: G2);
     /**
      * @property _one
      * @type G2
-     * @static
      * @private
      */
     private static _one;
     /**
      * @property one
      * @type G2
-     * @static
-     * @readOnly
      */
     static get one(): G2;
     static set one(unused: G2);
     /**
      * @property _e2
      * @type G2
-     * @static
      * @private
      */
     private static _e1;
     /**
      * @property e1
      * @type G2
-     * @static
-     * @readOnly
      */
     static get e1(): G2;
     static set e1(unused: G2);
     /**
      * @property _e2
      * @type G2
-     * @static
      * @private
      */
     private static _e2;
     /**
      * @property e2
      * @type G2
-     * @static
-     * @readOnly
      */
     static get e2(): G2;
     static set e2(unused: G2);
     /**
      * @property _I
      * @type G2
-     * @static
      * @private
      */
     private static _I;
     /**
      * @property I
      * @type G2
-     * @static
-     * @readOnly
      */
     static get I(): G2;
     static set I(unused: G2);
@@ -1050,7 +1032,6 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
     static candela: G2;
     /**
      * @class G2
-     * @constructor
      * @param [α = 0] {number} The scalar part of the multivector.
      * @param [x = 0] {number} The vector component of the multivector in the x-direction.
      * @param [y = 0] {number} The vector component of the multivector in the y-direction.
@@ -1068,7 +1049,6 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      *
      * @property x
      * @type number
-     * @readOnly
      */
     get x(): number;
     set x(unused: number);
@@ -1077,7 +1057,6 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      *
      * @property y
      * @type number
-     * @readOnly
      */
     get y(): number;
     set y(unused: number);
@@ -1085,7 +1064,6 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      * The pseudoscalar part of this multivector.
      * @property beta
      * @type number
-     * @readOnly
      */
     get b(): number;
     set b(unused: number);
@@ -1094,10 +1072,8 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
     coordinate(index: number): number;
     private static add;
     /**
-     * @method add
      * @param rhs {G2}
      * @return {G2}
-     * @chainable
      */
     add(rhs: G2): G2;
     /**
@@ -1128,9 +1104,7 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      */
     cubicBezier(t: number, controlBegin: GeometricE2, controlEnd: GeometricE2, endPoint: GeometricE2): G2;
     /**
-     * @method direction
      * @return {G2}
-     * @chainable
      */
     direction(): G2;
     /**
@@ -1138,8 +1112,7 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      */
     distanceTo(point: GeometricE2): number;
     /**
-     * @method equals
-     * @param other {any}
+     * @param point
      * @return {boolean}
      */
     equals(point: GeometricE2): boolean;
@@ -1159,46 +1132,36 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
     __div__(other: any): G2;
     __rdiv__(other: number | G2): G2;
     /**
-     * @method scp
      * @param rhs {G2}
      * @return {G2}
-     * @chainable
      */
     scp(rhs: G2): G2;
     private static ext;
     /**
-     * @method ext
      * @param rhs {G2}
      * @return {G2}
-     * @chainable
      */
     ext(rhs: G2): G2;
     __wedge__(other: any): G2;
     __rwedge__(other: any): G2;
     private static lshift;
     /**
-     * @method lerp
      * @param target {G2}
      * @param α {number}
      * @return {G2}
-     * @chainable
      */
     lerp(target: G2, α: number): G2;
     /**
-     * @method lco
-     * @param lhs {G2}
+     * @param rhs
      * @return {G2}
-     * @chainable
      */
     lco(rhs: G2): G2;
     __lshift__(other: any): G2;
     __rlshift__(other: any): G2;
     private static rshift;
     /**
-     * @method rco
      * @param rhs {G2}
      * @return {G2}
-     * @chainable
      */
     rco(rhs: G2): G2;
     __rshift__(other: any): G2;
@@ -1206,18 +1169,14 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
     __vbar__(other: any): G2;
     __rvbar__(other: any): G2;
     /**
-     * @method pow
      * @param exponent {G2}
      * @return {G2}
-     * @chainable
      */
     pow(exponent: G2): G2;
     __bang__(): G2;
     __pos__(): G2;
     /**
-     * @method neg
      * @return {G2}
-     * @chainable
      */
     neg(): G2;
     __neg__(): G2;
@@ -1226,36 +1185,26 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      */
     __tilde__(): G2;
     /**
-     * @method grade
      * @param grade {number}
      * @return {G2}
-     * @chainable
      */
     grade(grade: number): G2;
     /**
-     * @method cos
      * @return {G2}
-     * @chainable
      */
     cos(): G2;
     /**
-     * @method cosh
      * @return {G2}
-     * @chainable
      */
     cosh(): G2;
     /**
-     * @method exp
      * @return {G2}
-     * @chainable
      */
     exp(): G2;
     /**
      * Computes the <em>inverse</em> of this multivector, if it exists.
      *
-     * @method inv
      * @return {G2}
-     * @chainable
      */
     inv(): G2;
     /**
@@ -1275,30 +1224,22 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      */
     magnitudeSansUnits(): number;
     /**
-     * @method norm
      * @return {G2}
-     * @chainable
      */
     norm(): G2;
     /**
-     * @method quad
      * @return {G2}
-     * @chainable
      */
     quad(): G2;
     /**
-     * @method quadraticBezier
      * @param t {number}
      * @param controlPoint {GeometricE2}
      * @param endPoint {GeometricE2}
      * @return {G2}
-     * @chainable
      */
     quadraticBezier(t: number, controlPoint: GeometricE2, endPoint: GeometricE2): G2;
     /**
-     * @method squaredNorm
      * @return {G2}
-     * @chainable
      */
     squaredNorm(): G2;
     /**
@@ -1306,94 +1247,71 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      */
     squaredNormSansUnits(): number;
     /**
-     * @method stress
      * @param σ {VectorE2}
      * @return {G2}
-     * @chainable
      */
     stress(σ: VectorE2): G2;
     /**
      * Computes the <em>reflection</em> of this multivector in the plane with normal <code>n</code>.
      *
-     *
-     * @method reflect
      * @param n {VectorE2}
      * @return {G2}
-     * @chainable
      */
     reflect(n: VectorE2): G2;
     /**
-     * @method rev
      * @return {G2}
-     * @chainable
      */
     rev(): G2;
     /**
-     * @method rotate
      * @param spinor {SpinorE2}
      * @return {G2}
-     * @chainable
      */
     rotate(spinor: SpinorE2): G2;
     /**
-     * @method sin
      * @return {G2}
-     * @chainable
      */
     sin(): G2;
     /**
-     * @method sinh
      * @return {G2}
-     * @chainable
      */
     sinh(): G2;
     /**
-     * @method slerp
      * @param target {G2}
      * @param α {number}
      * @return {G2}
-     * @chainable
      */
     slerp(target: G2, α: number): G2;
     /**
-     * @method tan
      * @return {G2}
-     * @chainable
      */
     tan(): G2;
     /**
-     * @method isOne
      * @return {boolean}
      */
     isOne(): boolean;
     isNaN(): boolean;
     isScalar(): boolean;
     /**
-     * @method isZero
      * @return {boolean}
      */
     isZero(): boolean;
     private toStringCustom;
     /**
-     * @method toExponential
      * @param [fractionDigits] {number}
      * @return {string}
      */
     toExponential(fractionDigits?: number): string;
     /**
-     * @method toFixed
      * @param [fractionDigits] {number}
      * @return {string}
      */
     toFixed(fractionDigits?: number): string;
     /**
-     * @method toPrecision
      * @param [precision] {number}
      * @return {string}
      */
     toPrecision(precision?: number): string;
     /**
-     * @method toString
      * @param [radix] {number}
      * @return {string}
      */
@@ -1406,29 +1324,20 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
     __le__(rhs: G2): boolean;
     __lt__(rhs: G2): boolean;
     /**
-     * @method copy
-     * @param M {GeometricE2}
+     * @param m
      * @return {G2}
-     * @chainable
-     * @static
      */
     static copy(m: GeometricE2): G2;
     /**
-     * @method fromVectorE2
      * @param vector {VectorE2}
      * @return {G2}
-     * @chainable
-     * @static
      */
     static fromVectorE2(vector: VectorE2): G2;
     /**
-     * @method vector
      * @param x {number}
      * @param y {number}
      * @param [uom] {Unit}
      * @return {G2}
-     * @chainable
-     * @static
      */
     static vector(x: number, y: number, uom?: Unit): G2;
 }
@@ -1782,3 +1691,4 @@ declare const mathcore: {
 };
 
 export { Dimensions, G2, G3, QQ, Unit, mathcore };
+export type { GeometricE2, GeometricE3, GeometricNumber, SpinorE2, SpinorE3, VectorE2, VectorE3 };

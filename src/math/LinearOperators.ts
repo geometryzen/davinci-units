@@ -1,4 +1,4 @@
-import AbelianOperators from './AbelianOperators';
+import AbelianOperators from "./AbelianOperators";
 /**
  * Special methods for operators on elements of linear spaces.
  * This is provided for interface consistency.
@@ -8,7 +8,7 @@ interface LinearOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
     /**
      * Unary ~
      */
-    __tilde__(): T
+    __tilde__(): T;
 }
 
 export default LinearOperators;

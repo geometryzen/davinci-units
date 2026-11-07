@@ -7,42 +7,42 @@ interface AbelianOperators<T, UNIT> {
     /**
      * Binary this + other
      */
-    __add__(other: UNIT | T): T
+    __add__(other: UNIT | T): T;
 
     /**
      * Binary other + this
      */
-    __radd__(other: UNIT | T): T
+    __radd__(other: UNIT | T): T;
 
     /**
      * Binary this - other
      */
-    __sub__(other: UNIT | T): T
+    __sub__(other: UNIT | T): T;
 
     /**
      * Binary other - this
      */
-    __rsub__(other: UNIT | T): T
+    __rsub__(other: UNIT | T): T;
 
     /**
      * Unary +
      */
-    __pos__(): T
+    __pos__(): T;
 
     /**
      * Unary -
      */
-    __neg__(): T
+    __neg__(): T;
 
     /**
      * The additive inverse is denoted by neg.
      */
-    neg(): T
+    neg(): T;
 
     /**
      * Determines whether this element is the additive identity, <b>0</b>.
      */
-    isZero(): boolean
+    isZero(): boolean;
 }
 
 export default AbelianOperators;

@@ -1,8 +1,8 @@
-import { isUndefined } from './isUndefined';
-import mustSatisfy from './mustSatisfy';
+import { isUndefined } from "./isUndefined";
+import mustSatisfy from "./mustSatisfy";
 
 function beUndefined() {
-    return "be 'undefined'"
+    return "be 'undefined'";
 }
 
 export default function (name: string, value: any, contextBuilder?: () => string): any {

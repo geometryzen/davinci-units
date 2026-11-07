@@ -1,5 +1,5 @@
-import mustSatisfy from './mustSatisfy';
-import isObject from './isObject';
+import mustSatisfy from "./mustSatisfy";
+import isObject from "./isObject";
 
 function beObject() {
     return "be an `object`";

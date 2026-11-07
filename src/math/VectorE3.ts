@@ -1,7 +1,7 @@
 /**
  *
  */
-interface VectorE3 {
+export interface VectorE3 {
     /**
      * The Cartesian x-coordinate.
      */
@@ -17,5 +17,3 @@ interface VectorE3 {
      */
     z: number;
 }
-
-export default VectorE3;

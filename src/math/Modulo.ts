@@ -1,5 +1,5 @@
-import mustBeGE from '../checks/mustBeGE';
-import mustBeInteger from '../checks/mustBeInteger';
+import mustBeGE from "../checks/mustBeGE";
+import mustBeInteger from "../checks/mustBeInteger";
 
 /**
  * Modulo Arithmetic (Experimental).
@@ -11,8 +11,8 @@ export default class Modulo {
         return this._size;
     }
     set size(size: number) {
-        mustBeInteger('size', size);
-        mustBeGE('size', size, 0);
+        mustBeInteger("size", size);
+        mustBeGE("size", size, 0);
         this._size = size;
         this.value = this._value;
     }

@@ -1,4 +1,4 @@
-import Measure from './Measure';
+import Measure from "./Measure";
 
 interface ImmutableMeasure<T> extends Measure<T> {
     direction(): T;

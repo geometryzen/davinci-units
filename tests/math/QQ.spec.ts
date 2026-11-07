@@ -1,5 +1,5 @@
-import { assert } from 'chai';
-import { QQ } from '../../src/math/QQ';
+import { assert } from "chai";
+import { QQ } from "../../src/math/QQ";
 
 describe("QQ", function () {
     describe("constructor", function () {
@@ -101,24 +101,22 @@ describe("QQ", function () {
                 for (let n = -10; n < 10; n++) {
                     for (let d = -10; d < 10; d++) {
                         if (d !== 0) {
-                            const x = QQ.valueOf(n, d)
-                            assert.strictEqual(x.numer * d, x.denom * n)
+                            const x = QQ.valueOf(n, d);
+                            assert.strictEqual(x.numer * d, x.denom * n);
                             if (n === 0) {
-                                assert.strictEqual(x.numer, QQ.valueOf(0, 1).numer)
-                                assert.strictEqual(x.denom, QQ.valueOf(0, 1).denom)
-                            }
-                            else if (n === +d) {
-                                assert.strictEqual(x.numer, QQ.valueOf(+1, 1).numer)
-                                assert.strictEqual(x.denom, QQ.valueOf(+1, 1).denom)
-                            }
-                            else if (n === -d) {
-                                assert.strictEqual(x.numer, QQ.valueOf(-1, 1).numer)
-                                assert.strictEqual(x.denom, QQ.valueOf(-1, 1).denom)
+                                assert.strictEqual(x.numer, QQ.valueOf(0, 1).numer);
+                                assert.strictEqual(x.denom, QQ.valueOf(0, 1).denom);
+                            } else if (n === +d) {
+                                assert.strictEqual(x.numer, QQ.valueOf(+1, 1).numer);
+                                assert.strictEqual(x.denom, QQ.valueOf(+1, 1).denom);
+                            } else if (n === -d) {
+                                assert.strictEqual(x.numer, QQ.valueOf(-1, 1).numer);
+                                assert.strictEqual(x.denom, QQ.valueOf(-1, 1).denom);
                             }
                         }
                     }
                 }
-            })
+            });
         });
     });
 });

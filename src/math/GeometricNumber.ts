@@ -1,7 +1,6 @@
-import LinearNumber from './LinearNumber';
+import LinearNumber from "./LinearNumber";
 /**
  * This interface is provided to ensure consistency.
- * It is not part of the documented API.
  * Notice that the effect on the target depends upon whether the target class in mutable.
  * I: The lightweight interface form of the concreate class, usually just coordinates.
  * M: The concrete class
@@ -10,8 +9,7 @@ import LinearNumber from './LinearNumber';
  * MAGNITUDE: The type for methods that compute magnitudes.
  */
 
-interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNumber<I, M, S, V, MAGNITUDE, SCALING> {
-
+export interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNumber<I, M, S, V, MAGNITUDE, SCALING> {
     /**
      * Addition of a scalar.
      */
@@ -124,5 +122,3 @@ interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNu
      */
     scp(rhs: I): M;
 }
-
-export default GeometricNumber;

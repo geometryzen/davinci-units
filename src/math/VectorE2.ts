@@ -1,7 +1,7 @@
 /**
  * @class VectorE2
  */
-interface VectorE2 {
+export interface VectorE2 {
     /**
      * The Cartesian x-coordinate or <em>abscissa</em>.
      * @property x
@@ -16,5 +16,3 @@ interface VectorE2 {
      */
     y: number;
 }
-
-export default VectorE2

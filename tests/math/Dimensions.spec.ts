@@ -1,15 +1,15 @@
-import { assert } from 'chai'
-import { Dimensions } from '../../src/math/Dimensions'
-import { QQ } from '../../src/math/QQ'
+import { assert } from "chai";
+import { Dimensions } from "../../src/math/Dimensions";
+import { QQ } from "../../src/math/QQ";
 
-const R0 = QQ.valueOf(0, 1)
-const R1 = QQ.valueOf(1, 1)
-const R2 = R1.add(R1)
-const R3 = R2.add(R1)
-const R4 = R3.add(R1)
-const R5 = R4.add(R1)
-const R6 = R5.add(R1)
-const R7 = R6.add(R1)
+const R0 = QQ.valueOf(0, 1);
+const R1 = QQ.valueOf(1, 1);
+const R2 = R1.add(R1);
+const R3 = R2.add(R1);
+const R4 = R3.add(R1);
+const R5 = R4.add(R1);
+const R6 = R5.add(R1);
+const R7 = R6.add(R1);
 
 describe("Dimensions", function () {
     describe("constructor", function () {
@@ -30,14 +30,14 @@ describe("Dimensions", function () {
             assert.strictEqual(x.T.denom, 7);
             assert.strictEqual(x.Q.numer, 7);
             assert.strictEqual(x.Q.denom, 11);
-            assert.strictEqual(x.temperature.numer, 11)
-            assert.strictEqual(x.temperature.denom, 13)
-            assert.strictEqual(x.amount.numer, 13)
-            assert.strictEqual(x.amount.denom, 17)
-            assert.strictEqual(x.intensity.numer, 17)
-            assert.strictEqual(x.intensity.denom, 19)
-        })
-    })
+            assert.strictEqual(x.temperature.numer, 11);
+            assert.strictEqual(x.temperature.denom, 13);
+            assert.strictEqual(x.amount.numer, 13);
+            assert.strictEqual(x.amount.denom, 17);
+            assert.strictEqual(x.intensity.numer, 17);
+            assert.strictEqual(x.intensity.denom, 19);
+        });
+    });
 
     it("Construction(QQ)", function () {
         const M = QQ.valueOf(1, 1);
@@ -62,7 +62,7 @@ describe("Dimensions", function () {
         assert.strictEqual(d.amount.denom, 1);
         assert.strictEqual(d.intensity.numer, 7);
         assert.strictEqual(d.intensity.denom, 1);
-    })
+    });
 
     it("Construction(number)", function () {
         const d = new Dimensions(R1, R2, R3, R4, R5, R6, R7);
@@ -210,15 +210,13 @@ describe("Dimensions", function () {
 
         function inCompatible(a: Dimensions, b: Dimensions): string {
             try {
-                a.compatible(b)
-                return `Something is rotten in Denmark!!! ${a.toString()} ${b.toString()}`
-            }
-            catch (e) {
+                a.compatible(b);
+                return `Something is rotten in Denmark!!! ${a.toString()} ${b.toString()}`;
+            } catch (e) {
                 if (e instanceof Error) {
-                    return (<Error>e).message
-                }
-                else {
-                    return `Expecting an Error for ${a.toString()} ${b.toString()}`
+                    return (<Error>e).message;
+                } else {
+                    return `Expecting an Error for ${a.toString()} ${b.toString()}`;
                 }
             }
         }
@@ -233,10 +231,10 @@ describe("Dimensions", function () {
         assert.strictEqual(amount.compatible(amount), amount);
         assert.strictEqual(intensity.compatible(intensity), intensity);
 
-        assert.strictEqual(inCompatible(one, length), 'Dimensions must be equal (dimensionless, length)')
-        assert.strictEqual(inCompatible(length, one), 'Dimensions must be equal (length, dimensionless)')
-        assert.strictEqual(inCompatible(mass, length), 'Dimensions must be equal (mass, length)')
-        assert.strictEqual(inCompatible(length, mass), 'Dimensions must be equal (length, mass)')
+        assert.strictEqual(inCompatible(one, length), "Dimensions must be equal (dimensionless, length)");
+        assert.strictEqual(inCompatible(length, one), "Dimensions must be equal (length, dimensionless)");
+        assert.strictEqual(inCompatible(mass, length), "Dimensions must be equal (mass, length)");
+        assert.strictEqual(inCompatible(length, mass), "Dimensions must be equal (length, mass)");
     });
 
     it("isOne()", function () {
@@ -273,13 +271,13 @@ describe("Dimensions", function () {
         assert.strictEqual(`${new Dimensions(R1, R0, R0, R0, R0, R0, R0)}`, "mass");
         assert.strictEqual(`${new Dimensions(R2, R0, R0, R0, R0, R0, R0)}`, "mass ** 2");
 
-        assert.strictEqual("" + (new Dimensions(R0, R1, R0, R0, R0, R0, R0)), "length");
-        assert.strictEqual("" + (new Dimensions(R0, R0, R1, R0, R0, R0, R0)), "time");
-        assert.strictEqual("" + (new Dimensions(R0, R0, R0, R1, R0, R0, R0)), "charge");
-        assert.strictEqual("" + (new Dimensions(R0, R0, R0, R0, R1, R0, R0)), "thermodynamic temperature");
-        assert.strictEqual("" + (new Dimensions(R0, R0, R0, R0, R0, R1, R0)), "amount of substance");
-        assert.strictEqual("" + (new Dimensions(R0, R0, R0, R0, R0, R0, R1)), "luminous intensity");
+        assert.strictEqual("" + new Dimensions(R0, R1, R0, R0, R0, R0, R0), "length");
+        assert.strictEqual("" + new Dimensions(R0, R0, R1, R0, R0, R0, R0), "time");
+        assert.strictEqual("" + new Dimensions(R0, R0, R0, R1, R0, R0, R0), "charge");
+        assert.strictEqual("" + new Dimensions(R0, R0, R0, R0, R1, R0, R0), "thermodynamic temperature");
+        assert.strictEqual("" + new Dimensions(R0, R0, R0, R0, R0, R1, R0), "amount of substance");
+        assert.strictEqual("" + new Dimensions(R0, R0, R0, R0, R0, R0, R1), "luminous intensity");
 
-        assert.strictEqual("" + (new Dimensions(R0, R1, QQ.valueOf(-2, 1), R0, R0, R0, R0)), "length * time ** -2");
+        assert.strictEqual("" + new Dimensions(R0, R1, QQ.valueOf(-2, 1), R0, R0, R0, R0), "length * time ** -2");
     });
 });

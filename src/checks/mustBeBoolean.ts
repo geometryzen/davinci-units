@@ -1,5 +1,5 @@
-import mustSatisfy from './mustSatisfy';
-import isBoolean from './isBoolean';
+import mustSatisfy from "./mustSatisfy";
+import isBoolean from "./isBoolean";
 
 function beBoolean() {
     return "be `boolean`";

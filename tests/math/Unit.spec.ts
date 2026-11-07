@@ -1,34 +1,34 @@
-import { assert } from 'chai'
-import { Dimensions } from '../../src/math/Dimensions'
-import { QQ } from '../../src/math/QQ'
-import { Unit } from '../../src/math/Unit'
+import { assert } from "chai";
+import { Dimensions } from "../../src/math/Dimensions";
+import { QQ } from "../../src/math/QQ";
+import { Unit } from "../../src/math/Unit";
 
-const Rat0 = QQ.valueOf(0, 1)
-const Rat1 = QQ.valueOf(1, 1)
-const Rat2 = QQ.valueOf(2, 1)
+const Rat0 = QQ.valueOf(0, 1);
+const Rat1 = QQ.valueOf(1, 1);
+const Rat2 = QQ.valueOf(2, 1);
 
-const ONE = Unit.ONE
-const KILOGRAM = Unit.KILOGRAM
-const METER = Unit.METER
-const SECOND = Unit.SECOND
-const AMPERE = Unit.AMPERE
-const COULOMB = Unit.COULOMB
-const KELVIN = Unit.KELVIN
-const MOLE = Unit.MOLE
-const CANDELA = Unit.CANDELA
+const ONE = Unit.ONE;
+const KILOGRAM = Unit.KILOGRAM;
+const METER = Unit.METER;
+const SECOND = Unit.SECOND;
+const AMPERE = Unit.AMPERE;
+const COULOMB = Unit.COULOMB;
+const KELVIN = Unit.KELVIN;
+const MOLE = Unit.MOLE;
+const CANDELA = Unit.CANDELA;
 
-const NEWTON = KILOGRAM.mul(METER).div(SECOND).div(SECOND)
-const JOULE = NEWTON.mul(METER)
-const HERTZ = ONE.div(SECOND)
-const WATT = JOULE.div(SECOND)
-const VOLT = JOULE.div(COULOMB)
-const WEBER = VOLT.mul(SECOND)
-const TESLA = WEBER.div(METER).div(METER)
-const OHM = VOLT.div(AMPERE)
-const SIEMEN = AMPERE.div(VOLT)
-const FARAD = COULOMB.div(VOLT)
-const HENRY = KILOGRAM.mul(METER).mul(METER).div(COULOMB).div(COULOMB)
-const PASCAL = NEWTON.div(METER).div(METER)
+const NEWTON = KILOGRAM.mul(METER).div(SECOND).div(SECOND);
+const JOULE = NEWTON.mul(METER);
+const HERTZ = ONE.div(SECOND);
+const WATT = JOULE.div(SECOND);
+const VOLT = JOULE.div(COULOMB);
+const WEBER = VOLT.mul(SECOND);
+const TESLA = WEBER.div(METER).div(METER);
+const OHM = VOLT.div(AMPERE);
+const SIEMEN = AMPERE.div(VOLT);
+const FARAD = COULOMB.div(VOLT);
+const HENRY = KILOGRAM.mul(METER).mul(METER).div(COULOMB).div(COULOMB);
+const PASCAL = NEWTON.div(METER).div(METER);
 
 describe("Unit", function () {
     const symbols = ["kg", "m", "s", "C", "K", "mol", "cd"];
@@ -80,7 +80,7 @@ describe("Unit", function () {
     });
     it("mul by number", function () {
         const meter = new Unit(1, new Dimensions(Rat0, Rat1, Rat0, Rat0, Rat0, Rat0, Rat0), symbols);
-        const yard = meter.__mul__(2.54 * 36 / 100);
+        const yard = meter.__mul__((2.54 * 36) / 100);
         assert.strictEqual(yard.toString(), "0.9144 m");
     });
     it("mul by Unit", function () {
@@ -207,11 +207,9 @@ describe("Unit", function () {
     });
 
     describe("Operator Overloading", function () {
-
         var m = METER;
 
         describe("Binary +", function () {
-
             it("m.__add__(m)", function () {
                 var actual = m.__add__(m);
                 assert.strictEqual(actual.multiplier, 2);
@@ -232,11 +230,9 @@ describe("Unit", function () {
                 assert.strictEqual(actual.dimensions.T.numer, 0);
                 assert.strictEqual(actual.dimensions.T.denom, 1);
             });
-
         });
 
         describe("Binary -", function () {
-
             it("m.__sub__(m)", function () {
                 var actual = m.__sub__(m);
                 assert.strictEqual(actual.multiplier, 0);
@@ -258,11 +254,9 @@ describe("Unit", function () {
                 assert.strictEqual(actual.dimensions.T.numer, 0);
                 assert.strictEqual(actual.dimensions.T.denom, 1);
             });
-
         });
 
         describe("Binary *", function () {
-
             it("m.__mul__(m)", function () {
                 var actual = m.__mul__(m);
                 assert.strictEqual(actual.toString(void 0, true), "m ** 2");
@@ -308,11 +302,9 @@ describe("Unit", function () {
                 assert.strictEqual(actual.dimensions.T.numer, 0);
                 assert.strictEqual(actual.dimensions.T.denom, 1);
             });
-
         });
 
         describe("Binary /", function () {
-
             it("m.__div__(m)", function () {
                 var actual = m.__div__(m);
                 assert.strictEqual(actual.toString(void 0, true), "");
@@ -359,9 +351,6 @@ describe("Unit", function () {
                 assert.strictEqual(actual.dimensions.T.numer, 0);
                 assert.strictEqual(actual.dimensions.T.denom, 1);
             });
-
         });
-
     });
-
 });

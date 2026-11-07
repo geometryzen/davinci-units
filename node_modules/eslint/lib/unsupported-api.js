@@ -11,17 +11,11 @@
 // Requirements
 //-----------------------------------------------------------------------------
 
-const { FileEnumerator } = require("./cli-engine/file-enumerator");
-const { FlatESLint } = require("./eslint/flat-eslint");
-const FlatRuleTester = require("./rule-tester/flat-rule-tester");
+const { shouldUseFlatConfig } = require("./eslint/eslint");
+const builtinRules = require("./rules");
 
 //-----------------------------------------------------------------------------
 // Exports
 //-----------------------------------------------------------------------------
 
-module.exports = {
-    builtinRules: require("./rules"),
-    FlatESLint,
-    FlatRuleTester,
-    FileEnumerator
-};
+module.exports = { builtinRules, shouldUseFlatConfig };

@@ -1,4 +1,4 @@
-import isNumber from './isNumber';
+import isNumber from "./isNumber";
 
 export default function isInteger(x: any): boolean {
     // % coerces its operand to numbers so a typeof test is required.

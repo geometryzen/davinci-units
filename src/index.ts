@@ -1,7 +1,13 @@
-export { Dimensions } from './math/Dimensions';
-export { G2 } from './math/G2';
-export { G3 } from './math/G3';
-export { mathcore } from './math/mathcore';
-export { QQ } from './math/QQ';
-export { Unit } from './math/Unit';
-
+export { Dimensions } from "./math/Dimensions";
+export { G2 } from "./math/G2";
+export { G3 } from "./math/G3";
+export { mathcore } from "./math/mathcore";
+export { QQ } from "./math/QQ";
+export { Unit } from "./math/Unit";
+export { GeometricE2 } from "./math/GeometricE2";
+export { GeometricNumber } from "./math/GeometricNumber";
+export { VectorE3 } from "./math/VectorE3";
+export { GeometricE3 } from "./math/GeometricE3";
+export { SpinorE3 } from "./math/SpinorE3";
+export { SpinorE2 } from "./math/SpinorE2";
+export { VectorE2 } from "./math/VectorE2";

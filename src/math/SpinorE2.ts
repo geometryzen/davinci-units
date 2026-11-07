@@ -1,5 +1,5 @@
-import Scalar from './Scalar';
-import Pseudo from './Pseudo';
+import Scalar from "./Scalar";
+import Pseudo from "./Pseudo";
 
 /**
  * The even sub-algebra of the <em>Euclidean algebra 𝓖(2, 0)</em>.
@@ -7,7 +7,4 @@ import Pseudo from './Pseudo';
  * @extends Scalar
  * @extends Pseudo
  */
-interface SpinorE2 extends Scalar, Pseudo {
-}
-
-export default SpinorE2;
+export interface SpinorE2 extends Scalar, Pseudo {}
