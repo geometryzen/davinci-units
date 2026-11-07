@@ -304,17 +304,23 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
      * Computes the sum of this multivector and another considered to be the rhs of the binary addition, `+`, operator.
      * This method does not change this multivector.
      */
-    add(rhs: G3) {
-        const a = this.a + rhs.a;
-        const x = this.x + rhs.x;
-        const y = this.y + rhs.y;
-        const z = this.z + rhs.z;
-        const xy = this.xy + rhs.xy;
-        const yz = this.yz + rhs.yz;
-        const zx = this.zx + rhs.zx;
-        const b = this.b + rhs.b;
-        const uom = Unit.compatible(this.uom, rhs.uom);
-        return new G3(a, x, y, z, xy, yz, zx, b, uom);
+    add(rhs: G3): G3 {
+        if (rhs.isZero()) {
+            return this;
+        } else if (this.isZero()) {
+            return rhs;
+        } else {
+            const a = this.a + rhs.a;
+            const x = this.x + rhs.x;
+            const y = this.y + rhs.y;
+            const z = this.z + rhs.z;
+            const xy = this.xy + rhs.xy;
+            const yz = this.yz + rhs.yz;
+            const zx = this.zx + rhs.zx;
+            const b = this.b + rhs.b;
+            const uom = Unit.compatible(this.uom, rhs.uom);
+            return new G3(a, x, y, z, xy, yz, zx, b, uom);
+        }
     }
 
     /**
@@ -395,17 +401,23 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
     /**
      *
      */
-    sub(rhs: G3) {
-        const a = this.a - rhs.a;
-        const x = this.x - rhs.x;
-        const y = this.y - rhs.y;
-        const z = this.z - rhs.z;
-        const xy = this.xy - rhs.xy;
-        const yz = this.yz - rhs.yz;
-        const zx = this.zx - rhs.zx;
-        const b = this.b - rhs.b;
-        const uom = Unit.compatible(this.uom, rhs.uom);
-        return new G3(a, x, y, z, xy, yz, zx, b, uom);
+    sub(rhs: G3): G3 {
+        if (rhs.isZero()) {
+            return this;
+        } else if (this.isZero()) {
+            return rhs.neg();
+        } else {
+            const a = this.a - rhs.a;
+            const x = this.x - rhs.x;
+            const y = this.y - rhs.y;
+            const z = this.z - rhs.z;
+            const xy = this.xy - rhs.xy;
+            const yz = this.yz - rhs.yz;
+            const zx = this.zx - rhs.zx;
+            const b = this.b - rhs.b;
+            const uom = Unit.compatible(this.uom, rhs.uom);
+            return new G3(a, x, y, z, xy, yz, zx, b, uom);
+        }
     }
 
     __sub__(rhs: Unit | G3) {

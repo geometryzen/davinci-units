@@ -416,8 +416,14 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {G2}
      */
     add(rhs: G2): G2 {
-        const xs = G2.add(this.coords, rhs.coords);
-        return new G2(xs[0], xs[1], xs[2], xs[3], Unit.compatible(this.uom, rhs.uom));
+        if (rhs.isZero()) {
+            return this;
+        } else if (this.isZero()) {
+            return rhs;
+        } else {
+            const xs = G2.add(this.coords, rhs.coords);
+            return new G2(xs[0], xs[1], xs[2], xs[3], Unit.compatible(this.uom, rhs.uom));
+        }
     }
 
     /**
@@ -538,8 +544,14 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      *
      */
     sub(rhs: G2): G2 {
-        const xs = G2.sub(this.coords, rhs.coords);
-        return new G2(xs[0], xs[1], xs[2], xs[3], Unit.compatible(this.uom, rhs.uom));
+        if (rhs.isZero()) {
+            return this;
+        } else if (this.isZero()) {
+            return rhs.neg();
+        } else {
+            const xs = G2.sub(this.coords, rhs.coords);
+            return new G2(xs[0], xs[1], xs[2], xs[3], Unit.compatible(this.uom, rhs.uom));
+        }
     }
 
     __sub__(rhs: Unit | G2 | number): G2 {
