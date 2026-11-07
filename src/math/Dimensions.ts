@@ -71,26 +71,26 @@ export class Dimensions {
      * @param L The length component of the dimensions object.
      * @param T The time component of the dimensions object.
      * @param Q The charge component of the dimensions object.
-     * @param temperature The temperature component of the dimensions object.
-     * @param amount The amount component of the dimensions object.
-     * @param intensity The intensity component of the dimensions object.
+     * @param E The temperature component of the dimensions object.
+     * @param A The amount component of the dimensions object.
+     * @param I The intensity component of the dimensions object.
      */
     constructor(
         public M: QQ,
         public L: QQ,
         public T: QQ,
         public Q: QQ,
-        public temperature: QQ,
-        public amount: QQ,
-        public intensity: QQ
+        public E: QQ,
+        public A: QQ,
+        public I: QQ
     ) {
         assertArgRational("M", M);
         assertArgRational("L", L);
         assertArgRational("T", T);
         assertArgRational("Q", Q);
-        assertArgRational("temperature", temperature);
-        assertArgRational("amount", amount);
-        assertArgRational("intensity", intensity);
+        assertArgRational("E", E);
+        assertArgRational("A", A);
+        assertArgRational("I", I);
         if (arguments.length !== 7) {
             throw new Error("Expecting 7 arguments");
         }
@@ -103,7 +103,7 @@ export class Dimensions {
      * @returns
      */
     compatible(rhs: Dimensions): Dimensions {
-        if (this.M.equals(rhs.M) && this.L.equals(rhs.L) && this.T.equals(rhs.T) && this.Q.equals(rhs.Q) && this.temperature.equals(rhs.temperature) && this.amount.equals(rhs.amount) && this.intensity.equals(rhs.intensity)) {
+        if (this.M.equals(rhs.M) && this.L.equals(rhs.L) && this.T.equals(rhs.T) && this.Q.equals(rhs.Q) && this.E.equals(rhs.E) && this.A.equals(rhs.A) && this.I.equals(rhs.I)) {
             return this;
         } else {
             if (this.isOne()) {
@@ -129,7 +129,7 @@ export class Dimensions {
      * @returns <code>this * rhs</code>
      */
     mul(rhs: Dimensions): Dimensions {
-        return new Dimensions(this.M.add(rhs.M), this.L.add(rhs.L), this.T.add(rhs.T), this.Q.add(rhs.Q), this.temperature.add(rhs.temperature), this.amount.add(rhs.amount), this.intensity.add(rhs.intensity));
+        return new Dimensions(this.M.add(rhs.M), this.L.add(rhs.L), this.T.add(rhs.T), this.Q.add(rhs.Q), this.E.add(rhs.E), this.A.add(rhs.A), this.I.add(rhs.I));
     }
 
     /**
@@ -139,7 +139,7 @@ export class Dimensions {
      * @returns <code>this / rhs</code>
      */
     div(rhs: Dimensions): Dimensions {
-        return new Dimensions(this.M.sub(rhs.M), this.L.sub(rhs.L), this.T.sub(rhs.T), this.Q.sub(rhs.Q), this.temperature.sub(rhs.temperature), this.amount.sub(rhs.amount), this.intensity.sub(rhs.intensity));
+        return new Dimensions(this.M.sub(rhs.M), this.L.sub(rhs.L), this.T.sub(rhs.T), this.Q.sub(rhs.Q), this.E.sub(rhs.E), this.A.sub(rhs.A), this.I.sub(rhs.I));
     }
 
     /**
@@ -149,7 +149,7 @@ export class Dimensions {
      * @returns <code>pow(this, rhs)</code>
      */
     pow(exponent: QQ): Dimensions {
-        return new Dimensions(this.M.mul(exponent), this.L.mul(exponent), this.T.mul(exponent), this.Q.mul(exponent), this.temperature.mul(exponent), this.amount.mul(exponent), this.intensity.mul(exponent));
+        return new Dimensions(this.M.mul(exponent), this.L.mul(exponent), this.T.mul(exponent), this.Q.mul(exponent), this.E.mul(exponent), this.A.mul(exponent), this.I.mul(exponent));
     }
 
     /**
@@ -158,7 +158,7 @@ export class Dimensions {
      * @returns
      */
     sqrt(): Dimensions {
-        return new Dimensions(this.M.div(R2), this.L.div(R2), this.T.div(R2), this.Q.div(R2), this.temperature.div(R2), this.amount.div(R2), this.intensity.div(R2));
+        return new Dimensions(this.M.div(R2), this.L.div(R2), this.T.div(R2), this.Q.div(R2), this.E.div(R2), this.A.div(R2), this.I.div(R2));
     }
 
     /**
@@ -168,7 +168,7 @@ export class Dimensions {
      * @returns <code>true</code> if all the exponents are zero, otherwise <code>false</code>.
      */
     isOne(): boolean {
-        return this.M.isZero() && this.L.isZero() && this.T.isZero() && this.Q.isZero() && this.temperature.isZero() && this.amount.isZero() && this.intensity.isZero();
+        return this.M.isZero() && this.L.isZero() && this.T.isZero() && this.Q.isZero() && this.E.isZero() && this.A.isZero() && this.I.isZero();
     }
 
     /**
@@ -178,7 +178,7 @@ export class Dimensions {
      * @returns
      */
     inv(): Dimensions {
-        return new Dimensions(this.M.neg(), this.L.neg(), this.T.neg(), this.Q.neg(), this.temperature.neg(), this.amount.neg(), this.intensity.neg());
+        return new Dimensions(this.M.neg(), this.L.neg(), this.T.neg(), this.Q.neg(), this.E.neg(), this.A.neg(), this.I.neg());
     }
 
     /**
@@ -194,7 +194,7 @@ export class Dimensions {
      * @returns
      */
     toString(): string {
-        var stringify = function (rational: QQ, label: string): string {
+        const stringify = function (rational: QQ, label: string): string {
             if (rational.numer === 0) {
                 return null;
             } else if (rational.denom === 1) {
@@ -212,9 +212,9 @@ export class Dimensions {
             stringify(this.L, "length"),
             stringify(this.T, "time"),
             stringify(this.Q, "charge"),
-            stringify(this.temperature, "thermodynamic temperature"),
-            stringify(this.amount, "amount of substance"),
-            stringify(this.intensity, "luminous intensity")
+            stringify(this.E, "thermodynamic temperature"),
+            stringify(this.A, "amount of substance"),
+            stringify(this.I, "luminous intensity")
         ]
             .filter(function (x) {
                 return typeof x === "string";

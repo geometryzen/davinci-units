@@ -30,12 +30,12 @@ describe("Dimensions", function () {
             assert.strictEqual(x.T.denom, 7);
             assert.strictEqual(x.Q.numer, 7);
             assert.strictEqual(x.Q.denom, 11);
-            assert.strictEqual(x.temperature.numer, 11);
-            assert.strictEqual(x.temperature.denom, 13);
-            assert.strictEqual(x.amount.numer, 13);
-            assert.strictEqual(x.amount.denom, 17);
-            assert.strictEqual(x.intensity.numer, 17);
-            assert.strictEqual(x.intensity.denom, 19);
+            assert.strictEqual(x.E.numer, 11);
+            assert.strictEqual(x.E.denom, 13);
+            assert.strictEqual(x.A.numer, 13);
+            assert.strictEqual(x.A.denom, 17);
+            assert.strictEqual(x.I.numer, 17);
+            assert.strictEqual(x.I.denom, 19);
         });
     });
 
@@ -56,12 +56,12 @@ describe("Dimensions", function () {
         assert.strictEqual(d.T.denom, 1);
         assert.strictEqual(d.Q.numer, 4);
         assert.strictEqual(d.Q.denom, 1);
-        assert.strictEqual(d.temperature.numer, 5);
-        assert.strictEqual(d.temperature.denom, 1);
-        assert.strictEqual(d.amount.numer, 6);
-        assert.strictEqual(d.amount.denom, 1);
-        assert.strictEqual(d.intensity.numer, 7);
-        assert.strictEqual(d.intensity.denom, 1);
+        assert.strictEqual(d.E.numer, 5);
+        assert.strictEqual(d.E.denom, 1);
+        assert.strictEqual(d.A.numer, 6);
+        assert.strictEqual(d.A.denom, 1);
+        assert.strictEqual(d.I.numer, 7);
+        assert.strictEqual(d.I.denom, 1);
     });
 
     it("Construction(number)", function () {
@@ -74,12 +74,12 @@ describe("Dimensions", function () {
         assert.strictEqual(d.T.denom, 1);
         assert.strictEqual(d.Q.numer, 4);
         assert.strictEqual(d.Q.denom, 1);
-        assert.strictEqual(d.temperature.numer, 5);
-        assert.strictEqual(d.temperature.denom, 1);
-        assert.strictEqual(d.amount.numer, 6);
-        assert.strictEqual(d.amount.denom, 1);
-        assert.strictEqual(d.intensity.numer, 7);
-        assert.strictEqual(d.intensity.denom, 1);
+        assert.strictEqual(d.E.numer, 5);
+        assert.strictEqual(d.E.denom, 1);
+        assert.strictEqual(d.A.numer, 6);
+        assert.strictEqual(d.A.denom, 1);
+        assert.strictEqual(d.I.numer, 7);
+        assert.strictEqual(d.I.denom, 1);
     });
 
     it("mul", function () {
@@ -97,12 +97,12 @@ describe("Dimensions", function () {
         assert.strictEqual(N.L.denom, 1);
         assert.strictEqual(N.Q.numer, 1);
         assert.strictEqual(N.Q.denom, 1);
-        assert.strictEqual(N.temperature.numer, 1);
-        assert.strictEqual(N.temperature.denom, 1);
-        assert.strictEqual(N.amount.numer, 1);
-        assert.strictEqual(N.amount.denom, 1);
-        assert.strictEqual(N.intensity.numer, 1);
-        assert.strictEqual(N.intensity.denom, 1);
+        assert.strictEqual(N.E.numer, 1);
+        assert.strictEqual(N.E.denom, 1);
+        assert.strictEqual(N.A.numer, 1);
+        assert.strictEqual(N.A.denom, 1);
+        assert.strictEqual(N.I.numer, 1);
+        assert.strictEqual(N.I.denom, 1);
     });
 
     it("div", function () {
@@ -123,12 +123,12 @@ describe("Dimensions", function () {
         assert.strictEqual(N.T.denom, 1);
         assert.strictEqual(N.Q.numer, -1);
         assert.strictEqual(N.Q.denom, 1);
-        assert.strictEqual(N.temperature.numer, -1);
-        assert.strictEqual(N.temperature.denom, 1);
-        assert.strictEqual(N.amount.numer, -1);
-        assert.strictEqual(N.amount.denom, 1);
-        assert.strictEqual(N.intensity.numer, -1);
-        assert.strictEqual(N.intensity.denom, 1);
+        assert.strictEqual(N.E.numer, -1);
+        assert.strictEqual(N.E.denom, 1);
+        assert.strictEqual(N.A.numer, -1);
+        assert.strictEqual(N.A.denom, 1);
+        assert.strictEqual(N.I.numer, -1);
+        assert.strictEqual(N.I.denom, 1);
     });
 
     it("pow", function () {
@@ -142,12 +142,12 @@ describe("Dimensions", function () {
         assert.strictEqual(x.T.denom, 1);
         assert.strictEqual(x.Q.numer, 8);
         assert.strictEqual(x.Q.denom, 1);
-        assert.strictEqual(x.temperature.numer, 10);
-        assert.strictEqual(x.temperature.denom, 1);
-        assert.strictEqual(x.amount.numer, 12);
-        assert.strictEqual(x.amount.denom, 1);
-        assert.strictEqual(x.intensity.numer, 14);
-        assert.strictEqual(x.intensity.denom, 1);
+        assert.strictEqual(x.E.numer, 10);
+        assert.strictEqual(x.E.denom, 1);
+        assert.strictEqual(x.A.numer, 12);
+        assert.strictEqual(x.A.denom, 1);
+        assert.strictEqual(x.I.numer, 14);
+        assert.strictEqual(x.I.denom, 1);
         assert.strictEqual(base.M.numer, 1);
         assert.strictEqual(base.M.denom, 1);
         assert.strictEqual(base.L.numer, 2);
@@ -156,12 +156,12 @@ describe("Dimensions", function () {
         assert.strictEqual(base.T.denom, 1);
         assert.strictEqual(base.Q.numer, 4);
         assert.strictEqual(base.Q.denom, 1);
-        assert.strictEqual(base.temperature.numer, 5);
-        assert.strictEqual(base.temperature.denom, 1);
-        assert.strictEqual(base.amount.numer, 6);
-        assert.strictEqual(base.amount.denom, 1);
-        assert.strictEqual(base.intensity.numer, 7);
-        assert.strictEqual(base.intensity.denom, 1);
+        assert.strictEqual(base.E.numer, 5);
+        assert.strictEqual(base.E.denom, 1);
+        assert.strictEqual(base.A.numer, 6);
+        assert.strictEqual(base.A.denom, 1);
+        assert.strictEqual(base.I.numer, 7);
+        assert.strictEqual(base.I.denom, 1);
     });
 
     it("sqrt", function () {
@@ -175,12 +175,12 @@ describe("Dimensions", function () {
         assert.strictEqual(x.T.denom, 2);
         assert.strictEqual(x.Q.numer, 1);
         assert.strictEqual(x.Q.denom, 1);
-        assert.strictEqual(x.temperature.numer, 1);
-        assert.strictEqual(x.temperature.denom, 1);
-        assert.strictEqual(x.amount.numer, 1);
-        assert.strictEqual(x.amount.denom, 1);
-        assert.strictEqual(x.intensity.numer, 1);
-        assert.strictEqual(x.intensity.denom, 1);
+        assert.strictEqual(x.E.numer, 1);
+        assert.strictEqual(x.E.denom, 1);
+        assert.strictEqual(x.A.numer, 1);
+        assert.strictEqual(x.A.denom, 1);
+        assert.strictEqual(x.I.numer, 1);
+        assert.strictEqual(x.I.denom, 1);
         assert.strictEqual(quad.M.numer, 1);
         assert.strictEqual(quad.M.denom, 1);
         assert.strictEqual(quad.L.numer, 2);
@@ -189,12 +189,12 @@ describe("Dimensions", function () {
         assert.strictEqual(quad.T.denom, 1);
         assert.strictEqual(quad.Q.numer, 2);
         assert.strictEqual(quad.Q.denom, 1);
-        assert.strictEqual(quad.temperature.numer, 2);
-        assert.strictEqual(quad.temperature.denom, 1);
-        assert.strictEqual(quad.amount.numer, 2);
-        assert.strictEqual(quad.amount.denom, 1);
-        assert.strictEqual(quad.intensity.numer, 2);
-        assert.strictEqual(quad.intensity.denom, 1);
+        assert.strictEqual(quad.E.numer, 2);
+        assert.strictEqual(quad.E.denom, 1);
+        assert.strictEqual(quad.A.numer, 2);
+        assert.strictEqual(quad.A.denom, 1);
+        assert.strictEqual(quad.I.numer, 2);
+        assert.strictEqual(quad.I.denom, 1);
     });
 
     it("compatible", function () {
@@ -258,12 +258,12 @@ describe("Dimensions", function () {
         assert.strictEqual(dims.T.denom, 1);
         assert.strictEqual(dims.Q.numer, -4);
         assert.strictEqual(dims.Q.denom, 1);
-        assert.strictEqual(dims.temperature.numer, -5);
-        assert.strictEqual(dims.temperature.denom, 1);
-        assert.strictEqual(dims.amount.numer, -6);
-        assert.strictEqual(dims.amount.denom, 1);
-        assert.strictEqual(dims.intensity.numer, -7);
-        assert.strictEqual(dims.intensity.denom, 1);
+        assert.strictEqual(dims.E.numer, -5);
+        assert.strictEqual(dims.E.denom, 1);
+        assert.strictEqual(dims.A.numer, -6);
+        assert.strictEqual(dims.A.denom, 1);
+        assert.strictEqual(dims.I.numer, -7);
+        assert.strictEqual(dims.I.denom, 1);
     });
 
     it("toString()", function () {

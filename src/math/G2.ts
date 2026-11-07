@@ -1,4 +1,6 @@
 //
+import notImplemented from "../i18n/notImplemented";
+import notSupported from "../i18n/notSupported";
 import b2 from "./bezier2";
 import b3 from "./bezier3";
 import extE2 from "./extE2";
@@ -9,15 +11,13 @@ import GeometricOperators from "./GeometricOperators";
 import ImmutableMeasure from "./ImmutableMeasure";
 import lcoE2 from "./lcoE2";
 import mulE2 from "./mulE2";
-import notImplemented from "../i18n/notImplemented";
-import notSupported from "../i18n/notSupported";
 //
 import readOnly from "../i18n/readOnly";
 import rcoE2 from "./rcoE2";
 import scpE2 from "./scpE2";
 import { SpinorE2 } from "./SpinorE2";
 //
-import stringFromCoordinates from "./stringFromCoordinates";
+import { stringFromCoordinates } from "./stringFromCoordinates";
 //
 import TrigMethods from "./TrigMethods";
 import { Unit } from "./Unit";
@@ -94,7 +94,7 @@ function subE2(a0: number, a1: number, a2: number, a3: number, b0: number, b1: n
     b2 = +b2;
     b3 = +b3;
     index = index | 0;
-    var x = 0.0;
+    let x = 0.0;
     switch (~~index) {
         case 0:
             {
@@ -208,11 +208,6 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         throw new Error(readOnly("e1").message);
     }
 
-    /**
-     * @property _e2
-     * @type G2
-     * @private
-     */
     private static _e2 = new G2(0, 0, 1, 0);
 
     /**
@@ -226,11 +221,6 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         throw new Error(readOnly("e2").message);
     }
 
-    /**
-     * @property _I
-     * @type G2
-     * @private
-     */
     private static _I = new G2(0, 0, 0, 1);
 
     /**
@@ -244,21 +234,77 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         throw new Error(readOnly("I").message);
     }
 
-    public static kilogram = new G2(1, 0, 0, 0, Unit.KILOGRAM);
-    public static meter = new G2(1, 0, 0, 0, Unit.METER);
-    public static second = new G2(1, 0, 0, 0, Unit.SECOND);
-    public static coulomb = new G2(1, 0, 0, 0, Unit.COULOMB);
-    public static ampere = new G2(1, 0, 0, 0, Unit.AMPERE);
-    public static kelvin = new G2(1, 0, 0, 0, Unit.KELVIN);
-    public static mole = new G2(1, 0, 0, 0, Unit.MOLE);
-    public static candela = new G2(1, 0, 0, 0, Unit.CANDELA);
+    /**
+     * kilogram in S.I. units.
+     */
+    public static readonly MASS = new G2(1, 0, 0, 0, Unit.MASS);
+    /**
+     * @deprecated Use MASS instead.
+     */
+    public static readonly kilogram = G2.MASS;
+    /**
+     * meter in S.I. units.
+     */
+    public static readonly LENGTH = new G2(1, 0, 0, 0, Unit.LENGTH);
+    /**
+     * @deprecated Use LENGTH instead.
+     */
+    public static readonly meter = G2.LENGTH;
+    /**
+     * second in S.I. units.
+     */
+    public static readonly TIME = new G2(1, 0, 0, 0, Unit.TIME);
+    /**
+     * @deprecated Use TIME instead.
+     */
+    public static readonly second = G2.TIME;
+    /**
+     * coulomb in S.I. units.
+     */
+    public static readonly CHARGE = new G2(1, 0, 0, 0, Unit.CHARGE);
+    /**
+     * @deprecated Use CHARGE instead.
+     */
+    public static readonly coulomb = G2.CHARGE;
+    /**
+     * ampere in S.I. units.
+     */
+    public static readonly CURRENT = new G2(1, 0, 0, 0, Unit.CURRENT);
+    /**
+     * @deprecated Use CURRENT instead.
+     */
+    public static readonly ampere = G2.CURRENT;
+    /**
+     * kelvin in S.I. units.
+     */
+    public static readonly TEMPERATURE = new G2(1, 0, 0, 0, Unit.TEMPERATURE);
+    /**
+     * @deprecated Use TEMPERATURE instead.
+     */
+    public static readonly kelvin = G2.TEMPERATURE;
+    /**
+     * mole in S.I. units.
+     */
+    public static readonly AMOUNT = new G2(1, 0, 0, 0, Unit.AMOUNT);
+    /**
+     * @deprecated Use AMOUNT instead.
+     */
+    public static readonly mole = G2.AMOUNT;
+    /**
+     * candela in S.I. units.
+     */
+    public static readonly INTENSITY = new G2(1, 0, 0, 0, Unit.INTENSITY);
+    /**
+     * @deprecated Use INTENSITY instead.
+     */
+    public static readonly candela = G2.INTENSITY;
 
     /**
      * @class G2
-     * @param [α = 0] {number} The scalar part of the multivector.
-     * @param [x = 0] {number} The vector component of the multivector in the x-direction.
-     * @param [y = 0] {number} The vector component of the multivector in the y-direction.
-     * @param [β = 0] {number} The pseudoscalar part of the multivector.
+     * @param [α = 0] The scalar part of the multivector.
+     * @param [x = 0] The vector component of the multivector in the x-direction.
+     * @param [y = 0] The vector component of the multivector in the y-direction.
+     * @param [β = 0] The pseudoscalar part of the multivector.
      * @param [uom] The optional unit of measure.
      */
     constructor(α = 0, x = 0, y = 0, β = 0, uom?: Unit) {
@@ -370,7 +416,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {G2}
      */
     add(rhs: G2): G2 {
-        var xs = G2.add(this.coords, rhs.coords);
+        const xs = G2.add(this.coords, rhs.coords);
         return new G2(xs[0], xs[1], xs[2], xs[3], Unit.compatible(this.uom, rhs.uom));
     }
 
@@ -388,7 +434,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         return new G2(this.a + α.multiplier, this.x, this.y, this.b, Unit.compatible(this.uom, α));
     }
 
-    __add__(other: any): G2 {
+    __add__(other: G2): G2 {
         if (other instanceof G2) {
             return this.add(other);
         } else if (typeof other === "number") {
@@ -398,7 +444,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         }
     }
 
-    __radd__(other: any): G2 {
+    __radd__(other: G2): G2 {
         if (other instanceof G2) {
             return (<G2>other).add(this);
         } else if (typeof other === "number") {
@@ -461,7 +507,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @param point
      */
     distanceTo(point: GeometricE2): number {
-        throw new Error(notImplemented("distanceTo").message);
+        throw new Error(notImplemented(`distanceTo(point=${point})`).message);
     }
 
     /**
@@ -469,22 +515,22 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {boolean}
      */
     equals(point: GeometricE2): boolean {
-        throw new Error(notImplemented("equals").message);
+        throw new Error(notImplemented(`equals(${point})`).message);
     }
 
     private static sub(a: number[], b: number[]): number[] {
-        var a0 = a[0];
-        var a1 = a[1];
-        var a2 = a[2];
-        var a3 = a[3];
-        var b0 = b[0];
-        var b1 = b[1];
-        var b2 = b[2];
-        var b3 = b[3];
-        var x0 = subE2(a0, a1, a2, a3, b0, b1, b2, b3, 0);
-        var x1 = subE2(a0, a1, a2, a3, b0, b1, b2, b3, 1);
-        var x2 = subE2(a0, a1, a2, a3, b0, b1, b2, b3, 2);
-        var x3 = subE2(a0, a1, a2, a3, b0, b1, b2, b3, 3);
+        const a0 = a[0];
+        const a1 = a[1];
+        const a2 = a[2];
+        const a3 = a[3];
+        const b0 = b[0];
+        const b1 = b[1];
+        const b2 = b[2];
+        const b3 = b[3];
+        const x0 = subE2(a0, a1, a2, a3, b0, b1, b2, b3, 0);
+        const x1 = subE2(a0, a1, a2, a3, b0, b1, b2, b3, 1);
+        const x2 = subE2(a0, a1, a2, a3, b0, b1, b2, b3, 2);
+        const x3 = subE2(a0, a1, a2, a3, b0, b1, b2, b3, 3);
         return [x0, x1, x2, x3];
     }
 
@@ -492,7 +538,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      *
      */
     sub(rhs: G2): G2 {
-        var xs = G2.sub(this.coords, rhs.coords);
+        const xs = G2.sub(this.coords, rhs.coords);
         return new G2(xs[0], xs[1], xs[2], xs[3], Unit.compatible(this.uom, rhs.uom));
     }
 
@@ -537,7 +583,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         return new G2(c0, c1, c2, c3, Unit.mul(this.uom, rhs.uom));
     }
 
-    __mul__(other: any): G2 {
+    __mul__(other: G2): G2 {
         if (other instanceof G2) {
             return this.mul(other);
         } else if (typeof other === "number") {
@@ -547,12 +593,12 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         }
     }
 
-    __rmul__(other: any): G2 {
+    __rmul__(other: G2): G2 {
         if (other instanceof G2) {
-            var lhs: G2 = other;
+            const lhs: G2 = other;
             return lhs.mul(this);
         } else if (typeof other === "number") {
-            var w: number = other;
+            const w: number = other;
             return new G2(w, 0, 0, 0, undefined).mul(this);
         } else {
             return void 0;
@@ -571,11 +617,11 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         return new G2(this.a / α, this.x / α, this.y / α, this.b / α, this.uom);
     }
 
-    __div__(other: any): G2 {
+    __div__(other: G2): G2 {
         if (other instanceof G2) {
             return this.div(other);
         } else if (typeof other === "number") {
-            var w: number = other;
+            const w: number = other;
             return this.div(new G2(w, 0, 0, 0, undefined));
         } else {
             return void 0;
@@ -632,28 +678,28 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {G2}
      */
     ext(rhs: G2): G2 {
-        var xs = G2.ext(this.coords, rhs.coords);
+        const xs = G2.ext(this.coords, rhs.coords);
         return new G2(xs[0], xs[1], xs[2], xs[3], Unit.mul(this.uom, rhs.uom));
     }
 
-    __wedge__(other: any): G2 {
+    __wedge__(other: G2): G2 {
         if (other instanceof G2) {
-            var rhs: G2 = other;
+            const rhs: G2 = other;
             return this.ext(rhs);
         } else if (typeof other === "number") {
-            var w: number = other;
+            const w: number = other;
             return this.ext(new G2(w, 0, 0, 0, undefined));
         } else {
             return void 0;
         }
     }
 
-    __rwedge__(other: any): G2 {
+    __rwedge__(other: G2): G2 {
         if (other instanceof G2) {
-            var lhs: G2 = other;
+            const lhs: G2 = other;
             return lhs.ext(this);
         } else if (typeof other === "number") {
-            var w: number = other;
+            const w: number = other;
             return new G2(w, 0, 0, 0, undefined).ext(this);
         } else {
             return void 0;
@@ -661,18 +707,18 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
     }
 
     private static lshift(a: number[], b: number[]): number[] {
-        var a0 = a[0];
-        var a1 = a[1];
-        var a2 = a[2];
-        var a3 = a[3];
-        var b0 = b[0];
-        var b1 = b[1];
-        var b2 = b[2];
-        var b3 = b[3];
-        var x0 = lcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 0);
-        var x1 = lcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 1);
-        var x2 = lcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 2);
-        var x3 = lcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 3);
+        const a0 = a[0];
+        const a1 = a[1];
+        const a2 = a[2];
+        const a3 = a[3];
+        const b0 = b[0];
+        const b1 = b[1];
+        const b2 = b[2];
+        const b3 = b[3];
+        const x0 = lcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 0);
+        const x1 = lcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 1);
+        const x2 = lcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 2);
+        const x3 = lcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 3);
         return [x0, x1, x2, x3];
     }
 
@@ -682,7 +728,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {G2}
      */
     lerp(target: G2, α: number): G2 {
-        throw new Error(notImplemented("lerp").message);
+        throw new Error(notImplemented(`lerp(target=${target}, α=${α})`).message);
     }
 
     /**
@@ -690,28 +736,28 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {G2}
      */
     lco(rhs: G2): G2 {
-        var xs = G2.lshift(this.coords, rhs.coords);
+        const xs = G2.lshift(this.coords, rhs.coords);
         return new G2(xs[0], xs[1], xs[2], xs[3], Unit.mul(this.uom, rhs.uom));
     }
 
-    __lshift__(other: any): G2 {
+    __lshift__(other: G2): G2 {
         if (other instanceof G2) {
-            var rhs: G2 = other;
+            const rhs: G2 = other;
             return this.lco(rhs);
         } else if (typeof other === "number") {
-            var w: number = other;
+            const w: number = other;
             return this.lco(new G2(w, 0, 0, 0, undefined));
         } else {
             return void 0;
         }
     }
 
-    __rlshift__(other: any): G2 {
+    __rlshift__(other: G2): G2 {
         if (other instanceof G2) {
-            var lhs: G2 = other;
+            const lhs: G2 = other;
             return lhs.lco(this);
         } else if (typeof other === "number") {
-            var w: number = other;
+            const w: number = other;
             return new G2(w, 0, 0, 0, undefined).lco(this);
         } else {
             return void 0;
@@ -719,18 +765,18 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
     }
 
     private static rshift(a: number[], b: number[]): number[] {
-        var a0 = a[0];
-        var a1 = a[1];
-        var a2 = a[2];
-        var a3 = a[3];
-        var b0 = b[0];
-        var b1 = b[1];
-        var b2 = b[2];
-        var b3 = b[3];
-        var x0 = rcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 0);
-        var x1 = rcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 1);
-        var x2 = rcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 2);
-        var x3 = rcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 3);
+        const a0 = a[0];
+        const a1 = a[1];
+        const a2 = a[2];
+        const a3 = a[3];
+        const b0 = b[0];
+        const b1 = b[1];
+        const b2 = b[2];
+        const b3 = b[3];
+        const x0 = rcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 0);
+        const x1 = rcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 1);
+        const x2 = rcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 2);
+        const x3 = rcoE2(a0, a1, a2, a3, b0, b1, b2, b3, 3);
         return [x0, x1, x2, x3];
     }
 
@@ -739,11 +785,11 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {G2}
      */
     rco(rhs: G2): G2 {
-        var xs = G2.rshift(this.coords, rhs.coords);
+        const xs = G2.rshift(this.coords, rhs.coords);
         return new G2(xs[0], xs[1], xs[2], xs[3], Unit.mul(this.uom, rhs.uom));
     }
 
-    __rshift__(other: any): G2 {
+    __rshift__(other: G2): G2 {
         if (other instanceof G2) {
             return this.rco(other);
         } else if (typeof other === "number") {
@@ -753,7 +799,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         }
     }
 
-    __rrshift__(other: any): G2 {
+    __rrshift__(other: G2): G2 {
         if (other instanceof G2) {
             return (<G2>other).rco(this);
         } else if (typeof other === "number") {
@@ -763,7 +809,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         }
     }
 
-    __vbar__(other: any): G2 {
+    __vbar__(other: G2): G2 {
         if (other instanceof G2) {
             return this.scp(other);
         } else if (typeof other === "number") {
@@ -773,7 +819,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         }
     }
 
-    __rvbar__(other: any): G2 {
+    __rvbar__(other: G2): G2 {
         if (other instanceof G2) {
             return (<G2>other).scp(this);
         } else if (typeof other === "number") {
@@ -788,7 +834,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {G2}
      */
     pow(exponent: G2): G2 {
-        throw new Error(notImplemented("pow").message);
+        throw new Error(notImplemented(`pow(${exponent})`).message);
     }
 
     __bang__(): G2 {
@@ -975,7 +1021,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {G2}
      */
     stress(σ: VectorE2): G2 {
-        throw new Error(notSupported("stress").message);
+        throw new Error(notSupported(`stress(σ=${σ})`).message);
     }
 
     /**
@@ -1034,7 +1080,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
      * @return {G2}
      */
     slerp(target: G2, α: number): G2 {
-        throw new Error(notImplemented("slerp").message);
+        throw new Error(notImplemented(`slerp(target=${target}, α=${α})`).message);
     }
 
     /**
@@ -1063,12 +1109,12 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         return this.a === 0 && this.x === 0 && this.y === 0 && this.b === 0;
     }
 
-    private toStringCustom(coordToString: (x: number) => string, labels: string[]): string {
-        const quantityString: string = stringFromCoordinates(this.coords, coordToString, labels);
+    private toStringCustom(coordToString: (x: number) => string, basisLabels: string[]): string {
+        const quantityString: string = stringFromCoordinates(this.coords, coordToString, basisLabels);
         if (this.uom) {
             // Use the compact representation of the Unit because the units follow the multivector
             // quantity and we want to suppress the multiplier which is always 1.
-            const unitString = this.uom.toString(10, true).trim();
+            const unitString = this.uom.toString(["kg", "m", "s", "C", "K", "mol", "cd"], 10, true).trim();
             if (unitString) {
                 return quantityString + " " + unitString;
             } else {
@@ -1124,7 +1170,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
     }
 
     toStringIJK(): string {
-        var coordToString = function (coord: number): string {
+        const coordToString = function (coord: number): string {
             return coord.toString();
         };
         return this.toStringCustom(coordToString, ["1", "i", "j", "I"]);
@@ -1134,8 +1180,8 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         if (rhs instanceof G2) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in equality expression: ${this.uom.dimensions} === ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in equality expression: ${this.uom.dimensions} === ${rhs.uom.dimensions}`, { cause });
             }
             return this.a === rhs.a && this.x === rhs.x && this.y === rhs.y && this.b === rhs.b;
         } else {
@@ -1146,8 +1192,8 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         if (rhs instanceof G2) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in inequality expression: ${this.uom.dimensions} !== ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in inequality expression: ${this.uom.dimensions} !== ${rhs.uom.dimensions}`, { cause });
             }
             return this.a !== rhs.a || this.x !== rhs.x || this.y !== rhs.y || this.b !== this.b;
         } else {
@@ -1159,8 +1205,8 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         if (rhs instanceof G2) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} >= ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} >= ${rhs.uom.dimensions}`, { cause });
             }
             if (!this.isScalar()) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
@@ -1178,8 +1224,8 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         if (rhs instanceof G2) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} > ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} > ${rhs.uom.dimensions}`, { cause });
             }
             if (!this.isScalar()) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
@@ -1197,8 +1243,8 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         if (rhs instanceof G2) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} <= ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} <= ${rhs.uom.dimensions}`, { cause });
             }
             if (!this.isScalar()) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
@@ -1216,8 +1262,8 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         if (rhs instanceof G2) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} < ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} < ${rhs.uom.dimensions}`, { cause });
             }
             if (!this.isScalar()) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);

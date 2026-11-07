@@ -37,12 +37,45 @@ export default class G1 implements ImmutableMeasure<G1>, GeometricE1, GeometricN
     private _x: number;
     public uom: Unit;
 
+    /**
+     * kilogram in S.I. units.
+     */
+    public static MASS = new G1(1, 0, Unit.MASS);
+    /**
+     * meter in S.I. units.
+     */
+    public static LENGTH = new G1(1, 0, Unit.LENGTH);
+    /**
+     * second in S.I. units.
+     */
+    public static TIME = new G1(1, 0, Unit.TIME);
+    /**
+     * coulomb in S.I. units.
+     */
+    public static CHARGE = new G1(1, 0, Unit.CHARGE);
+    /**
+     * ampere in S.I. units.
+     */
+    public static CURRENT = new G1(1, 0, Unit.CURRENT);
+    /**
+     * kelvin in S.I. units.
+     */
+    public static TEMPERATURE = new G1(1, 0, Unit.TEMPERATURE);
+    /**
+     * mole in S.I. units
+     */
+    public static AMOUNT = new G1(1, 0, Unit.AMOUNT);
+    /**
+     * candela in S.I. units
+     */
+    public static INTENSITY = new G1(1, 0, Unit.INTENSITY);
+
     constructor(α: number, β: number, uom?: Unit) {
         this.w = assertArgNumber("α", α);
         this.x = assertArgNumber("β", β);
         this.uom = assertArgUnitOrUndefined("uom", uom);
         if (this.uom && this.uom.multiplier !== 1) {
-            var multiplier: number = this.uom.multiplier;
+            const multiplier: number = this.uom.multiplier;
             this.w *= multiplier;
             this.x *= multiplier;
             this.uom = new Unit(1, uom.dimensions, uom.labels);
@@ -86,7 +119,7 @@ export default class G1 implements ImmutableMeasure<G1>, GeometricE1, GeometricN
     }
 
     addScalar(α: Unit): G1 {
-        throw new Error("addScalar");
+        throw new Error(`addScalar(α=${α})`);
     }
 
     adj(): G1 {
@@ -108,12 +141,12 @@ export default class G1 implements ImmutableMeasure<G1>, GeometricE1, GeometricN
 
     mul(rhs: G1): G1 {
         // assertArgEuclidean1('rhs', rhs)
-        throw new Error("mul");
+        throw new Error(`mul(${rhs})`);
     }
 
     div(rhs: G1): G1 {
         // assertArgEuclidean1('rhs', rhs)
-        throw new Error("div");
+        throw new Error(`div(${rhs})`);
     }
 
     divByScalar(α: number) {
@@ -121,11 +154,11 @@ export default class G1 implements ImmutableMeasure<G1>, GeometricE1, GeometricN
     }
 
     scp(rhs: G1): G1 {
-        throw new Error("wedge");
+        throw new Error(`scp(${rhs})`);
     }
 
     ext(rhs: G1): G1 {
-        throw new Error("wedge");
+        throw new Error(`ext(${rhs})`);
     }
 
     inv(): G1 {
@@ -146,7 +179,7 @@ export default class G1 implements ImmutableMeasure<G1>, GeometricE1, GeometricN
 
     lco(rhs: G1): G1 {
         // assertArgEuclidean1('rhs', rhs)
-        throw new Error("lshift");
+        throw new Error(`lco(${rhs})`);
     }
 
     lerp(target: G1, α: number): G1 {

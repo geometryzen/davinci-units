@@ -21,7 +21,7 @@ import rcoG3 from "./rcoG3";
 import scpG3 from "./scpG3";
 import { SpinorE3 } from "./SpinorE3";
 import squaredNormG3 from "./squaredNormG3";
-import stringFromCoordinates from "./stringFromCoordinates";
+import { stringFromCoordinates } from "./stringFromCoordinates";
 import TrigMethods from "./TrigMethods";
 import { Unit } from "./Unit";
 import { VectorE3 } from "./VectorE3";
@@ -68,20 +68,76 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
      */
     static BASIS_LABELS: string[][] = BASIS_LABELS_G3_STANDARD;
 
-    public static zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
-    public static one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
-    public static e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0);
-    public static e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0);
-    public static e3 = new G3(0, 0, 0, 1, 0, 0, 0, 0);
+    public static readonly zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
+    public static readonly one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
+    public static readonly e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0);
+    public static readonly e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0);
+    public static readonly e3 = new G3(0, 0, 0, 1, 0, 0, 0, 0);
 
-    public static kilogram = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.KILOGRAM);
-    public static meter = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.METER);
-    public static second = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.SECOND);
-    public static coulomb = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.COULOMB);
-    public static ampere = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.AMPERE);
-    public static kelvin = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.KELVIN);
-    public static mole = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.MOLE);
-    public static candela = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.CANDELA);
+    /**
+     * kilogram in S.I. units.
+     */
+    public static readonly MASS = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.MASS);
+    /**
+     * @deprecated Use MASS instead.
+     */
+    public static readonly kilogram = G3.MASS;
+    /**
+     * meter in S.I. units.
+     */
+    public static readonly LENGTH = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.LENGTH);
+    /**
+     * @deprecated Use LENGTH instead.
+     */
+    public static readonly meter = G3.LENGTH;
+    /**
+     * second in S.I. units.
+     */
+    public static readonly TIME = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.TIME);
+    /**
+     * @deprecated Use TIME instead.
+     */
+    public static readonly second = G3.TIME;
+    /**
+     * coulomb in S.I. units.
+     */
+    public static readonly CHARGE = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.CHARGE);
+    /**
+     * @deprecated Use CHARGE instead.
+     */
+    public static readonly coulomb = G3.CHARGE;
+    /**
+     * ampere in S.I. units.
+     */
+    public static readonly CURRENT = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.CURRENT);
+    /**
+     * @deprecated Use CURRENT instead.
+     */
+    public static readonly ampere = G3.CURRENT;
+    /**
+     * kelvin in S.I. units.
+     */
+    public static readonly TEMPERATURE = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.TEMPERATURE);
+    /**
+     * @deprecated Use TEMPERATUE instead.
+     */
+    public static readonly kelvin = G3.TEMPERATURE;
+    /**
+     * mole in S.I. units
+     */
+    public static readonly AMOUNT = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.AMOUNT);
+    /**
+     * @deprecated Use AMOUNT instead.
+     */
+    public static readonly mole = G3.AMOUNT;
+    /**
+     * candela in S.I. units
+     */
+    public static readonly INTENSITY = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.INTENSITY);
+    /**
+     * @deprecated Use INTENSITY instead.
+     */
+    public static readonly candela = G3.INTENSITY;
 
     /**
      * The coordinate values are stored in a number array.
@@ -378,19 +434,23 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         return out;
     }
 
-    __mul__(rhs: any): any {
+    __mul__(rhs: G3 | number): G3 {
         if (rhs instanceof G3) {
             return this.mul(rhs);
         } else if (typeof rhs === "number") {
             return this.scale(rhs);
+        } else {
+            return void 0;
         }
     }
 
-    __rmul__(lhs: any): any {
+    __rmul__(lhs: G3 | number): G3 {
         if (lhs instanceof G3) {
             return lhs.mul(this);
         } else if (typeof lhs === "number") {
             return this.scale(lhs);
+        } else {
+            return void 0;
         }
     }
 
@@ -406,7 +466,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         return new G3(this.a / α, this.x / α, this.y / α, this.z / α, this.xy / α, this.yz / α, this.zx / α, this.b / α, this.uom);
     }
 
-    __div__(rhs: any): G3 {
+    __div__(rhs: G3 | number): G3 {
         if (rhs instanceof G3) {
             return this.div(rhs);
         } else if (typeof rhs === "number") {
@@ -416,7 +476,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         }
     }
 
-    __rdiv__(lhs: any): G3 {
+    __rdiv__(lhs: G3 | number): G3 {
         if (lhs instanceof G3) {
             return lhs.div(this);
         } else if (typeof lhs === "number") {
@@ -431,7 +491,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
     }
 
     scp(rhs: G3): G3 {
-        var out = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, rhs.uom));
+        const out = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, rhs.uom));
         scpG3(this, rhs, G3.mutator(out));
         return out;
     }
@@ -442,7 +502,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         return out;
     }
 
-    __vbar__(rhs: any): G3 {
+    __vbar__(rhs: G3 | number): G3 {
         if (rhs instanceof G3) {
             return this.scp(rhs);
         } else if (typeof rhs === "number") {
@@ -452,7 +512,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         }
     }
 
-    __rvbar__(lhs: any): G3 {
+    __rvbar__(lhs: G3 | number): G3 {
         if (lhs instanceof G3) {
             return lhs.scp(this);
         } else if (typeof lhs === "number") {
@@ -462,7 +522,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         }
     }
 
-    __wedge__(rhs: any): G3 {
+    __wedge__(rhs: G3 | number): G3 {
         if (rhs instanceof G3) {
             return this.ext(rhs);
         } else if (typeof rhs === "number") {
@@ -472,7 +532,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         }
     }
 
-    __rwedge__(lhs: any): G3 {
+    __rwedge__(lhs: G3 | number): G3 {
         if (lhs instanceof G3) {
             return lhs.ext(this);
         } else if (typeof lhs === "number") {
@@ -488,7 +548,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         return out;
     }
 
-    __lshift__(rhs: any): G3 {
+    __lshift__(rhs: G3 | number): G3 {
         if (rhs instanceof G3) {
             return this.lco(rhs);
         } else if (typeof rhs === "number") {
@@ -498,7 +558,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         }
     }
 
-    __rlshift__(lhs: any): G3 {
+    __rlshift__(lhs: G3 | number): G3 {
         if (lhs instanceof G3) {
             return lhs.lco(this);
         } else if (typeof lhs === "number") {
@@ -514,7 +574,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         return out;
     }
 
-    __rshift__(rhs: any): G3 {
+    __rshift__(rhs: G3 | number): G3 {
         if (rhs instanceof G3) {
             return this.rco(rhs);
         } else if (typeof rhs === "number") {
@@ -524,7 +584,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         }
     }
 
-    __rrshift__(lhs: any): G3 {
+    __rrshift__(lhs: G3 | number): G3 {
         if (lhs instanceof G3) {
             return lhs.rco(this);
         } else if (typeof lhs === "number") {
@@ -535,7 +595,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
     }
 
     pow(exponent: G3): G3 {
-        throw new Error("pow");
+        throw new Error(`pow(${exponent})`);
     }
 
     __bang__(): G3 {
@@ -593,24 +653,15 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
     }
 
     cross(vector: G3) {
-        var x: number;
-        var x2: number;
-        var y: number;
-        var y1: number;
-        var y2: number;
-        var z: number;
-        var z1: number;
-        var z2: number;
-
         const x1 = this.x;
-        y1 = this.y;
-        z1 = this.z;
-        x2 = vector.x;
-        y2 = vector.y;
-        z2 = vector.z;
-        x = y1 * z2 - z1 * y2;
-        y = z1 * x2 - x1 * z2;
-        z = x1 * y2 - y1 * x2;
+        const y1 = this.y;
+        const z1 = this.z;
+        const x2 = vector.x;
+        const y2 = vector.y;
+        const z2 = vector.z;
+        const x = y1 * z2 - z1 * y2;
+        const y = z1 * x2 - x1 * z2;
+        const z = x1 * y2 - y1 * x2;
         return new G3(0, x, y, z, 0, 0, 0, 0, Unit.mul(this.uom, vector.uom));
     }
 
@@ -627,7 +678,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
     }
 
     lerp(target: G3, α: number): G3 {
-        throw new Error(notImplemented("lerp").message);
+        throw new Error(notImplemented(`lerp(target=${target}, α=${α})`).message);
     }
 
     cos() {
@@ -778,7 +829,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
      * @param σ
      */
     stress(σ: VectorE3): G3 {
-        throw new Error(notSupported("stress").message);
+        throw new Error(notSupported(`stress(σ=${σ})`).message);
     }
 
     /**
@@ -787,7 +838,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
      */
     reflect(n: VectorE3) {
         // TODO: Optimize to minimize object creation and increase performance.
-        let m = G3.fromVector(n);
+        const m = G3.fromVector(n);
         return m.mul(this).mul(m).scale(-1);
     }
 
@@ -830,7 +881,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
     }
 
     slerp(target: G3, α: number): G3 {
-        throw new Error(notImplemented("slerp").message);
+        throw new Error(notImplemented(`slerp(target=${target}, α=${α})`).message);
     }
 
     sqrt() {
@@ -843,13 +894,14 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
 
     /**
      * Intentionally undocumented.
+     * @param dimensionLabels e.g. ["kg", "m", "s", "C", "K", "mol", "cd"]
      */
-    toStringCustom(coordToString: (x: number) => string, labels: (string | string[])[]): string {
-        const quantityString: string = stringFromCoordinates(this.coords, coordToString, labels);
+    toStringCustom(coordToString: (x: number) => string, dimensionLabels: [string, string, string, string, string, string, string], basisLabels: (string | string[])[]): string {
+        const quantityString: string = stringFromCoordinates(this.coords, coordToString, basisLabels);
         if (this.uom) {
             // Use the compact representation of the Unit because the units follow the multivector
             // quantity and we want to suppress the multiplier which is always 1.
-            const unitString = this.uom.toString(10, true).trim();
+            const unitString = this.uom.toString(dimensionLabels, 10, true).trim();
             if (unitString) {
                 return quantityString + " " + unitString;
             } else {
@@ -864,36 +916,57 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         const coordToString = function (coord: number): string {
             return coord.toExponential(fractionDigits);
         };
-        return this.toStringCustom(coordToString, G3.BASIS_LABELS);
+        return this.toStringCustom(coordToString, ["kg", "m", "s", "C", "K", "mol", "cd"], G3.BASIS_LABELS);
     }
 
     toFixed(fractionDigits?: number): string {
         const coordToString = function (coord: number): string {
             return coord.toFixed(fractionDigits);
         };
-        return this.toStringCustom(coordToString, G3.BASIS_LABELS);
+        return this.toStringCustom(coordToString, ["kg", "m", "s", "C", "K", "mol", "cd"], G3.BASIS_LABELS);
     }
 
     toPrecision(precision?: number): string {
         const coordToString = function (coord: number): string {
             return coord.toPrecision(precision);
         };
-        return this.toStringCustom(coordToString, G3.BASIS_LABELS);
+        return this.toStringCustom(coordToString, ["kg", "m", "s", "C", "K", "mol", "cd"], G3.BASIS_LABELS);
     }
 
     toString(radix?: number): string {
+        // We have to scale this number appropriately
+        const seven: [[G3, string], [G3, string], [G3, string], [G3, string], [G3, string], [G3, string], [G3, string]] = [
+            [G3.MASS, "kg"],
+            [G3.LENGTH, "m"],
+            [G3.TIME, "s"],
+            [G3.CHARGE, "C"],
+            [G3.TEMPERATURE, "K"],
+            [G3.AMOUNT, "mol"],
+            [G3.INTENSITY, "cd"]
+        ];
+        const dimensionLabels = seven.map((pair) => pair[1]) as [string, string, string, string, string, string, string];
+        // We need to scale this quantity according to the dimensions and then call the toStringCustom
+        /*
+        const dims = this.uom.dimensions
+        const M = dims.M
+        const L = dims.L
+        const T = dims.T
+        const Q = dims.Q
+        L.numer
+        L.denom
+        */
         const coordToString = function (coord: number): string {
             return coord.toString(radix);
         };
-        return this.toStringCustom(coordToString, G3.BASIS_LABELS);
+        return this.toStringCustom(coordToString, dimensionLabels, G3.BASIS_LABELS);
     }
 
     __eq__(rhs: G3): boolean {
         if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in equality expression: ${this.uom.dimensions} === ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in equality expression: ${this.uom.dimensions} === ${rhs.uom.dimensions}`, { cause });
             }
             return this.a === rhs.a && this.x === rhs.x && this.y === rhs.y && this.z === rhs.z && this.xy === rhs.xy && this.yz === rhs.yz && this.zx === rhs.zx && this.b === rhs.b;
         } else {
@@ -905,8 +978,8 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in inequality expression: ${this.uom.dimensions} !== ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in inequality expression: ${this.uom.dimensions} !== ${rhs.uom.dimensions}`, { cause });
             }
             return this.a !== rhs.a || this.x !== rhs.x || this.y !== rhs.y || this.z !== rhs.z || this.xy !== rhs.xy || this.yz !== rhs.yz || this.zx !== rhs.zx || this.b !== this.b;
         } else {
@@ -918,8 +991,8 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} >= ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} >= ${rhs.uom.dimensions}`, { cause });
             }
             if (!this.isScalar()) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
@@ -937,8 +1010,8 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} > ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} > ${rhs.uom.dimensions}`, { cause });
             }
             if (!this.isScalar()) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
@@ -956,8 +1029,8 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} <= ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} <= ${rhs.uom.dimensions}`, { cause });
             }
             if (!this.isScalar()) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
@@ -975,8 +1048,8 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
-            } catch (e) {
-                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} < ${rhs.uom.dimensions}`);
+            } catch (cause) {
+                throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} < ${rhs.uom.dimensions}`, { cause });
             }
             if (!this.isScalar()) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);

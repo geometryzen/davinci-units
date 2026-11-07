@@ -4,7 +4,7 @@ import { Dimensions } from "./Dimensions";
 import { QQ } from "./QQ";
 
 // const NAMES_SI = ['kilogram', 'meter', 'second', 'coulomb', 'kelvin', 'mole', 'candela'];
-const SYMBOLS_SI = ["kg", "m", "s", "C", "K", "mol", "cd"];
+const SYMBOLS_SI: [string, string, string, string, string, string, string] = ["kg", "m", "s", "C", "K", "mol", "cd"];
 
 const patterns = [
     [-1, 1, -3, 1, 2, 1, 2, 1, 0, 1, 0, 1, 0, 1], // F/m
@@ -74,7 +74,7 @@ const decodes = [
     ["Wb"]
 ];
 
-const dumbString = function (multiplier: number, formatted: string, dimensions: Dimensions, labels: string[], compact: boolean) {
+const dumbString = function (multiplier: number, formatted: string, dimensions: Dimensions, dimensionLabels: [string, string, string, string, string, string, string], compact: boolean) {
     const stringify = function (rational: QQ, label: string): string {
         if (rational.numer === 0) {
             return null;
@@ -95,13 +95,13 @@ const dumbString = function (multiplier: number, formatted: string, dimensions: 
     const operatorStr = multiplier === 1 || dimensions.isOne() ? (compact ? "" : " ") : " ";
     const scaleString = multiplier === 1 ? (compact ? "" : formatted) : formatted;
     const unitsString = [
-        stringify(dimensions.M, labels[0]),
-        stringify(dimensions.L, labels[1]),
-        stringify(dimensions.T, labels[2]),
-        stringify(dimensions.Q, labels[3]),
-        stringify(dimensions.temperature, labels[4]),
-        stringify(dimensions.amount, labels[5]),
-        stringify(dimensions.intensity, labels[6])
+        stringify(dimensions.M, dimensionLabels[0]),
+        stringify(dimensions.L, dimensionLabels[1]),
+        stringify(dimensions.T, dimensionLabels[2]),
+        stringify(dimensions.Q, dimensionLabels[3]),
+        stringify(dimensions.E, dimensionLabels[4]),
+        stringify(dimensions.A, dimensionLabels[5]),
+        stringify(dimensions.I, dimensionLabels[6])
     ]
         .filter(function (x) {
             return typeof x === "string";
@@ -110,14 +110,14 @@ const dumbString = function (multiplier: number, formatted: string, dimensions: 
     return "" + scaleString + operatorStr + unitsString;
 };
 
-const unitString = function (multiplier: number, formatted: string, dimensions: Dimensions, labels: string[], compact: boolean): string {
+const unitString = function (multiplier: number, formatted: string, dimensions: Dimensions, dimensionLabels: [string, string, string, string, string, string, string], compact: boolean): string {
     const M = dimensions.M;
     const L = dimensions.L;
     const T = dimensions.T;
     const Q = dimensions.Q;
-    const temperature = dimensions.temperature;
-    const amount = dimensions.amount;
-    const intensity = dimensions.intensity;
+    const temperature = dimensions.E;
+    const amount = dimensions.A;
+    const intensity = dimensions.I;
     for (let i = 0, len = patterns.length; i < len; i++) {
         const pattern = patterns[i];
         if (
@@ -147,7 +147,7 @@ const unitString = function (multiplier: number, formatted: string, dimensions: 
             }
         }
     }
-    return dumbString(multiplier, formatted, dimensions, labels, compact);
+    return dumbString(multiplier, formatted, dimensions, dimensionLabels, compact);
 };
 
 function add(lhs: Unit, rhs: Unit): Unit {
@@ -189,42 +189,42 @@ export class Unit {
     /**
      *
      */
-    public static KILOGRAM = new Unit(1.0, Dimensions.MASS, SYMBOLS_SI);
+    public static MASS = new Unit(1.0, Dimensions.MASS, SYMBOLS_SI);
 
     /**
      *
      */
-    public static METER = new Unit(1.0, Dimensions.LENGTH, SYMBOLS_SI);
+    public static LENGTH = new Unit(1.0, Dimensions.LENGTH, SYMBOLS_SI);
 
     /**
      *
      */
-    public static SECOND = new Unit(1.0, Dimensions.TIME, SYMBOLS_SI);
+    public static TIME = new Unit(1.0, Dimensions.TIME, SYMBOLS_SI);
 
     /**
      *
      */
-    public static COULOMB = new Unit(1.0, Dimensions.CHARGE, SYMBOLS_SI);
+    public static CHARGE = new Unit(1.0, Dimensions.CHARGE, SYMBOLS_SI);
 
     /**
      *
      */
-    public static AMPERE = new Unit(1.0, Dimensions.CURRENT, SYMBOLS_SI);
+    public static CURRENT = new Unit(1.0, Dimensions.CURRENT, SYMBOLS_SI);
 
     /**
      *
      */
-    public static KELVIN = new Unit(1.0, Dimensions.TEMPERATURE, SYMBOLS_SI);
+    public static TEMPERATURE = new Unit(1.0, Dimensions.TEMPERATURE, SYMBOLS_SI);
 
     /**
      *
      */
-    public static MOLE = new Unit(1.0, Dimensions.AMOUNT, SYMBOLS_SI);
+    public static AMOUNT = new Unit(1.0, Dimensions.AMOUNT, SYMBOLS_SI);
 
     /**
      *
      */
-    public static CANDELA = new Unit(1.0, Dimensions.INTENSITY, SYMBOLS_SI);
+    public static INTENSITY = new Unit(1.0, Dimensions.INTENSITY, SYMBOLS_SI);
 
     /**
      * @param multiplier
@@ -234,7 +234,7 @@ export class Unit {
     constructor(
         public multiplier: number,
         public dimensions: Dimensions,
-        public labels: string[]
+        public labels: [string, string, string, string, string, string, string]
     ) {
         if (labels.length !== 7) {
             throw new Error("Expecting 7 elements in the labels array.");
@@ -406,12 +406,12 @@ export class Unit {
         ns.push(this.dimensions.T.denom);
         ns.push(this.dimensions.Q.numer);
         ns.push(this.dimensions.Q.denom);
-        ns.push(this.dimensions.temperature.numer);
-        ns.push(this.dimensions.temperature.denom);
-        ns.push(this.dimensions.amount.numer);
-        ns.push(this.dimensions.amount.denom);
-        ns.push(this.dimensions.intensity.numer);
-        ns.push(this.dimensions.intensity.denom);
+        ns.push(this.dimensions.E.numer);
+        ns.push(this.dimensions.E.denom);
+        ns.push(this.dimensions.A.numer);
+        ns.push(this.dimensions.A.denom);
+        ns.push(this.dimensions.I.numer);
+        ns.push(this.dimensions.I.denom);
         return JSON.stringify(ns);
     }
 
@@ -455,7 +455,7 @@ export class Unit {
      *
      */
     lerp(target: Unit, α: number): Unit {
-        throw new Error(notImplemented("lerp").message);
+        throw new Error(notImplemented(`lerp(target=${target}, α=${α})`).message);
     }
 
     /**
@@ -476,6 +476,7 @@ export class Unit {
      * @param n
      * @returns
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reflect(n: Unit): Unit {
         return this;
     }
@@ -484,6 +485,7 @@ export class Unit {
      * @param rotor
      * @returns
      */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     rotate(rotor: Unit): Unit {
         return this;
     }
@@ -502,7 +504,7 @@ export class Unit {
      * @returns
      */
     slerp(target: Unit, α: number): Unit {
-        throw new Error(notImplemented("slerp").message);
+        throw new Error(notImplemented(`slerp(target=${target}, α=${α})`).message);
     }
 
     /**
@@ -517,7 +519,7 @@ export class Unit {
      * @returns
      */
     stress(σ: Unit): Unit {
-        throw new Error(notSupported("stress").message);
+        throw new Error(notSupported(`stress(σ=${σ})`).message);
     }
 
     /**
@@ -552,8 +554,8 @@ export class Unit {
      * @param compact
      * @returns
      */
-    toString(radix?: number, compact?: boolean): string {
-        return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, this.labels, compact);
+    toString(dimensionLabels: [string, string, string, string, string, string, string], radix?: number, compact?: boolean): string {
+        return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, dimensionLabels, compact);
     }
 
     /**

@@ -241,9 +241,9 @@ declare class Dimensions {
     L: QQ;
     T: QQ;
     Q: QQ;
-    temperature: QQ;
-    amount: QQ;
-    intensity: QQ;
+    E: QQ;
+    A: QQ;
+    I: QQ;
     /**
      * All exponents are zero, a dimensionless quantity.
      */
@@ -287,11 +287,11 @@ declare class Dimensions {
      * @param L The length component of the dimensions object.
      * @param T The time component of the dimensions object.
      * @param Q The charge component of the dimensions object.
-     * @param temperature The temperature component of the dimensions object.
-     * @param amount The amount component of the dimensions object.
-     * @param intensity The intensity component of the dimensions object.
+     * @param E The temperature component of the dimensions object.
+     * @param A The amount component of the dimensions object.
+     * @param I The intensity component of the dimensions object.
      */
-    constructor(M: QQ, L: QQ, T: QQ, Q: QQ, temperature: QQ, amount: QQ, intensity: QQ);
+    constructor(M: QQ, L: QQ, T: QQ, Q: QQ, E: QQ, A: QQ, I: QQ);
     /**
      * Returns the dimensions if they are all equal, otherwise throws an <code>Error</code>
      *
@@ -690,7 +690,7 @@ interface TrigMethods<T> {
 declare class Unit {
     multiplier: number;
     dimensions: Dimensions;
-    labels: string[];
+    labels: [string, string, string, string, string, string, string];
     /**
      *
      */
@@ -702,41 +702,41 @@ declare class Unit {
     /**
      *
      */
-    static KILOGRAM: Unit;
+    static MASS: Unit;
     /**
      *
      */
-    static METER: Unit;
+    static LENGTH: Unit;
     /**
      *
      */
-    static SECOND: Unit;
+    static TIME: Unit;
     /**
      *
      */
-    static COULOMB: Unit;
+    static CHARGE: Unit;
     /**
      *
      */
-    static AMPERE: Unit;
+    static CURRENT: Unit;
     /**
      *
      */
-    static KELVIN: Unit;
+    static TEMPERATURE: Unit;
     /**
      *
      */
-    static MOLE: Unit;
+    static AMOUNT: Unit;
     /**
      *
      */
-    static CANDELA: Unit;
+    static INTENSITY: Unit;
     /**
      * @param multiplier
      * @param dimensions
      * @param labels The label strings to use for each dimension.
      */
-    constructor(multiplier: number, dimensions: Dimensions, labels: string[]);
+    constructor(multiplier: number, dimensions: Dimensions, labels: [string, string, string, string, string, string, string]);
     /**
      * @param rhs
      * @returns
@@ -889,7 +889,7 @@ declare class Unit {
      * @param compact
      * @returns
      */
-    toString(radix?: number, compact?: boolean): string;
+    toString(dimensionLabels: [string, string, string, string, string, string, string], radix?: number, compact?: boolean): string;
     /**
      * @returns
      */
@@ -998,11 +998,6 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      */
     static get e1(): G2;
     static set e1(unused: G2);
-    /**
-     * @property _e2
-     * @type G2
-     * @private
-     */
     private static _e2;
     /**
      * @property e2
@@ -1010,11 +1005,6 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      */
     static get e2(): G2;
     static set e2(unused: G2);
-    /**
-     * @property _I
-     * @type G2
-     * @private
-     */
     private static _I;
     /**
      * @property I
@@ -1022,20 +1012,76 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      */
     static get I(): G2;
     static set I(unused: G2);
-    static kilogram: G2;
-    static meter: G2;
-    static second: G2;
-    static coulomb: G2;
-    static ampere: G2;
-    static kelvin: G2;
-    static mole: G2;
-    static candela: G2;
+    /**
+     * kilogram in S.I. units.
+     */
+    static readonly MASS: G2;
+    /**
+     * @deprecated Use MASS instead.
+     */
+    static readonly kilogram: G2;
+    /**
+     * meter in S.I. units.
+     */
+    static readonly LENGTH: G2;
+    /**
+     * @deprecated Use LENGTH instead.
+     */
+    static readonly meter: G2;
+    /**
+     * second in S.I. units.
+     */
+    static readonly TIME: G2;
+    /**
+     * @deprecated Use TIME instead.
+     */
+    static readonly second: G2;
+    /**
+     * coulomb in S.I. units.
+     */
+    static readonly CHARGE: G2;
+    /**
+     * @deprecated Use CHARGE instead.
+     */
+    static readonly coulomb: G2;
+    /**
+     * ampere in S.I. units.
+     */
+    static readonly CURRENT: G2;
+    /**
+     * @deprecated Use CURRENT instead.
+     */
+    static readonly ampere: G2;
+    /**
+     * kelvin in S.I. units.
+     */
+    static readonly TEMPERATURE: G2;
+    /**
+     * @deprecated Use TEMPERATURE instead.
+     */
+    static readonly kelvin: G2;
+    /**
+     * mole in S.I. units.
+     */
+    static readonly AMOUNT: G2;
+    /**
+     * @deprecated Use AMOUNT instead.
+     */
+    static readonly mole: G2;
+    /**
+     * candela in S.I. units.
+     */
+    static readonly INTENSITY: G2;
+    /**
+     * @deprecated Use INTENSITY instead.
+     */
+    static readonly candela: G2;
     /**
      * @class G2
-     * @param [α = 0] {number} The scalar part of the multivector.
-     * @param [x = 0] {number} The vector component of the multivector in the x-direction.
-     * @param [y = 0] {number} The vector component of the multivector in the y-direction.
-     * @param [β = 0] {number} The pseudoscalar part of the multivector.
+     * @param [α = 0] The scalar part of the multivector.
+     * @param [x = 0] The vector component of the multivector in the x-direction.
+     * @param [y = 0] The vector component of the multivector in the y-direction.
+     * @param [β = 0] The pseudoscalar part of the multivector.
      * @param [uom] The optional unit of measure.
      */
     constructor(α?: number, x?: number, y?: number, β?: number, uom?: Unit);
@@ -1084,8 +1130,8 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      * Computes <code>this + α</code>
      */
     addScalar(α: Unit): G2;
-    __add__(other: any): G2;
-    __radd__(other: any): G2;
+    __add__(other: G2): G2;
+    __radd__(other: G2): G2;
     adj(): G2;
     /**
      * @returns grade(log(this), 2)
@@ -1124,12 +1170,12 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
     __sub__(rhs: Unit | G2 | number): G2;
     __rsub__(lhs: Unit | G2 | number): G2;
     mul(rhs: G2): G2;
-    __mul__(other: any): G2;
-    __rmul__(other: any): G2;
+    __mul__(other: G2): G2;
+    __rmul__(other: G2): G2;
     scale(α: number): G2;
     div(rhs: G2): G2;
     divByScalar(α: number): G2;
-    __div__(other: any): G2;
+    __div__(other: G2): G2;
     __rdiv__(other: number | G2): G2;
     /**
      * @param rhs {G2}
@@ -1142,8 +1188,8 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      * @return {G2}
      */
     ext(rhs: G2): G2;
-    __wedge__(other: any): G2;
-    __rwedge__(other: any): G2;
+    __wedge__(other: G2): G2;
+    __rwedge__(other: G2): G2;
     private static lshift;
     /**
      * @param target {G2}
@@ -1156,18 +1202,18 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      * @return {G2}
      */
     lco(rhs: G2): G2;
-    __lshift__(other: any): G2;
-    __rlshift__(other: any): G2;
+    __lshift__(other: G2): G2;
+    __rlshift__(other: G2): G2;
     private static rshift;
     /**
      * @param rhs {G2}
      * @return {G2}
      */
     rco(rhs: G2): G2;
-    __rshift__(other: any): G2;
-    __rrshift__(other: any): G2;
-    __vbar__(other: any): G2;
-    __rvbar__(other: any): G2;
+    __rshift__(other: G2): G2;
+    __rrshift__(other: G2): G2;
+    __vbar__(other: G2): G2;
+    __rvbar__(other: G2): G2;
     /**
      * @param exponent {G2}
      * @return {G2}
@@ -1413,19 +1459,75 @@ declare class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G
      * The current basis labels.
      */
     static BASIS_LABELS: string[][];
-    static zero: G3;
-    static one: G3;
-    static e1: G3;
-    static e2: G3;
-    static e3: G3;
-    static kilogram: G3;
-    static meter: G3;
-    static second: G3;
-    static coulomb: G3;
-    static ampere: G3;
-    static kelvin: G3;
-    static mole: G3;
-    static candela: G3;
+    static readonly zero: G3;
+    static readonly one: G3;
+    static readonly e1: G3;
+    static readonly e2: G3;
+    static readonly e3: G3;
+    /**
+     * kilogram in S.I. units.
+     */
+    static readonly MASS: G3;
+    /**
+     * @deprecated Use MASS instead.
+     */
+    static readonly kilogram: G3;
+    /**
+     * meter in S.I. units.
+     */
+    static readonly LENGTH: G3;
+    /**
+     * @deprecated Use LENGTH instead.
+     */
+    static readonly meter: G3;
+    /**
+     * second in S.I. units.
+     */
+    static readonly TIME: G3;
+    /**
+     * @deprecated Use TIME instead.
+     */
+    static readonly second: G3;
+    /**
+     * coulomb in S.I. units.
+     */
+    static readonly CHARGE: G3;
+    /**
+     * @deprecated Use CHARGE instead.
+     */
+    static readonly coulomb: G3;
+    /**
+     * ampere in S.I. units.
+     */
+    static readonly CURRENT: G3;
+    /**
+     * @deprecated Use CURRENT instead.
+     */
+    static readonly ampere: G3;
+    /**
+     * kelvin in S.I. units.
+     */
+    static readonly TEMPERATURE: G3;
+    /**
+     * @deprecated Use TEMPERATUE instead.
+     */
+    static readonly kelvin: G3;
+    /**
+     * mole in S.I. units
+     */
+    static readonly AMOUNT: G3;
+    /**
+     * @deprecated Use AMOUNT instead.
+     */
+    static readonly mole: G3;
+    /**
+     * candela in S.I. units
+     */
+    static readonly INTENSITY: G3;
+    /**
+     * @deprecated Use INTENSITY instead.
+     */
+    static readonly candela: G3;
     /**
      * The coordinate values are stored in a number array.
      * This should be convenient and efficient for tensor calculations.
@@ -1534,26 +1636,26 @@ declare class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G
     __sub__(rhs: Unit | G3): G3;
     __rsub__(lhs: Unit | G3): G3;
     mul(rhs: G3): G3;
-    __mul__(rhs: any): any;
-    __rmul__(lhs: any): any;
+    __mul__(rhs: G3 | number): G3;
+    __rmul__(lhs: G3 | number): G3;
     scale(α: number): G3;
     div(rhs: G3): G3;
     divByScalar(α: number): G3;
-    __div__(rhs: any): G3;
-    __rdiv__(lhs: any): G3;
+    __div__(rhs: G3 | number): G3;
+    __rdiv__(lhs: G3 | number): G3;
     dual(): G3;
     scp(rhs: G3): G3;
     ext(rhs: G3): G3;
-    __vbar__(rhs: any): G3;
-    __rvbar__(lhs: any): G3;
-    __wedge__(rhs: any): G3;
-    __rwedge__(lhs: any): G3;
+    __vbar__(rhs: G3 | number): G3;
+    __rvbar__(lhs: G3 | number): G3;
+    __wedge__(rhs: G3 | number): G3;
+    __rwedge__(lhs: G3 | number): G3;
     lco(rhs: G3): G3;
-    __lshift__(rhs: any): G3;
-    __rlshift__(lhs: any): G3;
+    __lshift__(rhs: G3 | number): G3;
+    __rlshift__(lhs: G3 | number): G3;
     rco(rhs: G3): G3;
-    __rshift__(rhs: any): G3;
-    __rrshift__(lhs: any): G3;
+    __rshift__(rhs: G3 | number): G3;
+    __rrshift__(lhs: G3 | number): G3;
     pow(exponent: G3): G3;
     __bang__(): G3;
     /**
@@ -1639,8 +1741,9 @@ declare class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G
     tan(): G3;
     /**
      * Intentionally undocumented.
+     * @param dimensionLabels e.g. ["kg", "m", "s", "C", "K", "mol", "cd"]
      */
-    toStringCustom(coordToString: (x: number) => string, labels: (string | string[])[]): string;
+    toStringCustom(coordToString: (x: number) => string, dimensionLabels: [string, string, string, string, string, string, string], basisLabels: (string | string[])[]): string;
     toExponential(fractionDigits?: number): string;
     toFixed(fractionDigits?: number): string;
     toPrecision(precision?: number): string;

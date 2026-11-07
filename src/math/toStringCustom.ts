@@ -1,10 +1,11 @@
-import stringFromCoordinates from "./stringFromCoordinates";
+import { stringFromCoordinates } from "./stringFromCoordinates";
 import { Unit } from "./Unit";
 
-export default function toStringCustom(coordinates: number[], uom: Unit, coordToString: (x: number) => string, labels: string[]): string {
-    var quantityString: string = stringFromCoordinates(coordinates, coordToString, labels);
+export function toStringCustom(coordinates: number[], uom: Unit, coordToString: (x: number) => string, basisLabels: string[]): string {
+    const quantityString: string = stringFromCoordinates(coordinates, coordToString, basisLabels);
     if (uom) {
-        var unitString = uom.toString().trim();
+        // Hard-wired, but this function is not currently used.
+        const unitString = uom.toString(["kg", "m", "s", "C", "K", "mol", "cd"]).trim();
         if (unitString) {
             return quantityString + " " + unitString;
         } else {
