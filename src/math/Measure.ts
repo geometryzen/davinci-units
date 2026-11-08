@@ -4,7 +4,7 @@
 // DO NOT USE ANNOTATIONS
 // The pseudoscalar is omitted to allow this interface to be used on spinors.
 //
-interface Measure<T> {
+export interface Measure<T> {
     /**
      * The scalar part of the measure, as a <code>number</code>.
      */
@@ -42,5 +42,3 @@ interface Measure<T> {
     slerp(target: T, α: number): T;
     sub(rhs: T): T;
 }
-
-export default Measure;

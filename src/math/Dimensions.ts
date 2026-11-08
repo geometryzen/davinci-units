@@ -226,7 +226,7 @@ export class Dimensions {
      * @param rhs
      * @returns
      */
-    __add__(rhs: Dimensions): Dimensions {
+    __add__(rhs: Dimensions): Dimensions | undefined {
         if (rhs instanceof Dimensions) {
             return this.compatible(rhs);
         } else {
@@ -238,7 +238,7 @@ export class Dimensions {
      * @param lhs
      * @returns
      */
-    __radd__(lhs: Dimensions): Dimensions {
+    __radd__(lhs: Dimensions): Dimensions | undefined {
         if (lhs instanceof Dimensions) {
             return lhs.compatible(this);
         } else {
@@ -251,7 +251,7 @@ export class Dimensions {
      * @param rhs
      * @returns
      */
-    __sub__(rhs: Dimensions): Dimensions {
+    __sub__(rhs: Dimensions): Dimensions | undefined {
         if (rhs instanceof Dimensions) {
             return this.compatible(rhs);
         } else {
@@ -264,7 +264,7 @@ export class Dimensions {
      * @param lhs
      * @returns
      */
-    __rsub__(lhs: Dimensions): Dimensions {
+    __rsub__(lhs: Dimensions): Dimensions | undefined {
         if (lhs instanceof Dimensions) {
             return lhs.compatible(this);
         } else {
@@ -277,7 +277,7 @@ export class Dimensions {
      * @param rhs
      * @returns
      */
-    __mul__(rhs: Dimensions): Dimensions {
+    __mul__(rhs: Dimensions): Dimensions | undefined {
         if (rhs instanceof Dimensions) {
             return this.mul(rhs);
         } else {
@@ -290,7 +290,7 @@ export class Dimensions {
      * @param lhs
      * @returns
      */
-    __rmul__(lhs: Dimensions): Dimensions {
+    __rmul__(lhs: Dimensions): Dimensions | undefined {
         if (lhs instanceof Dimensions) {
             return lhs.mul(this);
         } else {
@@ -303,7 +303,7 @@ export class Dimensions {
      * @param rhs
      * @returns
      */
-    __div__(rhs: Dimensions): Dimensions {
+    __div__(rhs: Dimensions): Dimensions | undefined {
         if (rhs instanceof Dimensions) {
             return this.div(rhs);
         } else {
@@ -315,7 +315,7 @@ export class Dimensions {
      * @param lhs
      * @returns
      */
-    __rdiv__(lhs: Dimensions): Dimensions {
+    __rdiv__(lhs: Dimensions): Dimensions | undefined {
         if (lhs instanceof Dimensions) {
             return lhs.div(this);
         } else {

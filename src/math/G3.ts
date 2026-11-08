@@ -11,9 +11,9 @@ import extG3 from "./extG3";
 import gauss from "./gauss";
 import { GeometricE3 } from "./GeometricE3";
 import { GeometricNumber } from "./GeometricNumber";
-import GeometricOperators from "./GeometricOperators";
+import { GeometricOperators } from "./GeometricOperators";
 // import GradeError from './GradeError';
-import ImmutableMeasure from "./ImmutableMeasure";
+import { GeometricMeasure } from "./GeometricMeasure";
 import lcoG3 from "./lcoG3";
 import mulG3 from "./mulG3";
 import quadSpinorE3 from "./quadSpinorE3";
@@ -22,7 +22,7 @@ import scpG3 from "./scpG3";
 import { SpinorE3 } from "./SpinorE3";
 import squaredNormG3 from "./squaredNormG3";
 import { stringFromCoordinates } from "./stringFromCoordinates";
-import TrigMethods from "./TrigMethods";
+import { TrigMethods } from "./TrigMethods";
 import { Unit } from "./Unit";
 import { VectorE3 } from "./VectorE3";
 
@@ -49,7 +49,7 @@ const COORD_PSEUDO = 7;
  * The immutable nature of the <code>G3</code> makes it less suitable for high performance graphics applications.
  * </p>
  */
-export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3, G3, SpinorE3, VectorE3, G3, number, Unit>, GeometricOperators<G3, Unit>, TrigMethods<G3> {
+export class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3, G3, SpinorE3, VectorE3, G3, number, Unit>, GeometricOperators<G3, Unit>, TrigMethods<G3> {
     static get BASIS_LABELS_GEOMETRIC(): string[][] {
         return BASIS_LABELS_G3_GEOMETRIC;
     }
@@ -420,7 +420,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         }
     }
 
-    __sub__(rhs: Unit | G3) {
+    __sub__(rhs: Unit | G3 | undefined): G3 | undefined {
         if (rhs instanceof G3) {
             return this.sub(rhs);
         } else if (rhs instanceof Unit) {
@@ -677,6 +677,14 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         return new G3(0, x, y, z, 0, 0, 0, 0, Unit.mul(this.uom, vector.uom));
     }
 
+    isDimensionless(): boolean {
+        if (this.uom) {
+            return this.uom.isOne();
+        } else {
+            return true;
+        }
+    }
+
     isOne(): boolean {
         return this.a === 1 && this.x === 0 && this.y === 0 && this.z === 0 && this.yz === 0 && this.zx === 0 && this.xy === 0 && this.b === 0;
     }
@@ -704,12 +712,8 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         throw new Error(notImplemented("cosh").message);
     }
 
-    distanceTo(point: G3): number {
-        // TODO: Should this be generalized to all coordinates?
-        const dx = this.x - point.x;
-        const dy = this.y - point.y;
-        const dz = this.z - point.z;
-        return Math.sqrt(dx * dx + dy * dy + dz * dz);
+    distanceTo(point: G3): G3 {
+        return this.sub(point).magnitude();
     }
 
     equals(other: G3): boolean {
@@ -913,7 +917,7 @@ export class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3
         if (this.uom) {
             // Use the compact representation of the Unit because the units follow the multivector
             // quantity and we want to suppress the multiplier which is always 1.
-            const unitString = this.uom.toString(dimensionLabels, 10, true).trim();
+            const unitString = this.uom.toString(10, true).trim();
             if (unitString) {
                 return quantityString + " " + unitString;
             } else {

@@ -1,12 +1,12 @@
-import GeometricE1 from "./GeometricE1";
+import { GeometricE1 } from "./GeometricE1";
 import { GeometricNumber } from "./GeometricNumber";
-import ImmutableMeasure from "./ImmutableMeasure";
+import { GeometricMeasure } from "./GeometricMeasure";
 import mustBeInteger from "../checks/mustBeInteger";
 import notImplemented from "../i18n/notImplemented";
 import readOnly from "../i18n/readOnly";
-import SpinorE1 from "./SpinorE1";
+import { SpinorE1 } from "./SpinorE1";
 import { Unit } from "./Unit";
-import VectorE1 from "./VectorE1";
+import { VectorE1 } from "./VectorE1";
 
 function assertArgNumber(name: string, x: number): number {
     if (typeof x === "number") {
@@ -32,7 +32,7 @@ function assertArgUnitOrUndefined(name: string, uom: Unit): Unit {
     }
 }
 
-export default class G1 implements ImmutableMeasure<G1>, GeometricE1, GeometricNumber<G1, G1, SpinorE1, VectorE1, G1, number, Unit> {
+export class G1 implements GeometricMeasure<G1>, GeometricE1, GeometricNumber<G1, G1, SpinorE1, VectorE1, G1, number, Unit> {
     private w: number;
     private _x: number;
     public uom: Unit;
@@ -165,6 +165,14 @@ export default class G1 implements ImmutableMeasure<G1>, GeometricE1, GeometricN
         throw new Error("inv");
     }
 
+    isDimensionless(): boolean {
+        if (this.uom) {
+            return this.uom.isOne();
+        } else {
+            return true;
+        }
+    }
+
     isOne(): boolean {
         return this.a === 1 && this.x === 0;
     }
@@ -269,6 +277,10 @@ export default class G1 implements ImmutableMeasure<G1>, GeometricE1, GeometricN
 
     direction(): G1 {
         throw new Error("direction");
+    }
+
+    distanceTo(point: G1): G1 {
+        return this.sub(point).magnitude();
     }
 
     grade(grade: number): G1 {

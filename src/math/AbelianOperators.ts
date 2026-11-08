@@ -3,7 +3,7 @@
  * This is provided for interface consistency.
  * It may not adhere to strict mathematical definitions.
  */
-interface AbelianOperators<T, UNIT> {
+export interface AbelianOperators<T, UNIT> {
     /**
      * Binary this + other
      */
@@ -44,5 +44,3 @@ interface AbelianOperators<T, UNIT> {
      */
     isZero(): boolean;
 }
-
-export default AbelianOperators;

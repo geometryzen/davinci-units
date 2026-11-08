@@ -65,6 +65,11 @@ export interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends L
     /**
      *
      */
+    isDimensionless(): boolean;
+
+    /**
+     *
+     */
     isOne(): boolean;
 
     /**

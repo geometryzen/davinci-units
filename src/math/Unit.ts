@@ -554,8 +554,8 @@ export class Unit {
      * @param compact
      * @returns
      */
-    toString(dimensionLabels: [string, string, string, string, string, string, string], radix?: number, compact?: boolean): string {
-        return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, dimensionLabels, compact);
+    toString(radix?: number, compact?: boolean): string {
+        return unitString(this.multiplier, this.multiplier.toString(radix), this.dimensions, SYMBOLS_SI, compact);
     }
 
     /**

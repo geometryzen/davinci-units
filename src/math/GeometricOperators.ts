@@ -1,24 +1,24 @@
-import LinearOperators from "./LinearOperators";
-import RingOperators from "./RingOperators";
+import { LinearOperators } from "./LinearOperators";
+import { RingOperators } from "./RingOperators";
 
 /**
  * Special methods for operators on elements of geometric spaces.
  */
-interface GeometricOperators<T, UNIT> extends LinearOperators<T, UNIT>, RingOperators<T, UNIT> {
-    __div__(rhs: any): T;
-    __rdiv__(lhs: any): T;
+export interface GeometricOperators<T, UNIT> extends LinearOperators<T, UNIT>, RingOperators<T, UNIT> {
+    __div__(rhs: T): T;
+    __rdiv__(lhs: T): T;
 
-    __vbar__(rhs: any): T;
-    __rvbar__(lhs: any): T;
+    __vbar__(rhs: T): T;
+    __rvbar__(lhs: T): T;
 
-    __wedge__(rhs: any): T;
-    __rwedge__(lhs: any): T;
+    __wedge__(rhs: T): T;
+    __rwedge__(lhs: T): T;
 
-    __lshift__(rhs: any): T;
-    __rlshift__(lhs: any): T;
+    __lshift__(rhs: T): T;
+    __rlshift__(lhs: T): T;
 
-    __rshift__(rhs: any): T;
-    __rrshift__(lhs: any): T;
+    __rshift__(rhs: T): T;
+    __rrshift__(lhs: T): T;
 
     /**
      * !x = x.inv()
@@ -37,5 +37,3 @@ interface GeometricOperators<T, UNIT> extends LinearOperators<T, UNIT>, RingOper
     __le__(rhs: T): boolean;
     __lt__(rhs: T): boolean;
 }
-
-export default GeometricOperators;

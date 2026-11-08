@@ -7,8 +7,8 @@ import extE2 from "./extE2";
 import gauss from "./gauss";
 import { GeometricE2 } from "./GeometricE2";
 import { GeometricNumber } from "./GeometricNumber";
-import GeometricOperators from "./GeometricOperators";
-import ImmutableMeasure from "./ImmutableMeasure";
+import { GeometricOperators } from "./GeometricOperators";
+import { GeometricMeasure } from "./GeometricMeasure";
 import lcoE2 from "./lcoE2";
 import mulE2 from "./mulE2";
 //
@@ -19,7 +19,7 @@ import { SpinorE2 } from "./SpinorE2";
 //
 import { stringFromCoordinates } from "./stringFromCoordinates";
 //
-import TrigMethods from "./TrigMethods";
+import { TrigMethods } from "./TrigMethods";
 import { Unit } from "./Unit";
 import { VectorE2 } from "./VectorE2";
 //
@@ -137,7 +137,7 @@ function subE2(a0: number, a1: number, a2: number, a3: number, b0: number, b1: n
  * The immutable nature of the <p>G2</p> makes it less suitable for high performance graphics applications.
  * </p>
  */
-export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2, G2, SpinorE2, VectorE2, G2, number, Unit>, GeometricOperators<G2, Unit>, TrigMethods<G2> {
+export class G2 implements GeometricMeasure<G2>, GeometricE2, GeometricNumber<G2, G2, SpinorE2, VectorE2, G2, number, Unit>, GeometricOperators<G2, Unit>, TrigMethods<G2> {
     /**
      * The coordinate values are stored in a number array.
      * This should be convenient and efficient for tensor calculations.
@@ -512,8 +512,8 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
     /**
      * @param point
      */
-    distanceTo(point: GeometricE2): number {
-        throw new Error(notImplemented(`distanceTo(point=${point})`).message);
+    distanceTo(point: G2): G2 {
+        return this.sub(point).magnitude();
     }
 
     /**
@@ -1102,8 +1102,16 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         return this.sin().div(this.cos());
     }
 
+    isDimensionless(): boolean {
+        if (this.uom) {
+            return this.uom.isOne();
+        } else {
+            return true;
+        }
+    }
+
     /**
-     * @return {boolean}
+     *
      */
     isOne(): boolean {
         return this.a === 1 && this.x === 0 && this.y === 0 && this.b === 0;
@@ -1126,7 +1134,7 @@ export class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2
         if (this.uom) {
             // Use the compact representation of the Unit because the units follow the multivector
             // quantity and we want to suppress the multiplier which is always 1.
-            const unitString = this.uom.toString(["kg", "m", "s", "C", "K", "mol", "cd"], 10, true).trim();
+            const unitString = this.uom.toString(10, true).trim();
             if (unitString) {
                 return quantityString + " " + unitString;
             } else {

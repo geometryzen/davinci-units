@@ -5,6 +5,5 @@ import Scalar from "./Scalar";
  * @class SpinorE1
  * @extends Scalar
  */
-interface SpinorE1 extends Scalar {}
-
-export default SpinorE1;
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface SpinorE1 extends Scalar {}

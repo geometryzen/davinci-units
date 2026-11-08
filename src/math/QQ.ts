@@ -1,4 +1,4 @@
-import DivisionRingOperators from "./DivisionRingOperators";
+import { DivisionRingOperators } from "./DivisionRingOperators";
 import mustBeInteger from "../checks/mustBeInteger";
 import readOnly from "../i18n/readOnly";
 

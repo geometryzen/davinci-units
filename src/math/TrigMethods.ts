@@ -1,5 +1,5 @@
 // TODO asin, acos, atan,tanh, asinh, acosh
-interface TrigMethods<T> {
+export interface TrigMethods<T> {
     cos(): T;
     cosh(): T;
     exp(): T;
@@ -8,5 +8,3 @@ interface TrigMethods<T> {
     sinh(): T;
     tan(): T;
 }
-
-export default TrigMethods;

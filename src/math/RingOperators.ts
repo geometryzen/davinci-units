@@ -1,18 +1,18 @@
-import AbelianOperators from "./AbelianOperators";
+import { AbelianOperators } from "./AbelianOperators";
 /**
  * A ring is an abelian group with a second binary operation that is associative,
  * is distributive over the abelian group operation and has an identity element.
  */
-interface RingOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
+export interface RingOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
     /**
      * Multiplication of the the target from the right.
      */
-    __mul__(rhs: any): T;
+    __mul__(rhs: T): T;
 
     /**
      * Multiplication of the the target from the left.
      */
-    __rmul__(lhs: any): T;
+    __rmul__(lhs: T): T;
 
     /**
      * The multiplicative inverse is denoted by inv.
@@ -24,5 +24,3 @@ interface RingOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
      */
     isOne(): boolean;
 }
-
-export default RingOperators;

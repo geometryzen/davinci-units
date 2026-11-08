@@ -16,7 +16,7 @@ export default function lcoE3(a0: number, a1: number, a2: number, a3: number, a4
     b6 = +b6;
     b7 = +b7;
     index = index | 0;
-    var x = 0.0;
+    let x = 0.0;
     switch (~~index) {
         case 0:
             {

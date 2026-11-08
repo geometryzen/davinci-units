@@ -5,7 +5,7 @@ export function toStringCustom(coordinates: number[], uom: Unit, coordToString: 
     const quantityString: string = stringFromCoordinates(coordinates, coordToString, basisLabels);
     if (uom) {
         // Hard-wired, but this function is not currently used.
-        const unitString = uom.toString(["kg", "m", "s", "C", "K", "mol", "cd"]).trim();
+        const unitString = uom.toString().trim();
         if (unitString) {
             return quantityString + " " + unitString;
         } else {

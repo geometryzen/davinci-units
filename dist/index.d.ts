@@ -46,11 +46,11 @@ interface RingOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
     /**
      * Multiplication of the the target from the right.
      */
-    __mul__(rhs: any): T;
+    __mul__(rhs: T): T;
     /**
      * Multiplication of the the target from the left.
      */
-    __rmul__(lhs: any): T;
+    __rmul__(lhs: T): T;
     /**
      * The multiplicative inverse is denoted by inv.
      */
@@ -65,8 +65,8 @@ interface RingOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
  *
  */
 interface DivisionRingOperators<T, UNIT> extends RingOperators<T, UNIT> {
-    __div__(rhs: any): T;
-    __rdiv__(lhs: any): T;
+    __div__(rhs: T): T;
+    __rdiv__(lhs: T): T;
 }
 
 /**
@@ -354,47 +354,47 @@ declare class Dimensions {
      * @param rhs
      * @returns
      */
-    __add__(rhs: Dimensions): Dimensions;
+    __add__(rhs: Dimensions): Dimensions | undefined;
     /**
      * @param lhs
      * @returns
      */
-    __radd__(lhs: Dimensions): Dimensions;
+    __radd__(lhs: Dimensions): Dimensions | undefined;
     /**
      *
      * @param rhs
      * @returns
      */
-    __sub__(rhs: Dimensions): Dimensions;
+    __sub__(rhs: Dimensions): Dimensions | undefined;
     /**
      *
      * @param lhs
      * @returns
      */
-    __rsub__(lhs: Dimensions): Dimensions;
+    __rsub__(lhs: Dimensions): Dimensions | undefined;
     /**
      *
      * @param rhs
      * @returns
      */
-    __mul__(rhs: Dimensions): Dimensions;
+    __mul__(rhs: Dimensions): Dimensions | undefined;
     /**
      *
      * @param lhs
      * @returns
      */
-    __rmul__(lhs: Dimensions): Dimensions;
+    __rmul__(lhs: Dimensions): Dimensions | undefined;
     /**
      *
      * @param rhs
      * @returns
      */
-    __div__(rhs: Dimensions): Dimensions;
+    __div__(rhs: Dimensions): Dimensions | undefined;
     /**
      * @param lhs
      * @returns
      */
-    __rdiv__(lhs: Dimensions): Dimensions;
+    __rdiv__(lhs: Dimensions): Dimensions | undefined;
     /**
      * @returns
      */
@@ -406,13 +406,6 @@ declare class Dimensions {
     __neg__(): Dimensions;
 }
 
-interface Pseudo {
-    /**
-     * The pseudoscalar coordinate as a number.I
-     */
-    b: number;
-}
-
 interface Scalar {
     /**
      * The scalar coordinate as a number.
@@ -421,40 +414,18 @@ interface Scalar {
 }
 
 /**
- * The even sub-algebra of the <em>Euclidean algebra 𝓖(2, 0)</em>.
- * @class SpinorE2
- * @extends Scalar
- * @extends Pseudo
+ * @class VectorE1
  */
-interface SpinorE2 extends Scalar, Pseudo {
-}
-
-/**
- * @class VectorE2
- */
-interface VectorE2 {
+interface VectorE1 {
     /**
-     * The Cartesian x-coordinate or <em>abscissa</em>.
+     * The Cartesian x-coordinate.
      * @property x
      * @type number
      */
     x: number;
-    /**
-     * The Cartesian y-coordinate or <em>ordinate</em>.
-     * @property y
-     * @type number
-     */
-    y: number;
 }
 
-/**
- * @class GeometricE2
- * @extends Pseudo
- * @extends Scalar
- * @extends SpinorE2
- * @extends VectorE2
- */
-interface GeometricE2 extends Pseudo, Scalar, SpinorE2, VectorE2 {
+interface GeometricE1 extends Scalar, VectorE1 {
 }
 
 /**
@@ -541,6 +512,10 @@ interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNu
     /**
      *
      */
+    isDimensionless(): boolean;
+    /**
+     *
+     */
     isOne(): boolean;
     /**
      *
@@ -588,48 +563,6 @@ interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNu
     scp(rhs: I): M;
 }
 
-/**
- * Special methods for operators on elements of linear spaces.
- * This is provided for interface consistency.
- * It may not adhere to strict mathematical definitions.
- */
-interface LinearOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
-    /**
-     * Unary ~
-     */
-    __tilde__(): T;
-}
-
-/**
- * Special methods for operators on elements of geometric spaces.
- */
-interface GeometricOperators<T, UNIT> extends LinearOperators<T, UNIT>, RingOperators<T, UNIT> {
-    __div__(rhs: any): T;
-    __rdiv__(lhs: any): T;
-    __vbar__(rhs: any): T;
-    __rvbar__(lhs: any): T;
-    __wedge__(rhs: any): T;
-    __rwedge__(lhs: any): T;
-    __lshift__(rhs: any): T;
-    __rlshift__(lhs: any): T;
-    __rshift__(rhs: any): T;
-    __rrshift__(lhs: any): T;
-    /**
-     * !x = x.inv()
-     */
-    __bang__(): T;
-    /**
-     * Inverse (may not exist).
-     */
-    inv(): T;
-    __eq__(rhs: T): boolean;
-    __ne__(rhs: T): boolean;
-    __ge__(rhs: T): boolean;
-    __gt__(rhs: T): boolean;
-    __le__(rhs: T): boolean;
-    __lt__(rhs: T): boolean;
-}
-
 interface Measure<T> {
     /**
      * The scalar part of the measure, as a <code>number</code>.
@@ -668,18 +601,18 @@ interface Measure<T> {
     sub(rhs: T): T;
 }
 
-interface ImmutableMeasure<T> extends Measure<T> {
+interface GeometricMeasure<T> extends Measure<T> {
     direction(): T;
+    distanceTo(point: T): T;
+    magnitude(): T;
 }
 
-interface TrigMethods<T> {
-    cos(): T;
-    cosh(): T;
-    exp(): T;
-    log(): T;
-    sin(): T;
-    sinh(): T;
-    tan(): T;
+/**
+ * The even sub-algebra of the <em>Euclidean algebra 𝓖(1, 0)</em>.
+ * @class SpinorE1
+ * @extends Scalar
+ */
+interface SpinorE1 extends Scalar {
 }
 
 /**
@@ -889,7 +822,7 @@ declare class Unit {
      * @param compact
      * @returns
      */
-    toString(dimensionLabels: [string, string, string, string, string, string, string], radix?: number, compact?: boolean): string;
+    toString(radix?: number, compact?: boolean): string;
     /**
      * @returns
      */
@@ -933,6 +866,192 @@ declare class Unit {
     static sqrt(uom: Unit): Unit;
 }
 
+declare class G1 implements GeometricMeasure<G1>, GeometricE1, GeometricNumber<G1, G1, SpinorE1, VectorE1, G1, number, Unit> {
+    private w;
+    private _x;
+    uom: Unit;
+    /**
+     * kilogram in S.I. units.
+     */
+    static MASS: G1;
+    /**
+     * meter in S.I. units.
+     */
+    static LENGTH: G1;
+    /**
+     * second in S.I. units.
+     */
+    static TIME: G1;
+    /**
+     * coulomb in S.I. units.
+     */
+    static CHARGE: G1;
+    /**
+     * ampere in S.I. units.
+     */
+    static CURRENT: G1;
+    /**
+     * kelvin in S.I. units.
+     */
+    static TEMPERATURE: G1;
+    /**
+     * mole in S.I. units
+     */
+    static AMOUNT: G1;
+    /**
+     * candela in S.I. units
+     */
+    static INTENSITY: G1;
+    constructor(α: number, β: number, uom?: Unit);
+    get a(): number;
+    set a(alpha: number);
+    get x(): number;
+    set x(unused: number);
+    get coords(): number[];
+    copy(source: GeometricE1): G1;
+    difference(a: GeometricE1, b: GeometricE1): G1;
+    add(rhs: G1): G1;
+    addScalar(α: Unit): G1;
+    adj(): G1;
+    angle(): G1;
+    conj(): G1;
+    sub(rhs: G1): G1;
+    mul(rhs: G1): G1;
+    div(rhs: G1): G1;
+    divByScalar(α: number): G1;
+    scp(rhs: G1): G1;
+    ext(rhs: G1): G1;
+    inv(): G1;
+    isDimensionless(): boolean;
+    isOne(): boolean;
+    isScalar(): boolean;
+    isZero(): boolean;
+    lco(rhs: G1): G1;
+    lerp(target: G1, α: number): G1;
+    log(): G1;
+    magnitude(): G1;
+    rev(): G1;
+    rco(rhs: G1): G1;
+    pow(exponent: G1): G1;
+    cos(): G1;
+    cosh(): G1;
+    exp(): G1;
+    neg(): G1;
+    norm(): G1;
+    quad(): G1;
+    reflect(n: VectorE1): G1;
+    rotate(s: SpinorE1): G1;
+    scale(α: number): G1;
+    sin(): G1;
+    sinh(): G1;
+    slerp(target: G1, α: number): G1;
+    squaredNorm(): G1;
+    stress(σ: VectorE1): G1;
+    direction(): G1;
+    distanceTo(point: G1): G1;
+    grade(grade: number): G1;
+    toExponential(fractionDigits?: number): string;
+    toFixed(fractionDigits?: number): string;
+    toPrecision(precision?: number): string;
+    toString(radix?: number): string;
+}
+
+interface Pseudo {
+    /**
+     * The pseudoscalar coordinate as a number.I
+     */
+    b: number;
+}
+
+/**
+ * The even sub-algebra of the <em>Euclidean algebra 𝓖(2, 0)</em>.
+ * @class SpinorE2
+ * @extends Scalar
+ * @extends Pseudo
+ */
+interface SpinorE2 extends Scalar, Pseudo {
+}
+
+/**
+ * @class VectorE2
+ */
+interface VectorE2 {
+    /**
+     * The Cartesian x-coordinate or <em>abscissa</em>.
+     * @property x
+     * @type number
+     */
+    x: number;
+    /**
+     * The Cartesian y-coordinate or <em>ordinate</em>.
+     * @property y
+     * @type number
+     */
+    y: number;
+}
+
+/**
+ * @class GeometricE2
+ * @extends Pseudo
+ * @extends Scalar
+ * @extends SpinorE2
+ * @extends VectorE2
+ */
+interface GeometricE2 extends Pseudo, Scalar, SpinorE2, VectorE2 {
+}
+
+/**
+ * Special methods for operators on elements of linear spaces.
+ * This is provided for interface consistency.
+ * It may not adhere to strict mathematical definitions.
+ */
+interface LinearOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
+    /**
+     * Unary ~
+     */
+    __tilde__(): T;
+}
+
+/**
+ * Special methods for operators on elements of geometric spaces.
+ */
+interface GeometricOperators<T, UNIT> extends LinearOperators<T, UNIT>, RingOperators<T, UNIT> {
+    __div__(rhs: T): T;
+    __rdiv__(lhs: T): T;
+    __vbar__(rhs: T): T;
+    __rvbar__(lhs: T): T;
+    __wedge__(rhs: T): T;
+    __rwedge__(lhs: T): T;
+    __lshift__(rhs: T): T;
+    __rlshift__(lhs: T): T;
+    __rshift__(rhs: T): T;
+    __rrshift__(lhs: T): T;
+    /**
+     * !x = x.inv()
+     */
+    __bang__(): T;
+    /**
+     * Inverse (may not exist).
+     */
+    inv(): T;
+    __eq__(rhs: T): boolean;
+    __ne__(rhs: T): boolean;
+    __ge__(rhs: T): boolean;
+    __gt__(rhs: T): boolean;
+    __le__(rhs: T): boolean;
+    __lt__(rhs: T): boolean;
+}
+
+interface TrigMethods<T> {
+    cos(): T;
+    cosh(): T;
+    exp(): T;
+    log(): T;
+    sin(): T;
+    sinh(): T;
+    tan(): T;
+}
+
 /**
  * <p>
  * The <code>G2</code> class represents a multivector for a 2-dimensional vector space with a Euclidean metric.
@@ -947,7 +1066,7 @@ declare class Unit {
  * The immutable nature of the <p>G2</p> makes it less suitable for high performance graphics applications.
  * </p>
  */
-declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G2, G2, SpinorE2, VectorE2, G2, number, Unit>, GeometricOperators<G2, Unit>, TrigMethods<G2> {
+declare class G2 implements GeometricMeasure<G2>, GeometricE2, GeometricNumber<G2, G2, SpinorE2, VectorE2, G2, number, Unit>, GeometricOperators<G2, Unit>, TrigMethods<G2> {
     /**
      * The coordinate values are stored in a number array.
      * This should be convenient and efficient for tensor calculations.
@@ -1156,7 +1275,7 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
     /**
      * @param point
      */
-    distanceTo(point: GeometricE2): number;
+    distanceTo(point: G2): G2;
     /**
      * @param point
      * @return {boolean}
@@ -1331,8 +1450,9 @@ declare class G2 implements ImmutableMeasure<G2>, GeometricE2, GeometricNumber<G
      * @return {G2}
      */
     tan(): G2;
+    isDimensionless(): boolean;
     /**
-     * @return {boolean}
+     *
      */
     isOne(): boolean;
     isNaN(): boolean;
@@ -1450,7 +1570,7 @@ interface GeometricE3 extends Pseudo, Scalar, SpinorE3, VectorE3 {
  * The immutable nature of the <code>G3</code> makes it less suitable for high performance graphics applications.
  * </p>
  */
-declare class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G3, G3, SpinorE3, VectorE3, G3, number, Unit>, GeometricOperators<G3, Unit>, TrigMethods<G3> {
+declare class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3, G3, SpinorE3, VectorE3, G3, number, Unit>, GeometricOperators<G3, Unit>, TrigMethods<G3> {
     static get BASIS_LABELS_GEOMETRIC(): string[][];
     static get BASIS_LABELS_HAMILTON(): string[][];
     static get BASIS_LABELS_STANDARD(): string[][];
@@ -1633,7 +1753,7 @@ declare class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G
      *
      */
     sub(rhs: G3): G3;
-    __sub__(rhs: Unit | G3): G3;
+    __sub__(rhs: Unit | G3 | undefined): G3 | undefined;
     __rsub__(lhs: Unit | G3): G3;
     mul(rhs: G3): G3;
     __mul__(rhs: G3 | number): G3;
@@ -1680,13 +1800,14 @@ declare class G3 implements ImmutableMeasure<G3>, GeometricE3, GeometricNumber<G
      */
     grade(grade: number): G3;
     cross(vector: G3): G3;
+    isDimensionless(): boolean;
     isOne(): boolean;
     isScalar(): boolean;
     isZero(): boolean;
     lerp(target: G3, α: number): G3;
     cos(): G3;
     cosh(): G3;
-    distanceTo(point: G3): number;
+    distanceTo(point: G3): G3;
     equals(other: G3): boolean;
     exp(): G3;
     /**
@@ -1793,5 +1914,5 @@ declare const mathcore: {
     };
 };
 
-export { Dimensions, G2, G3, QQ, Unit, mathcore };
-export type { GeometricE2, GeometricE3, GeometricNumber, SpinorE2, SpinorE3, VectorE2, VectorE3 };
+export { Dimensions, G1, G2, G3, QQ, Unit, mathcore };
+export type { DivisionRingOperators, GeometricE1, GeometricE2, GeometricE3, GeometricMeasure, GeometricNumber, GeometricOperators, SpinorE1, SpinorE2, SpinorE3, TrigMethods, VectorE1, VectorE2, VectorE3 };

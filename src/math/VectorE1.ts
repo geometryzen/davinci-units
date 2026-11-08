@@ -1,7 +1,7 @@
 /**
  * @class VectorE1
  */
-interface VectorE1 {
+export interface VectorE1 {
     /**
      * The Cartesian x-coordinate.
      * @property x
@@ -9,5 +9,3 @@ interface VectorE1 {
      */
     x: number;
 }
-
-export default VectorE1;
