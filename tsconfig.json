@@ -6,7 +6,7 @@
         "declaration": true,
         "declarationDir": "./dist",
         "emitDeclarationOnly": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "outDir": "./dist",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,

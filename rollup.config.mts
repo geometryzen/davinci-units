@@ -29,37 +29,37 @@ const options: RollupOptions[] = [
                 banner,
                 file: non_minified_file(pkg.exports['.'].import),
                 format: 'esm',
-                sourcemap: true
+                sourcemap: false
             },
             {
                 file: pkg.exports['.'].import,
                 format: 'esm',
-                sourcemap: true,
+                sourcemap: false,
                 plugins: [terser()]
             },
             {
                 banner,
                 file: non_minified_file(pkg.exports['.'].system),
                 format: 'system',
-                sourcemap: true
+                sourcemap: false
             },
             {
                 file: pkg.exports['.'].system,
                 format: 'system',
-                sourcemap: true,
+                sourcemap: false,
                 plugins: [terser()]
             },
             {
                 banner,
                 file: pkg.exports['.'].require,
                 format: 'commonjs',
-                sourcemap: true
+                sourcemap: false
             },
             {
                 file: pkg.browser,
                 format: 'umd',
                 name: 'UNITS',
-                sourcemap: true
+                sourcemap: false
             }
         ],
         plugins: [
@@ -73,8 +73,15 @@ const options: RollupOptions[] = [
     // Bundle the generated ESM type definitions.
     {
         input: './dist/src/index.d.ts',
-        output: [{ file: pkg.types, format: "esm" }],
-        plugins: [dts()]
+        output: [{
+            file: pkg.types,
+            format: "esm",
+            sourcemap: false
+        }],
+        plugins: [
+            dts(),
+            typescript()
+        ]
     }
 ];
 

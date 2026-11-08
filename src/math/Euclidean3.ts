@@ -484,7 +484,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      * @param controlEnd
      * @param endPoint
      */
-    cubicBezier(t: number, controlBegin: GeometricCoords, controlEnd: GeometricCoords, endPoint: GeometricCoords) {
+    cubicBezier(t: number, controlBegin: GeometricCoords, controlEnd: GeometricCoords, endPoint: GeometricCoords): Euclidean3 {
         const a = b3(t, this.a, controlBegin.a, controlEnd.a, endPoint.a);
         const x = b3(t, this.x, controlBegin.x, controlEnd.x, endPoint.x);
         const y = b3(t, this.y, controlBegin.y, controlEnd.y, endPoint.y);
@@ -795,7 +795,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         throw new Error(notImplemented(`lerp(target=${target}, α=${α})`).message);
     }
 
-    cos() {
+    cos(): Euclidean3 {
         // TODO: Generalize to full multivector.
         Unit.assertDimensionless(this.uom);
         const cosW = Math.cos(this.a);
@@ -831,7 +831,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    exp() {
+    exp(): Euclidean3 {
         Unit.assertDimensionless(this.uom);
         const bivector = this.grade(2);
         const a = bivector.norm();
@@ -848,7 +848,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
     /**
      * Computes the <em>inverse</em> of this multivector, if it exists.
      */
-    inv() {
+    inv(): Euclidean3 {
         const α = this.a;
         const x = this.x;
         const y = this.y;
@@ -917,14 +917,14 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      * @param controlPoint
      * @param endPoint
      */
-    quadraticBezier(t: number, controlPoint: GeometricCoords, endPoint: GeometricCoords) {
+    quadraticBezier(t: number, controlPoint: GeometricCoords, endPoint: GeometricCoords): Euclidean3 {
         const x = b2(t, this.x, controlPoint.x, endPoint.x);
         const y = b2(t, this.y, controlPoint.y, endPoint.y);
         const z = b2(t, this.z, controlPoint.z, endPoint.z);
         return new Euclidean3(0, x, y, z, 0, 0, 0, 0, this.uom);
     }
 
-    squaredNorm() {
+    squaredNorm(): Euclidean3 {
         return new Euclidean3(this.squaredNormSansUnits(), 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, this.uom));
     }
 
@@ -994,7 +994,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         throw new Error(notImplemented(`slerp(target=${target}, α=${α})`).message);
     }
 
-    sqrt() {
+    sqrt(): Euclidean3 {
         return new Euclidean3(Math.sqrt(this.a), 0, 0, 0, 0, 0, 0, 0, Unit.sqrt(this.uom));
     }
 
