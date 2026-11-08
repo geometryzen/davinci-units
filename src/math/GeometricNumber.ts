@@ -65,22 +65,22 @@ export interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends L
     /**
      *
      */
-    isDimensionless(): boolean;
+    readonly isDimensionless: boolean;
 
     /**
      *
      */
-    isOne(): boolean;
+    readonly isOne: boolean;
 
     /**
      *
      */
-    isScalar(): boolean;
+    readonly isScalar: boolean;
 
     /**
      *
      */
-    isZero(): boolean;
+    readonly isZero: boolean;
 
     /**
      * Natural logarithm.

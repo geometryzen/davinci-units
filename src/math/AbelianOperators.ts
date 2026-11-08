@@ -42,5 +42,5 @@ export interface AbelianOperators<T, UNIT> {
     /**
      * Determines whether this element is the additive identity, <b>0</b>.
      */
-    isZero(): boolean;
+    readonly isZero: boolean;
 }

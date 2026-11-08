@@ -407,9 +407,9 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      * This method does not change this multivector.
      */
     add(rhs: Euclidean3): Euclidean3 {
-        if (rhs.isZero()) {
+        if (rhs.isZero) {
             return this;
-        } else if (this.isZero()) {
+        } else if (this.isZero) {
             return rhs;
         } else {
             const a = this.a + rhs.a;
@@ -504,9 +504,9 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      *
      */
     sub(rhs: Euclidean3): Euclidean3 {
-        if (rhs.isZero()) {
+        if (rhs.isZero) {
             return this;
-        } else if (this.isZero()) {
+        } else if (this.isZero) {
             return rhs.neg();
         } else {
             const a = this.a - rhs.a;
@@ -771,7 +771,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         return new Euclidean3(0, x, y, z, 0, 0, 0, 0, Unit.mul(this.uom, vector.uom));
     }
 
-    isDimensionless(): boolean {
+    get isDimensionless(): boolean {
         if (this.uom) {
             return this.uom.isOne();
         } else {
@@ -779,15 +779,15 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    isOne(): boolean {
+    get isOne(): boolean {
         return this.a === 1 && this.x === 0 && this.y === 0 && this.z === 0 && this.yz === 0 && this.zx === 0 && this.xy === 0 && this.b === 0;
     }
 
-    isScalar(): boolean {
+    get isScalar(): boolean {
         return this.x === 0 && this.y === 0 && this.z === 0 && this.yz === 0 && this.zx === 0 && this.xy === 0 && this.b === 0;
     }
 
-    isZero(): boolean {
+    get isZero(): boolean {
         return this.a === 0 && this.x === 0 && this.y === 0 && this.z === 0 && this.yz === 0 && this.zx === 0 && this.xy === 0 && this.b === 0;
     }
 
@@ -835,7 +835,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         Unit.assertDimensionless(this.uom);
         const bivector = this.grade(2);
         const a = bivector.norm();
-        if (!a.isZero()) {
+        if (!a.isZero) {
             const c = a.cos();
             const s = a.sin();
             const B = bivector.direction();
@@ -979,7 +979,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         return Euclidean3.fromCartesian(αOut, xOut, yOut, zOut, 0, 0, 0, βOut, this.uom);
     }
 
-    sin() {
+    sin(): Euclidean3 {
         // TODO: Generalize to full multivector.
         Unit.assertDimensionless(this.uom);
         const sinW = Math.sin(this.a);
@@ -1104,10 +1104,10 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
             } catch (cause) {
                 throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} >= ${rhs.uom.dimensions}`, { cause });
             }
-            if (!this.isScalar()) {
+            if (!this.isScalar) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
             }
-            if (!rhs.isScalar()) {
+            if (!rhs.isScalar) {
                 throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
             }
             return this.a >= rhs.a;
@@ -1123,10 +1123,10 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
             } catch (cause) {
                 throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} > ${rhs.uom.dimensions}`, { cause });
             }
-            if (!this.isScalar()) {
+            if (!this.isScalar) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
             }
-            if (!rhs.isScalar()) {
+            if (!rhs.isScalar) {
                 throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
             }
             return this.a > rhs.a;
@@ -1142,10 +1142,10 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
             } catch (cause) {
                 throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} <= ${rhs.uom.dimensions}`, { cause });
             }
-            if (!this.isScalar()) {
+            if (!this.isScalar) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
             }
-            if (!rhs.isScalar()) {
+            if (!rhs.isScalar) {
                 throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
             }
             return this.a <= rhs.a;
@@ -1161,10 +1161,10 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
             } catch (cause) {
                 throw new Error(`Dimensions mismatch in comparison expression: ${this.uom.dimensions} < ${rhs.uom.dimensions}`, { cause });
             }
-            if (!this.isScalar()) {
+            if (!this.isScalar) {
                 throw new Error(`left operand (${this}) in comparison expression must be a scalar.`);
             }
-            if (!rhs.isScalar()) {
+            if (!rhs.isScalar) {
                 throw new Error(`right operand (${rhs}) in comparison expression must be a scalar.`);
             }
             return this.a < rhs.a;

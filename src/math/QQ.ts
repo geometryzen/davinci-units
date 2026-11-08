@@ -145,16 +145,16 @@ export class QQ implements DivisionRingOperators<QQ, number> {
     }
 
     /**
-     * @returns
+     *
      */
-    isOne(): boolean {
+    get isOne(): boolean {
         return this._numer === 1 && this._denom === 1;
     }
 
     /**
-     * @returns
+     *
      */
-    isZero(): boolean {
+    get isZero(): boolean {
         return this._numer === 0 && this._denom === 1;
     }
 

@@ -168,7 +168,7 @@ export class Dimensions {
      * @returns <code>true</code> if all the exponents are zero, otherwise <code>false</code>.
      */
     isOne(): boolean {
-        return this.M.isZero() && this.L.isZero() && this.T.isZero() && this.Q.isZero() && this.E.isZero() && this.A.isZero() && this.I.isZero();
+        return this.M.isZero && this.L.isZero && this.T.isZero && this.Q.isZero && this.E.isZero && this.A.isZero && this.I.isZero;
     }
 
     /**

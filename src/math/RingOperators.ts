@@ -22,5 +22,5 @@ export interface RingOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
     /**
      * Determines whether this element is the multiplicative identity, <b>1</b>.
      */
-    isOne(): boolean;
+    readonly isOne: boolean;
 }

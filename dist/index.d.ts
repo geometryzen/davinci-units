@@ -35,7 +35,7 @@ interface AbelianOperators<T, UNIT> {
     /**
      * Determines whether this element is the additive identity, <b>0</b>.
      */
-    isZero(): boolean;
+    readonly isZero: boolean;
 }
 
 /**
@@ -58,7 +58,7 @@ interface RingOperators<T, UNIT> extends AbelianOperators<T, UNIT> {
     /**
      * Determines whether this element is the multiplicative identity, <b>1</b>.
      */
-    isOne(): boolean;
+    readonly isOne: boolean;
 }
 
 /**
@@ -122,13 +122,13 @@ declare class QQ implements DivisionRingOperators<QQ, number> {
      */
     div(rhs: QQ): QQ;
     /**
-     * @returns
+     *
      */
-    isOne(): boolean;
+    get isOne(): boolean;
     /**
-     * @returns
+     *
      */
-    isZero(): boolean;
+    get isZero(): boolean;
     /**
      * @returns
      */
@@ -590,19 +590,19 @@ interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNu
     /**
      *
      */
-    isDimensionless(): boolean;
+    readonly isDimensionless: boolean;
     /**
      *
      */
-    isOne(): boolean;
+    readonly isOne: boolean;
     /**
      *
      */
-    isScalar(): boolean;
+    readonly isScalar: boolean;
     /**
      *
      */
-    isZero(): boolean;
+    readonly isZero: boolean;
     /**
      * Natural logarithm.
      */
@@ -1173,10 +1173,10 @@ declare class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoord
      */
     grade(grade: number): Euclidean3;
     cross(vector: Euclidean3): Euclidean3;
-    isDimensionless(): boolean;
-    isOne(): boolean;
-    isScalar(): boolean;
-    isZero(): boolean;
+    get isDimensionless(): boolean;
+    get isOne(): boolean;
+    get isScalar(): boolean;
+    get isZero(): boolean;
     lerp(target: Euclidean3, α: number): Euclidean3;
     cos(): Euclidean3;
     cosh(): Euclidean3;
