@@ -955,8 +955,9 @@ declare class Unit {
  * Supports units of measure.
  * </p>
  */
-declare class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords, GeometricNumber<Euclidean3, Euclidean3, SpinorCoords, VectorCoords, Euclidean3, number, Unit>, GeometricOperators<Euclidean3, Unit>, TrigMethods<Euclidean3> {
+declare class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumber<G3, G3, SpinorCoords, VectorCoords, G3, number, Unit>, GeometricOperators<G3, Unit>, TrigMethods<G3> {
     #private;
+    readonly uom: Unit;
     static get BASIS_LABELS_GEOMETRIC(): string[][];
     static get BASIS_LABELS_HAMILTON(): string[][];
     static get BASIS_LABELS_STANDARD(): string[][];
@@ -965,79 +966,76 @@ declare class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoord
      * The current basis labels.
      */
     static BASIS_LABELS: string[][];
-    static readonly zero: Euclidean3;
-    static readonly one: Euclidean3;
-    static readonly e1: Euclidean3;
-    static readonly e2: Euclidean3;
-    static readonly e3: Euclidean3;
+    static readonly zero: G3;
+    static readonly one: G3;
+    static readonly e1: G3;
+    static readonly e2: G3;
+    static readonly e3: G3;
+    static readonly NaN: G3;
     /**
      * kilogram in S.I. units.
      */
-    static readonly MASS: Euclidean3;
+    static readonly MASS: G3;
     /**
      * @deprecated Use MASS instead.
      */
-    static readonly kilogram: Euclidean3;
+    static readonly kilogram: G3;
     /**
      * meter in S.I. units.
      */
-    static readonly LENGTH: Euclidean3;
+    static readonly LENGTH: G3;
     /**
      * @deprecated Use LENGTH instead.
      */
-    static readonly meter: Euclidean3;
+    static readonly meter: G3;
     /**
      * second in S.I. units.
      */
-    static readonly TIME: Euclidean3;
+    static readonly TIME: G3;
     /**
      * @deprecated Use TIME instead.
      */
-    static readonly second: Euclidean3;
+    static readonly second: G3;
     /**
      * coulomb in S.I. units.
      */
-    static readonly CHARGE: Euclidean3;
+    static readonly CHARGE: G3;
     /**
      * @deprecated Use CHARGE instead.
      */
-    static readonly coulomb: Euclidean3;
+    static readonly coulomb: G3;
     /**
      * ampere in S.I. units.
      */
-    static readonly CURRENT: Euclidean3;
+    static readonly CURRENT: G3;
     /**
      * @deprecated Use CURRENT instead.
      */
-    static readonly ampere: Euclidean3;
+    static readonly ampere: G3;
     /**
      * kelvin in S.I. units.
      */
-    static readonly TEMPERATURE: Euclidean3;
+    static readonly TEMPERATURE: G3;
     /**
      * @deprecated Use TEMPERATUE instead.
      */
-    static readonly kelvin: Euclidean3;
+    static readonly kelvin: G3;
     /**
      * mole in S.I. units
      */
-    static readonly AMOUNT: Euclidean3;
+    static readonly AMOUNT: G3;
     /**
      * @deprecated Use AMOUNT instead.
      */
-    static readonly mole: Euclidean3;
+    static readonly mole: G3;
     /**
      * candela in S.I. units
      */
-    static readonly INTENSITY: Euclidean3;
+    static readonly INTENSITY: G3;
     /**
      * @deprecated Use INTENSITY instead.
      */
-    static readonly candela: Euclidean3;
-    /**
-     * The optional unit of measure.
-     */
-    uom: Unit;
+    static readonly candela: G3;
     /**
      * @param α The scalar part of the multivector.
      * @param x The vector component of the multivector in the x-direction.
@@ -1049,7 +1047,7 @@ declare class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoord
      * @param β The pseudoscalar part of the multivector.
      * @param uom The optional unit of measure.
      */
-    constructor(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, uom?: Unit);
+    constructor(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, uom: Unit);
     /**
      * The scalar part of this multivector.
      */
@@ -1083,118 +1081,118 @@ declare class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoord
      * The pseudoscalar coordinate of this multivector.
      */
     get b(): number;
-    static fromCartesian(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, uom: Unit): Euclidean3;
+    static fromCartesian(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, uom: Unit): G3;
     get coords(): number[];
     coordinate(index: number): number;
     /**
      * Computes the sum of this multivector and another considered to be the rhs of the binary addition, `+`, operator.
      * This method does not change this multivector.
      */
-    add(rhs: Euclidean3): Euclidean3;
+    add(rhs: G3): G3;
     /**
      * Computes <code>this + Iβ</code>
      */
-    addPseudo(β: Unit): Euclidean3;
+    addPseudo(β: Unit): G3;
     /**
      * Computes <code>this + α</code>
      */
-    addScalar(α: Unit): Euclidean3;
-    __add__(rhs: Unit | Euclidean3): Euclidean3;
-    __radd__(lhs: Unit | Euclidean3): Euclidean3;
-    adj(): Euclidean3;
+    addScalar(α: Unit): G3;
+    __add__(rhs: Unit | G3): G3;
+    __radd__(lhs: Unit | G3): G3;
+    adj(): G3;
     /**
      * @returns grade(log(this), 2)
      */
-    angle(): Euclidean3;
+    angle(): G3;
     /**
      * Computes the <e>Clifford conjugate</em> of this multivector.
      * The grade multiplier is -1<sup>x(x+1)/2</sup>
      */
-    conj(): Euclidean3;
+    conj(): G3;
     /**
      * @param t
      * @param controlBegin
      * @param controlEnd
      * @param endPoint
      */
-    cubicBezier(t: number, controlBegin: GeometricCoords, controlEnd: GeometricCoords, endPoint: GeometricCoords): Euclidean3;
+    cubicBezier(t: number, controlBegin: GeometricCoords, controlEnd: GeometricCoords, endPoint: GeometricCoords): G3;
     /**
      *
      */
-    direction(): Euclidean3;
+    direction(): G3;
     /**
      *
      */
-    sub(rhs: Euclidean3): Euclidean3;
-    __sub__(rhs: Unit | Euclidean3 | undefined): Euclidean3 | undefined;
-    __rsub__(lhs: Unit | Euclidean3): Euclidean3;
-    mul(rhs: Euclidean3): Euclidean3;
-    __mul__(rhs: Euclidean3 | number): Euclidean3;
-    __rmul__(lhs: Euclidean3 | number): Euclidean3;
-    scale(α: number): Euclidean3;
-    div(rhs: Euclidean3): Euclidean3;
-    divByScalar(α: number): Euclidean3;
-    __div__(rhs: Euclidean3 | number): Euclidean3;
-    __rdiv__(lhs: Euclidean3 | number): Euclidean3;
-    dual(): Euclidean3;
-    scp(rhs: Euclidean3): Euclidean3;
-    ext(rhs: Euclidean3): Euclidean3;
-    __vbar__(rhs: Euclidean3 | number): Euclidean3;
-    __rvbar__(lhs: Euclidean3 | number): Euclidean3;
-    __wedge__(rhs: Euclidean3 | number): Euclidean3;
-    __rwedge__(lhs: Euclidean3 | number): Euclidean3;
-    lco(rhs: Euclidean3): Euclidean3;
-    __lshift__(rhs: Euclidean3 | number): Euclidean3;
-    __rlshift__(lhs: Euclidean3 | number): Euclidean3;
-    rco(rhs: Euclidean3): Euclidean3;
-    __rshift__(rhs: Euclidean3 | number): Euclidean3;
-    __rrshift__(lhs: Euclidean3 | number): Euclidean3;
-    pow(exponent: Euclidean3): Euclidean3;
-    __bang__(): Euclidean3;
+    sub(rhs: G3): G3;
+    __sub__(rhs: Unit | G3 | undefined): G3 | undefined;
+    __rsub__(lhs: Unit | G3): G3;
+    mul(rhs: G3): G3;
+    __mul__(rhs: G3 | number): G3;
+    __rmul__(lhs: G3 | number): G3;
+    scale(α: number): G3;
+    div(rhs: G3): G3;
+    divByScalar(α: number): G3;
+    __div__(rhs: G3 | number): G3;
+    __rdiv__(lhs: G3 | number): G3;
+    dual(): G3;
+    scp(rhs: G3): G3;
+    ext(rhs: G3): G3;
+    __vbar__(rhs: G3 | number): G3;
+    __rvbar__(lhs: G3 | number): G3;
+    __wedge__(rhs: G3 | number): G3;
+    __rwedge__(lhs: G3 | number): G3;
+    lco(rhs: G3): G3;
+    __lshift__(rhs: G3 | number): G3;
+    __rlshift__(lhs: G3 | number): G3;
+    rco(rhs: G3): G3;
+    __rshift__(rhs: G3 | number): G3;
+    __rrshift__(lhs: G3 | number): G3;
+    pow(exponent: G3): G3;
+    __bang__(): G3;
     /**
      * Unary plus(+).
      */
-    __pos__(): Euclidean3;
+    __pos__(): G3;
     /**
      * @returns <code>-1 * this</code>
      */
-    neg(): Euclidean3;
+    neg(): G3;
     /**
      * Unary minus (-).
      */
-    __neg__(): Euclidean3;
-    rev(): Euclidean3;
+    __neg__(): G3;
+    rev(): G3;
     /**
      * ~ (tilde) produces reversion.
      */
-    __tilde__(): Euclidean3;
+    __tilde__(): G3;
     /**
      * @param grade
      */
-    grade(grade: number): Euclidean3;
-    cross(vector: Euclidean3): Euclidean3;
+    grade(grade: number): G3;
+    cross(vector: G3): G3;
     get isDimensionless(): boolean;
     get isOne(): boolean;
     get isScalar(): boolean;
     get isZero(): boolean;
-    lerp(target: Euclidean3, α: number): Euclidean3;
-    cos(): Euclidean3;
-    cosh(): Euclidean3;
-    distanceTo(point: Euclidean3): Euclidean3;
-    equals(other: Euclidean3): boolean;
-    exp(): Euclidean3;
+    lerp(target: G3, α: number): G3;
+    cos(): G3;
+    cosh(): G3;
+    distanceTo(point: G3): G3;
+    equals(other: G3): boolean;
+    exp(): G3;
     /**
      * Computes the <em>inverse</em> of this multivector, if it exists.
      */
-    inv(): Euclidean3;
+    inv(): G3;
     /**
      *
      */
-    log(): Euclidean3;
+    log(): G3;
     /**
      * Computes the <em>square root</em> of the <em>squared norm</em>.
      */
-    magnitude(): Euclidean3;
+    magnitude(): G3;
     /**
      * Intentionally undocumented.
      */
@@ -1202,18 +1200,18 @@ declare class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoord
     /**
      * Computes the magnitude of this G3. The magnitude is the square root of the quadrance.
      */
-    norm(): Euclidean3;
+    norm(): G3;
     /**
      * Computes the quadrance of this G3. The quadrance is the square of the magnitude.
      */
-    quad(): Euclidean3;
+    quad(): G3;
     /**
      * @param t
      * @param controlPoint
      * @param endPoint
      */
-    quadraticBezier(t: number, controlPoint: GeometricCoords, endPoint: GeometricCoords): Euclidean3;
-    squaredNorm(): Euclidean3;
+    quadraticBezier(t: number, controlPoint: GeometricCoords, endPoint: GeometricCoords): G3;
+    squaredNorm(): G3;
     /**
      * Intentionally undocumented
      */
@@ -1221,18 +1219,18 @@ declare class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoord
     /**
      * @param σ
      */
-    stress(σ: VectorCoords): Euclidean3;
+    stress(σ: VectorCoords): G3;
     /**
      * Computes the <em>reflection</em> of this multivector in the plane with normal <code>n</code>.
      * @param n
      */
-    reflect(n: VectorCoords): Euclidean3;
-    rotate(R: SpinorCoords): Euclidean3;
-    sin(): Euclidean3;
-    sinh(): Euclidean3;
-    slerp(target: Euclidean3, α: number): Euclidean3;
-    sqrt(): Euclidean3;
-    tan(): Euclidean3;
+    reflect(n: G3): G3;
+    rotate(R: SpinorCoords): G3;
+    sin(): G3;
+    sinh(): G3;
+    slerp(target: G3, α: number): G3;
+    sqrt(): G3;
+    tan(): G3;
     /**
      * Intentionally undocumented.
      * @param dimensionLabels e.g. ["kg", "m", "s", "C", "K", "mol", "cd"]
@@ -1242,22 +1240,27 @@ declare class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoord
     toFixed(fractionDigits?: number): string;
     toPrecision(precision?: number): string;
     toString(radix?: number): string;
-    __eq__(rhs: Euclidean3): boolean;
-    __ne__(rhs: Euclidean3): boolean;
-    __ge__(rhs: Euclidean3): boolean;
-    __gt__(rhs: Euclidean3): boolean;
-    __le__(rhs: Euclidean3): boolean;
-    __lt__(rhs: Euclidean3): boolean;
-    /**
-     * Creates a new G3 from the coordinates of m and the optional unit of measure, uom.
-     */
-    static copy(m: GeometricCoords, uom?: Unit): Euclidean3;
-    static direction(vector: VectorCoords): Euclidean3;
-    static fromSpinor(spinor: SpinorCoords): Euclidean3;
-    static fromVector(vector: VectorCoords, uom?: Unit): Euclidean3;
-    static random(uom?: Unit): Euclidean3;
-    static scalar(α: number, uom?: Unit): Euclidean3;
-    static vector(x: number, y: number, z: number, uom?: Unit): Euclidean3;
+    __eq__(rhs: G3): boolean;
+    __ne__(rhs: G3): boolean;
+    __ge__(rhs: G3): boolean;
+    __gt__(rhs: G3): boolean;
+    __le__(rhs: G3): boolean;
+    __lt__(rhs: G3): boolean;
+    line(direction: G3): Line;
+    plane(normal: G3): Plane;
+    static random(uom: Unit): G3;
+}
+declare class Line {
+    readonly through: G3;
+    readonly direction: G3;
+    constructor(through: G3, direction: G3);
+    meetsPlane(plane: Plane): G3;
+}
+declare class Plane {
+    readonly through: G3;
+    readonly normal: G3;
+    constructor(through: G3, normal: G3);
+    meetsLine(line: Line): G3;
 }
 
 declare function cosh(x: number): number;
@@ -1283,5 +1286,5 @@ declare const mathcore: {
     };
 };
 
-export { Dimensions, Euclidean3, QQ, Unit, mathcore };
+export { Dimensions, G3, Line, Plane, QQ, Unit, mathcore };
 export type { DivisionRingOperators, GeometricCoords, GeometricMeasure, GeometricNumber, GeometricOperators, SpinorCoords, TrigMethods, VectorCoords };

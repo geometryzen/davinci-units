@@ -1,6 +1,6 @@
 export { Dimensions } from "./math/Dimensions";
 export { DivisionRingOperators } from "./math/DivisionRingOperators";
-export { Euclidean3 } from "./math/Euclidean3";
+export { G3, Line, Plane } from "./math/Euclidean3";
 export { GeometricCoords } from "./math/GeometricCoords";
 export { GeometricMeasure } from "./math/GeometricMeasure";
 export { GeometricNumber } from "./math/GeometricNumber";

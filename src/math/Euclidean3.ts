@@ -35,7 +35,7 @@ const COORD_YZ = 5;
 const COORD_ZX = 6;
 const COORD_PSEUDO = 7;
 
-function extG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): Euclidean3 {
+function extG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): G3 {
     const a0 = get(a, 0);
     const a1 = get(a, 1);
     const a2 = get(a, 2);
@@ -65,10 +65,10 @@ function extG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): Euclidean3 {
     set(xs, 6, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 6));
     set(xs, 7, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 7));
 
-    return new Euclidean3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
+    return new G3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
 }
 
-export function lcoG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): Euclidean3 {
+export function lcoG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): G3 {
     const a0 = get(a, 0);
     const a1 = get(a, 1);
     const a2 = get(a, 2);
@@ -98,10 +98,10 @@ export function lcoG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): Euclid
     set(xs, 6, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 6));
     set(xs, 7, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 7));
 
-    return new Euclidean3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
+    return new G3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
 }
 
-export function rcoG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): Euclidean3 {
+export function rcoG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): G3 {
     const a0 = get(a, 0);
     const a1 = get(a, 1);
     const a2 = get(a, 2);
@@ -131,10 +131,10 @@ export function rcoG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): Euclid
     set(xs, 6, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 6));
     set(xs, 7, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 7));
 
-    return new Euclidean3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
+    return new G3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
 }
 
-export function scpG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): Euclidean3 {
+export function scpG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): G3 {
     const a0 = get(a, 0);
     const a1 = get(a, 1);
     const a2 = get(a, 2);
@@ -164,7 +164,7 @@ export function scpG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): Euclid
     set(xs, 6, 0);
     set(xs, 7, 0);
 
-    return new Euclidean3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
+    return new G3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
 }
 
 /**
@@ -178,7 +178,7 @@ export function scpG3(a: GeometricCoords, b: GeometricCoords, uom: Unit): Euclid
  * Supports units of measure.
  * </p>
  */
-export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords, GeometricNumber<Euclidean3, Euclidean3, SpinorCoords, VectorCoords, Euclidean3, number, Unit>, GeometricOperators<Euclidean3, Unit>, TrigMethods<Euclidean3> {
+export class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumber<G3, G3, SpinorCoords, VectorCoords, G3, number, Unit>, GeometricOperators<G3, Unit>, TrigMethods<G3> {
     static get BASIS_LABELS_GEOMETRIC(): string[][] {
         return BASIS_LABELS_G3_GEOMETRIC;
     }
@@ -197,87 +197,83 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      */
     static BASIS_LABELS: string[][] = BASIS_LABELS_G3_STANDARD;
 
-    public static readonly zero = new Euclidean3(0, 0, 0, 0, 0, 0, 0, 0);
-    public static readonly one = new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0);
-    public static readonly e1 = new Euclidean3(0, 1, 0, 0, 0, 0, 0, 0);
-    public static readonly e2 = new Euclidean3(0, 0, 1, 0, 0, 0, 0, 0);
-    public static readonly e3 = new Euclidean3(0, 0, 0, 1, 0, 0, 0, 0);
+    public static readonly zero = new G3(0, 0, 0, 0, 0, 0, 0, 0,Unit.ONE);
+    public static readonly one = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.ONE);
+    public static readonly e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0, Unit.ONE);
+    public static readonly e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0, Unit.ONE);
+    public static readonly e3 = new G3(0, 0, 0, 1, 0, 0, 0, 0, Unit.ONE);
+    public static readonly NaN = new G3(NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, Unit.ONE);
 
     /**
      * kilogram in S.I. units.
      */
-    public static readonly MASS = new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0, Unit.MASS);
+    public static readonly MASS = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.MASS);
     /**
      * @deprecated Use MASS instead.
      */
-    public static readonly kilogram = Euclidean3.MASS;
+    public static readonly kilogram = G3.MASS;
     /**
      * meter in S.I. units.
      */
-    public static readonly LENGTH = new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0, Unit.LENGTH);
+    public static readonly LENGTH = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.LENGTH);
     /**
      * @deprecated Use LENGTH instead.
      */
-    public static readonly meter = Euclidean3.LENGTH;
+    public static readonly meter = G3.LENGTH;
     /**
      * second in S.I. units.
      */
-    public static readonly TIME = new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0, Unit.TIME);
+    public static readonly TIME = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.TIME);
     /**
      * @deprecated Use TIME instead.
      */
-    public static readonly second = Euclidean3.TIME;
+    public static readonly second = G3.TIME;
     /**
      * coulomb in S.I. units.
      */
-    public static readonly CHARGE = new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0, Unit.CHARGE);
+    public static readonly CHARGE = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.CHARGE);
     /**
      * @deprecated Use CHARGE instead.
      */
-    public static readonly coulomb = Euclidean3.CHARGE;
+    public static readonly coulomb = G3.CHARGE;
     /**
      * ampere in S.I. units.
      */
-    public static readonly CURRENT = new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0, Unit.CURRENT);
+    public static readonly CURRENT = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.CURRENT);
     /**
      * @deprecated Use CURRENT instead.
      */
-    public static readonly ampere = Euclidean3.CURRENT;
+    public static readonly ampere = G3.CURRENT;
     /**
      * kelvin in S.I. units.
      */
-    public static readonly TEMPERATURE = new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0, Unit.TEMPERATURE);
+    public static readonly TEMPERATURE = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.TEMPERATURE);
     /**
      * @deprecated Use TEMPERATUE instead.
      */
-    public static readonly kelvin = Euclidean3.TEMPERATURE;
+    public static readonly kelvin = G3.TEMPERATURE;
     /**
      * mole in S.I. units
      */
-    public static readonly AMOUNT = new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0, Unit.AMOUNT);
+    public static readonly AMOUNT = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.AMOUNT);
     /**
      * @deprecated Use AMOUNT instead.
      */
-    public static readonly mole = Euclidean3.AMOUNT;
+    public static readonly mole = G3.AMOUNT;
     /**
      * candela in S.I. units
      */
-    public static readonly INTENSITY = new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0, Unit.INTENSITY);
+    public static readonly INTENSITY = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.INTENSITY);
     /**
      * @deprecated Use INTENSITY instead.
      */
-    public static readonly candela = Euclidean3.INTENSITY;
+    public static readonly candela = G3.INTENSITY;
 
     /**
      * The coordinate values are stored in a number array.
      * This should be convenient and efficient for tensor calculations.
      */
     readonly #coords: [number, number, number, number, number, number, number, number] = [0, 0, 0, 0, 0, 0, 0, 0];
-
-    /**
-     * The optional unit of measure.
-     */
-    public uom: Unit;
 
     /**
      * @param α The scalar part of the multivector.
@@ -290,7 +286,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      * @param β The pseudoscalar part of the multivector.
      * @param uom The optional unit of measure.
      */
-    constructor(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, uom?: Unit) {
+    constructor(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, readonly uom: Unit) {
         this.#coords[COORD_SCALAR] = α;
         this.#coords[COORD_X] = x;
         this.#coords[COORD_Y] = y;
@@ -371,8 +367,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         return this.#coords[COORD_PSEUDO];
     }
 
-    static fromCartesian(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, uom: Unit): Euclidean3 {
-        return new Euclidean3(α, x, y, z, xy, yz, zx, β, uom);
+    static fromCartesian(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, uom: Unit): G3 {
+        return new G3(α, x, y, z, xy, yz, zx, β, uom);
     }
 
     get coords(): number[] {
@@ -406,7 +402,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      * Computes the sum of this multivector and another considered to be the rhs of the binary addition, `+`, operator.
      * This method does not change this multivector.
      */
-    add(rhs: Euclidean3): Euclidean3 {
+    add(rhs: G3): G3 {
         if (rhs.isZero) {
             return this;
         } else if (this.isZero) {
@@ -421,26 +417,26 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
             const zx = this.zx + rhs.zx;
             const b = this.b + rhs.b;
             const uom = Unit.compatible(this.uom, rhs.uom);
-            return new Euclidean3(a, x, y, z, xy, yz, zx, b, uom);
+            return new G3(a, x, y, z, xy, yz, zx, b, uom);
         }
     }
 
     /**
      * Computes <code>this + Iβ</code>
      */
-    addPseudo(β: Unit): Euclidean3 {
-        return new Euclidean3(this.a, this.x, this.y, this.z, this.xy, this.yz, this.zx, this.b + β.multiplier, Unit.compatible(this.uom, β));
+    addPseudo(β: Unit): G3 {
+        return new G3(this.a, this.x, this.y, this.z, this.xy, this.yz, this.zx, this.b + β.multiplier, Unit.compatible(this.uom, β));
     }
 
     /**
      * Computes <code>this + α</code>
      */
-    addScalar(α: Unit): Euclidean3 {
-        return new Euclidean3(this.a + α.multiplier, this.x, this.y, this.z, this.xy, this.yz, this.zx, this.b, Unit.compatible(this.uom, α));
+    addScalar(α: Unit): G3 {
+        return new G3(this.a + α.multiplier, this.x, this.y, this.z, this.xy, this.yz, this.zx, this.b, Unit.compatible(this.uom, α));
     }
 
-    __add__(rhs: Unit | Euclidean3): Euclidean3 {
-        if (rhs instanceof Euclidean3) {
+    __add__(rhs: Unit | G3): G3 {
+        if (rhs instanceof G3) {
             return this.add(rhs);
         } else if (rhs instanceof Unit) {
             return this.addScalar(rhs);
@@ -449,8 +445,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __radd__(lhs: Unit | Euclidean3): Euclidean3 {
-        if (lhs instanceof Euclidean3) {
+    __radd__(lhs: Unit | G3): G3 {
+        if (lhs instanceof G3) {
             return lhs.add(this);
         } else if (lhs instanceof Unit) {
             return this.addScalar(lhs);
@@ -459,14 +455,14 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    adj(): Euclidean3 {
+    adj(): G3 {
         throw new Error(notImplemented("adj").message);
     }
 
     /**
      * @returns grade(log(this), 2)
      */
-    angle(): Euclidean3 {
+    angle(): G3 {
         return this.log().grade(2);
     }
 
@@ -474,8 +470,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      * Computes the <e>Clifford conjugate</em> of this multivector.
      * The grade multiplier is -1<sup>x(x+1)/2</sup>
      */
-    conj(): Euclidean3 {
-        return new Euclidean3(this.a, -this.x, -this.y, -this.z, -this.xy, -this.yz, -this.zx, +this.b, this.uom);
+    conj(): G3 {
+        return new G3(this.a, -this.x, -this.y, -this.z, -this.xy, -this.yz, -this.zx, +this.b, this.uom);
     }
 
     /**
@@ -484,26 +480,26 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      * @param controlEnd
      * @param endPoint
      */
-    cubicBezier(t: number, controlBegin: GeometricCoords, controlEnd: GeometricCoords, endPoint: GeometricCoords): Euclidean3 {
+    cubicBezier(t: number, controlBegin: GeometricCoords, controlEnd: GeometricCoords, endPoint: GeometricCoords): G3 {
         const a = b3(t, this.a, controlBegin.a, controlEnd.a, endPoint.a);
         const x = b3(t, this.x, controlBegin.x, controlEnd.x, endPoint.x);
         const y = b3(t, this.y, controlBegin.y, controlEnd.y, endPoint.y);
         const z = b3(t, this.z, controlBegin.z, controlEnd.z, endPoint.z);
         const b = b3(t, this.b, controlBegin.b, controlEnd.b, endPoint.b);
-        return new Euclidean3(a, x, y, z, 0, 0, 0, b, this.uom);
+        return new G3(a, x, y, z, 0, 0, 0, b, this.uom);
     }
 
     /**
      *
      */
-    direction(): Euclidean3 {
+    direction(): G3 {
         return this.div(this.norm());
     }
 
     /**
      *
      */
-    sub(rhs: Euclidean3): Euclidean3 {
+    sub(rhs: G3): G3 {
         if (rhs.isZero) {
             return this;
         } else if (this.isZero) {
@@ -518,12 +514,12 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
             const zx = this.zx - rhs.zx;
             const b = this.b - rhs.b;
             const uom = Unit.compatible(this.uom, rhs.uom);
-            return new Euclidean3(a, x, y, z, xy, yz, zx, b, uom);
+            return new G3(a, x, y, z, xy, yz, zx, b, uom);
         }
     }
 
-    __sub__(rhs: Unit | Euclidean3 | undefined): Euclidean3 | undefined {
-        if (rhs instanceof Euclidean3) {
+    __sub__(rhs: Unit | G3 | undefined): G3 | undefined {
+        if (rhs instanceof G3) {
             return this.sub(rhs);
         } else if (rhs instanceof Unit) {
             return this.addScalar(rhs.neg());
@@ -532,8 +528,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __rsub__(lhs: Unit | Euclidean3): Euclidean3 {
-        if (lhs instanceof Euclidean3) {
+    __rsub__(lhs: Unit | G3): G3 {
+        if (lhs instanceof G3) {
             return lhs.sub(this);
         } else if (lhs instanceof Unit) {
             return this.neg().addScalar(lhs);
@@ -542,14 +538,14 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    mul(rhs: Euclidean3): Euclidean3 {
-        const out = new Euclidean3(0, 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, rhs.uom));
+    mul(rhs: G3): G3 {
+        const out = new G3(0, 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, rhs.uom));
         mulG3(this, rhs, out.#coords);
         return out;
     }
 
-    __mul__(rhs: Euclidean3 | number): Euclidean3 {
-        if (rhs instanceof Euclidean3) {
+    __mul__(rhs: G3 | number): G3 {
+        if (rhs instanceof G3) {
             return this.mul(rhs);
         } else if (typeof rhs === "number") {
             return this.scale(rhs);
@@ -558,8 +554,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __rmul__(lhs: Euclidean3 | number): Euclidean3 {
-        if (lhs instanceof Euclidean3) {
+    __rmul__(lhs: G3 | number): G3 {
+        if (lhs instanceof G3) {
             return lhs.mul(this);
         } else if (typeof lhs === "number") {
             return this.scale(lhs);
@@ -568,20 +564,20 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    scale(α: number): Euclidean3 {
-        return new Euclidean3(this.a * α, this.x * α, this.y * α, this.z * α, this.xy * α, this.yz * α, this.zx * α, this.b * α, this.uom);
+    scale(α: number): G3 {
+        return new G3(this.a * α, this.x * α, this.y * α, this.z * α, this.xy * α, this.yz * α, this.zx * α, this.b * α, this.uom);
     }
 
-    div(rhs: Euclidean3): Euclidean3 {
+    div(rhs: G3): G3 {
         return this.mul(rhs.inv());
     }
 
-    divByScalar(α: number): Euclidean3 {
-        return new Euclidean3(this.a / α, this.x / α, this.y / α, this.z / α, this.xy / α, this.yz / α, this.zx / α, this.b / α, this.uom);
+    divByScalar(α: number): G3 {
+        return new G3(this.a / α, this.x / α, this.y / α, this.z / α, this.xy / α, this.yz / α, this.zx / α, this.b / α, this.uom);
     }
 
-    __div__(rhs: Euclidean3 | number): Euclidean3 {
-        if (rhs instanceof Euclidean3) {
+    __div__(rhs: G3 | number): G3 {
+        if (rhs instanceof G3) {
             return this.div(rhs);
         } else if (typeof rhs === "number") {
             return this.divByScalar(rhs);
@@ -590,50 +586,50 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __rdiv__(lhs: Euclidean3 | number): Euclidean3 {
-        if (lhs instanceof Euclidean3) {
+    __rdiv__(lhs: G3 | number): G3 {
+        if (lhs instanceof G3) {
             return lhs.div(this);
         } else if (typeof lhs === "number") {
-            return new Euclidean3(lhs, 0, 0, 0, 0, 0, 0, 0, void 0).div(this);
+            return new G3(lhs, 0, 0, 0, 0, 0, 0, 0, void 0).div(this);
         } else {
             return void 0;
         }
     }
 
-    dual(): Euclidean3 {
+    dual(): G3 {
         throw new Error(notImplemented("dual").message);
     }
 
-    scp(rhs: Euclidean3): Euclidean3 {
+    scp(rhs: G3): G3 {
         return scpG3(this, rhs, Unit.mul(this.uom, rhs.uom));
     }
 
-    ext(rhs: Euclidean3): Euclidean3 {
+    ext(rhs: G3): G3 {
         return extG3(this, rhs, Unit.mul(this.uom, rhs.uom));
     }
 
-    __vbar__(rhs: Euclidean3 | number): Euclidean3 {
-        if (rhs instanceof Euclidean3) {
+    __vbar__(rhs: G3 | number): G3 {
+        if (rhs instanceof G3) {
             return this.scp(rhs);
         } else if (typeof rhs === "number") {
-            return this.scp(new Euclidean3(rhs, 0, 0, 0, 0, 0, 0, 0, void 0));
+            return this.scp(new G3(rhs, 0, 0, 0, 0, 0, 0, 0, void 0));
         } else {
             return void 0;
         }
     }
 
-    __rvbar__(lhs: Euclidean3 | number): Euclidean3 {
-        if (lhs instanceof Euclidean3) {
+    __rvbar__(lhs: G3 | number): G3 {
+        if (lhs instanceof G3) {
             return lhs.scp(this);
         } else if (typeof lhs === "number") {
-            return new Euclidean3(lhs, 0, 0, 0, 0, 0, 0, 0, void 0).scp(this);
+            return new G3(lhs, 0, 0, 0, 0, 0, 0, 0, void 0).scp(this);
         } else {
             return void 0;
         }
     }
 
-    __wedge__(rhs: Euclidean3 | number): Euclidean3 {
-        if (rhs instanceof Euclidean3) {
+    __wedge__(rhs: G3 | number): G3 {
+        if (rhs instanceof G3) {
             return this.ext(rhs);
         } else if (typeof rhs === "number") {
             return this.scale(rhs);
@@ -642,8 +638,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __rwedge__(lhs: Euclidean3 | number): Euclidean3 {
-        if (lhs instanceof Euclidean3) {
+    __rwedge__(lhs: G3 | number): G3 {
+        if (lhs instanceof G3) {
             return lhs.ext(this);
         } else if (typeof lhs === "number") {
             return this.scale(lhs);
@@ -652,113 +648,113 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    lco(rhs: Euclidean3): Euclidean3 {
+    lco(rhs: G3): G3 {
         return lcoG3(this, rhs, Unit.mul(this.uom, rhs.uom));
     }
 
-    __lshift__(rhs: Euclidean3 | number): Euclidean3 {
-        if (rhs instanceof Euclidean3) {
+    __lshift__(rhs: G3 | number): G3 {
+        if (rhs instanceof G3) {
             return this.lco(rhs);
         } else if (typeof rhs === "number") {
-            return this.lco(new Euclidean3(rhs, 0, 0, 0, 0, 0, 0, 0, void 0));
+            return this.lco(new G3(rhs, 0, 0, 0, 0, 0, 0, 0, void 0));
         } else {
             return void 0;
         }
     }
 
-    __rlshift__(lhs: Euclidean3 | number): Euclidean3 {
-        if (lhs instanceof Euclidean3) {
+    __rlshift__(lhs: G3 | number): G3 {
+        if (lhs instanceof G3) {
             return lhs.lco(this);
         } else if (typeof lhs === "number") {
-            return new Euclidean3(lhs, 0, 0, 0, 0, 0, 0, 0, void 0).lco(this);
+            return new G3(lhs, 0, 0, 0, 0, 0, 0, 0, void 0).lco(this);
         } else {
             return void 0;
         }
     }
 
-    rco(rhs: Euclidean3): Euclidean3 {
+    rco(rhs: G3): G3 {
         return rcoG3(this, rhs, Unit.mul(this.uom, rhs.uom));
     }
 
-    __rshift__(rhs: Euclidean3 | number): Euclidean3 {
-        if (rhs instanceof Euclidean3) {
+    __rshift__(rhs: G3 | number): G3 {
+        if (rhs instanceof G3) {
             return this.rco(rhs);
         } else if (typeof rhs === "number") {
-            return this.rco(new Euclidean3(rhs, 0, 0, 0, 0, 0, 0, 0, void 0));
+            return this.rco(new G3(rhs, 0, 0, 0, 0, 0, 0, 0, void 0));
         } else {
             return void 0;
         }
     }
 
-    __rrshift__(lhs: Euclidean3 | number): Euclidean3 {
-        if (lhs instanceof Euclidean3) {
+    __rrshift__(lhs: G3 | number): G3 {
+        if (lhs instanceof G3) {
             return lhs.rco(this);
         } else if (typeof lhs === "number") {
-            return new Euclidean3(lhs, 0, 0, 0, 0, 0, 0, 0, void 0).rco(this);
+            return new G3(lhs, 0, 0, 0, 0, 0, 0, 0, void 0).rco(this);
         } else {
             return void 0;
         }
     }
 
-    pow(exponent: Euclidean3): Euclidean3 {
+    pow(exponent: G3): G3 {
         throw new Error(`pow(${exponent})`);
     }
 
-    __bang__(): Euclidean3 {
+    __bang__(): G3 {
         return this.inv();
     }
 
     /**
      * Unary plus(+).
      */
-    __pos__(): Euclidean3 {
+    __pos__(): G3 {
         return this;
     }
 
     /**
      * @returns <code>-1 * this</code>
      */
-    neg(): Euclidean3 {
-        return new Euclidean3(-this.a, -this.x, -this.y, -this.z, -this.xy, -this.yz, -this.zx, -this.b, this.uom);
+    neg(): G3 {
+        return new G3(-this.a, -this.x, -this.y, -this.z, -this.xy, -this.yz, -this.zx, -this.b, this.uom);
     }
 
     /**
      * Unary minus (-).
      */
-    __neg__(): Euclidean3 {
+    __neg__(): G3 {
         return this.neg();
     }
 
-    rev(): Euclidean3 {
-        return new Euclidean3(this.a, this.x, this.y, this.z, -this.xy, -this.yz, -this.zx, -this.b, this.uom);
+    rev(): G3 {
+        return new G3(this.a, this.x, this.y, this.z, -this.xy, -this.yz, -this.zx, -this.b, this.uom);
     }
 
     /**
      * ~ (tilde) produces reversion.
      */
-    __tilde__(): Euclidean3 {
+    __tilde__(): G3 {
         return this.rev();
     }
 
     /**
      * @param grade
      */
-    grade(grade: number): Euclidean3 {
+    grade(grade: number): G3 {
         switch (grade) {
             case 0:
-                return Euclidean3.fromCartesian(this.a, 0, 0, 0, 0, 0, 0, 0, this.uom);
+                return G3.fromCartesian(this.a, 0, 0, 0, 0, 0, 0, 0, this.uom);
             case 1:
-                return Euclidean3.fromCartesian(0, this.x, this.y, this.z, 0, 0, 0, 0, this.uom);
+                return G3.fromCartesian(0, this.x, this.y, this.z, 0, 0, 0, 0, this.uom);
             case 2:
-                return Euclidean3.fromCartesian(0, 0, 0, 0, this.xy, this.yz, this.zx, 0, this.uom);
+                return G3.fromCartesian(0, 0, 0, 0, this.xy, this.yz, this.zx, 0, this.uom);
             case 3:
-                return Euclidean3.fromCartesian(0, 0, 0, 0, 0, 0, 0, this.b, this.uom);
+                return G3.fromCartesian(0, 0, 0, 0, 0, 0, 0, this.b, this.uom);
             default:
-                return Euclidean3.fromCartesian(0, 0, 0, 0, 0, 0, 0, 0, this.uom);
+                return G3.fromCartesian(0, 0, 0, 0, 0, 0, 0, 0, this.uom);
         }
     }
 
-    cross(vector: Euclidean3): Euclidean3 {
+    cross(vector: G3): G3 {
         const x1 = this.x;
         const y1 = this.y;
         const z1 = this.z;
@@ -768,7 +764,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         const x = y1 * z2 - z1 * y2;
         const y = z1 * x2 - x1 * z2;
         const z = x1 * y2 - y1 * x2;
-        return new Euclidean3(0, x, y, z, 0, 0, 0, 0, Unit.mul(this.uom, vector.uom));
+        return new G3(0, x, y, z, 0, 0, 0, 0, Unit.mul(this.uom, vector.uom));
     }
 
     get isDimensionless(): boolean {
@@ -791,26 +787,26 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         return this.a === 0 && this.x === 0 && this.y === 0 && this.z === 0 && this.yz === 0 && this.zx === 0 && this.xy === 0 && this.b === 0;
     }
 
-    lerp(target: Euclidean3, α: number): Euclidean3 {
+    lerp(target: G3, α: number): G3 {
         throw new Error(notImplemented(`lerp(target=${target}, α=${α})`).message);
     }
 
-    cos(): Euclidean3 {
+    cos(): G3 {
         // TODO: Generalize to full multivector.
         Unit.assertDimensionless(this.uom);
         const cosW = Math.cos(this.a);
-        return new Euclidean3(cosW, 0, 0, 0, 0, 0, 0, 0);
+        return new G3(cosW, 0, 0, 0, 0, 0, 0, 0, Unit.ONE);
     }
 
-    cosh(): Euclidean3 {
+    cosh(): G3 {
         throw new Error(notImplemented("cosh").message);
     }
 
-    distanceTo(point: Euclidean3): Euclidean3 {
+    distanceTo(point: G3): G3 {
         return this.sub(point).magnitude();
     }
 
-    equals(other: Euclidean3): boolean {
+    equals(other: G3): boolean {
         if (this.a === other.a && this.x === other.x && this.y === other.y && this.z === other.z && this.xy === other.xy && this.yz === other.yz && this.zx === other.zx && this.b === other.b) {
             if (this.uom) {
                 if (other.uom) {
@@ -831,7 +827,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    exp(): Euclidean3 {
+    exp(): G3 {
         Unit.assertDimensionless(this.uom);
         const bivector = this.grade(2);
         const a = bivector.norm();
@@ -841,14 +837,14 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
             const B = bivector.direction();
             return c.add(B.mul(s));
         } else {
-            return new Euclidean3(1, 0, 0, 0, 0, 0, 0, 0, this.uom);
+            return new G3(1, 0, 0, 0, 0, 0, 0, 0, this.uom);
         }
     }
 
     /**
      * Computes the <em>inverse</em> of this multivector, if it exists.
      */
-    inv(): Euclidean3 {
+    inv(): G3 {
         const α = this.a;
         const x = this.x;
         const y = this.y;
@@ -874,20 +870,20 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         const X = gauss(A, b);
 
         const uom = this.uom ? this.uom.inv() : void 0;
-        return new Euclidean3(X[0], X[1], X[2], X[3], X[4], X[5], X[6], X[7], uom);
+        return new G3(X[0], X[1], X[2], X[3], X[4], X[5], X[6], X[7], uom);
     }
 
     /**
      *
      */
-    log(): Euclidean3 {
+    log(): G3 {
         throw new Error(notImplemented("log").message);
     }
 
     /**
      * Computes the <em>square root</em> of the <em>squared norm</em>.
      */
-    magnitude(): Euclidean3 {
+    magnitude(): G3 {
         return this.norm();
     }
 
@@ -901,14 +897,14 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
     /**
      * Computes the magnitude of this G3. The magnitude is the square root of the quadrance.
      */
-    norm(): Euclidean3 {
-        return new Euclidean3(this.magnitudeSansUnits(), 0, 0, 0, 0, 0, 0, 0, this.uom);
+    norm(): G3 {
+        return new G3(this.magnitudeSansUnits(), 0, 0, 0, 0, 0, 0, 0, this.uom);
     }
 
     /**
      * Computes the quadrance of this G3. The quadrance is the square of the magnitude.
      */
-    quad(): Euclidean3 {
+    quad(): G3 {
         return this.squaredNorm();
     }
 
@@ -917,15 +913,15 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      * @param controlPoint
      * @param endPoint
      */
-    quadraticBezier(t: number, controlPoint: GeometricCoords, endPoint: GeometricCoords): Euclidean3 {
+    quadraticBezier(t: number, controlPoint: GeometricCoords, endPoint: GeometricCoords): G3 {
         const x = b2(t, this.x, controlPoint.x, endPoint.x);
         const y = b2(t, this.y, controlPoint.y, endPoint.y);
         const z = b2(t, this.z, controlPoint.z, endPoint.z);
-        return new Euclidean3(0, x, y, z, 0, 0, 0, 0, this.uom);
+        return new G3(0, x, y, z, 0, 0, 0, 0, this.uom);
     }
 
-    squaredNorm(): Euclidean3 {
-        return new Euclidean3(this.squaredNormSansUnits(), 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, this.uom));
+    squaredNorm(): G3 {
+        return new G3(this.squaredNormSansUnits(), 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, this.uom));
     }
 
     /**
@@ -938,7 +934,7 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
     /**
      * @param σ
      */
-    stress(σ: VectorCoords): Euclidean3 {
+    stress(σ: VectorCoords): G3 {
         throw new Error(notSupported(`stress(σ=${σ})`).message);
     }
 
@@ -946,10 +942,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
      * Computes the <em>reflection</em> of this multivector in the plane with normal <code>n</code>.
      * @param n
      */
-    reflect(n: VectorCoords) {
-        // TODO: Optimize to minimize object creation and increase performance.
-        const m = Euclidean3.fromVector(n);
-        return m.mul(this).mul(m).scale(-1);
+    reflect(n: G3): G3 {
+        return n.mul(this).mul(n).scale(-1);
     }
 
     rotate(R: SpinorCoords) {
@@ -976,29 +970,29 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         const zOut = iz * α + iα * a + ix * c - iy * b;
         const βOut = quadR * this.b;
 
-        return Euclidean3.fromCartesian(αOut, xOut, yOut, zOut, 0, 0, 0, βOut, this.uom);
+        return G3.fromCartesian(αOut, xOut, yOut, zOut, 0, 0, 0, βOut, this.uom);
     }
 
-    sin(): Euclidean3 {
+    sin(): G3 {
         // TODO: Generalize to full multivector.
         Unit.assertDimensionless(this.uom);
         const sinW = Math.sin(this.a);
-        return new Euclidean3(sinW, 0, 0, 0, 0, 0, 0, 0, void 0);
+        return new G3(sinW, 0, 0, 0, 0, 0, 0, 0, void 0);
     }
 
-    sinh(): Euclidean3 {
+    sinh(): G3 {
         throw new Error(notImplemented("sinh").message);
     }
 
-    slerp(target: Euclidean3, α: number): Euclidean3 {
+    slerp(target: G3, α: number): G3 {
         throw new Error(notImplemented(`slerp(target=${target}, α=${α})`).message);
     }
 
-    sqrt(): Euclidean3 {
-        return new Euclidean3(Math.sqrt(this.a), 0, 0, 0, 0, 0, 0, 0, Unit.sqrt(this.uom));
+    sqrt(): G3 {
+        return new G3(Math.sqrt(this.a), 0, 0, 0, 0, 0, 0, 0, Unit.sqrt(this.uom));
     }
 
-    tan(): Euclidean3 {
+    tan(): G3 {
         return this.sin().div(this.cos());
     }
 
@@ -1026,33 +1020,33 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         const coordToString = function (coord: number): string {
             return coord.toExponential(fractionDigits);
         };
-        return this.toStringCustom(coordToString, ["kg", "m", "s", "C", "K", "mol", "cd"], Euclidean3.BASIS_LABELS);
+        return this.toStringCustom(coordToString, ["kg", "m", "s", "C", "K", "mol", "cd"], G3.BASIS_LABELS);
     }
 
     toFixed(fractionDigits?: number): string {
         const coordToString = function (coord: number): string {
             return coord.toFixed(fractionDigits);
         };
-        return this.toStringCustom(coordToString, ["kg", "m", "s", "C", "K", "mol", "cd"], Euclidean3.BASIS_LABELS);
+        return this.toStringCustom(coordToString, ["kg", "m", "s", "C", "K", "mol", "cd"], G3.BASIS_LABELS);
     }
 
     toPrecision(precision?: number): string {
         const coordToString = function (coord: number): string {
             return coord.toPrecision(precision);
         };
-        return this.toStringCustom(coordToString, ["kg", "m", "s", "C", "K", "mol", "cd"], Euclidean3.BASIS_LABELS);
+        return this.toStringCustom(coordToString, ["kg", "m", "s", "C", "K", "mol", "cd"], G3.BASIS_LABELS);
     }
 
     toString(radix?: number): string {
         // We have to scale this number appropriately
-        const seven: [[Euclidean3, string], [Euclidean3, string], [Euclidean3, string], [Euclidean3, string], [Euclidean3, string], [Euclidean3, string], [Euclidean3, string]] = [
-            [Euclidean3.MASS, "kg"],
-            [Euclidean3.LENGTH, "m"],
-            [Euclidean3.TIME, "s"],
-            [Euclidean3.CHARGE, "C"],
-            [Euclidean3.TEMPERATURE, "K"],
-            [Euclidean3.AMOUNT, "mol"],
-            [Euclidean3.INTENSITY, "cd"]
+        const seven: [[G3, string], [G3, string], [G3, string], [G3, string], [G3, string], [G3, string], [G3, string]] = [
+            [G3.MASS, "kg"],
+            [G3.LENGTH, "m"],
+            [G3.TIME, "s"],
+            [G3.CHARGE, "C"],
+            [G3.TEMPERATURE, "K"],
+            [G3.AMOUNT, "mol"],
+            [G3.INTENSITY, "cd"]
         ];
         const dimensionLabels = seven.map((pair) => pair[1]) as [string, string, string, string, string, string, string];
         // We need to scale this quantity according to the dimensions and then call the toStringCustom
@@ -1068,11 +1062,11 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         const coordToString = function (coord: number): string {
             return coord.toString(radix);
         };
-        return this.toStringCustom(coordToString, dimensionLabels, Euclidean3.BASIS_LABELS);
+        return this.toStringCustom(coordToString, dimensionLabels, G3.BASIS_LABELS);
     }
 
-    __eq__(rhs: Euclidean3): boolean {
-        if (rhs instanceof Euclidean3) {
+    __eq__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
             } catch (cause) {
@@ -1084,8 +1078,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __ne__(rhs: Euclidean3): boolean {
-        if (rhs instanceof Euclidean3) {
+    __ne__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
             } catch (cause) {
@@ -1097,8 +1091,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __ge__(rhs: Euclidean3): boolean {
-        if (rhs instanceof Euclidean3) {
+    __ge__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
             } catch (cause) {
@@ -1116,8 +1110,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __gt__(rhs: Euclidean3): boolean {
-        if (rhs instanceof Euclidean3) {
+    __gt__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
             } catch (cause) {
@@ -1135,8 +1129,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __le__(rhs: Euclidean3): boolean {
-        if (rhs instanceof Euclidean3) {
+    __le__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
             } catch (cause) {
@@ -1154,8 +1148,8 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    __lt__(rhs: Euclidean3): boolean {
-        if (rhs instanceof Euclidean3) {
+    __lt__(rhs: G3): boolean {
+        if (rhs instanceof G3) {
             try {
                 Unit.compatible(this.uom, rhs.uom);
             } catch (cause) {
@@ -1173,47 +1167,51 @@ export class Euclidean3 implements GeometricMeasure<Euclidean3>, GeometricCoords
         }
     }
 
-    /**
-     * Creates a new G3 from the coordinates of m and the optional unit of measure, uom.
-     */
-    static copy(m: GeometricCoords, uom?: Unit): Euclidean3 {
-        return new Euclidean3(m.a, m.x, m.y, m.z, m.xy, m.yz, m.zx, m.b, uom);
+    line(direction: G3): Line {
+        return new Line(this, direction);
     }
 
-    static direction(vector: VectorCoords): Euclidean3 {
-        if (vector) {
-            return new Euclidean3(0, vector.x, vector.y, vector.z, 0, 0, 0, 0).direction();
-        } else {
-            return void 0;
-        }
+    plane(normal: G3): Plane {
+        return new Plane(this, normal);
     }
 
-    static fromSpinor(spinor: SpinorCoords): Euclidean3 {
-        if (spinor) {
-            // FIXME: SpinorE3 should support uom, even though it might be 1
-            return new Euclidean3(spinor.a, 0, 0, 0, spinor.xy, spinor.yz, spinor.zx, 0, void 0);
-        } else {
-            return void 0;
-        }
+    static random(uom: Unit): G3 {
+        return new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), uom);
     }
+}
 
-    static fromVector(vector: VectorCoords, uom?: Unit): Euclidean3 {
-        if (vector) {
-            return new Euclidean3(0, vector.x, vector.y, vector.z, 0, 0, 0, 0, uom);
-        } else {
-            return void 0;
-        }
+export class Line {
+    constructor(
+        readonly through: G3,
+        readonly direction: G3
+    ) { }
+    meetsPlane(plane: Plane): G3 {
+        return meet_of_line_and_plane(this, plane);
     }
+}
 
-    static random(uom?: Unit): Euclidean3 {
-        return new Euclidean3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), uom);
+export class Plane {
+    constructor(
+        readonly through: G3,
+        readonly normal: G3
+    ) { }
+    meetsLine(line: Line): G3 {
+        return meet_of_line_and_plane(line, this);
     }
+}
 
-    static scalar(α: number, uom?: Unit): Euclidean3 {
-        return new Euclidean3(α, 0, 0, 0, 0, 0, 0, 0, uom);
-    }
-
-    static vector(x: number, y: number, z: number, uom?: Unit): Euclidean3 {
-        return new Euclidean3(0, x, y, z, 0, 0, 0, 0, uom);
-    }
+function meet_of_line_and_plane(line: Line, plane: Plane): G3 {
+    // Let x = p + μ d be a point in the plane.
+    // Using | as the symbol for the scalar (a.k.a. dot) product,
+    // Since x lies in the plane <=> (q - x) | n = 0, because q - x is a vector in the plane.
+    // Solving for μ, μ = (q - p) | n / (n | d)
+    const n = plane.normal;
+    const q = plane.through;
+    const p = line.through;
+    const d = line.direction;
+    const q_minus_p = q.sub(p);
+    const numer = q_minus_p.scp(n);
+    const denom = n.scp(d);
+    const μ = numer.div(denom);
+    return p.add(μ.mul(d));
 }
