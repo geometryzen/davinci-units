@@ -1,8 +1,8 @@
-import { GeometricE3 } from "./GeometricE3";
+import { GeometricCoords } from "./GeometricCoords";
 import { gcompE3 as get } from "./compG3Get";
-import mulE3 from "./mulE3";
+import { mulE3 } from "./mulE3";
 
-export function mulG3(a: GeometricE3, b: GeometricE3, out: number[]): void {
+export function mulG3(a: GeometricCoords, b: GeometricCoords, out: number[]): void {
     const a0 = a.a;
     const a1 = a.x;
     const a2 = a.y;
@@ -21,8 +21,12 @@ export function mulG3(a: GeometricE3, b: GeometricE3, out: number[]): void {
     const b6 = get(b, 6);
     const b7 = get(b, 7);
 
-    const iLen = out.length;
-    for (let i = 0; i < iLen; i++) {
-        out[i] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, i);
-    }
+    out[0] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 0);
+    out[1] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 1);
+    out[2] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 2);
+    out[3] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 3);
+    out[4] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 4);
+    out[5] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 5);
+    out[6] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 6);
+    out[7] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 7);
 }

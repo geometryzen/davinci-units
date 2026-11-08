@@ -1,9 +1,9 @@
 import { isDefined } from "../checks/isDefined";
 import isNumber from "../checks/isNumber";
 import dotVectorCartesianE3 from "./dotVectorCartesianE3";
-import { VectorE3 } from "./VectorE3";
+import { VectorCoords } from "./VectorCoords";
 
-export default function quadVectorE3(vector: VectorE3): number {
+export default function quadVectorE3(vector: VectorCoords): number {
     if (isDefined(vector)) {
         const x = vector.x;
         const y = vector.y;

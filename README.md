@@ -4,7 +4,7 @@ Units of Measure and Geometric Algebra
 
 [![npm downloads](https://img.shields.io/npm/dm/davinci-units.svg)](https://npm-stat.com/charts.html?package=davinci-units&from=2020-06-01) 
 
-davinci-units is a Geometric Numbers library for Mathematical Physics using Geometric Algebra
+davinci-units is a 3D Euclidean Geometric Number (with units of measure) library for Mathematical Physics using Geometric Algebra.
 
 Example: [__https://www.stemcstudio.com/gists/db6a56345aea8c70ab9af511d4d39d0b__](https://stemcstudio.com/gists/db6a56345aea8c70ab9af511d4d39d0b)
 

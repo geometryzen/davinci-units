@@ -1,5 +1,5 @@
-import { SpinorE3 } from "./SpinorE3";
+import { SpinorCoords } from "./SpinorCoords";
 
-export default function (R: SpinorE3, S: SpinorE3): number {
+export default function (R: SpinorCoords, S: SpinorCoords): number {
     return R.yz * S.a - R.zx * S.xy + R.xy * S.zx + R.a * S.yz;
 }

@@ -1,8 +1,6 @@
-interface Scalar {
+export interface ScalarCoord {
     /**
      * The scalar coordinate as a number.
      */
-    a: number;
+    readonly a: number;
 }
-
-export default Scalar;

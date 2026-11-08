@@ -1,6 +1,6 @@
-import { GeometricE3 } from "./GeometricE3";
+import { GeometricCoords } from "./GeometricCoords";
 
-export default function squaredNormG3(m: GeometricE3) {
+export default function squaredNormG3(m: GeometricCoords) {
     const a = m.a;
     const x = m.x;
     const y = m.y;

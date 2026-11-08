@@ -1,7 +1,7 @@
 // import dot from "./dotVectorE3";
 // import quad from "./quadVectorE3";
-import { VectorE3 as Vector } from "./VectorE3";
-import { SpinorE3 as Spinor } from "./SpinorE3";
+import { VectorCoords as Vector } from "./VectorCoords";
+import { SpinorCoords as Spinor } from "./SpinorCoords";
 // import wedgeXY from "./wedgeXY";
 // import wedgeYZ from "./wedgeYZ";
 // import wedgeZX from "./wedgeZX";

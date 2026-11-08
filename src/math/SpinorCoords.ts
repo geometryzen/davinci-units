@@ -1,11 +1,9 @@
-import Scalar from "./Scalar";
+import { ScalarCoord } from "./ScalarCoord";
 
 /**
  * The even sub-algebra of the <em>Euclidean algebra 𝓖(3, 0)</em>.
- * @class SpinorE3
- * @extends Scalar
  */
-export interface SpinorE3 extends Scalar {
+export interface SpinorCoords extends ScalarCoord {
     /**
      * The <em>bivector</em> yz-coordinate as a <code>number</code>.
      */

@@ -1,4 +1,4 @@
-import { GeometricE3 } from "./GeometricE3";
+import { GeometricCoords } from "./GeometricCoords";
 
 // GraphicsProgramSymbols constants for the coordinate indices into the data array.
 // These are chosen to match those used by G3.
@@ -12,7 +12,7 @@ const COORD_YZ = 5;
 const COORD_ZX = 6;
 const COORD_XYZ = 7;
 
-export function gcompE3(m: GeometricE3, index: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7): number {
+export function gcompE3(m: GeometricCoords, index: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7): number {
     switch (index) {
         case COORD_W: {
             return m.a;

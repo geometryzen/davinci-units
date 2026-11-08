@@ -60,7 +60,7 @@ function solve(A: number[][], N: number) {
  * Gaussian elimination
  * Ax = b
  */
-export default function gauss(A: number[][], b: number[]): number[] {
+export function gauss(A: number[][], b: number[]): number[] {
     const N = A.length;
 
     // mustBeEQ('A.length', N, b.length)

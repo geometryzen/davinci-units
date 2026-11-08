@@ -1,8 +1,6 @@
-interface Pseudo {
+export interface PseudoCoord {
     /**
      * The pseudoscalar coordinate as a number.I
      */
-    b: number;
+    readonly b: number;
 }
-
-export default Pseudo;

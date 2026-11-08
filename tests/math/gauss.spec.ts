@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import gauss from "../../src/math/gauss";
+import { gauss } from "../../src/math/gauss";
 
 describe("gauss", function () {
     it("4x = 8", function () {

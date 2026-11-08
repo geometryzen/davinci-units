@@ -1,7 +1,7 @@
 /**
  *
  */
-export interface VectorE3 {
+export interface VectorCoords {
     /**
      * The Cartesian x-coordinate.
      */
