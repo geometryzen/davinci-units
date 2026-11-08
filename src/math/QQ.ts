@@ -32,11 +32,8 @@ export class QQ implements DivisionRingOperators<QQ, number> {
         }
         mustBeInteger("n", n);
         mustBeInteger("d", d);
-        var g: number;
 
         const gcd = function (a: number, b: number) {
-            var temp: number;
-
             if (a < 0) {
                 a = -a;
             }
@@ -44,7 +41,7 @@ export class QQ implements DivisionRingOperators<QQ, number> {
                 b = -b;
             }
             if (b > a) {
-                temp = a;
+                const temp = a;
                 a = b;
                 b = temp;
             }
@@ -63,11 +60,7 @@ export class QQ implements DivisionRingOperators<QQ, number> {
         if (d === 0) {
             throw new Error("denominator must not be zero");
         }
-        if (n === 0) {
-            g = 1;
-        } else {
-            g = gcd(Math.abs(n), Math.abs(d));
-        }
+        const g = n === 0 ? 1 : gcd(Math.abs(n), Math.abs(d));
         if (d < 0) {
             n = -n;
             d = -d;
@@ -144,16 +137,14 @@ export class QQ implements DivisionRingOperators<QQ, number> {
         }
     }
 
-    /**
-     *
-     */
+    get isNaN(): boolean {
+        return isNaN(this._numer) || isNaN(this._denom);
+    }
+
     get isOne(): boolean {
         return this._numer === 1 && this._denom === 1;
     }
 
-    /**
-     *
-     */
     get isZero(): boolean {
         return this._numer === 0 && this._denom === 1;
     }

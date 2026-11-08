@@ -197,7 +197,7 @@ export class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumbe
      */
     static BASIS_LABELS: string[][] = BASIS_LABELS_G3_STANDARD;
 
-    public static readonly zero = new G3(0, 0, 0, 0, 0, 0, 0, 0,Unit.ONE);
+    public static readonly zero = new G3(0, 0, 0, 0, 0, 0, 0, 0, Unit.ONE);
     public static readonly one = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.ONE);
     public static readonly e1 = new G3(0, 1, 0, 0, 0, 0, 0, 0, Unit.ONE);
     public static readonly e2 = new G3(0, 0, 1, 0, 0, 0, 0, 0, Unit.ONE);
@@ -286,7 +286,17 @@ export class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumbe
      * @param β The pseudoscalar part of the multivector.
      * @param uom The optional unit of measure.
      */
-    constructor(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, readonly uom: Unit) {
+    constructor(
+        α: number,
+        x: number,
+        y: number,
+        z: number,
+        xy: number,
+        yz: number,
+        zx: number,
+        β: number,
+        readonly uom: Unit
+    ) {
         this.#coords[COORD_SCALAR] = α;
         this.#coords[COORD_X] = x;
         this.#coords[COORD_Y] = y;
@@ -775,6 +785,10 @@ export class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumbe
         }
     }
 
+    get isNaN(): boolean {
+        return isNaN(this.a) || isNaN(this.x) || isNaN(this.y) || isNaN(this.z) || isNaN(this.yz) || isNaN(this.zx) || isNaN(this.xy) || isNaN(this.b);
+    }
+
     get isOne(): boolean {
         return this.a === 1 && this.x === 0 && this.y === 0 && this.z === 0 && this.yz === 0 && this.zx === 0 && this.xy === 0 && this.b === 0;
     }
@@ -1184,7 +1198,7 @@ export class Line {
     constructor(
         readonly through: G3,
         readonly direction: G3
-    ) { }
+    ) {}
     meetsPlane(plane: Plane): G3 {
         return meet_of_line_and_plane(this, plane);
     }
@@ -1194,7 +1208,7 @@ export class Plane {
     constructor(
         readonly through: G3,
         readonly normal: G3
-    ) { }
+    ) {}
     meetsLine(line: Line): G3 {
         return meet_of_line_and_plane(line, this);
     }
