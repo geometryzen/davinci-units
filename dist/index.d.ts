@@ -36,6 +36,7 @@ interface AbelianOperators<T, UNIT> {
      * Determines whether this element is the additive identity, <b>0</b>.
      */
     readonly isZero: boolean;
+    readonly isDefined: boolean;
     readonly isNaN: boolean;
 }
 
@@ -80,14 +81,7 @@ interface DivisionRingOperators<T, UNIT> extends RingOperators<T, UNIT> {
  * Construct new instances using the static <code>valueOf</code> method.
  */
 declare class QQ implements DivisionRingOperators<QQ, number> {
-    /**
-     *
-     */
-    private _numer;
-    /**
-     *
-     */
-    private _denom;
+    #private;
     /**
      * Intentionally undocumented.
      */
@@ -122,6 +116,7 @@ declare class QQ implements DivisionRingOperators<QQ, number> {
      * @returns
      */
     div(rhs: QQ): QQ;
+    get isDefined(): boolean;
     get isNaN(): boolean;
     get isOne(): boolean;
     get isZero(): boolean;
@@ -1168,6 +1163,7 @@ declare class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumb
     grade(grade: number): G3;
     cross(vector: G3): G3;
     get isDimensionless(): boolean;
+    get isDefined(): boolean;
     get isNaN(): boolean;
     get isOne(): boolean;
     get isScalar(): boolean;

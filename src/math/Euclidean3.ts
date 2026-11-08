@@ -784,6 +784,10 @@ export class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumbe
             return true;
         }
     }
+    
+    get isDefined(): boolean {
+        return !this.isNaN
+    }
 
     get isNaN(): boolean {
         return isNaN(this.a) || isNaN(this.x) || isNaN(this.y) || isNaN(this.z) || isNaN(this.yz) || isNaN(this.zx) || isNaN(this.xy) || isNaN(this.b);
