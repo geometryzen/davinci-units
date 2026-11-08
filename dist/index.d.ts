@@ -1255,29 +1255,18 @@ declare class Plane {
     constructor(through: G3, normal: G3);
     meetsLine(line: Line): G3;
 }
+declare function max(a: G3, b: G3): G3;
+declare function min(a: G3, b: G3): G3;
+declare function ascending(a: G3, b: G3): 0 | 1 | -1;
+declare function descending(a: G3, b: G3): 0 | 1 | -1;
+declare function eq(x1: G3, x2: G3): boolean;
+declare function ge(a: G3, b: G3): boolean;
+declare function gt(a: G3, b: G3): boolean;
+declare function le(a: G3, b: G3): boolean;
+declare function lt(a: G3, b: G3): boolean;
+declare function mod(a: G3, b: G3): G3;
+declare function ceiling(a: G3): G3;
+declare function floor(a: G3): G3;
 
-declare function cosh(x: number): number;
-declare function sinh(x: number): number;
-declare const mathcore: {
-    acos: <T>(x: T) => T;
-    asin: <T>(x: T) => T;
-    atan: <T>(x: T) => T;
-    cos: <T>(x: T) => T;
-    cosh: <T>(x: T) => T;
-    exp: <T>(x: T) => T;
-    log: <T>(x: T) => T;
-    norm: <T>(x: T) => T;
-    quad: <T>(x: T) => T;
-    sin: <T>(x: T) => T;
-    sinh: <T>(x: T) => T;
-    sqrt: <T>(x: T) => T;
-    tan: <T>(x: T) => T;
-    tanh: <T>(x: T) => T;
-    Math: {
-        cosh: typeof cosh;
-        sinh: typeof sinh;
-    };
-};
-
-export { Dimensions, G3, Line, Plane, QQ, Unit, mathcore };
+export { Dimensions, G3, Line, Plane, QQ, Unit, ascending, ceiling, descending, eq, floor, ge, gt, le, lt, max, min, mod };
 export type { DivisionRingOperators, GeometricCoords, GeometricMeasure, GeometricNumber, GeometricOperators, SpinorCoords, TrigMethods, VectorCoords };

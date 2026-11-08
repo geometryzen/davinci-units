@@ -1,11 +1,10 @@
 export { Dimensions } from "./math/Dimensions";
 export { DivisionRingOperators } from "./math/DivisionRingOperators";
-export { G3, Line, Plane } from "./math/Euclidean3";
+export { ascending, ceiling, descending, eq, floor, G3, ge, gt, le, Line, lt, max, min, mod, Plane } from "./math/Euclidean3";
 export { GeometricCoords } from "./math/GeometricCoords";
 export { GeometricMeasure } from "./math/GeometricMeasure";
 export { GeometricNumber } from "./math/GeometricNumber";
 export { GeometricOperators } from "./math/GeometricOperators";
-export { mathcore } from "./math/mathcore";
 export { QQ } from "./math/QQ";
 export { SpinorCoords } from "./math/SpinorCoords";
 export { TrigMethods } from "./math/TrigMethods";

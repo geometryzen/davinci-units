@@ -132,7 +132,7 @@ export class QQ implements DivisionRingOperators<QQ, number> {
     }
 
     get isDefined(): boolean {
-        return !this.isNaN
+        return !this.isNaN;
     }
 
     get isNaN(): boolean {

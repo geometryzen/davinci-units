@@ -784,9 +784,9 @@ export class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumbe
             return true;
         }
     }
-    
+
     get isDefined(): boolean {
-        return !this.isNaN
+        return !this.isNaN;
     }
 
     get isNaN(): boolean {
@@ -1232,4 +1232,131 @@ function meet_of_line_and_plane(line: Line, plane: Plane): G3 {
     const denom = n.scp(d);
     const μ = numer.div(denom);
     return p.add(μ.mul(d));
+}
+
+export function max(a: G3, b: G3): G3 {
+    // TODO: We should test for scalars and the same dimensions
+    if (a.a > b.a) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+export function min(a: G3, b: G3): G3 {
+    // TODO: We should test for scalars and the same dimensions
+    if (a.a < b.a) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+export function ascending(a: G3, b: G3): 0 | 1 | -1 {
+    if (a.a > b.a) {
+        return 1;
+    } else if (a.a < b.a) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+export function descending(a: G3, b: G3): 0 | 1 | -1 {
+    if (a.a > b.a) {
+        return -1;
+    } else if (a.a < b.a) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+export function eq(x1: G3, x2: G3): boolean {
+    if (x2.isZero) {
+        return x1.isZero;
+    } else {
+        try {
+            const ratio = x1.div(x2);
+            if (ratio.uom) {
+                if (ratio.uom.isOne()) {
+                    return x1.sub(x2).isZero;
+                } else {
+                    return false;
+                }
+            } else {
+                return x1.sub(x2).isZero;
+            }
+        } catch (cause) {
+            throw new Error(`equals_number_number(x1=${x1}, x2=${x2}).`, { cause });
+        }
+    }
+}
+
+export function ge(a: G3, b: G3): boolean {
+    if (a.a > b.a) {
+        return true;
+    } else if (a.a < b.a) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+export function gt(a: G3, b: G3): boolean {
+    if (a.a > b.a) {
+        return true;
+    } else if (a.a < b.a) {
+        return false;
+    } else {
+        return false;
+    }
+}
+
+export function le(a: G3, b: G3): boolean {
+    if (a.a > b.a) {
+        return false;
+    } else if (a.a < b.a) {
+        return true;
+    } else {
+        return true;
+    }
+}
+
+export function lt(a: G3, b: G3): boolean {
+    if (a.a > b.a) {
+        return false;
+    } else if (a.a < b.a) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function math_1_arg(a: G3, fn: (a: number) => number): G3 {
+    if (a.isZero) {
+        return G3.zero;
+    } else {
+        return a.divByScalar(a.a).scale(fn(a.a));
+    }
+}
+
+function math_2_args(a: G3, b: G3, fn: (a: number, b: number) => number): G3 {
+    if (a.isZero) {
+        return G3.zero;
+    } else {
+        return a.divByScalar(a.a).scale(fn(a.a, b.a));
+    }
+}
+
+export function mod(a: G3, b: G3): G3 {
+    return math_2_args(a, b, (a: number, b: number) => a % b);
+}
+
+export function ceiling(a: G3): G3 {
+    return math_1_arg(a, Math.ceil);
+}
+
+export function floor(a: G3): G3 {
+    return math_1_arg(a, Math.floor);
 }
