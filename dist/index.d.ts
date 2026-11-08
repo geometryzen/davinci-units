@@ -1781,7 +1781,7 @@ declare class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G
     /**
      * Unary plus(+).
      */
-    __pos__(): this;
+    __pos__(): G3;
     /**
      * @returns <code>-1 * this</code>
      */

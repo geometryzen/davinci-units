@@ -617,39 +617,39 @@ export class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3
     /**
      * Unary plus(+).
      */
-    __pos__() {
+    __pos__():G3 {
         return this;
     }
 
     /**
      * @returns <code>-1 * this</code>
      */
-    neg() {
+    neg(): G3 {
         return new G3(-this.a, -this.x, -this.y, -this.z, -this.xy, -this.yz, -this.zx, -this.b, this.uom);
     }
 
     /**
      * Unary minus (-).
      */
-    __neg__() {
+    __neg__(): G3 {
         return this.neg();
     }
 
-    rev() {
+    rev(): G3 {
         return new G3(this.a, this.x, this.y, this.z, -this.xy, -this.yz, -this.zx, -this.b, this.uom);
     }
 
     /**
      * ~ (tilde) produces reversion.
      */
-    __tilde__() {
+    __tilde__(): G3 {
         return this.rev();
     }
 
     /**
      * @param grade
      */
-    grade(grade: number) {
+    grade(grade: number): G3 {
         switch (grade) {
             case 0:
                 return G3.fromCartesian(this.a, 0, 0, 0, 0, 0, 0, 0, this.uom);
@@ -664,7 +664,7 @@ export class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3
         }
     }
 
-    cross(vector: G3) {
+    cross(vector: G3): G3 {
         const x1 = this.x;
         const y1 = this.y;
         const z1 = this.z;
