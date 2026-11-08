@@ -26,13 +26,13 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <section class="tsd-panel">
 <h4>Implements</h4>
 <ul class="tsd-hierarchy">
-<li><span class="tsd-signature-type">ImmutableMeasure</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">&gt;</span></li>
+<li><a href="../interfaces/GeometricMeasure.html" class="tsd-signature-type tsd-kind-interface">GeometricMeasure</a><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">&gt;</span></li>
 <li><a href="../interfaces/GeometricE2.html" class="tsd-signature-type tsd-kind-interface">GeometricE2</a></li>
 <li><a href="../interfaces/GeometricNumber.html" class="tsd-signature-type tsd-kind-interface">GeometricNumber</a><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">,</span> <a href="../interfaces/SpinorE2.html" class="tsd-signature-type tsd-kind-interface">SpinorE2</a><span class="tsd-signature-symbol">,</span> <a href="../interfaces/VectorE2.html" class="tsd-signature-type tsd-kind-interface">VectorE2</a><span class="tsd-signature-symbol">,</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">,</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span> <a href="Unit.html" class="tsd-signature-type tsd-kind-class">Unit</a><span class="tsd-signature-symbol">&gt;</span></li>
-<li><span class="tsd-signature-type">GeometricOperators</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">,</span> <a href="Unit.html" class="tsd-signature-type tsd-kind-class">Unit</a><span class="tsd-signature-symbol">&gt;</span></li>
-<li><span class="tsd-signature-type">TrigMethods</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">&gt;</span></li></ul></section><aside class="tsd-sources">
+<li><a href="../interfaces/GeometricOperators.html" class="tsd-signature-type tsd-kind-interface">GeometricOperators</a><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">,</span> <a href="Unit.html" class="tsd-signature-type tsd-kind-class">Unit</a><span class="tsd-signature-symbol">&gt;</span></li>
+<li><a href="../interfaces/TrigMethods.html" class="tsd-signature-type tsd-kind-interface">TrigMethods</a><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">&gt;</span></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L140">G2.ts:140</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L140">G2.ts:140</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
@@ -122,6 +122,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <a href="#ext" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>ext</span></a>
 <a href="#grade" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>grade</span></a>
 <a href="#inv" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>inv</span></a>
+<a href="#isdimensionless" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Dimensionless</span></a>
 <a href="#isnan" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Na<wbr/>N</span></a>
 <a href="#isone" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>One</span></a>
 <a href="#isscalar" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Scalar</span></a>
@@ -193,7 +194,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L310">G2.ts:310</a></li></ul></aside></div></li></ul></section></section></details>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L310">G2.ts:310</a></li></ul></aside></div></li></ul></section></section></details>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h2 class="tsd-anchor-link" id="properties-1">Properties<a href="#properties-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
 <section>
@@ -201,14 +202,14 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h3 class="tsd-anchor-link" id="uom"><span>uom</span><a href="#uom" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">uom</span><span class="tsd-signature-symbol">:</span> <a href="Unit.html" class="tsd-signature-type tsd-kind-class">Unit</a></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L155">G2.ts:155</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L155">G2.ts:155</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="amount"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>AMOUNT</span><a href="#amount" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">AMOUNT</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>mole in S.I. units.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L288">G2.ts:288</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L288">G2.ts:288</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="ampere"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span class="deprecated">ampere</span><a href="#ampere" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">ampere</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = G2.CURRENT</span></div>
@@ -217,7 +218,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-anchor-link" id="deprecated">Deprecated<a href="#deprecated" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Use CURRENT instead.</p>
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L276">G2.ts:276</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L276">G2.ts:276</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="candela"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span class="deprecated">candela</span><a href="#candela" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">candela</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = G2.INTENSITY</span></div>
@@ -226,14 +227,14 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-anchor-link" id="deprecated-1">Deprecated<a href="#deprecated-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Use INTENSITY instead.</p>
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L300">G2.ts:300</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L300">G2.ts:300</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="charge"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>CHARGE</span><a href="#charge" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">CHARGE</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>coulomb in S.I. units.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L264">G2.ts:264</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L264">G2.ts:264</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="coulomb"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span class="deprecated">coulomb</span><a href="#coulomb" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">coulomb</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = G2.CHARGE</span></div>
@@ -242,21 +243,21 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-anchor-link" id="deprecated-2">Deprecated<a href="#deprecated-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Use CHARGE instead.</p>
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L268">G2.ts:268</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L268">G2.ts:268</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="current"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>CURRENT</span><a href="#current" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">CURRENT</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>ampere in S.I. units.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L272">G2.ts:272</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L272">G2.ts:272</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="intensity"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>INTENSITY</span><a href="#intensity" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">INTENSITY</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>candela in S.I. units.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L296">G2.ts:296</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L296">G2.ts:296</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="kelvin"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span class="deprecated">kelvin</span><a href="#kelvin" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">kelvin</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = G2.TEMPERATURE</span></div>
@@ -265,7 +266,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-anchor-link" id="deprecated-3">Deprecated<a href="#deprecated-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Use TEMPERATURE instead.</p>
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L284">G2.ts:284</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L284">G2.ts:284</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="kilogram"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span class="deprecated">kilogram</span><a href="#kilogram" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">kilogram</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = G2.MASS</span></div>
@@ -274,21 +275,21 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-anchor-link" id="deprecated-4">Deprecated<a href="#deprecated-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Use MASS instead.</p>
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L244">G2.ts:244</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L244">G2.ts:244</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="length"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>LENGTH</span><a href="#length" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">LENGTH</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>meter in S.I. units.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L248">G2.ts:248</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L248">G2.ts:248</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="mass"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>MASS</span><a href="#mass" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">MASS</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>kilogram in S.I. units.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L240">G2.ts:240</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L240">G2.ts:240</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="meter"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span class="deprecated">meter</span><a href="#meter" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">meter</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = G2.LENGTH</span></div>
@@ -297,7 +298,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-anchor-link" id="deprecated-5">Deprecated<a href="#deprecated-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Use LENGTH instead.</p>
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L252">G2.ts:252</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L252">G2.ts:252</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="mole"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span class="deprecated">mole</span><a href="#mole" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">mole</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = G2.AMOUNT</span></div>
@@ -306,7 +307,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-anchor-link" id="deprecated-6">Deprecated<a href="#deprecated-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Use AMOUNT instead.</p>
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L292">G2.ts:292</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L292">G2.ts:292</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="second"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span class="deprecated">second</span><a href="#second" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">second</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = G2.TIME</span></div>
@@ -315,21 +316,21 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-anchor-link" id="deprecated-7">Deprecated<a href="#deprecated-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Use TIME instead.</p>
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L260">G2.ts:260</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L260">G2.ts:260</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="temperature"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>TEMPERATURE</span><a href="#temperature" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">TEMPERATURE</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>kelvin in S.I. units.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L280">G2.ts:280</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L280">G2.ts:280</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="time"><code class="tsd-tag">Static</code> <code class="tsd-tag">Readonly</code><span>TIME</span><a href="#time" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">TIME</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>second in S.I. units.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L256">G2.ts:256</a></li></ul></aside></section></section></details>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L256">G2.ts:256</a></li></ul></aside></section></section></details>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h2 class="tsd-anchor-link" id="accessors-1">Accessors<a href="#accessors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
 <section>
@@ -344,7 +345,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricE2.html">GeometricE2</a>.<a href="../interfaces/GeometricE2.html#a">a</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L329">G2.ts:329</a></li></ul></aside></div></li>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L329">G2.ts:329</a></li></ul></aside></div></li>
 <li>
 <div class="tsd-signature" id="aa-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">a</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">unused</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 <div class="tsd-description">
@@ -357,7 +358,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricE2.html">GeometricE2</a>.<a href="../interfaces/GeometricE2.html#a">a</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L332">G2.ts:332</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L332">G2.ts:332</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="b"><span>b</span><a href="#b" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -369,7 +370,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricE2.html">GeometricE2</a>.<a href="../interfaces/GeometricE2.html#b">b</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L367">G2.ts:367</a></li></ul></aside></div></li>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L367">G2.ts:367</a></li></ul></aside></div></li>
 <li>
 <div class="tsd-signature" id="bb-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">b</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">unused</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 <div class="tsd-description">
@@ -382,7 +383,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricE2.html">GeometricE2</a>.<a href="../interfaces/GeometricE2.html#b">b</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L370">G2.ts:370</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L370">G2.ts:370</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="coords"><span>coords</span><a href="#coords" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -390,9 +391,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-signature" id="coordscoords"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">coords</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4><aside class="tsd-sources">
-<p>Implementation of ImmutableMeasure.coords</p>
+<p>Implementation of <a href="../interfaces/GeometricMeasure.html">GeometricMeasure</a>.<a href="../interfaces/GeometricMeasure.html#coords">coords</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L378">G2.ts:378</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L378">G2.ts:378</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="x"><span>x</span><a href="#x" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -404,7 +405,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricE2.html">GeometricE2</a>.<a href="../interfaces/GeometricE2.html#x">x</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L342">G2.ts:342</a></li></ul></aside></div></li>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L342">G2.ts:342</a></li></ul></aside></div></li>
 <li>
 <div class="tsd-signature" id="xx-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">x</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">unused</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 <div class="tsd-description">
@@ -417,7 +418,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricE2.html">GeometricE2</a>.<a href="../interfaces/GeometricE2.html#x">x</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L345">G2.ts:345</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L345">G2.ts:345</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="y"><span>y</span><a href="#y" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -429,7 +430,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricE2.html">GeometricE2</a>.<a href="../interfaces/GeometricE2.html#y">y</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L355">G2.ts:355</a></li></ul></aside></div></li>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L355">G2.ts:355</a></li></ul></aside></div></li>
 <li>
 <div class="tsd-signature" id="yy-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">y</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">unused</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 <div class="tsd-description">
@@ -442,7 +443,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricE2.html">GeometricE2</a>.<a href="../interfaces/GeometricE2.html#y">y</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L358">G2.ts:358</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L358">G2.ts:358</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="e1"><code class="tsd-tag">Static</code><span>e1</span><a href="#e1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -451,7 +452,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L204">G2.ts:204</a></li></ul></aside></div></li>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L204">G2.ts:204</a></li></ul></aside></div></li>
 <li>
 <div class="tsd-signature" id="e1e1-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">e1</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">unused</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 <div class="tsd-description">
@@ -461,7 +462,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <li><span><span class="tsd-kind-parameter">unused</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L207">G2.ts:207</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L207">G2.ts:207</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="e2"><code class="tsd-tag">Static</code><span>e2</span><a href="#e2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -470,7 +471,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L217">G2.ts:217</a></li></ul></aside></div></li>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L217">G2.ts:217</a></li></ul></aside></div></li>
 <li>
 <div class="tsd-signature" id="e2e2-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">e2</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">unused</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 <div class="tsd-description">
@@ -480,7 +481,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <li><span><span class="tsd-kind-parameter">unused</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L220">G2.ts:220</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L220">G2.ts:220</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="i"><code class="tsd-tag">Static</code><span>I</span><a href="#i" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -489,7 +490,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L230">G2.ts:230</a></li></ul></aside></div></li>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L230">G2.ts:230</a></li></ul></aside></div></li>
 <li>
 <div class="tsd-signature" id="ii-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">I</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">unused</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 <div class="tsd-description">
@@ -499,7 +500,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <li><span><span class="tsd-kind-parameter">unused</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L233">G2.ts:233</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L233">G2.ts:233</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="one"><code class="tsd-tag">Static</code><span>one</span><a href="#one" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -508,7 +509,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L186">G2.ts:186</a></li></ul></aside></div></li>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L186">G2.ts:186</a></li></ul></aside></div></li>
 <li>
 <div class="tsd-signature" id="oneone-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">one</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">unused</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 <div class="tsd-description">
@@ -518,7 +519,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <li><span><span class="tsd-kind-parameter">unused</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L189">G2.ts:189</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L189">G2.ts:189</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="zero"><code class="tsd-tag">Static</code><span>zero</span><a href="#zero" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -527,7 +528,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L168">G2.ts:168</a></li></ul></aside></div></li>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L168">G2.ts:168</a></li></ul></aside></div></li>
 <li>
 <div class="tsd-signature" id="zerozero-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">zero</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">unused</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
 <div class="tsd-description">
@@ -537,7 +538,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <li><span><span class="tsd-kind-parameter">unused</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L171">G2.ts:171</a></li></ul></aside></div></li></ul></section></section></details>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L171">G2.ts:171</a></li></ul></aside></div></li></ul></section></section></details>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h2 class="tsd-anchor-link" id="methods-1">Methods<a href="#methods-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
 <section>
@@ -554,9 +555,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__add__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__add__">__add__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L443">G2.ts:443</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L443">G2.ts:443</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__bang__"><span>__<wbr/>bang__</span><a href="#__bang__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -566,9 +567,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-comment tsd-typography"><p>!x = x.inv()</p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__bang__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__bang__">__bang__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L852">G2.ts:852</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L852">G2.ts:852</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__div__"><span>__<wbr/>div__</span><a href="#__div__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -580,9 +581,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__div__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__div__">__div__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L632">G2.ts:632</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L632">G2.ts:632</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__eq__"><span>__<wbr/>eq__</span><a href="#__eq__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -594,9 +595,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">rhs</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__eq__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__eq__">__eq__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1191">G2.ts:1191</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1199">G2.ts:1199</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__ge__"><span>__<wbr/>ge__</span><a href="#__ge__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -608,9 +609,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">rhs</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__ge__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__ge__">__ge__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1216">G2.ts:1216</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1224">G2.ts:1224</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__gt__"><span>__<wbr/>gt__</span><a href="#__gt__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -622,9 +623,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">rhs</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__gt__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__gt__">__gt__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1235">G2.ts:1235</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1243">G2.ts:1243</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__le__"><span>__<wbr/>le__</span><a href="#__le__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -636,9 +637,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">rhs</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__le__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__le__">__le__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1254">G2.ts:1254</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1262">G2.ts:1262</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__lshift__"><span>__<wbr/>lshift__</span><a href="#__lshift__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -650,9 +651,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__lshift__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__lshift__">__lshift__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L755">G2.ts:755</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L755">G2.ts:755</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__lt__"><span>__<wbr/>lt__</span><a href="#__lt__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -664,9 +665,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">rhs</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__lt__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__lt__">__lt__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1273">G2.ts:1273</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1281">G2.ts:1281</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__mul__"><span>__<wbr/>mul__</span><a href="#__mul__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -680,9 +681,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__mul__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__mul__">__mul__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L598">G2.ts:598</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L598">G2.ts:598</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__ne__"><span>__<wbr/>ne__</span><a href="#__ne__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -694,9 +695,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">rhs</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__ne__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__ne__">__ne__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1203">G2.ts:1203</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1211">G2.ts:1211</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__neg__"><span>__<wbr/>neg__</span><a href="#__neg__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -706,9 +707,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-comment tsd-typography"><p>Unary -</p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__neg__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__neg__">__neg__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L867">G2.ts:867</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L867">G2.ts:867</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__pos__"><span>__<wbr/>pos__</span><a href="#__pos__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -718,9 +719,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-comment tsd-typography"><p>Unary +</p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__pos__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__pos__">__pos__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L856">G2.ts:856</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L856">G2.ts:856</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__radd__"><span>__<wbr/>radd__</span><a href="#__radd__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -734,9 +735,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__radd__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__radd__">__radd__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L453">G2.ts:453</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L453">G2.ts:453</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__rdiv__"><span>__<wbr/>rdiv__</span><a href="#__rdiv__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -748,9 +749,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">|</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__rdiv__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__rdiv__">__rdiv__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L643">G2.ts:643</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L643">G2.ts:643</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__rlshift__"><span>__<wbr/>rlshift__</span><a href="#__rlshift__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -762,9 +763,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__rlshift__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__rlshift__">__rlshift__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L767">G2.ts:767</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L767">G2.ts:767</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__rmul__"><span>__<wbr/>rmul__</span><a href="#__rmul__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -778,9 +779,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__rmul__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__rmul__">__rmul__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L608">G2.ts:608</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L608">G2.ts:608</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__rrshift__"><span>__<wbr/>rrshift__</span><a href="#__rrshift__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -792,9 +793,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__rrshift__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__rrshift__">__rrshift__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L814">G2.ts:814</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L814">G2.ts:814</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__rshift__"><span>__<wbr/>rshift__</span><a href="#__rshift__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -806,9 +807,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__rshift__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__rshift__">__rshift__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L804">G2.ts:804</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L804">G2.ts:804</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__rsub__"><span>__<wbr/>rsub__</span><a href="#__rsub__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -822,9 +823,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">lhs</span>: <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">|</span> <a href="Unit.html" class="tsd-signature-type tsd-kind-class">Unit</a> <span class="tsd-signature-symbol">|</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__rsub__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__rsub__">__rsub__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L569">G2.ts:569</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L569">G2.ts:569</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__rvbar__"><span>__<wbr/>rvbar__</span><a href="#__rvbar__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -836,9 +837,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__rvbar__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__rvbar__">__rvbar__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L834">G2.ts:834</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L834">G2.ts:834</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__rwedge__"><span>__<wbr/>rwedge__</span><a href="#__rwedge__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -850,9 +851,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__rwedge__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__rwedge__">__rwedge__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L709">G2.ts:709</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L709">G2.ts:709</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__sub__"><span>__<wbr/>sub__</span><a href="#__sub__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -866,9 +867,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">rhs</span>: <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">|</span> <a href="Unit.html" class="tsd-signature-type tsd-kind-class">Unit</a> <span class="tsd-signature-symbol">|</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__sub__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__sub__">__sub__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L557">G2.ts:557</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L557">G2.ts:557</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__tilde__"><span>__<wbr/>tilde__</span><a href="#__tilde__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -878,9 +879,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <div class="tsd-comment tsd-typography"><p>~ (tilde) produces reversion.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__tilde__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__tilde__">__tilde__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L874">G2.ts:874</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L874">G2.ts:874</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__vbar__"><span>__<wbr/>vbar__</span><a href="#__vbar__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -892,9 +893,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__vbar__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__vbar__">__vbar__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L824">G2.ts:824</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L824">G2.ts:824</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="__wedge__"><span>__<wbr/>wedge__</span><a href="#__wedge__" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -906,9 +907,9 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <ul class="tsd-parameter-list">
 <li><span><span class="tsd-kind-parameter">other</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of GeometricOperators.__wedge__</p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#__wedge__">__wedge__</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L697">G2.ts:697</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L697">G2.ts:697</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="add"><span>add</span><a href="#add" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -924,7 +925,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#add">add</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L418">G2.ts:418</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L418">G2.ts:418</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="addpseudo"><span>add<wbr/>Pseudo</span><a href="#addpseudo" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -939,7 +940,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <li><span><span class="tsd-kind-parameter">β</span>: <a href="Unit.html" class="tsd-signature-type tsd-kind-class">Unit</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L432">G2.ts:432</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L432">G2.ts:432</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="addscalar"><span>add<wbr/>Scalar</span><a href="#addscalar" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -955,7 +956,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#addscalar">addScalar</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L439">G2.ts:439</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L439">G2.ts:439</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="adj"><span>adj</span><a href="#adj" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -967,7 +968,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#adj">adj</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L463">G2.ts:463</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L463">G2.ts:463</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="angle"><span>angle</span><a href="#angle" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -978,7 +979,7 @@ The immutable nature of the <p>G2</p> makes it less suitable for high performanc
 <aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#angle">angle</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L470">G2.ts:470</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L470">G2.ts:470</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="conj"><span>conj</span><a href="#conj" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -991,7 +992,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#conj">conj</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L478">G2.ts:478</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L478">G2.ts:478</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="coordinate"><span>coordinate</span><a href="#coordinate" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1004,7 +1005,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <li><span><span class="tsd-kind-parameter">index</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L382">G2.ts:382</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L382">G2.ts:382</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="cos"><span>cos</span><a href="#cos" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1012,9 +1013,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="cos-1"><span class="tsd-kind-call-signature">cos</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#cos-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of ImmutableMeasure.cos</p>
+<p>Implementation of <a href="../interfaces/TrigMethods.html">TrigMethods</a>.<a href="../interfaces/TrigMethods.html#cos">cos</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L898">G2.ts:898</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L898">G2.ts:898</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="cosh"><span>cosh</span><a href="#cosh" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1022,9 +1023,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="cosh-1"><span class="tsd-kind-call-signature">cosh</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#cosh-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of ImmutableMeasure.cosh</p>
+<p>Implementation of <a href="../interfaces/TrigMethods.html">TrigMethods</a>.<a href="../interfaces/TrigMethods.html#cosh">cosh</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L905">G2.ts:905</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L905">G2.ts:905</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="cubicbezier"><span>cubic<wbr/>Bezier</span><a href="#cubicbezier" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1040,7 +1041,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <li><span><span class="tsd-kind-parameter">endPoint</span>: <a href="../interfaces/GeometricE2.html" class="tsd-signature-type tsd-kind-interface">GeometricE2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L488">G2.ts:488</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L488">G2.ts:488</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="direction"><span>direction</span><a href="#direction" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1048,22 +1049,23 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="direction-1"><span class="tsd-kind-call-signature">direction</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#direction-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of ImmutableMeasure.direction</p>
+<p>Implementation of <a href="../interfaces/GeometricMeasure.html">GeometricMeasure</a>.<a href="../interfaces/GeometricMeasure.html#direction">direction</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L499">G2.ts:499</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L499">G2.ts:499</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="distanceto"><span>distance<wbr/>To</span><a href="#distanceto" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
 <li class="">
-<div class="tsd-signature tsd-anchor-link" id="distanceto-1"><span class="tsd-kind-call-signature">distanceTo</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">point</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/GeometricE2.html" class="tsd-signature-type tsd-kind-interface">GeometricE2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#distanceto-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-signature tsd-anchor-link" id="distanceto-1"><span class="tsd-kind-call-signature">distanceTo</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">point</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#distanceto-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
-<li><span><span class="tsd-kind-parameter">point</span>: <a href="../interfaces/GeometricE2.html" class="tsd-signature-type tsd-kind-interface">GeometricE2</a></span></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<li><span><span class="tsd-kind-parameter">point</span>: <a href="" class="tsd-signature-type tsd-kind-class">G2</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/GeometricMeasure.html">GeometricMeasure</a>.<a href="../interfaces/GeometricMeasure.html#distanceto">distanceTo</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L515">G2.ts:515</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L515">G2.ts:515</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="div"><span>div</span><a href="#div" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1079,7 +1081,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#div">div</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L624">G2.ts:624</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L624">G2.ts:624</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="divbyscalar"><span>div<wbr/>By<wbr/>Scalar</span><a href="#divbyscalar" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1093,7 +1095,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#divbyscalar">divByScalar</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L628">G2.ts:628</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L628">G2.ts:628</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="equals"><span>equals</span><a href="#equals" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1106,7 +1108,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <li><span><span class="tsd-kind-parameter">point</span>: <a href="../interfaces/GeometricE2.html" class="tsd-signature-type tsd-kind-interface">GeometricE2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L523">G2.ts:523</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L523">G2.ts:523</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="exp"><span>exp</span><a href="#exp" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1114,9 +1116,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="exp-1"><span class="tsd-kind-call-signature">exp</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#exp-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#exp">exp</a></p>
+<p>Implementation of <a href="../interfaces/TrigMethods.html">TrigMethods</a>.<a href="../interfaces/TrigMethods.html#exp">exp</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L912">G2.ts:912</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L912">G2.ts:912</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="ext"><span>ext</span><a href="#ext" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1132,7 +1134,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#ext">ext</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L692">G2.ts:692</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L692">G2.ts:692</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="grade"><span>grade</span><a href="#grade" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1148,7 +1150,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#grade">grade</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L882">G2.ts:882</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L882">G2.ts:882</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="inv"><span>inv</span><a href="#inv" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1158,9 +1160,19 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-comment tsd-typography"><p>Computes the <em>inverse</em> of this multivector, if it exists.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#inv">inv</a></p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#inv">inv</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L929">G2.ts:929</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L929">G2.ts:929</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="isdimensionless"><span>is<wbr/>Dimensionless</span><a href="#isdimensionless" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="isdimensionless-1"><span class="tsd-kind-call-signature">isDimensionless</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#isdimensionless-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#isdimensionless">isDimensionless</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1105">G2.ts:1105</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="isnan"><span>is<wbr/>Na<wbr/>N</span><a href="#isnan" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1169,7 +1181,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1111">G2.ts:1111</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1119">G2.ts:1119</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="isone"><span>is<wbr/>One</span><a href="#isone" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1177,9 +1189,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="isone-1"><span class="tsd-kind-call-signature">isOne</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#isone-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
-<p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#isone">isOne</a></p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#isone">isOne</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1108">G2.ts:1108</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1116">G2.ts:1116</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="isscalar"><span>is<wbr/>Scalar</span><a href="#isscalar" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1189,7 +1201,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#isscalar">isScalar</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1114">G2.ts:1114</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1122">G2.ts:1122</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="isspinor"><span>is<wbr/>Spinor</span><a href="#isspinor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1200,7 +1212,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L951">G2.ts:951</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L951">G2.ts:951</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="iszero"><span>is<wbr/>Zero</span><a href="#iszero" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1208,9 +1220,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="iszero-1"><span class="tsd-kind-call-signature">isZero</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#iszero-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
-<p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#iszero">isZero</a></p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#iszero">isZero</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1120">G2.ts:1120</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1128">G2.ts:1128</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="lco"><span>lco</span><a href="#lco" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1224,7 +1236,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#lco">lco</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L750">G2.ts:750</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L750">G2.ts:750</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="lerp"><span>lerp</span><a href="#lerp" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1243,7 +1255,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#lerp">lerp</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L742">G2.ts:742</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L742">G2.ts:742</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="log"><span>log</span><a href="#log" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1251,9 +1263,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="log-1"><span class="tsd-kind-call-signature">log</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#log-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#log">log</a></p>
+<p>Implementation of <a href="../interfaces/TrigMethods.html">TrigMethods</a>.<a href="../interfaces/TrigMethods.html#log">log</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L958">G2.ts:958</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L958">G2.ts:958</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="magnitude"><span>magnitude</span><a href="#magnitude" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1265,7 +1277,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#magnitude-1">magnitude</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L974">G2.ts:974</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L974">G2.ts:974</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="magnitudesansunits"><span>magnitude<wbr/>Sans<wbr/>Units</span><a href="#magnitudesansunits" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1276,7 +1288,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L981">G2.ts:981</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L981">G2.ts:981</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="mul"><span>mul</span><a href="#mul" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1292,7 +1304,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#mul">mul</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L581">G2.ts:581</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L581">G2.ts:581</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="neg"><span>neg</span><a href="#neg" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1300,9 +1312,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="neg-1"><span class="tsd-kind-call-signature">neg</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#neg-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#neg">neg</a></p>
+<p>Implementation of <a href="../interfaces/GeometricOperators.html">GeometricOperators</a>.<a href="../interfaces/GeometricOperators.html#neg">neg</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L863">G2.ts:863</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L863">G2.ts:863</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="norm"><span>norm</span><a href="#norm" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1312,7 +1324,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#norm">norm</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L988">G2.ts:988</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L988">G2.ts:988</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="pow"><span>pow</span><a href="#pow" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1326,9 +1338,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-comment tsd-typography"><p>{G2}</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of ImmutableMeasure.pow</p>
+<p>Implementation of <a href="../interfaces/GeometricMeasure.html">GeometricMeasure</a>.<a href="../interfaces/GeometricMeasure.html#pow">pow</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L848">G2.ts:848</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L848">G2.ts:848</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="quad"><span>quad</span><a href="#quad" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1338,7 +1350,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#quad">quad</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L995">G2.ts:995</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L995">G2.ts:995</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="quadraticbezier"><span>quadratic<wbr/>Bezier</span><a href="#quadraticbezier" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1359,7 +1371,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1005">G2.ts:1005</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1005">G2.ts:1005</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="rco"><span>rco</span><a href="#rco" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1375,7 +1387,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#rco">rco</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L799">G2.ts:799</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L799">G2.ts:799</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="reflect"><span>reflect</span><a href="#reflect" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1393,7 +1405,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#reflect">reflect</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1045">G2.ts:1045</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1045">G2.ts:1045</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="rev"><span>rev</span><a href="#rev" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1403,7 +1415,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#rev">rev</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1054">G2.ts:1054</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1054">G2.ts:1054</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="rotate"><span>rotate</span><a href="#rotate" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1419,7 +1431,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#rotate">rotate</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1062">G2.ts:1062</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1062">G2.ts:1062</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="scale"><span>scale</span><a href="#scale" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1433,7 +1445,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#scale">scale</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L620">G2.ts:620</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L620">G2.ts:620</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="scp"><span>scp</span><a href="#scp" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1449,7 +1461,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#scp">scp</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L657">G2.ts:657</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L657">G2.ts:657</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="sin"><span>sin</span><a href="#sin" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1457,9 +1469,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="sin-1"><span class="tsd-kind-call-signature">sin</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#sin-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of ImmutableMeasure.sin</p>
+<p>Implementation of <a href="../interfaces/TrigMethods.html">TrigMethods</a>.<a href="../interfaces/TrigMethods.html#sin">sin</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1078">G2.ts:1078</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1078">G2.ts:1078</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="sinh"><span>sinh</span><a href="#sinh" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1467,9 +1479,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="sinh-1"><span class="tsd-kind-call-signature">sinh</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#sinh-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of ImmutableMeasure.sinh</p>
+<p>Implementation of <a href="../interfaces/TrigMethods.html">TrigMethods</a>.<a href="../interfaces/TrigMethods.html#sinh">sinh</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1085">G2.ts:1085</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1085">G2.ts:1085</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="slerp"><span>slerp</span><a href="#slerp" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1488,7 +1500,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#slerp">slerp</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1094">G2.ts:1094</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1094">G2.ts:1094</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="squarednorm"><span>squared<wbr/>Norm</span><a href="#squarednorm" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1498,7 +1510,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#squarednorm">squaredNorm</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1016">G2.ts:1016</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1016">G2.ts:1016</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="squarednormsansunits"><span>squared<wbr/>Norm<wbr/>Sans<wbr/>Units</span><a href="#squarednormsansunits" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1509,7 +1521,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1023">G2.ts:1023</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1023">G2.ts:1023</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="stress"><span>stress</span><a href="#stress" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1525,7 +1537,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#stress">stress</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1035">G2.ts:1035</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1035">G2.ts:1035</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="sub"><span>sub</span><a href="#sub" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1539,7 +1551,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#sub">sub</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L546">G2.ts:546</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L546">G2.ts:546</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="tan"><span>tan</span><a href="#tan" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1547,9 +1559,9 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-signature tsd-anchor-link" id="tan-1"><span class="tsd-kind-call-signature">tan</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">G2</a><a href="#tan-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
-<p>Implementation of TrigMethods.tan</p>
+<p>Implementation of <a href="../interfaces/TrigMethods.html">TrigMethods</a>.<a href="../interfaces/TrigMethods.html#tan">tan</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1101">G2.ts:1101</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1101">G2.ts:1101</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="toexponential"><span>to<wbr/>Exponential</span><a href="#toexponential" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1565,7 +1577,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#toexponential">toExponential</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1144">G2.ts:1144</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1152">G2.ts:1152</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="tofixed"><span>to<wbr/>Fixed</span><a href="#tofixed" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1581,7 +1593,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#tofixed">toFixed</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1155">G2.ts:1155</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1163">G2.ts:1163</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="toprecision"><span>to<wbr/>Precision</span><a href="#toprecision" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1597,7 +1609,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#toprecision">toPrecision</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1166">G2.ts:1166</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1174">G2.ts:1174</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="tostring"><span>to<wbr/>String</span><a href="#tostring" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1613,7 +1625,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Implementation of <a href="../interfaces/GeometricNumber.html">GeometricNumber</a>.<a href="../interfaces/GeometricNumber.html#tostring">toString</a></p>
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1177">G2.ts:1177</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1185">G2.ts:1185</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="tostringijk"><span>to<wbr/>String<wbr/>IJK</span><a href="#tostringijk" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1622,7 +1634,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1184">G2.ts:1184</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1192">G2.ts:1192</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="copy"><code class="tsd-tag">Static</code><span>copy</span><a href="#copy" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1635,7 +1647,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <li><span><span class="tsd-kind-parameter">m</span>: <a href="../interfaces/GeometricE2.html" class="tsd-signature-type tsd-kind-interface">GeometricE2</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1303">G2.ts:1303</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1311">G2.ts:1311</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="fromcartesian"><code class="tsd-tag">Static</code><span>from<wbr/>Cartesian</span><a href="#fromcartesian" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1652,7 +1664,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <li><span><span class="tsd-kind-parameter">uom</span>: <a href="Unit.html" class="tsd-signature-type tsd-kind-class">Unit</a></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L374">G2.ts:374</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L374">G2.ts:374</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="fromvectore2"><code class="tsd-tag">Static</code><span>from<wbr/>Vector<wbr/>E2</span><a href="#fromvectore2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1667,7 +1679,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1315">G2.ts:1315</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1323">G2.ts:1323</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="vector"><code class="tsd-tag">Static</code><span>vector</span><a href="#vector" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -1688,7 +1700,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">G2</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/a0f8368d1c2ec8f73f40ce45f227fca9ff4fe1e5/src/math/G2.ts#L1333">G2.ts:1333</a></li></ul></aside></div></li></ul></section></section></details></div>
+<li>Defined in <a href="https://github.com/geometryzen/davinci-units/blob/b5fdfce5320a31b08a1d7401d7db71472c537166/src/math/G2.ts#L1341">G2.ts:1341</a></li></ul></aside></div></li></ul></section></section></details></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -1711,7 +1723,7 @@ The grade multiplier is -1<sup>x(x+1)/2</sup></p>
 <details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Accessors</summary>
 <div><a href="#a"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>a</span></a><a href="#b"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>b</span></a><a href="#coords"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>coords</span></a><a href="#x"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>x</span></a><a href="#y"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>y</span></a><a href="#e1"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>e1</span></a><a href="#e2"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>e2</span></a><a href="#i"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>I</span></a><a href="#one"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>one</span></a><a href="#zero"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>zero</span></a></div></details>
 <details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary>
-<div><a href="#__add__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>add__</span></a><a href="#__bang__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>bang__</span></a><a href="#__div__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>div__</span></a><a href="#__eq__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>eq__</span></a><a href="#__ge__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>ge__</span></a><a href="#__gt__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>gt__</span></a><a href="#__le__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>le__</span></a><a href="#__lshift__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>lshift__</span></a><a href="#__lt__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>lt__</span></a><a href="#__mul__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>mul__</span></a><a href="#__ne__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>ne__</span></a><a href="#__neg__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>neg__</span></a><a href="#__pos__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>pos__</span></a><a href="#__radd__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>radd__</span></a><a href="#__rdiv__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rdiv__</span></a><a href="#__rlshift__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rlshift__</span></a><a href="#__rmul__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rmul__</span></a><a href="#__rrshift__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rrshift__</span></a><a href="#__rshift__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rshift__</span></a><a href="#__rsub__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rsub__</span></a><a href="#__rvbar__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rvbar__</span></a><a href="#__rwedge__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rwedge__</span></a><a href="#__sub__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>sub__</span></a><a href="#__tilde__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>tilde__</span></a><a href="#__vbar__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>vbar__</span></a><a href="#__wedge__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>wedge__</span></a><a href="#add"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add</span></a><a href="#addpseudo"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Pseudo</span></a><a href="#addscalar"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Scalar</span></a><a href="#adj"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>adj</span></a><a href="#angle"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>angle</span></a><a href="#conj"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>conj</span></a><a href="#coordinate"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>coordinate</span></a><a href="#cos"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>cos</span></a><a href="#cosh"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>cosh</span></a><a href="#cubicbezier"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>cubic<wbr/>Bezier</span></a><a href="#direction"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>direction</span></a><a href="#distanceto"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>distance<wbr/>To</span></a><a href="#div"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>div</span></a><a href="#divbyscalar"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>div<wbr/>By<wbr/>Scalar</span></a><a href="#equals"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>equals</span></a><a href="#exp"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>exp</span></a><a href="#ext"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>ext</span></a><a href="#grade"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>grade</span></a><a href="#inv"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>inv</span></a><a href="#isnan"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Na<wbr/>N</span></a><a href="#isone"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>One</span></a><a href="#isscalar"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Scalar</span></a><a href="#isspinor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Spinor</span></a><a href="#iszero"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Zero</span></a><a href="#lco"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>lco</span></a><a href="#lerp"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>lerp</span></a><a href="#log"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>log</span></a><a href="#magnitude"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>magnitude</span></a><a href="#magnitudesansunits"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>magnitude<wbr/>Sans<wbr/>Units</span></a><a href="#mul"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>mul</span></a><a href="#neg"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>neg</span></a><a href="#norm"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>norm</span></a><a href="#pow"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>pow</span></a><a href="#quad"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>quad</span></a><a href="#quadraticbezier"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>quadratic<wbr/>Bezier</span></a><a href="#rco"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>rco</span></a><a href="#reflect"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>reflect</span></a><a href="#rev"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>rev</span></a><a href="#rotate"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>rotate</span></a><a href="#scale"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>scale</span></a><a href="#scp"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>scp</span></a><a href="#sin"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>sin</span></a><a href="#sinh"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>sinh</span></a><a href="#slerp"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>slerp</span></a><a href="#squarednorm"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>squared<wbr/>Norm</span></a><a href="#squarednormsansunits"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>squared<wbr/>Norm<wbr/>Sans<wbr/>Units</span></a><a href="#stress"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>stress</span></a><a href="#sub"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>sub</span></a><a href="#tan"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>tan</span></a><a href="#toexponential"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>Exponential</span></a><a href="#tofixed"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>Fixed</span></a><a href="#toprecision"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>Precision</span></a><a href="#tostring"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>String</span></a><a href="#tostringijk"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>String<wbr/>IJK</span></a><a href="#copy"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>copy</span></a><a href="#fromcartesian"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>from<wbr/>Cartesian</span></a><a href="#fromvectore2"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>from<wbr/>Vector<wbr/>E2</span></a><a href="#vector"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>vector</span></a></div></details></div></details></div>
+<div><a href="#__add__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>add__</span></a><a href="#__bang__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>bang__</span></a><a href="#__div__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>div__</span></a><a href="#__eq__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>eq__</span></a><a href="#__ge__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>ge__</span></a><a href="#__gt__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>gt__</span></a><a href="#__le__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>le__</span></a><a href="#__lshift__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>lshift__</span></a><a href="#__lt__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>lt__</span></a><a href="#__mul__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>mul__</span></a><a href="#__ne__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>ne__</span></a><a href="#__neg__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>neg__</span></a><a href="#__pos__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>pos__</span></a><a href="#__radd__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>radd__</span></a><a href="#__rdiv__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rdiv__</span></a><a href="#__rlshift__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rlshift__</span></a><a href="#__rmul__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rmul__</span></a><a href="#__rrshift__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rrshift__</span></a><a href="#__rshift__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rshift__</span></a><a href="#__rsub__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rsub__</span></a><a href="#__rvbar__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rvbar__</span></a><a href="#__rwedge__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>rwedge__</span></a><a href="#__sub__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>sub__</span></a><a href="#__tilde__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>tilde__</span></a><a href="#__vbar__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>vbar__</span></a><a href="#__wedge__"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>__<wbr/>wedge__</span></a><a href="#add"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add</span></a><a href="#addpseudo"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Pseudo</span></a><a href="#addscalar"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Scalar</span></a><a href="#adj"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>adj</span></a><a href="#angle"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>angle</span></a><a href="#conj"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>conj</span></a><a href="#coordinate"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>coordinate</span></a><a href="#cos"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>cos</span></a><a href="#cosh"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>cosh</span></a><a href="#cubicbezier"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>cubic<wbr/>Bezier</span></a><a href="#direction"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>direction</span></a><a href="#distanceto"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>distance<wbr/>To</span></a><a href="#div"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>div</span></a><a href="#divbyscalar"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>div<wbr/>By<wbr/>Scalar</span></a><a href="#equals"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>equals</span></a><a href="#exp"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>exp</span></a><a href="#ext"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>ext</span></a><a href="#grade"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>grade</span></a><a href="#inv"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>inv</span></a><a href="#isdimensionless"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Dimensionless</span></a><a href="#isnan"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Na<wbr/>N</span></a><a href="#isone"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>One</span></a><a href="#isscalar"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Scalar</span></a><a href="#isspinor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Spinor</span></a><a href="#iszero"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>is<wbr/>Zero</span></a><a href="#lco"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>lco</span></a><a href="#lerp"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>lerp</span></a><a href="#log"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>log</span></a><a href="#magnitude"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>magnitude</span></a><a href="#magnitudesansunits"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>magnitude<wbr/>Sans<wbr/>Units</span></a><a href="#mul"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>mul</span></a><a href="#neg"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>neg</span></a><a href="#norm"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>norm</span></a><a href="#pow"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>pow</span></a><a href="#quad"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>quad</span></a><a href="#quadraticbezier"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>quadratic<wbr/>Bezier</span></a><a href="#rco"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>rco</span></a><a href="#reflect"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>reflect</span></a><a href="#rev"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>rev</span></a><a href="#rotate"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>rotate</span></a><a href="#scale"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>scale</span></a><a href="#scp"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>scp</span></a><a href="#sin"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>sin</span></a><a href="#sinh"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>sinh</span></a><a href="#slerp"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>slerp</span></a><a href="#squarednorm"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>squared<wbr/>Norm</span></a><a href="#squarednormsansunits"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>squared<wbr/>Norm<wbr/>Sans<wbr/>Units</span></a><a href="#stress"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>stress</span></a><a href="#sub"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>sub</span></a><a href="#tan"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>tan</span></a><a href="#toexponential"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>Exponential</span></a><a href="#tofixed"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>Fixed</span></a><a href="#toprecision"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>Precision</span></a><a href="#tostring"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>String</span></a><a href="#tostringijk"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>to<wbr/>String<wbr/>IJK</span></a><a href="#copy"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>copy</span></a><a href="#fromcartesian"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>from<wbr/>Cartesian</span></a><a href="#fromvectore2"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>from<wbr/>Vector<wbr/>E2</span></a><a href="#vector"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>vector</span></a></div></details></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../modules.html">davinci-units</a>
 <ul class="tsd-small-nested-navigation" id="tsd-nav-container">
