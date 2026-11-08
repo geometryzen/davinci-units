@@ -1517,15 +1517,15 @@ interface SpinorE3 extends Scalar {
     /**
      * The <em>bivector</em> yz-coordinate as a <code>number</code>.
      */
-    yz: number;
+    readonly yz: number;
     /**
      * The <em>bivector</em> zx-coordinate as a <code>number</code>.
      */
-    zx: number;
+    readonly zx: number;
     /**
      * The <em>bivector</em> xy-coordinate as a <code>number</code>.
      */
-    xy: number;
+    readonly xy: number;
 }
 
 /**
@@ -1535,15 +1535,15 @@ interface VectorE3 {
     /**
      * The Cartesian x-coordinate.
      */
-    x: number;
+    readonly x: number;
     /**
      * The Cartesian y-coordinate.
      */
-    y: number;
+    readonly y: number;
     /**
      * The Cartesian z-coordinate.
      */
-    z: number;
+    readonly z: number;
 }
 
 /**
@@ -1678,7 +1678,6 @@ declare class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G
      * The Cartesian coordinate corresponding to the <b>e<sub>1</sub></b> basis vector.
      */
     get x(): number;
-    set x(value: number);
     /**
      * The Cartesian coordinate corresponding to the <b>e<sub>2</sub></b> basis vector.
      */
@@ -1875,10 +1874,6 @@ declare class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G
     __gt__(rhs: G3): boolean;
     __le__(rhs: G3): boolean;
     __lt__(rhs: G3): boolean;
-    /**
-     * Provides access to the internals of G3 in order to use `product` functions.
-     */
-    private static mutator;
     /**
      * Creates a new G3 from the coordinates of m and the optional unit of measure, uom.
      */

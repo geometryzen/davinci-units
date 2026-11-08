@@ -9,15 +9,15 @@ export interface SpinorE3 extends Scalar {
     /**
      * The <em>bivector</em> yz-coordinate as a <code>number</code>.
      */
-    yz: number;
+    readonly yz: number;
 
     /**
      * The <em>bivector</em> zx-coordinate as a <code>number</code>.
      */
-    zx: number;
+    readonly zx: number;
 
     /**
      * The <em>bivector</em> xy-coordinate as a <code>number</code>.
      */
-    xy: number;
+    readonly xy: number;
 }

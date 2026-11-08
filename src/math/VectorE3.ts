@@ -5,15 +5,15 @@ export interface VectorE3 {
     /**
      * The Cartesian x-coordinate.
      */
-    x: number;
+    readonly x: number;
 
     /**
      * The Cartesian y-coordinate.
      */
-    y: number;
+    readonly y: number;
 
     /**
      * The Cartesian z-coordinate.
      */
-    z: number;
+    readonly z: number;
 }

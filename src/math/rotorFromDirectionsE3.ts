@@ -1,12 +1,12 @@
-import dot from "./dotVectorE3";
-import quad from "./quadVectorE3";
+// import dot from "./dotVectorE3";
+// import quad from "./quadVectorE3";
 import { VectorE3 as Vector } from "./VectorE3";
 import { SpinorE3 as Spinor } from "./SpinorE3";
-import wedgeXY from "./wedgeXY";
-import wedgeYZ from "./wedgeYZ";
-import wedgeZX from "./wedgeZX";
+// import wedgeXY from "./wedgeXY";
+// import wedgeYZ from "./wedgeYZ";
+// import wedgeZX from "./wedgeZX";
 
-const sqrt = Math.sqrt;
+// const sqrt = Math.sqrt;
 
 interface Output extends Spinor {
     versor(a: Vector, b: Vector): Output;
@@ -22,7 +22,8 @@ interface Output extends Spinor {
  * R = (|b||a| + b * a) / sqrt(2 * |b||a|(|b||a| + b << a))
  * Returns undefined (void 0) if the vectors are anti-parallel.
  */
-export default function (a: Vector, b: Vector, m: Output): void {
+export function rotorFromDirections(_a: Vector, _b: Vector, _m: Output): void {
+    /*
     const quadA = quad(a);
     const absA = sqrt(quadA);
     const quadB = quad(b);
@@ -52,4 +53,5 @@ export default function (a: Vector, b: Vector, m: Output): void {
         m.normalize();
         m.rotorFromGeneratorAngle(m, Math.PI);
     }
+    */
 }

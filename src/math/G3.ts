@@ -7,24 +7,25 @@ import BASIS_LABELS_G3_STANDARD from "./BASIS_LABELS_G3_STANDARD";
 import BASIS_LABELS_G3_STANDARD_HTML from "./BASIS_LABELS_G3_STANDARD_HTML";
 import b2 from "./bezier2";
 import b3 from "./bezier3";
-import extG3 from "./extG3";
 import gauss from "./gauss";
 import { GeometricE3 } from "./GeometricE3";
 import { GeometricNumber } from "./GeometricNumber";
 import { GeometricOperators } from "./GeometricOperators";
-// import GradeError from './GradeError';
+import { gcompE3 as get } from "./compG3Get";
+import { compG3Set as set } from "./compG3Set";
+import { extE3 } from "./extE3";
 import { GeometricMeasure } from "./GeometricMeasure";
-import lcoG3 from "./lcoG3";
-import mulG3 from "./mulG3";
+import { lcoE3 } from "./lcoE3";
+import { mulG3 } from "./mulG3";
 import quadSpinorE3 from "./quadSpinorE3";
-import rcoG3 from "./rcoG3";
-import scpG3 from "./scpG3";
 import { SpinorE3 } from "./SpinorE3";
 import squaredNormG3 from "./squaredNormG3";
 import { stringFromCoordinates } from "./stringFromCoordinates";
 import { TrigMethods } from "./TrigMethods";
 import { Unit } from "./Unit";
 import { VectorE3 } from "./VectorE3";
+import mulE3 from "./mulE3";
+import { rcoE3 } from "./rcoE3";
 
 const COORD_SCALAR = 0;
 const COORD_X = 1;
@@ -34,6 +35,138 @@ const COORD_XY = 4;
 const COORD_YZ = 5;
 const COORD_ZX = 6;
 const COORD_PSEUDO = 7;
+
+function extG3(a: GeometricE3, b: GeometricE3, uom: Unit): G3 {
+    const a0 = get(a, 0);
+    const a1 = get(a, 1);
+    const a2 = get(a, 2);
+    const a3 = get(a, 3);
+    const a4 = get(a, 4);
+    const a5 = get(a, 5);
+    const a6 = get(a, 6);
+    const a7 = get(a, 7);
+
+    const b0 = get(b, 0);
+    const b1 = get(b, 1);
+    const b2 = get(b, 2);
+    const b3 = get(b, 3);
+    const b4 = get(b, 4);
+    const b5 = get(b, 5);
+    const b6 = get(b, 6);
+    const b7 = get(b, 7);
+
+    const xs: [number, number, number, number, number, number, number, number] = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    set(xs, 0, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 0));
+    set(xs, 1, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 1));
+    set(xs, 2, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 2));
+    set(xs, 3, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 3));
+    set(xs, 4, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 4));
+    set(xs, 5, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 5));
+    set(xs, 6, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 6));
+    set(xs, 7, extE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 7));
+
+    return new G3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
+}
+
+export function lcoG3(a: GeometricE3, b: GeometricE3, uom: Unit): G3 {
+    const a0 = get(a, 0);
+    const a1 = get(a, 1);
+    const a2 = get(a, 2);
+    const a3 = get(a, 3);
+    const a4 = get(a, 4);
+    const a5 = get(a, 5);
+    const a6 = get(a, 6);
+    const a7 = get(a, 7);
+
+    const b0 = get(b, 0);
+    const b1 = get(b, 1);
+    const b2 = get(b, 2);
+    const b3 = get(b, 3);
+    const b4 = get(b, 4);
+    const b5 = get(b, 5);
+    const b6 = get(b, 6);
+    const b7 = get(b, 7);
+
+    const xs: [number, number, number, number, number, number, number, number] = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    set(xs, 0, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 0));
+    set(xs, 1, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 1));
+    set(xs, 2, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 2));
+    set(xs, 3, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 3));
+    set(xs, 4, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 4));
+    set(xs, 5, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 5));
+    set(xs, 6, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 6));
+    set(xs, 7, lcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 7));
+
+    return new G3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
+}
+
+export function rcoG3(a: GeometricE3, b: GeometricE3, uom: Unit): G3 {
+    const a0 = get(a, 0);
+    const a1 = get(a, 1);
+    const a2 = get(a, 2);
+    const a3 = get(a, 3);
+    const a4 = get(a, 4);
+    const a5 = get(a, 5);
+    const a6 = get(a, 6);
+    const a7 = get(a, 7);
+
+    const b0 = get(b, 0);
+    const b1 = get(b, 1);
+    const b2 = get(b, 2);
+    const b3 = get(b, 3);
+    const b4 = get(b, 4);
+    const b5 = get(b, 5);
+    const b6 = get(b, 6);
+    const b7 = get(b, 7);
+
+    const xs: [number, number, number, number, number, number, number, number] = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    set(xs, 0, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 0));
+    set(xs, 1, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 1));
+    set(xs, 2, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 2));
+    set(xs, 3, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 3));
+    set(xs, 4, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 4));
+    set(xs, 5, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 5));
+    set(xs, 6, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 6));
+    set(xs, 7, rcoE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 7));
+
+    return new G3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
+}
+
+export function scpG3(a: GeometricE3, b: GeometricE3, uom: Unit): G3 {
+    const a0 = get(a, 0);
+    const a1 = get(a, 1);
+    const a2 = get(a, 2);
+    const a3 = get(a, 3);
+    const a4 = get(a, 4);
+    const a5 = get(a, 5);
+    const a6 = get(a, 6);
+    const a7 = get(a, 7);
+
+    const b0 = get(b, 0);
+    const b1 = get(b, 1);
+    const b2 = get(b, 2);
+    const b3 = get(b, 3);
+    const b4 = get(b, 4);
+    const b5 = get(b, 5);
+    const b6 = get(b, 6);
+    const b7 = get(b, 7);
+
+    const xs: [number, number, number, number, number, number, number, number] = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    set(xs, 0, mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, 0));
+    set(xs, 1, 0);
+    set(xs, 2, 0);
+    set(xs, 3, 0);
+    set(xs, 4, 0);
+    set(xs, 5, 0);
+    set(xs, 6, 0);
+    set(xs, 7, 0);
+
+    return new G3(xs[0], xs[1], xs[2], xs[3], xs[4], xs[5], xs[6], xs[7], uom);
+}
 
 /**
  * <p>
@@ -201,10 +334,12 @@ export class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3
     get x(): number {
         return this._coords[COORD_X];
     }
+    /*
     set x(value: number) {
         // this._coords[COORD_X] = value;
         throw new Error(readOnly("x").message);
     }
+        */
 
     /**
      * The Cartesian coordinate corresponding to the <b>e<sub>2</sub></b> basis vector.
@@ -503,15 +638,11 @@ export class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3
     }
 
     scp(rhs: G3): G3 {
-        const out = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, rhs.uom));
-        scpG3(this, rhs, G3.mutator(out));
-        return out;
+        return scpG3(this, rhs, Unit.mul(this.uom, rhs.uom));
     }
 
     ext(rhs: G3): G3 {
-        const out = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, rhs.uom));
-        extG3(this, rhs, G3.mutator(out));
-        return out;
+        return extG3(this, rhs, Unit.mul(this.uom, rhs.uom));
     }
 
     __vbar__(rhs: G3 | number): G3 {
@@ -555,9 +686,7 @@ export class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3
     }
 
     lco(rhs: G3): G3 {
-        const out = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, rhs.uom));
-        lcoG3(this, rhs, G3.mutator(out));
-        return out;
+        return lcoG3(this, rhs, Unit.mul(this.uom, rhs.uom));
     }
 
     __lshift__(rhs: G3 | number): G3 {
@@ -581,9 +710,7 @@ export class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3
     }
 
     rco(rhs: G3): G3 {
-        const out = new G3(1, 0, 0, 0, 0, 0, 0, 0, Unit.mul(this.uom, rhs.uom));
-        rcoG3(this, rhs, G3.mutator(out));
-        return out;
+        return rcoG3(this, rhs, Unit.mul(this.uom, rhs.uom));
     }
 
     __rshift__(rhs: G3 | number): G3 {
@@ -617,7 +744,7 @@ export class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3
     /**
      * Unary plus(+).
      */
-    __pos__():G3 {
+    __pos__(): G3 {
         return this;
     }
 
@@ -1077,39 +1204,6 @@ export class G3 implements GeometricMeasure<G3>, GeometricE3, GeometricNumber<G3
         } else {
             return void 0;
         }
-    }
-
-    /**
-     * Provides access to the internals of G3 in order to use `product` functions.
-     */
-    private static mutator(M: G3) {
-        const that: GeometricE3 = {
-            set a(value: number) {
-                M._coords[COORD_SCALAR] = value;
-            },
-            set x(value: number) {
-                M._coords[COORD_X] = value;
-            },
-            set y(value: number) {
-                M._coords[COORD_Y] = value;
-            },
-            set z(value: number) {
-                M._coords[COORD_Z] = value;
-            },
-            set yz(value: number) {
-                M._coords[COORD_YZ] = value;
-            },
-            set zx(value: number) {
-                M._coords[COORD_ZX] = value;
-            },
-            set xy(value: number) {
-                M._coords[COORD_XY] = value;
-            },
-            set b(value: number) {
-                M._coords[COORD_PSEUDO] = value;
-            }
-        };
-        return that;
     }
 
     /**

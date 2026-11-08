@@ -12,7 +12,7 @@ const COORD_YZ = 5;
 const COORD_ZX = 6;
 const COORD_XYZ = 7;
 
-export default function gcompE3(m: GeometricE3, index: number): number {
+export function gcompE3(m: GeometricE3, index: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7): number {
     switch (index) {
         case COORD_W: {
             return m.a;

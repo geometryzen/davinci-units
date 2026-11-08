@@ -1,11 +1,6 @@
-import CartesianG3 from "./CartesianG3";
-import { GeometricE3 } from "./GeometricE3";
-import isNumber from "../checks/isNumber";
-import isObject from "../checks/isObject";
-
-const scratch: GeometricE3 = { a: 0, x: 0, y: 0, z: 0, yz: 0, zx: 0, xy: 0, b: 0 };
-
-export default function (arg: any): GeometricE3 {
+// const scratch: GeometricE3 = { a: 0, x: 0, y: 0, z: 0, yz: 0, zx: 0, xy: 0, b: 0 };
+/*
+export function foo(arg: any): GeometricE3 {
     if (isObject(arg) && "maskG3" in arg) {
         const duck = <CartesianG3>arg;
         const g = <GeometricE3>arg;
@@ -52,3 +47,4 @@ export default function (arg: any): GeometricE3 {
         return void 0;
     }
 }
+    */

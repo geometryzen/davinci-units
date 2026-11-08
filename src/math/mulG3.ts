@@ -1,8 +1,8 @@
 import { GeometricE3 } from "./GeometricE3";
-import get from "./compG3Get";
+import { gcompE3 as get } from "./compG3Get";
 import mulE3 from "./mulE3";
 
-export default function (a: GeometricE3, b: GeometricE3, out: number[]): void {
+export function mulG3(a: GeometricE3, b: GeometricE3, out: number[]): void {
     const a0 = a.a;
     const a1 = a.x;
     const a2 = a.y;
@@ -22,7 +22,7 @@ export default function (a: GeometricE3, b: GeometricE3, out: number[]): void {
     const b7 = get(b, 7);
 
     const iLen = out.length;
-    for (var i = 0; i < iLen; i++) {
+    for (let i = 0; i < iLen; i++) {
         out[i] = mulE3(a0, a1, a2, a3, a4, a5, a6, a7, b0, b1, b2, b3, b4, b5, b6, b7, i);
     }
 }
