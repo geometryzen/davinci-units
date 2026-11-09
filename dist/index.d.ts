@@ -1273,8 +1273,22 @@ declare function gt(a: G3, b: G3): boolean;
 declare function le(a: G3, b: G3): boolean;
 declare function lt(a: G3, b: G3): boolean;
 declare function mod(a: G3, b: G3): G3;
-declare function ceiling(a: G3): G3;
-declare function floor(a: G3): G3;
+declare function ceiling(x: G3): G3;
+/**
+ * Returns the greatest integer less than or equal to the argument.
+ * @param x A scalar.
+ */
+declare function floor(x: G3): G3;
+/**
+ * Returns the argument rounded to the nearest integer.
+ * @param x A scalar.
+ */
+declare function round(x: G3): G3;
+/**
+ * Returns the arc cosine (or inverse cosine) of the argument.
+ * @param x A scalar.
+ */
+declare function acos(x: G3): G3;
 
-export { Dimensions, G3, Line, Plane, QQ, Unit, ascending, ceiling, descending, eq, floor, ge, gt, le, lt, max, min, mod };
+export { Dimensions, G3, Line, Plane, QQ, Unit, acos, ascending, ceiling, descending, eq, floor, ge, gt, le, lt, max, min, mod, round };
 export type { DivisionRingOperators, GeometricCoords, GeometricMeasure, GeometricNumber, GeometricOperators, SpinorCoords, TrigMethods, VectorCoords };

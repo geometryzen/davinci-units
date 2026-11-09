@@ -1,6 +1,6 @@
 export { Dimensions } from "./math/Dimensions";
 export { DivisionRingOperators } from "./math/DivisionRingOperators";
-export { ascending, ceiling, descending, eq, floor, G3, ge, gt, le, Line, lt, max, min, mod, Plane } from "./math/Euclidean3";
+export { acos, ascending, ceiling, descending, eq, floor, G3, ge, gt, le, Line, lt, max, min, mod, Plane, round } from "./math/Euclidean3";
 export { GeometricCoords } from "./math/GeometricCoords";
 export { GeometricMeasure } from "./math/GeometricMeasure";
 export { GeometricNumber } from "./math/GeometricNumber";

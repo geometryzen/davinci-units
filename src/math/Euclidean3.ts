@@ -1340,11 +1340,16 @@ export function lt(a: G3, b: G3): boolean {
     }
 }
 
-function math_1_arg(a: G3, fn: (a: number) => number): G3 {
-    if (a.isZero) {
+/**
+ * Returns the 2nd argument applied to the first argument.
+ * @param x A scalar.
+ * @param fn A function that takes a number and returns a number.
+ */
+function math_1_arg(x: G3, fn: (x: number) => number): G3 {
+    if (x.isZero) {
         return G3.zero;
     } else {
-        return a.divByScalar(a.a).scale(fn(a.a));
+        return x.divByScalar(x.a).scale(fn(x.a));
     }
 }
 
@@ -1360,10 +1365,30 @@ export function mod(a: G3, b: G3): G3 {
     return math_2_args(a, b, (a: number, b: number) => a % b);
 }
 
-export function ceiling(a: G3): G3 {
-    return math_1_arg(a, Math.ceil);
+export function ceiling(x: G3): G3 {
+    return math_1_arg(x, Math.ceil);
 }
 
-export function floor(a: G3): G3 {
-    return math_1_arg(a, Math.floor);
+/**
+ * Returns the greatest integer less than or equal to the argument.
+ * @param x A scalar.
+ */
+export function floor(x: G3): G3 {
+    return math_1_arg(x, Math.floor);
+}
+
+/**
+ * Returns the argument rounded to the nearest integer.
+ * @param x A scalar.
+ */
+export function round(x: G3): G3 {
+    return math_1_arg(x, Math.round);
+}
+
+/**
+ * Returns the arc cosine (or inverse cosine) of the argument.
+ * @param x A scalar.
+ */
+export function acos(x: G3): G3 {
+    return math_1_arg(x, Math.acos);
 }
