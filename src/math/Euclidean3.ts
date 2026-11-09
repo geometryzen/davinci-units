@@ -445,6 +445,13 @@ export class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumbe
         return new G3(this.a + α.multiplier, this.x, this.y, this.z, this.xy, this.yz, this.zx, this.b, Unit.compatible(this.uom, α));
     }
 
+    /**
+     * @returns the arc cosine (or inverse cosine).
+     */
+    acos(): G3 {
+        return new G3(Math.acos(this.a), 0, 0, 0, 0, 0, 0, 0, Unit.ONE);
+    }
+
     __add__(rhs: Unit | G3): G3 {
         if (rhs instanceof G3) {
             return this.add(rhs);

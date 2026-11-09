@@ -16,6 +16,11 @@ export interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends L
     addScalar(α: UNIT): M;
 
     /**
+     * Arc cosine (or inverse cosine).
+     */
+    acos(): M;
+
+    /**
      * conjugate multiplied by norm (similar to inv)
      */
     adj(): M;

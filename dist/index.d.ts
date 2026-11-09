@@ -541,6 +541,10 @@ interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNu
      */
     addScalar(α: UNIT): M;
     /**
+     * Arc cosine (or inverse cosine).
+     */
+    acos(): M;
+    /**
      * conjugate multiplied by norm (similar to inv)
      */
     adj(): M;
@@ -1088,6 +1092,10 @@ declare class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumb
      * Computes <code>this + α</code>
      */
     addScalar(α: Unit): G3;
+    /**
+     * @returns the arc cosine (or inverse cosine).
+     */
+    acos(): G3;
     __add__(rhs: Unit | G3): G3;
     __radd__(lhs: Unit | G3): G3;
     adj(): G3;
