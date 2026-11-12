@@ -1,6 +1,6 @@
 {
     "name": "davinci-units",
-    "version": "1.6.18",
+    "version": "1.6.19",
     "description": "Geometric Numbers with Units for Mathematical Physics using Geometric Algebra",
     "exports": {
         ".": {
