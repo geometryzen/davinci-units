@@ -1,14 +1,13 @@
-import {G3} from './Euclidean3';
+import { G3 } from "./Euclidean3";
 
-describe("G3", function() {
-
-    const random = function() {
+describe("G3", function () {
+    const random = function () {
         const a = Math.random();
         const x = Math.random();
         const y = Math.random();
         const z = Math.random();
         return new G3(a, x, y, z, Math.random(), Math.random(), Math.random(), Math.random());
-    }
+    };
 
     const zero = new G3(0, 0, 0, 0, 0, 0, 0, 0);
     const one = new G3(1, 0, 0, 0, 0, 0, 0, 0);
@@ -44,7 +43,7 @@ describe("G3", function() {
     });
     */
 
-    it('constructor', function() {
+    it("constructor", function () {
         const α = Math.random();
         const x = Math.random();
         const y = Math.random();
@@ -75,31 +74,31 @@ describe("G3", function() {
         expect(a.coords[7]).toBe(β);
     });
 
-    it('Should implement toString(), GEOMTERIC', function() {
-        G3.BASIS_LABELS = G3.BASIS_LABELS_GEOMETRIC
+    it("Should implement toString(), GEOMTERIC", function () {
+        G3.BASIS_LABELS = G3.BASIS_LABELS_GEOMETRIC;
         const a = new G3(1, 2, 3, 4, 5, 6, 7, 8);
         expect(a.toString()).toBe("1+2*→+3*↑+4*⊙+5*↺+6*⬙+7*⊶+8*☐");
         const b = new G3(-1, -2, -3, -4, -5, -6, -7, -8);
         expect(b.toString()).toBe("-1+2*←+3*↓+4*⊗+5*↻+6*⬘+7*⊷+8*■");
     });
 
-    it('Should implement toString(), STANDARD', function() {
-        G3.BASIS_LABELS = G3.BASIS_LABELS_STANDARD
+    it("Should implement toString(), STANDARD", function () {
+        G3.BASIS_LABELS = G3.BASIS_LABELS_STANDARD;
         const a = new G3(1, 2, 3, 4, 5, 6, 7, 8);
         expect(a.toString()).toBe("1+2*e1+3*e2+4*e3+5*e12+6*e23+7*e31+8*I");
         const b = new G3(-1, -2, -3, -4, -5, -6, -7, -8);
         expect(b.toString()).toBe("-1-2*e1-3*e2-4*e3-5*e12-6*e23-7*e31-8*I");
     });
 
-    it('Should implement toString(), HAMILTON', function() {
-        G3.BASIS_LABELS = G3.BASIS_LABELS_HAMILTON
+    it("Should implement toString(), HAMILTON", function () {
+        G3.BASIS_LABELS = G3.BASIS_LABELS_HAMILTON;
         const a = new G3(1, 2, 3, 4, 5, 6, 7, 8);
         expect(a.toString()).toBe("1+2*i+3*j+4*k+5*ij+6*jk+7*ki+8*ijk");
         const b = new G3(-1, -2, -3, -4, -5, -6, -7, -8);
         expect(b.toString()).toBe("-1-2*i-3*j-4*k-5*ij-6*jk-7*ki-8*ijk");
     });
 
-    it('Should implement add function', function() {
+    it("Should implement add function", function () {
         const a = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
         const b = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
 
@@ -115,7 +114,7 @@ describe("G3", function() {
         expect(c.coordinate(7)).toBe(a.coordinate(7) + b.coordinate(7));
     });
 
-    it('Should implement sub function', function() {
+    it("Should implement sub function", function () {
         const a = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
         const b = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
 
@@ -131,8 +130,8 @@ describe("G3", function() {
         expect(c.coordinate(7)).toBe(a.coordinate(7) - b.coordinate(7));
     });
 
-    it('div G3', function() {
-        const u = new G3(1, 0, 0, 0, 0, 0, 0, 0)
+    it("div G3", function () {
+        const u = new G3(1, 0, 0, 0, 0, 0, 0, 0);
         // const i = new G3(0, 1, 0, 0, 0, 0, 0, 0)
         // const j = new G3(0, 0, 1, 0, 0, 0, 0, 0)
         // const k = new G3(0, 0, 0, 1, 0, 0, 0, 0)
@@ -160,7 +159,7 @@ describe("G3", function() {
         //    expect(u.div(i).b).toBe(0);
     });
 
-    it('grade(index) function', function() {
+    it("grade(index) function", function () {
         const m = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
 
         const w = m.grade(0);
@@ -219,8 +218,8 @@ describe("G3", function() {
         expect(z.coordinate(7)).toEqual(0);
     });
 
-    describe("multiplication", function() {
-        it("associative", function() {
+    describe("multiplication", function () {
+        it("associative", function () {
             const a = random();
             const b = random();
             const c = random();
@@ -239,7 +238,7 @@ describe("G3", function() {
             expect(lhs.coordinate(6)).toBeCloseTo(rhs.coordinate(6), 4);
             expect(lhs.coordinate(7)).toBeCloseTo(rhs.coordinate(7), 4);
         });
-        it("left distributive", function() {
+        it("left distributive", function () {
             const x = random();
             const y = random();
             const z = random();
@@ -258,14 +257,14 @@ describe("G3", function() {
             expect(lhs.coordinate(6)).toBeCloseTo(rhs.coordinate(6), 4);
             expect(lhs.coordinate(7)).toBeCloseTo(rhs.coordinate(7), 4);
         });
-        it("right distributive over addition", function() {
+        it("right distributive over addition", function () {
             const x = random();
             const y = random();
             const z = random();
 
             const yx = y.mul(x);
             const zx = z.mul(x);
-            const lhs = (y.add(z)).mul(x);
+            const lhs = y.add(z).mul(x);
             const rhs = yx.add(zx);
 
             expect(lhs.coordinate(0)).toBeCloseTo(rhs.coordinate(0), 4);
@@ -277,7 +276,7 @@ describe("G3", function() {
             expect(lhs.coordinate(6)).toBeCloseTo(rhs.coordinate(6), 4);
             expect(lhs.coordinate(7)).toBeCloseTo(rhs.coordinate(7), 4);
         });
-        it("square of any vector is a real scalar", function() {
+        it("square of any vector is a real scalar", function () {
             const a = random().grade(1);
             const b = a.mul(a);
 
@@ -287,8 +286,8 @@ describe("G3", function() {
         });
     });
 
-    describe("scalar product (scp)", function() {
-        it("", function() {
+    describe("scalar product (scp)", function () {
+        it("", function () {
             expect(one.scp(one).a).toBeCloseTo(one.a);
             expect(one.scp(i).a).toBeCloseTo(zero.a);
             expect(one.scp(j).a).toBeCloseTo(zero.a);
@@ -363,8 +362,8 @@ describe("G3", function() {
         });
     });
 
-    describe("exterior product", function() {
-        it("", function() {
+    describe("exterior product", function () {
+        it("", function () {
             expect(one.ext(one).a).toBeCloseTo(one.a);
             expect(one.ext(i).a).toBeCloseTo(i.a);
             expect(one.ext(j).a).toBeCloseTo(j.a);
@@ -390,7 +389,7 @@ describe("G3", function() {
             expect(j.ext(ij).a).toBeCloseTo(zero.a);
             expect(j.ext(jk).a).toBeCloseTo(zero.a);
             expect(j.ext(ki).a).toBeCloseTo(I.a);
-           expect(j.ext(I).a).toBeCloseTo(zero.a);
+            expect(j.ext(I).a).toBeCloseTo(zero.a);
 
             expect(k.ext(one).a).toBeCloseTo(k.a);
             expect(k.ext(i).a).toBeCloseTo(ki.a);
@@ -419,28 +418,28 @@ describe("G3", function() {
             expect(jk.ext(ki).a).toBeCloseTo(zero.a);
             expect(jk.ext(I).a).toBeCloseTo(zero.a);
 
-            expect(ki.ext(one).a).toBeCloseTo(ki.a);            // 49
-            expect(ki.ext(i).a).toBeCloseTo(zero.a);            // 50
-            expect(ki.ext(j).a).toBeCloseTo(I.a);               // 51
-            expect(ki.ext(k).a).toBeCloseTo(zero.a);            // 52
-            expect(ki.ext(ij).a).toBeCloseTo(zero.a);           // 53
-            expect(ki.ext(jk).a).toBeCloseTo(zero.a);           // 54
-            expect(ki.ext(ki).a).toBeCloseTo(zero.a);           // 55
-            expect(ki.ext(I).a).toBeCloseTo(zero.a);            // 56
+            expect(ki.ext(one).a).toBeCloseTo(ki.a); // 49
+            expect(ki.ext(i).a).toBeCloseTo(zero.a); // 50
+            expect(ki.ext(j).a).toBeCloseTo(I.a); // 51
+            expect(ki.ext(k).a).toBeCloseTo(zero.a); // 52
+            expect(ki.ext(ij).a).toBeCloseTo(zero.a); // 53
+            expect(ki.ext(jk).a).toBeCloseTo(zero.a); // 54
+            expect(ki.ext(ki).a).toBeCloseTo(zero.a); // 55
+            expect(ki.ext(I).a).toBeCloseTo(zero.a); // 56
 
-            expect(I.ext(one).a).toBeCloseTo(I.a);              // 57
-            expect(I.ext(i).a).toBeCloseTo(zero.a);             // 58
-            expect(I.ext(j).a).toBeCloseTo(zero.a);             // 59
-            expect(I.ext(k).a).toBeCloseTo(zero.a);             // 60
-            expect(I.ext(ij).a).toBeCloseTo(zero.a);            // 61
-            expect(I.ext(jk).a).toBeCloseTo(zero.a);            // 62
-            expect(I.ext(ki).a).toBeCloseTo(zero.a);            // 63
-            expect(I.ext(I).a).toBeCloseTo(zero.a);             // 64
+            expect(I.ext(one).a).toBeCloseTo(I.a); // 57
+            expect(I.ext(i).a).toBeCloseTo(zero.a); // 58
+            expect(I.ext(j).a).toBeCloseTo(zero.a); // 59
+            expect(I.ext(k).a).toBeCloseTo(zero.a); // 60
+            expect(I.ext(ij).a).toBeCloseTo(zero.a); // 61
+            expect(I.ext(jk).a).toBeCloseTo(zero.a); // 62
+            expect(I.ext(ki).a).toBeCloseTo(zero.a); // 63
+            expect(I.ext(I).a).toBeCloseTo(zero.a); // 64
         });
     });
 
-    describe("left contraction", function() {
-        it("", function() {
+    describe("left contraction", function () {
+        it("", function () {
             expect(one.lco(one).a).toBeCloseTo(one.a);
             expect(one.lco(i).a).toBeCloseTo(i.a);
             expect(one.lco(j).a).toBeCloseTo(j.a);
@@ -495,105 +494,105 @@ describe("G3", function() {
             expect(jk.lco(ki).a).toBeCloseTo(zero.a);
             expect(jk.lco(I).a).toBeCloseTo(zero.sub(i).a);
 
-            expect(ki.lco(one).a).toBeCloseTo(zero.a);          // 49
-            expect(ki.lco(i).a).toBeCloseTo(zero.a);            // 50
-            expect(ki.lco(j).a).toBeCloseTo(zero.a);            // 51
-            expect(ki.lco(k).a).toBeCloseTo(zero.a);            // 52
-            expect(ki.lco(ij).a).toBeCloseTo(zero.a);           // 53
-            expect(ki.lco(jk).a).toBeCloseTo(zero.a);           // 54
-            expect(ki.lco(ki).a).toBeCloseTo(zero.sub(one).a);  // 55
-            expect(ki.lco(I).a).toBeCloseTo(zero.sub(j).a);     // 56
+            expect(ki.lco(one).a).toBeCloseTo(zero.a); // 49
+            expect(ki.lco(i).a).toBeCloseTo(zero.a); // 50
+            expect(ki.lco(j).a).toBeCloseTo(zero.a); // 51
+            expect(ki.lco(k).a).toBeCloseTo(zero.a); // 52
+            expect(ki.lco(ij).a).toBeCloseTo(zero.a); // 53
+            expect(ki.lco(jk).a).toBeCloseTo(zero.a); // 54
+            expect(ki.lco(ki).a).toBeCloseTo(zero.sub(one).a); // 55
+            expect(ki.lco(I).a).toBeCloseTo(zero.sub(j).a); // 56
 
-            expect(I.lco(one).a).toBeCloseTo(zero.a);           // 57
-            expect(I.lco(i).a).toBeCloseTo(zero.a);             // 58
-            expect(I.lco(j).a).toBeCloseTo(zero.a);             // 59
-            expect(I.lco(k).a).toBeCloseTo(zero.a);             // 60
-            expect(I.lco(ij).a).toBeCloseTo(zero.a);            // 61
-            expect(I.lco(jk).a).toBeCloseTo(zero.a);            // 62
-            expect(I.lco(ki).a).toBeCloseTo(zero.a);            // 63
-            expect(I.lco(I).a).toBeCloseTo(zero.sub(one).a);    // 64
+            expect(I.lco(one).a).toBeCloseTo(zero.a); // 57
+            expect(I.lco(i).a).toBeCloseTo(zero.a); // 58
+            expect(I.lco(j).a).toBeCloseTo(zero.a); // 59
+            expect(I.lco(k).a).toBeCloseTo(zero.a); // 60
+            expect(I.lco(ij).a).toBeCloseTo(zero.a); // 61
+            expect(I.lco(jk).a).toBeCloseTo(zero.a); // 62
+            expect(I.lco(ki).a).toBeCloseTo(zero.a); // 63
+            expect(I.lco(I).a).toBeCloseTo(zero.sub(one).a); // 64
         });
     });
 
-    describe("right contraction", function() {
-        it("", function() {
-            expect(one.rco(one).a).toBeCloseTo(one.a);          //  1
-            expect(one.rco(i).a).toBeCloseTo(zero.a);           //  2
-            expect(one.rco(j).a).toBeCloseTo(zero.a);           //  3
-            expect(one.rco(k).a).toBeCloseTo(zero.a);           //  4
-            expect(one.rco(ij).a).toBeCloseTo(zero.a);          //  5
-            expect(one.rco(jk).a).toBeCloseTo(zero.a);          //  6
-            expect(one.rco(ki).a).toBeCloseTo(zero.a);          //  7
-            expect(one.rco(I).a).toBeCloseTo(zero.a);           //  8
+    describe("right contraction", function () {
+        it("", function () {
+            expect(one.rco(one).a).toBeCloseTo(one.a); //  1
+            expect(one.rco(i).a).toBeCloseTo(zero.a); //  2
+            expect(one.rco(j).a).toBeCloseTo(zero.a); //  3
+            expect(one.rco(k).a).toBeCloseTo(zero.a); //  4
+            expect(one.rco(ij).a).toBeCloseTo(zero.a); //  5
+            expect(one.rco(jk).a).toBeCloseTo(zero.a); //  6
+            expect(one.rco(ki).a).toBeCloseTo(zero.a); //  7
+            expect(one.rco(I).a).toBeCloseTo(zero.a); //  8
 
-            expect(i.rco(one).a).toBeCloseTo(i.a);              //  9
-            expect(i.rco(i).a).toBeCloseTo(one.a);              // 10
-            expect(i.rco(j).a).toBeCloseTo(zero.a);             // 11
-            expect(i.rco(k).a).toBeCloseTo(zero.a);             // 12
-            expect(i.rco(ij).a).toBeCloseTo(zero.a);            // 13
-            expect(i.rco(jk).a).toBeCloseTo(zero.a);            // 14
-            expect(i.rco(ki).a).toBeCloseTo(zero.a);            // 15
-            expect(i.rco(I).a).toBeCloseTo(zero.a);             // 16
+            expect(i.rco(one).a).toBeCloseTo(i.a); //  9
+            expect(i.rco(i).a).toBeCloseTo(one.a); // 10
+            expect(i.rco(j).a).toBeCloseTo(zero.a); // 11
+            expect(i.rco(k).a).toBeCloseTo(zero.a); // 12
+            expect(i.rco(ij).a).toBeCloseTo(zero.a); // 13
+            expect(i.rco(jk).a).toBeCloseTo(zero.a); // 14
+            expect(i.rco(ki).a).toBeCloseTo(zero.a); // 15
+            expect(i.rco(I).a).toBeCloseTo(zero.a); // 16
 
-            expect(j.rco(one).a).toBeCloseTo(j.a);              // 17
-            expect(j.rco(i).a).toBeCloseTo(zero.a);             // 18
-            expect(j.rco(j).a).toBeCloseTo(one.a);              // 19
-            expect(j.rco(k).a).toBeCloseTo(zero.a);             // 20
-            expect(j.rco(ij).a).toBeCloseTo(zero.a);            // 21
-            expect(j.rco(jk).a).toBeCloseTo(zero.a);            // 22
-            expect(j.rco(ki).a).toBeCloseTo(zero.a);            // 23
-            expect(j.rco(I).a).toBeCloseTo(zero.a);             // 24
+            expect(j.rco(one).a).toBeCloseTo(j.a); // 17
+            expect(j.rco(i).a).toBeCloseTo(zero.a); // 18
+            expect(j.rco(j).a).toBeCloseTo(one.a); // 19
+            expect(j.rco(k).a).toBeCloseTo(zero.a); // 20
+            expect(j.rco(ij).a).toBeCloseTo(zero.a); // 21
+            expect(j.rco(jk).a).toBeCloseTo(zero.a); // 22
+            expect(j.rco(ki).a).toBeCloseTo(zero.a); // 23
+            expect(j.rco(I).a).toBeCloseTo(zero.a); // 24
 
-            expect(k.rco(one).a).toBeCloseTo(k.a);              // 25
-            expect(k.rco(i).a).toBeCloseTo(zero.a);             // 26
-            expect(k.rco(j).a).toBeCloseTo(zero.a);             // 27
-            expect(k.rco(k).a).toBeCloseTo(one.a);              // 28
-            expect(k.rco(ij).a).toBeCloseTo(zero.a);            // 29
-            expect(k.rco(jk).a).toBeCloseTo(zero.a);            // 30
-            expect(k.rco(ki).a).toBeCloseTo(zero.a);            // 31
-            expect(k.rco(I).a).toBeCloseTo(zero.a);             // 32
+            expect(k.rco(one).a).toBeCloseTo(k.a); // 25
+            expect(k.rco(i).a).toBeCloseTo(zero.a); // 26
+            expect(k.rco(j).a).toBeCloseTo(zero.a); // 27
+            expect(k.rco(k).a).toBeCloseTo(one.a); // 28
+            expect(k.rco(ij).a).toBeCloseTo(zero.a); // 29
+            expect(k.rco(jk).a).toBeCloseTo(zero.a); // 30
+            expect(k.rco(ki).a).toBeCloseTo(zero.a); // 31
+            expect(k.rco(I).a).toBeCloseTo(zero.a); // 32
 
-            expect(ij.rco(one).a).toBeCloseTo(ij.a);            // 33
-            expect(ij.rco(i).a).toBeCloseTo(zero.sub(j).a);     // 34
-            expect(ij.rco(j).a).toBeCloseTo(i.a);               // 35
-            expect(ij.rco(k).a).toBeCloseTo(zero.a);            // 36
-            expect(ij.rco(ij).a).toBeCloseTo(zero.sub(one).a);  // 37
-            expect(ij.rco(jk).a).toBeCloseTo(zero.a);           // 38
-            expect(ij.rco(ki).a).toBeCloseTo(zero.a);           // 39
-            expect(ij.rco(I).a).toBeCloseTo(zero.a);            // 40
+            expect(ij.rco(one).a).toBeCloseTo(ij.a); // 33
+            expect(ij.rco(i).a).toBeCloseTo(zero.sub(j).a); // 34
+            expect(ij.rco(j).a).toBeCloseTo(i.a); // 35
+            expect(ij.rco(k).a).toBeCloseTo(zero.a); // 36
+            expect(ij.rco(ij).a).toBeCloseTo(zero.sub(one).a); // 37
+            expect(ij.rco(jk).a).toBeCloseTo(zero.a); // 38
+            expect(ij.rco(ki).a).toBeCloseTo(zero.a); // 39
+            expect(ij.rco(I).a).toBeCloseTo(zero.a); // 40
 
-            expect(jk.rco(one).a).toBeCloseTo(jk.a);            // 41
-            expect(jk.rco(i).a).toBeCloseTo(zero.a);            // 42
-            expect(jk.rco(j).a).toBeCloseTo(zero.sub(k).a);     // 43
-            expect(jk.rco(k).a).toBeCloseTo(j.a);               // 44
-            expect(jk.rco(ij).a).toBeCloseTo(zero.a);           // 45
-            expect(jk.rco(jk).a).toBeCloseTo(zero.sub(one).a);  // 46
-            expect(jk.rco(ki).a).toBeCloseTo(zero.a);           // 47
-            expect(jk.rco(I).a).toBeCloseTo(zero.a);            // 48
+            expect(jk.rco(one).a).toBeCloseTo(jk.a); // 41
+            expect(jk.rco(i).a).toBeCloseTo(zero.a); // 42
+            expect(jk.rco(j).a).toBeCloseTo(zero.sub(k).a); // 43
+            expect(jk.rco(k).a).toBeCloseTo(j.a); // 44
+            expect(jk.rco(ij).a).toBeCloseTo(zero.a); // 45
+            expect(jk.rco(jk).a).toBeCloseTo(zero.sub(one).a); // 46
+            expect(jk.rco(ki).a).toBeCloseTo(zero.a); // 47
+            expect(jk.rco(I).a).toBeCloseTo(zero.a); // 48
 
-            expect(ki.rco(one).a).toBeCloseTo(ki.a);            // 49
-            expect(ki.rco(i).a).toBeCloseTo(k.a);               // 50
-            expect(ki.rco(j).a).toBeCloseTo(zero.a);            // 51
-            expect(ki.rco(k).a).toBeCloseTo(zero.sub(i).a);     // 52
-            expect(ki.rco(ij).a).toBeCloseTo(zero.a);           // 53
-            expect(ki.rco(jk).a).toBeCloseTo(zero.a);           // 54
-            expect(ki.rco(ki).a).toBeCloseTo(zero.sub(one).a);  // 55
-            expect(ki.rco(I).a).toBeCloseTo(zero.a);            // 56
+            expect(ki.rco(one).a).toBeCloseTo(ki.a); // 49
+            expect(ki.rco(i).a).toBeCloseTo(k.a); // 50
+            expect(ki.rco(j).a).toBeCloseTo(zero.a); // 51
+            expect(ki.rco(k).a).toBeCloseTo(zero.sub(i).a); // 52
+            expect(ki.rco(ij).a).toBeCloseTo(zero.a); // 53
+            expect(ki.rco(jk).a).toBeCloseTo(zero.a); // 54
+            expect(ki.rco(ki).a).toBeCloseTo(zero.sub(one).a); // 55
+            expect(ki.rco(I).a).toBeCloseTo(zero.a); // 56
 
-            expect(I.rco(one).a).toBeCloseTo(I.a);              // 57
-            expect(I.rco(i).a).toBeCloseTo(jk.a);               // 58
-            expect(I.rco(j).a).toBeCloseTo(ki.a);               // 59
-            expect(I.rco(k).a).toBeCloseTo(ij.a);               // 60
-            expect(I.rco(ij).a).toBeCloseTo(zero.sub(k).a);     // 61
-            expect(I.rco(jk).a).toBeCloseTo(zero.sub(i).a);     // 62
-            expect(I.rco(ki).a).toBeCloseTo(zero.sub(j).a);     // 63
-            expect(I.rco(I).a).toBeCloseTo(zero.sub(one).a);    // 64
+            expect(I.rco(one).a).toBeCloseTo(I.a); // 57
+            expect(I.rco(i).a).toBeCloseTo(jk.a); // 58
+            expect(I.rco(j).a).toBeCloseTo(ki.a); // 59
+            expect(I.rco(k).a).toBeCloseTo(ij.a); // 60
+            expect(I.rco(ij).a).toBeCloseTo(zero.sub(k).a); // 61
+            expect(I.rco(jk).a).toBeCloseTo(zero.sub(i).a); // 62
+            expect(I.rco(ki).a).toBeCloseTo(zero.sub(j).a); // 63
+            expect(I.rco(I).a).toBeCloseTo(zero.sub(one).a); // 64
         });
     });
-    describe("Operator Overloading", function() {
+    describe("Operator Overloading", function () {
         const x = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
         const y = new G3(Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random());
-        it("+", function() {
+        it("+", function () {
             const e = x.add(y);
             const a = x.__add__(y);
             const b = y.__radd__(x);
@@ -614,7 +613,7 @@ describe("G3", function() {
             expect(e.zx).toBe(b.zx);
             expect(e.b).toBe(b.b);
         });
-        it("-", function() {
+        it("-", function () {
             const e = x.sub(y);
             const a = x.__sub__(y);
             const b = y.__rsub__(x);
@@ -635,8 +634,8 @@ describe("G3", function() {
             expect(e.zx).toBe(b.zx);
             expect(e.b).toBe(b.b);
         });
-        describe("*", function() {
-            it("G3 * G3", function() {
+        describe("*", function () {
+            it("G3 * G3", function () {
                 const e = x.mul(y);
                 const a = x.__mul__(y);
                 const b = y.__rmul__(x);
@@ -658,7 +657,7 @@ describe("G3", function() {
                 expect(e.b).toBe(b.b);
             });
         });
-        it("/", function() {
+        it("/", function () {
             const e = x.div(y);
             const a = x.__div__(y);
             const b = y.__rdiv__(x);
@@ -679,7 +678,7 @@ describe("G3", function() {
             expect(e.zx).toBe(b.zx);
             expect(e.b).toBe(b.b);
         });
-        it("^", function() {
+        it("^", function () {
             const e = x.ext(y);
             const a = x.__wedge__(y);
             const b = y.__rwedge__(x);
@@ -700,7 +699,7 @@ describe("G3", function() {
             expect(e.zx).toBe(b.zx);
             expect(e.b).toBe(b.b);
         });
-        it("<<", function() {
+        it("<<", function () {
             const e = x.lco(y);
             const a = x.__lshift__(y);
             const b = y.__rlshift__(x);
@@ -721,7 +720,7 @@ describe("G3", function() {
             expect(e.zx).toBe(b.zx);
             expect(e.b).toBe(b.b);
         });
-        it(">>", function() {
+        it(">>", function () {
             const e = x.rco(y);
             const a = x.__rshift__(y);
             const b = y.__rrshift__(x);
@@ -742,7 +741,7 @@ describe("G3", function() {
             expect(e.zx).toBe(b.zx);
             expect(e.b).toBe(b.b);
         });
-        it("Unary +", function() {
+        it("Unary +", function () {
             const e = zero.add(x);
             const a = x.__pos__();
             expect(e.a).toBe(a.a);
@@ -754,7 +753,7 @@ describe("G3", function() {
             expect(e.zx).toBe(a.zx);
             expect(e.b).toBe(a.b);
         });
-        it("Unary -", function() {
+        it("Unary -", function () {
             const e = zero.sub(x);
             const a = x.__neg__();
             expect(e.a).toBe(a.a);
@@ -766,51 +765,51 @@ describe("G3", function() {
             expect(e.zx).toBe(a.zx);
             expect(e.b).toBe(a.b);
         });
-        describe("eq", function() {
+        describe("eq", function () {
             const zero = G3.zero;
             const one = G3.one;
-            it("(one, one) => true", function() {
+            it("(one, one) => true", function () {
                 expect(one.__eq__(one)).toBeTruthy();
-            })
-            it("(zero, one) => false", function() {
+            });
+            it("(zero, one) => false", function () {
                 expect(zero.__eq__(one)).toBeFalsy();
-            })
-            it("(x, x) => true", function() {
+            });
+            it("(x, x) => true", function () {
                 expect(x.__eq__(x)).toBeTruthy();
-            })
+            });
             /*
             it("(meter, second) => false", function() {
                 expect(function() { meter.__eq__(second) }).toThrowError("Dimensions mismatch in equality expression: length === time");
             })
             */
         });
-        describe("ne", function() {
+        describe("ne", function () {
             const zero = G3.zero;
             const one = G3.one;
-            it("(one, one) => false", function() {
+            it("(one, one) => false", function () {
                 expect(one.__ne__(one)).toBeFalsy();
-            })
-            it("(zero, one) => true", function() {
+            });
+            it("(zero, one) => true", function () {
                 expect(zero.__ne__(one)).toBeTruthy();
-            })
-            it("(x, x) => false", function() {
+            });
+            it("(x, x) => false", function () {
                 expect(x.__ne__(x)).toBeFalsy();
-            })
+            });
             /*
             it("(meter, second) => false", function() {
                 expect(function() { meter.__ne__(second) }).toThrowError("Dimensions mismatch in inequality expression: length !== time");
             })
             */
         });
-        describe("ge", function() {
+        describe("ge", function () {
             const zero = G3.zero;
             const one = G3.one;
-            it("(one, one) => true", function() {
+            it("(one, one) => true", function () {
                 expect(one.__ge__(one)).toBeTruthy();
-            })
-            it("(zero, one) => false", function() {
+            });
+            it("(zero, one) => false", function () {
                 expect(zero.__ge__(one)).toBeFalsy();
-            })
+            });
             /*
             it("(one, zero) => true", function() {
                 expect(one.__ge__(zero)).toBeTruthy();
@@ -826,18 +825,18 @@ describe("G3", function() {
             })
             */
         });
-        describe("gt", function() {
+        describe("gt", function () {
             const zero = G3.zero;
             const one = G3.one;
-            it("(one, one) => false", function() {
+            it("(one, one) => false", function () {
                 expect(one.__gt__(one)).toBeFalsy();
-            })
-            it("(zero, one) => false", function() {
+            });
+            it("(zero, one) => false", function () {
                 expect(zero.__gt__(one)).toBeFalsy();
-            })
-            it("(one, zero) => true", function() {
+            });
+            it("(one, zero) => true", function () {
                 expect(one.__gt__(zero)).toBeTruthy();
-            })
+            });
             /*
             it("(meter, second) => false", function() {
                 expect(function() { meter.__gt__(second) }).toThrowError("Dimensions mismatch in comparison expression: length > time");
@@ -850,18 +849,18 @@ describe("G3", function() {
             })
             */
         });
-        describe("le", function() {
+        describe("le", function () {
             const zero = G3.zero;
             const one = G3.one;
-            it("(one, one) => true", function() {
+            it("(one, one) => true", function () {
                 expect(one.__le__(one)).toBeTruthy();
-            })
-            it("(zero, one) => true", function() {
+            });
+            it("(zero, one) => true", function () {
                 expect(zero.__le__(one)).toBeTruthy();
-            })
-            it("(one, zero) => false", function() {
+            });
+            it("(one, zero) => false", function () {
                 expect(one.__le__(zero)).toBeFalsy();
-            })
+            });
             /*
             it("(meter, second) => false", function() {
                 expect(function() { meter.__le__(second) }).toThrowError("Dimensions mismatch in comparison expression: length <= time");
@@ -874,18 +873,18 @@ describe("G3", function() {
             })
             */
         });
-        describe("lt", function() {
+        describe("lt", function () {
             const zero = G3.zero;
             const one = G3.one;
-            it("(one, one) => false", function() {
+            it("(one, one) => false", function () {
                 expect(one.__lt__(one)).toBeFalsy();
-            })
-            it("(zero, one) => true", function() {
+            });
+            it("(zero, one) => true", function () {
                 expect(zero.__lt__(one)).toBeTruthy();
-            })
-            it("(one, zero) => false", function() {
+            });
+            it("(one, zero) => false", function () {
                 expect(one.__lt__(zero)).toBeFalsy();
-            })
+            });
             /*
             it("(meter, second) => false", function() {
                 expect(function() { meter.__lt__(second) }).toThrowError("Dimensions mismatch in comparison expression: length < time");
@@ -899,40 +898,40 @@ describe("G3", function() {
             */
         });
     });
-    describe("norm", function() {
-        it("returns a number", function() {
-            expect(typeof zero.norm()).toBe('object');
+    describe("norm", function () {
+        it("returns a number", function () {
+            expect(typeof zero.norm()).toBe("object");
         });
     });
-    describe("quad", function() {
-        it("returns a number", function() {
-            expect(typeof zero.quad()).toBe('object');
+    describe("quad", function () {
+        it("returns a number", function () {
+            expect(typeof zero.quad()).toBe("object");
         });
-        it("squaredNorm(0)", function() {
+        it("squaredNorm(0)", function () {
             expect(zero.scale(2).squaredNorm().a).toBe(0);
         });
-        it("squaredNorm(2)", function() {
+        it("squaredNorm(2)", function () {
             expect(one.scale(2).squaredNorm().a).toBe(4);
         });
-        it("squaredNorm(2*e1)", function() {
+        it("squaredNorm(2*e1)", function () {
             expect(i.scale(2).squaredNorm().a).toBe(4);
         });
-        it("squaredNorm(2*e2)", function() {
+        it("squaredNorm(2*e2)", function () {
             expect(j.scale(2).squaredNorm().a).toBe(4);
         });
-        it("squaredNorm(2*e3)", function() {
+        it("squaredNorm(2*e3)", function () {
             expect(k.scale(2).squaredNorm().a).toBe(4);
         });
-        it("squaredNorm(2*e1e2)", function() {
+        it("squaredNorm(2*e1e2)", function () {
             expect(ij.scale(2).squaredNorm().a).toBe(4);
         });
-        it("squaredNorm(2*e2e3)", function() {
+        it("squaredNorm(2*e2e3)", function () {
             expect(jk.scale(2).squaredNorm().a).toBe(4);
         });
-        it("squaredNorm(2*e3e1)", function() {
+        it("squaredNorm(2*e3e1)", function () {
             expect(ki.scale(2).squaredNorm().a).toBe(4);
         });
-        it("squaredNorm(2*I)", function() {
+        it("squaredNorm(2*I)", function () {
             expect(I.scale(2).squaredNorm().a).toBe(4);
         });
     });

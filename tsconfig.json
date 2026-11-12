@@ -20,20 +20,9 @@
         "skipLibCheck": true,
         "removeComments": false,
         "resolveJsonModule": true,
-        "types": [
-            "jest"
-        ]
+        "types": ["jest"]
     },
-    "include": [
-        "./src/**/*.ts",
-        "./rollup.config.mts",
-        "./rollup-plugin-dts.d.ts"
-, "src/math/gauss.spec.mts"    ],
-    "exclude": [
-        "node_modules"
-    ],
-    "lib": [
-        "es2015",
-        "dom"
-    ]
+    "include": ["./src/**/*.ts", "./rollup.config.mts", "./rollup-plugin-dts.d.ts", "src/math/gauss.spec.mts"],
+    "exclude": ["node_modules"],
+    "lib": ["es2015", "dom"]
 }

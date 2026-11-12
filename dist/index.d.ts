@@ -655,6 +655,7 @@ declare class G2 {
     get x(): number;
     get y(): number;
     get b(): number;
+    get uom(): Unit;
 }
 
 interface PseudoCoord {
