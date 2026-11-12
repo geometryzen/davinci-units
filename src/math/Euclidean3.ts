@@ -295,7 +295,7 @@ export class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumbe
         yz: number,
         zx: number,
         β: number,
-        readonly uom: Unit
+        readonly uom: Unit = Unit.ONE
     ) {
         this.#coords[COORD_SCALAR] = α;
         this.#coords[COORD_X] = x;

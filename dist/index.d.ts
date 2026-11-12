@@ -397,6 +397,266 @@ declare class Dimensions {
     __neg__(): Dimensions;
 }
 
+/**
+ * <p>
+ * The Unit class represents the units for a measure.
+ * </p>
+ */
+declare class Unit {
+    multiplier: number;
+    dimensions: Dimensions;
+    labels: [string, string, string, string, string, string, string];
+    /**
+     *
+     */
+    static ZERO: Unit;
+    /**
+     *
+     */
+    static ONE: Unit;
+    /**
+     *
+     */
+    static MASS: Unit;
+    /**
+     *
+     */
+    static LENGTH: Unit;
+    /**
+     *
+     */
+    static TIME: Unit;
+    /**
+     *
+     */
+    static CHARGE: Unit;
+    /**
+     *
+     */
+    static CURRENT: Unit;
+    /**
+     *
+     */
+    static TEMPERATURE: Unit;
+    /**
+     *
+     */
+    static AMOUNT: Unit;
+    /**
+     *
+     */
+    static INTENSITY: Unit;
+    /**
+     * @param multiplier
+     * @param dimensions
+     * @param labels The label strings to use for each dimension.
+     */
+    constructor(multiplier: number, dimensions: Dimensions, labels: [string, string, string, string, string, string, string]);
+    /**
+     * @param rhs
+     * @returns
+     */
+    compatible(rhs: Unit): Unit;
+    /**
+     * @param rhs
+     * @returns
+     */
+    add(rhs: Unit): Unit;
+    /**
+     * @param rhs
+     * @returns
+     */
+    __add__(rhs: Unit): Unit;
+    /**
+     * @param lhs
+     * @returns
+     */
+    __radd__(lhs: Unit): Unit;
+    /**
+     * @param rhs
+     * @returns
+     */
+    sub(rhs: Unit): Unit;
+    /**
+     * @param rhs
+     * @returns
+     */
+    __sub__(rhs: Unit): Unit;
+    /**
+     * @param lhs
+     * @returns
+     */
+    __rsub__(lhs: Unit): Unit;
+    /**
+     * @param rhs
+     * @returns
+     */
+    mul(rhs: Unit): Unit;
+    /**
+     * @param rhs
+     * @returns
+     */
+    __mul__(rhs: number | Unit): Unit;
+    /**
+     * @param lhs
+     * @returns
+     */
+    __rmul__(lhs: number | Unit): Unit;
+    /**
+     * @param rhs
+     * @returns
+     */
+    div(rhs: Unit): Unit;
+    /**
+     * @param α
+     * @returns
+     */
+    divByScalar(α: number): Unit;
+    __div__(other: number | Unit): Unit;
+    __rdiv__(other: number | Unit): Unit;
+    /**
+     * Intentionaly undocumented.
+     */
+    pattern(): string;
+    /**
+     * @param exponent
+     * @returns
+     */
+    pow(exponent: QQ): Unit;
+    /**
+     * @returns
+     */
+    inv(): Unit;
+    /**
+     * @returns
+     */
+    neg(): Unit;
+    /**
+     * @returns
+     */
+    isOne(): boolean;
+    /**
+     * @returns
+     */
+    isZero(): boolean;
+    /**
+     *
+     */
+    lerp(target: Unit, α: number): Unit;
+    /**
+     * @returns
+     */
+    norm(): Unit;
+    /**
+     * @returns
+     */
+    quad(): Unit;
+    /**
+     * @param n
+     * @returns
+     */
+    reflect(n: Unit): Unit;
+    /**
+     * @param rotor
+     * @returns
+     */
+    rotate(rotor: Unit): Unit;
+    /**
+     * @param α
+     * @returns
+     */
+    scale(α: number): Unit;
+    /**
+     * @param target
+     * @param α
+     * @returns
+     */
+    slerp(target: Unit, α: number): Unit;
+    /**
+     * @returns
+     */
+    sqrt(): Unit;
+    /**
+     * @param σ
+     * @returns
+     */
+    stress(σ: Unit): Unit;
+    /**
+     * @param fractionDigits
+     * @param compact
+     * @returns
+     */
+    toExponential(fractionDigits?: number, compact?: boolean): string;
+    /**
+     * @param fractionDigits
+     * @param compact
+     * @returns
+     */
+    toFixed(fractionDigits?: number, compact?: boolean): string;
+    /**
+     * @param precision
+     * @param compact
+     * @returns
+     */
+    toPrecision(precision?: number, compact?: boolean): string;
+    /**
+     * @param radix
+     * @param compact
+     * @returns
+     */
+    toString(radix?: number, compact?: boolean): string;
+    /**
+     * @returns
+     */
+    __pos__(): Unit;
+    /**
+     * @returns
+     */
+    __neg__(): Unit;
+    /**
+     * @param uom
+     * @returns
+     */
+    static isOne(uom: Unit): boolean;
+    /**
+     * @param uom
+     * @returns
+     */
+    static assertDimensionless(uom: Unit): void;
+    /**
+     * @param lhs
+     * @param rhs
+     * @returns
+     */
+    static compatible(lhs: Unit, rhs: Unit): Unit;
+    /**
+     * @param lhs
+     * @param rhs
+     * @returns
+     */
+    static mul(lhs: Unit, rhs: Unit): Unit;
+    /**
+     * @param lhs
+     * @param rhs
+     * @returns
+     */
+    static div(lhs: Unit, rhs: Unit): Unit;
+    /**
+     * @param uom
+     * @returns
+     */
+    static sqrt(uom: Unit): Unit;
+}
+
+declare class G2 {
+    #private;
+    constructor(a: number, x: number, y: number, b: number, uom?: Unit);
+    get a(): number;
+    get x(): number;
+    get y(): number;
+    get b(): number;
+}
+
 interface PseudoCoord {
     /**
      * The pseudoscalar coordinate as a number.I
@@ -690,257 +950,6 @@ interface TrigMethods<T> {
 
 /**
  * <p>
- * The Unit class represents the units for a measure.
- * </p>
- */
-declare class Unit {
-    multiplier: number;
-    dimensions: Dimensions;
-    labels: [string, string, string, string, string, string, string];
-    /**
-     *
-     */
-    static ZERO: Unit;
-    /**
-     *
-     */
-    static ONE: Unit;
-    /**
-     *
-     */
-    static MASS: Unit;
-    /**
-     *
-     */
-    static LENGTH: Unit;
-    /**
-     *
-     */
-    static TIME: Unit;
-    /**
-     *
-     */
-    static CHARGE: Unit;
-    /**
-     *
-     */
-    static CURRENT: Unit;
-    /**
-     *
-     */
-    static TEMPERATURE: Unit;
-    /**
-     *
-     */
-    static AMOUNT: Unit;
-    /**
-     *
-     */
-    static INTENSITY: Unit;
-    /**
-     * @param multiplier
-     * @param dimensions
-     * @param labels The label strings to use for each dimension.
-     */
-    constructor(multiplier: number, dimensions: Dimensions, labels: [string, string, string, string, string, string, string]);
-    /**
-     * @param rhs
-     * @returns
-     */
-    compatible(rhs: Unit): Unit;
-    /**
-     * @param rhs
-     * @returns
-     */
-    add(rhs: Unit): Unit;
-    /**
-     * @param rhs
-     * @returns
-     */
-    __add__(rhs: Unit): Unit;
-    /**
-     * @param lhs
-     * @returns
-     */
-    __radd__(lhs: Unit): Unit;
-    /**
-     * @param rhs
-     * @returns
-     */
-    sub(rhs: Unit): Unit;
-    /**
-     * @param rhs
-     * @returns
-     */
-    __sub__(rhs: Unit): Unit;
-    /**
-     * @param lhs
-     * @returns
-     */
-    __rsub__(lhs: Unit): Unit;
-    /**
-     * @param rhs
-     * @returns
-     */
-    mul(rhs: Unit): Unit;
-    /**
-     * @param rhs
-     * @returns
-     */
-    __mul__(rhs: number | Unit): Unit;
-    /**
-     * @param lhs
-     * @returns
-     */
-    __rmul__(lhs: number | Unit): Unit;
-    /**
-     * @param rhs
-     * @returns
-     */
-    div(rhs: Unit): Unit;
-    /**
-     * @param α
-     * @returns
-     */
-    divByScalar(α: number): Unit;
-    __div__(other: number | Unit): Unit;
-    __rdiv__(other: number | Unit): Unit;
-    /**
-     * Intentionaly undocumented.
-     */
-    pattern(): string;
-    /**
-     * @param exponent
-     * @returns
-     */
-    pow(exponent: QQ): Unit;
-    /**
-     * @returns
-     */
-    inv(): Unit;
-    /**
-     * @returns
-     */
-    neg(): Unit;
-    /**
-     * @returns
-     */
-    isOne(): boolean;
-    /**
-     * @returns
-     */
-    isZero(): boolean;
-    /**
-     *
-     */
-    lerp(target: Unit, α: number): Unit;
-    /**
-     * @returns
-     */
-    norm(): Unit;
-    /**
-     * @returns
-     */
-    quad(): Unit;
-    /**
-     * @param n
-     * @returns
-     */
-    reflect(n: Unit): Unit;
-    /**
-     * @param rotor
-     * @returns
-     */
-    rotate(rotor: Unit): Unit;
-    /**
-     * @param α
-     * @returns
-     */
-    scale(α: number): Unit;
-    /**
-     * @param target
-     * @param α
-     * @returns
-     */
-    slerp(target: Unit, α: number): Unit;
-    /**
-     * @returns
-     */
-    sqrt(): Unit;
-    /**
-     * @param σ
-     * @returns
-     */
-    stress(σ: Unit): Unit;
-    /**
-     * @param fractionDigits
-     * @param compact
-     * @returns
-     */
-    toExponential(fractionDigits?: number, compact?: boolean): string;
-    /**
-     * @param fractionDigits
-     * @param compact
-     * @returns
-     */
-    toFixed(fractionDigits?: number, compact?: boolean): string;
-    /**
-     * @param precision
-     * @param compact
-     * @returns
-     */
-    toPrecision(precision?: number, compact?: boolean): string;
-    /**
-     * @param radix
-     * @param compact
-     * @returns
-     */
-    toString(radix?: number, compact?: boolean): string;
-    /**
-     * @returns
-     */
-    __pos__(): Unit;
-    /**
-     * @returns
-     */
-    __neg__(): Unit;
-    /**
-     * @param uom
-     * @returns
-     */
-    static isOne(uom: Unit): boolean;
-    /**
-     * @param uom
-     * @returns
-     */
-    static assertDimensionless(uom: Unit): void;
-    /**
-     * @param lhs
-     * @param rhs
-     * @returns
-     */
-    static compatible(lhs: Unit, rhs: Unit): Unit;
-    /**
-     * @param lhs
-     * @param rhs
-     * @returns
-     */
-    static mul(lhs: Unit, rhs: Unit): Unit;
-    /**
-     * @param lhs
-     * @param rhs
-     * @returns
-     */
-    static div(lhs: Unit, rhs: Unit): Unit;
-    /**
-     * @param uom
-     * @returns
-     */
-    static sqrt(uom: Unit): Unit;
-}
-
-/**
- * <p>
  * Represents a multivector for a 3-dimensional vector space with a Euclidean metric.
  * </p>
  * <p>
@@ -1042,7 +1051,7 @@ declare class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumb
      * @param β The pseudoscalar part of the multivector.
      * @param uom The optional unit of measure.
      */
-    constructor(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, uom: Unit);
+    constructor(α: number, x: number, y: number, z: number, xy: number, yz: number, zx: number, β: number, uom?: Unit);
     /**
      * The scalar part of this multivector.
      */
@@ -1290,5 +1299,5 @@ declare function round(x: G3): G3;
  */
 declare function acos(x: G3): G3;
 
-export { Dimensions, G3, Line, Plane, QQ, Unit, acos, ascending, ceiling, descending, eq, floor, ge, gt, le, lt, max, min, mod, round };
+export { Dimensions, G2, G3, Line, Plane, QQ, Unit, acos, ascending, ceiling, descending, eq, floor, ge, gt, le, lt, max, min, mod, round };
 export type { DivisionRingOperators, GeometricCoords, GeometricMeasure, GeometricNumber, GeometricOperators, SpinorCoords, TrigMethods, VectorCoords };
