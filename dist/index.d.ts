@@ -1299,6 +1299,8 @@ declare function round(x: G3): G3;
  * @param x A scalar.
  */
 declare function acos(x: G3): G3;
+declare function sum(xs: Readonly<G3[]>): G3;
+declare function product(xs: Readonly<G3[]>): G3;
 
-export { Dimensions, G2, G3, Line, Plane, QQ, Unit, acos, ascending, ceiling, descending, eq, floor, ge, gt, le, lt, max, min, mod, round };
+export { Dimensions, G2, G3, Line, Plane, QQ, Unit, acos, ascending, ceiling, descending, eq, floor, ge, gt, le, lt, max, min, mod, product, round, sum };
 export type { DivisionRingOperators, GeometricCoords, GeometricMeasure, GeometricNumber, GeometricOperators, SpinorCoords, TrigMethods, VectorCoords };

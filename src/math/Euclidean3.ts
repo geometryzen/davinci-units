@@ -1392,3 +1392,11 @@ export function round(x: G3): G3 {
 export function acos(x: G3): G3 {
     return math_1_arg(x, Math.acos);
 }
+
+export function sum(xs: Readonly<G3[]>): G3 {
+    return xs.reduce((accumulator, x) => accumulator.add(x), G3.zero);
+}
+
+export function product(xs: Readonly<G3[]>): G3 {
+    return xs.reduce((accumulator, x) => accumulator.mul(x), G3.one);
+}
