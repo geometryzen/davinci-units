@@ -768,9 +768,9 @@ interface GeometricMeasure<T> extends Measure<T> {
  * For geometric quantities with units, you may use the quantity itself because it can represent a scalar.
  */
 /**
- * @class LinearNumber
+ *
  */
-interface LinearNumber<I, M, S, V, MAGNITUDE, SCALAR> {
+interface LinearNumber<I, M, S, V, SCALAR> {
     add(rhs: I, α?: number): M;
     divByScalar(α: SCALAR): M;
     lerp(target: I, α: number): M;
@@ -796,7 +796,7 @@ interface LinearNumber<I, M, S, V, MAGNITUDE, SCALAR> {
  * V: The lightweight interface form of the vector.
  * MAGNITUDE: The type for methods that compute magnitudes.
  */
-interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNumber<I, M, S, V, MAGNITUDE, SCALING> {
+interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNumber<I, M, S, V, SCALING> {
     /**
      * Addition of a scalar.
      */
@@ -876,9 +876,21 @@ interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNu
      */
     norm(): M;
     /**
+     * Returns the part of a vector in the specified direction.
+     * A convenience for taking the scalar product with the direction and then multiplying by the direction.
+     * @param direction A unit vector.
+     */
+    projection(direction: I): M;
+    /**
      * squared norm, scp(x, rev(x))
      */
     quad(): M;
+    /**
+     * Returns the part of a vector not in the specified direction.
+     * A convenience for subtracting the projection.
+     * @param direction A unit vector.
+     */
+    rejection(direction: I): M;
     /**
      * Right contraction
      */
@@ -1144,6 +1156,8 @@ declare class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumb
     __div__(rhs: G3 | number): G3;
     __rdiv__(lhs: G3 | number): G3;
     dual(): G3;
+    projection(direction: G3): G3;
+    rejection(direction: G3): G3;
     scp(rhs: G3): G3;
     ext(rhs: G3): G3;
     __vbar__(rhs: G3 | number): G3;

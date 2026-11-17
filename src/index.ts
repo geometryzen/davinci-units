@@ -11,4 +11,3 @@ export { SpinorCoords } from "./math/SpinorCoords";
 export { TrigMethods } from "./math/TrigMethods";
 export { Unit } from "./math/Unit";
 export { VectorCoords } from "./math/VectorCoords";
-

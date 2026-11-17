@@ -9,9 +9,9 @@
  */
 
 /**
- * @class LinearNumber
+ *
  */
-interface LinearNumber<I, M, S, V, MAGNITUDE, SCALAR> {
+export interface LinearNumber<I, M, S, V, SCALAR> {
     add(rhs: I, α?: number): M;
     divByScalar(α: SCALAR): M;
     lerp(target: I, α: number): M;
@@ -27,5 +27,3 @@ interface LinearNumber<I, M, S, V, MAGNITUDE, SCALAR> {
     toPrecision(precision?: number): string;
     toString(radix?: number): string;
 }
-
-export default LinearNumber;

@@ -1,8 +1,6 @@
 /**
  * Intentionally undocumented
  */
-interface MutableMatrix<T> {
+export interface MutableMatrix<T> {
     elements: T;
 }
-
-export default MutableMatrix;

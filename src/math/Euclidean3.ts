@@ -617,6 +617,14 @@ export class G3 implements GeometricMeasure<G3>, GeometricCoords, GeometricNumbe
         throw new Error(notImplemented("dual").message);
     }
 
+    projection(direction: G3): G3 {
+        return this.scp(direction).mul(direction);
+    }
+
+    rejection(direction: G3): G3 {
+        return this.sub(this.projection(direction));
+    }
+
     scp(rhs: G3): G3 {
         return scpG3(this, rhs, Unit.mul(this.uom, rhs.uom));
     }

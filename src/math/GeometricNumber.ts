@@ -1,4 +1,4 @@
-import LinearNumber from "./LinearNumber";
+import { LinearNumber } from "./LinearNumber";
 /**
  * This interface is provided to ensure consistency.
  * Notice that the effect on the target depends upon whether the target class in mutable.
@@ -9,7 +9,7 @@ import LinearNumber from "./LinearNumber";
  * MAGNITUDE: The type for methods that compute magnitudes.
  */
 
-export interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNumber<I, M, S, V, MAGNITUDE, SCALING> {
+export interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends LinearNumber<I, M, S, V, SCALING> {
     /**
      * Addition of a scalar.
      */
@@ -108,9 +108,22 @@ export interface GeometricNumber<I, M, S, V, MAGNITUDE, SCALING, UNIT> extends L
     norm(): M;
 
     /**
+     * Returns the part of a vector in the specified direction.
+     * A convenience for taking the scalar product with the direction and then multiplying by the direction.
+     * @param direction A unit vector.
+     */
+    projection(direction: I): M;
+
+    /**
      * squared norm, scp(x, rev(x))
      */
     quad(): M;
+    /**
+     * Returns the part of a vector not in the specified direction. 
+     * A convenience for subtracting the projection.
+     * @param direction A unit vector.
+     */
+    rejection(direction: I): M;
 
     /**
      * Right contraction
