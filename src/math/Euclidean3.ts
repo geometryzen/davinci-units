@@ -1217,7 +1217,7 @@ export class Line {
     constructor(
         readonly through: G3,
         readonly direction: G3
-    ) {}
+    ) { }
     meetsPlane(plane: Plane): G3 {
         return meet_of_line_and_plane(this, plane);
     }
@@ -1227,7 +1227,7 @@ export class Plane {
     constructor(
         readonly through: G3,
         readonly normal: G3
-    ) {}
+    ) { }
     meetsLine(line: Line): G3 {
         return meet_of_line_and_plane(line, this);
     }
